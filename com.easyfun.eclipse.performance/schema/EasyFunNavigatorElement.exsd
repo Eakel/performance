@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="com.easyfun.eclipse.performance" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="com.easyfun.eclipse.performance" id="EasyFunNavigatorElement" name="EasyFunNavigatorElement"/>
+      </appinfo>
+      <documentation>
+         定义左侧导航的扩展点
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="page" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="page">
+      <complexType>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="compositeClass" type="string">
+            <annotation>
+               <documentation>
+                  打开的主页面板实现类(Composite)
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn="com.easyfun.eclipse.common.view.item.pub.ItemComposite:"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="itemHelper" type="string">
+            <annotation>
+               <documentation>
+                  导航助手
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="type" type="string">
+            <annotation>
+               <documentation>
+                  类型
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="title" type="string">
+            <annotation>
+               <documentation>
+                  主页面板的title
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="visible" type="boolean">
+            <annotation>
+               <documentation>
+                  是否可见
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="icon" type="string">
+            <annotation>
+               <documentation>
+                  图标
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="resource"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="folder" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="com.easyfun.eclipse.performance.EasyFunNavigatorFolder/folder/@id"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="viewId" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiinfo"/>
+      </appinfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+
+</schema>

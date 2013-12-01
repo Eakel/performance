@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<navigator>
+	<folder title="BES8" type="BES8" visible="true">
+		<item type="ThreadDump" title="ThreadDump(BES8)" visible="true" icon="icons/thread/thread_ob.gif"
+			composite="com.easyfun.eclipse.component.threaddump.ThreadDumpComposite"
+			helper="com.easyfun.eclipse.component.threaddump.ThreadDumpItemHelper" />
+	</folder>
+	<folder title="Weblogic" type="Weblogic" visible="true">
+		<item type="ThreadDump" title="ThreadDump(Weblogic)" visible="true" icon="icons/thread/thread_ob.gif"
+			composite="com.easyfun.eclipse.component.threaddump.ThreadDumpComposite"
+			helper="com.easyfun.eclipse.component.threaddump.ThreadDumpItemHelper" />
+	</folder>
+	<folder title="Oracle" type="Oracle" visible="true">
+		<item type="table" title="表格分析" visible="true" icon="icons/thread/threaddump.gif"
+			composite="com.easyfun.eclipse.component.oracle.item.TableAnalyzeComposite"
+			helper="com.easyfun.eclipse.common.view.item.pub.DefaultItemHelper" />
+		<item type="awr" title="AWR" visible="true" icon="icons/thread/threaddump.gif"
+			composite="com.easyfun.eclipse.component.awr.item.OracleAWRComposite"
+			helper="com.easyfun.eclipse.common.view.item.pub.DefaultItemHelper" />		
+		<item type="trace" title="TRACE" visible="true" icon="icons/thread/threaddump.gif"
+			composite="com.easyfun.eclipse.component.trace.item.TraceComposite"
+			helper="com.easyfun.eclipse.common.view.item.pub.DefaultItemHelper" />				
+		<!-- 功能比较简陋，先屏蔽 -->
+		<item type="welcome" title="Welcome" visible="false" icon="icons/thread/threaddump.gif"	
+			composite="com.easyfun.eclipse.common.view.item.welcome.WelcomeComposite"
+			helper="com.easyfun.eclipse.common.view.item.pub.DefaultItemHelper" />
+	</folder>		
+	<folder title="Socket" type="Socket" visible="false">	<!-- 功能有点问题，先屏蔽 20120923 -->
+		<item type="SocketClient" title="SocketClient" visible="true" icon="icons/thread/thread_ob.gif"
+			composite="com.easyfun.eclipse.component.socket.tcpclient.SWTSocketClient"
+			helper="com.easyfun.eclipse.common.view.item.pub.DefaultItemHelper" />
+		<item type="SocketServer" title="SocketServer" visible="true" icon="icons/thread/thread_ob.gif"
+			composite="com.easyfun.eclipse.component.socket.tcpserver.SWTSocketServer"
+			helper="com.easyfun.eclipse.common.view.item.pub.DefaultItemHelper" />			
+		<item type="UDP" title="UDP" visible="true" icon="icons/thread/thread_ob.gif"
+			composite="com.easyfun.eclipse.component.socket.udp.SWTSocketUdp"
+			helper="com.easyfun.eclipse.common.view.item.pub.DefaultItemHelper" />			
+	</folder>	
+	<folder title="Other" type="Other" visible="true">	<!-- 功能未完成，先屏蔽-->
+		<item type="welcome" title="JMX" visible="true" icon="icons/thread/thread_ob.gif"
+			composite="com.easyfun.eclipse.component.jmx.JMXComposite"
+			helper="com.easyfun.eclipse.common.view.item.pub.DefaultItemHelper" />
+		<item type="HTTP" title="HTTP" visible="true" icon="icons/thread/thread_ob.gif"
+			composite=""
+			helper="com.easyfun.eclipse.common.view.item.pub.OpenViewItemHelper" 
+			viewId="com.easyfun.eclipse.performance.view.httpclient"
+			/>
+	</folder>		
+</navigator>

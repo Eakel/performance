@@ -1,0 +1,21 @@
+<html>
+	<head>
+		<title>${htmlTitile}</title>
+	</head>
+ 	<body>
+		<table border="2">
+			<tr>
+				#foreach( $header in $headers )
+					<th>$header</th>
+				#end
+			</tr>			
+				#foreach( $kv in $kvs )
+			<tr>
+				<td>$kv.key</td>
+				<td>$kv.value</td>
+			</tr>
+				#end
+		</table>		
+	</body>
+</html>
+	

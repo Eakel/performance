@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension-point id="EasyFunNavigatorElement" name="EasyFunNavigatorElement" schema="schema/EasyFunNavigatorElement.exsd"/>
+   <extension-point id="EasyFunNavigatorFolder" name="EasyFunNavigatorFolder" schema="schema/EasyFunNavigatorFolder.exsd"/>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="com.easyfun.eclipse.performance.EasyFunApplication">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="RCP Perspective"
+            class="com.easyfun.eclipse.performance.Perspective"
+            id="com.easyfun.eclipse.performance.perspective">
+      </perspective>
+   </extension>
+   <extension
+         id="com.easyfun.eclipse.ui.commonView"
+         name="EasyFun"
+         point="org.eclipse.ui.views">
+      <category
+            id="com.easyfun.eclipse.utils.views.category"
+            name="EasyFun">
+      </category>
+   </extension>   
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            allowMultiple="true"
+            category="com.easyfun.eclipse.utils.views.category"
+            class="com.easyfun.eclipse.common.view.item.navigator.ItemNavigationView"
+            icon="icons/sample3.gif"
+            id="com.easyfun.eclipse.performance.navigationView"
+            name="EasyFun">
+      </view>
+      <view
+            allowMultiple="true"
+            category="com.easyfun.eclipse.utils.views.category"
+            class="com.easyfun.eclipse.common.view.item.content.MainContentView"
+            icon="icons/easyfun.gif"
+            id="com.easyfun.eclipse.performance.view.maincontent"
+            name="Content"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            name="Mail"
+            id="com.easyfun.eclipse.performance.category">
+      </category>
+      <command
+            name="Open HTTP"
+            description="Open HTTP View"
+            categoryId="com.easyfun.eclipse.performance.category"
+            id="com.easyfun.eclipse.performance.openHttp">
+      </command>
+      <command
+            categoryId="com.easyfun.eclipse.performance.category"
+            id="com.easyfun.eclipse.performance.openConsole"
+            name="Open Console">
+      </command>
+      <command
+            categoryId="com.easyfun.eclipse.performance.category"
+            description="Open Error Log View"
+            id="com.easyfun.eclipse.performance.openErrorLog"
+            name="Error Log">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="com.easyfun.eclipse.performance.openHttp"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="CTRL+2">
+      </key>
+      <key
+            commandId="org.eclipse.ui.file.exit"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="CTRL+X">
+      </key>
+      <key
+            commandId="com.easyfun.eclipse.performance.openConsole"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="Ctrl+O">
+      </key>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="com.easyfun.eclipse.performance.preferences.EasyFunPreferencePage"
+            id="com.easyfun.eclipse.performance.preferences.EasyFunPreferencePage"
+            name="EasyFun">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="com.easyfun.eclipse.performance.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="com.easyfun.eclipse.performance.application"
+            name="EasyFun Performance">
+         <property
+               name="aboutText"
+               value="EasyFun Performance(By Linzhaoming)">
+         </property>
+         <property
+               name="windowImages"
+               value="icons/easyfun.gif">
+         </property>
+         <property
+               name="aboutImage"
+               value="icons/easyfun.gif">
+         </property>
+         <property
+               name="appName"
+               value="EasyFun Performance">
+         </property>
+      </product>
+   </extension>
+   <extension
+         point="com.easyfun.eclipse.performance.EasyFunNavigatorFolder">
+      <folder
+            id="com.easyfun.eclipse.performance.otherFolder"
+            title="Other"
+            type="Other"
+            visible="true">
+      </folder>
+   </extension>   
+</plugin>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="lib/commons-beanutils-1.8.0.jar" sourcepath="lib_source/commons-beanutils-1.8.0-sources.jar"/>
+	<classpathentry kind="lib" path="lib/commons-codec-1.3.jar" sourcepath="lib_source/commons-codec-1.3_src.zip"/>
+	<classpathentry kind="lib" path="lib/commons-collections-3.2.1.jar" sourcepath="lib/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons-configuration-1.6.jar" sourcepath="lib_source/commons-configuration-1.6-sources.jar"/>
+	<classpathentry kind="lib" path="lib/commons-dbcp-1.2.2.jar" sourcepath="lib_source/commons-dbcp-1.2.2-src.zip"/>
+	<classpathentry kind="lib" path="lib/commons-digester-1.8.1.jar" sourcepath="lib_source/commons-digester-1.8.1-sources.jar"/>
+	<classpathentry kind="lib" path="lib/commons-httpclient-3.1.jar" sourcepath="lib_source/commons-httpclient-3.1-src.zip"/>
+	<classpathentry kind="lib" path="lib/commons-io-1.4.jar" sourcepath="lib_source/commons-io-1.4-sources.jar"/>
+	<classpathentry kind="lib" path="lib/commons-lang-2.4.jar" sourcepath="lib/commons-lang-2.4.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.1.1.jar" sourcepath="lib_source/commons-logging-1.1.1-sources.jar"/>
+	<classpathentry kind="lib" path="lib/commons-net-2.0.jar" sourcepath="lib_source/commons-net-2.0-sources.jar"/>
+	<classpathentry kind="lib" path="lib/commons-pool-1.4.jar" sourcepath="lib_source/commons-pool-1.4-src.zip"/>
+	<classpathentry kind="lib" path="lib/log4j-1.2.15.jar" sourcepath="lib_source/apache-log4j-1.2.15-src.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/jxl.jar" sourcepath="com.easyfun.eclipse.performancesrc.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/velocity-1.5.jar" sourcepath="com.easyfun.eclipse.performancesrc.zip"/>
+	<classpathentry kind="lib" path="lib/iText-2.1.2.jar" sourcepath="lib_source/iText-2.1.2-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/iTextAsian.jar" sourcepath="com.easyfun.eclipse.performancesrc.zip"/>
+	<classpathentry kind="lib" path="lib/dom4j.jar"/>
+	<classpathentry kind="lib" path="lib/xstream-1.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/joda-time-1.5.2.jar"/>
+	<classpathentry kind="lib" path="lib/trilead-ssh2-build213.jar" sourcepath="lib_source/trilead-ssh2-6401.zip"/>
+	<classpathentry kind="lib" path="lib/ojdbc14_10_2_0_4.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
