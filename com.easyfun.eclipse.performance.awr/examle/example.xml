@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="GBK"?>
+<app id="15" time="2013-02-26 22:48:00.653">
+	<web id="16" time="2013-02-26 22:48:00.50">
+		<url><![CDATA[/webframe/index.jsp]]></url>
+		<ci>135.31.38.2</ci>
+		<wi>135.10.53.34</wi>
+		<sn>crm-web-g1-srv3</sn>
+		<code>95558025</code>
+	</web>
+	<srv id="17" time="2013-02-26 22:48:00.651">
+		<cn>com.ai.oneframe.main.service.impl.FavoriteItemSVImpl
+		</cn>
+		<mn>getFavoriteItem</mn>
+		<in>
+			<p s="1"><![CDATA[数据容器：com.ai.oneframe.main.bo.BOFavoriteItem
+FOLDER_ID:-1   ]]></p>
+		</in>
+		<ai>135.10.51.73</ai>
+		<sn>crm-app-g3-c1b2-srv1</sn>
+		<cen>null</cen>
+		<code>95558025</code>
+		<s>1</s>
+		<et>1</et>
+		<dao id="18" time="2013-02-26 22:48:00.651">
+			<cn>com.ai.oneframe.main.dao.impl.FavoriteItemDAOImpl
+			</cn>
+			<mn>getFavoriteItemBySql</mn>
+			<cen>null</cen>
+			<s>1</s>
+			<et>1</et>
+			<jdbc id="19" time="2013-02-26 22:48:00.651">
+				<u>BASE</u>
+				<sql><![CDATA[ select M.COME_DATE,M.FOLDER_ID,M.BUSI_TYPE,M.SEE_NUM,M.ITEM_URL,M.ITEM_NAME,M.DONE_DATE,M.ITEM_ID,M.CREATE_DATE,M.NOTES ,M.ROWID as MROWID___  from OF_FAVORITE_ITEM M where 1 = 1 and M.FOLDER_ID = ? ]]></sql>
+				<t>P</t>
+				<in>
+					<p s="1" t="Object" v="-1" />
+				</in>
+				<et>1</et>
+			</jdbc>
+		</dao>
+	</srv>
+</app>

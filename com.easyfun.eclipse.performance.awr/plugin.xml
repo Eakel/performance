@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="com.easyfun.eclipse.performance.awr.preferences.AwrPrefInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="com.easyfun.eclipse.performance.preferences.EasyFunPreferencePage"
+            class="com.easyfun.eclipse.performance.awr.preferences.AwrPrefPage"
+            id="com.easyfun.eclipse.performance.preferences.awr.oracle"
+            name="JDBC(AWR)">
+      </page>      
+   </extension>
+   <extension
+         point="com.easyfun.eclipse.performance.EasyFunNavigatorFolder">
+      <folder
+            id="com.easyfun.eclipse.performance.oracleFolder"
+            title="Oracle"
+            type="Oracle"
+            visible="true">
+      </folder>
+   </extension>
+      <extension
+         point="com.easyfun.eclipse.performance.EasyFunNavigatorElement">
+             <page
+            compositeClass="com.easyfun.eclipse.performance.awr.item.OracleAWRComposite"
+            folder="com.easyfun.eclipse.performance.oracleFolder"
+            icon="icons/threaddump.gif"
+            id="com.easyfun.eclipse.component.awr.item.oracleAWRComposite"
+            itemHelper="com.easyfun.eclipse.common.view.item.pub.DefaultItemHelper"
+            title="AWR"
+            type="awr"
+            visible="true">
+      </page>
+    </extension>
+</plugin>

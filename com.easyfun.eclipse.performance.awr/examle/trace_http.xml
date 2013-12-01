@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="GBK"?>
+<app id="1" time="2013-02-26 22:43:02.971">
+	<web id="2" time="2013-02-26 22:43:02.932">
+		<url><![CDATA[/webframe/external/crm/UserProdsInfo.jsp?pageId=1151879&accessNumber=13908511234]]></url>
+		<ci>135.31.38.2</ci>
+		<wi>135.10.53.38</wi>
+		<sn>crm-web-g2-srv2</sn>
+		<code>95558025</code>
+	</web>
+	<srv id="3" time="2013-02-26 22:43:02.949">
+		<cn>com.ai.omframe.common.service.impl.EffectiveAndExpireDateSVImpl
+		</cn>
+		<mn>getEffictiveDateAtOnce</mn>
+		<ai>135.10.50.75</ai>
+		<sn>crm-app-g2-c1b2-srv4</sn>
+		<cen>null</cen>
+		<code>95558025</code>
+		<s>1</s>
+		<et>0</et>
+		<http id="123" time="1234">
+			<cen></cen>
+			<code></code>
+			<url><![CDATA[http://www.baidu.com]]></url>
+			<pm>GET</pm>
+			<to>12</to>
+			<h>headertest</h>
+			<q>queryTest</q>
+			<s>1</s>
+			<b><![CDATA[body test]]></b>
+			<sc>200</sc>
+			<et>100</et>
+		</http>		
+	</srv>
+</app>
