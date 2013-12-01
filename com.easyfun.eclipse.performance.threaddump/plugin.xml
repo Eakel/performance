@@ -15,7 +15,7 @@
       <page
             compositeClass="com.easyfun.eclipse.performance.threaddump.ThreadDumpComposite"
             folder="com.easyfun.eclipse.performance.threaddumpFolder"
-            icon="icons/thread_ob.gif"
+            icon="icons/threaddump.gif"
             id="com.easyfun.eclipse.component.threaddump.threadDump"
             itemHelper="com.easyfun.eclipse.performance.threaddump.ThreadDumpItemHelper"
             title="ThreadDump"

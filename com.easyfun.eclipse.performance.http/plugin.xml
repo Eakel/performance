@@ -5,7 +5,7 @@
          point="com.easyfun.eclipse.performance.EasyFunNavigatorElement">
       <page
             folder="com.easyfun.eclipse.performance.otherFolder"
-            icon="icons/thread_ob.gif"
+            icon="icons/http.png"
             id="com.easyfun.eclipse.common.view.item.pub.httpClientView"
             title="HTTP"
             type="HTTP"
@@ -17,7 +17,7 @@
          point="org.eclipse.ui.views">
       <view
             class="com.easyfun.eclipse.performance.http.views.HttpViewPart"
-            icon="icons/sample2.gif"
+            icon="icons/http.png"
             id="com.easyfun.eclipse.performance.view.httpclient"
             name="Http Client">
       </view>

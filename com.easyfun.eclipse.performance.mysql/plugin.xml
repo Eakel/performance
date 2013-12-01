@@ -5,7 +5,7 @@
          point="org.eclipse.ui.views">
       <view
             class="com.easyfun.eclipse.performance.mysql.views.MySQLView"
-            icon="icons/easyfun.gif"
+            icon="icons/mysql.png"
             id="com.easyfun.eclipse.performance.mysql.views.MySQLView"
             name="MySQL View">
       </view>
@@ -23,7 +23,7 @@
          point="com.easyfun.eclipse.performance.EasyFunNavigatorElement">
       <page
             folder="com.easyfun.eclipse.performance.mysql.mysqlFolder"
-            icon="icons/easyfun.gif"
+            icon="icons/mysql.png"
             id="com.easyfun.eclipse.performance.mysql.mysqlPage"
             title="MySQL"
             type="MySQL"

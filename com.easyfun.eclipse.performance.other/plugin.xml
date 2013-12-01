@@ -5,7 +5,7 @@
          point="org.eclipse.ui.views">
       <view
             class="com.easyfun.eclipse.performance.other.views.MemcachedView"
-            icon="icons/easyfun.gif"
+            icon="icons/memcache.png"
             id="com.easyfun.eclipse.performance.other.views.MemcachedView"
             name="Memcached">
       </view>
@@ -14,7 +14,7 @@
          point="com.easyfun.eclipse.performance.EasyFunNavigatorElement">
       <page
             folder="com.easyfun.eclipse.performance.otherFolder"
-            icon="icons/easyfun.gif"
+            icon="icons/memcache.png"
             id="com.easyfun.eclipse.performance.memcache"
             title="Memcached"
             type="Memcached"

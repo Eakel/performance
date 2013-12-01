@@ -36,7 +36,7 @@
       <page
             compositeClass="com.easyfun.eclipse.performance.oracle.item.TableAnalyzeComposite"
             folder="com.easyfun.eclipse.performance.oracleFolder"
-            icon="icons/thread_ob.gif"
+            icon="icons/table.png"
             id="com.easyfun.eclipse.component.oracle.item.tableAnalyzeComposite"
             title="Oracle表统计"
             type="Oracle"

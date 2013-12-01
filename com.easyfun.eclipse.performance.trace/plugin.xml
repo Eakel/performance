@@ -15,7 +15,7 @@
       <page
             compositeClass="com.easyfun.eclipse.performance.trace.item.TraceComposite"
             folder="com.easyfun.eclipse.performance.oracleFolder"
-            icon="icons/thread_ob.gif"
+            icon="icons/trace.png"
             id="com.easyfun.eclipse.component.trace.item.traceComposite"
             title="TRACE"
             type="trace"

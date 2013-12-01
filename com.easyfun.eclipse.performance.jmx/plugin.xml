@@ -6,7 +6,7 @@
       <page
             compositeClass="com.easyfun.eclipse.performance.jmx.JMXComposite"
             folder="com.easyfun.eclipse.performance.otherFolder"
-            icon="icons/thread_ob.gif"
+            icon="icons/jmx.png"
             id="com.easyfun.eclipse.component.jmx.jmxComposite"
             title="JMX"
             type="welcome"
