@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+    <extension
+         point="com.easyfun.eclipse.performance.EasyFunNavigatorFolder">
+      <folder
+            id="com.easyfun.eclipse.performance.oracleFolder"
+            title="Oracle"
+            type="Oracle"
+            visible="true">
+      </folder>
+   </extension>
+   <extension
+         point="com.easyfun.eclipse.performance.EasyFunNavigatorElement">
+      <page
+            compositeClass="com.easyfun.eclipse.performance.trace.item.TraceComposite"
+            folder="com.easyfun.eclipse.performance.oracleFolder"
+            icon="icons/thread_ob.gif"
+            id="com.easyfun.eclipse.component.trace.item.traceComposite"
+            title="TRACE"
+            type="trace"
+            visible="true">
+      </page>
+   </extension>
+</plugin>

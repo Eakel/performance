@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="com.easyfun.eclipse.performance.EasyFunNavigatorElement">
+      <page
+            compositeClass="com.easyfun.eclipse.performance.jmx.JMXComposite"
+            folder="com.easyfun.eclipse.performance.otherFolder"
+            icon="icons/thread_ob.gif"
+            id="com.easyfun.eclipse.component.jmx.jmxComposite"
+            title="JMX"
+            type="welcome"
+            visible="true">
+      </page>
+   </extension>
+</plugin>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="com.easyfun.eclipse.performance.oracle.preferences.OraclePrefInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="com.easyfun.eclipse.performance.preferences.EasyFunPreferencePage"
+            class="com.easyfun.eclipse.performance.oracle.preferences.OraclePreferencePage"
+            id="com.easyfun.eclipse.performance.preferences.Oracle"
+            name="Oracle表统计">
+      </page>
+      <page
+            category="com.easyfun.eclipse.performance.preferences.Oracle"
+            class="com.easyfun.eclipse.performance.oracle.preferences.TableFilterPrefPage"
+            id="com.easyfun.eclipse.performance.preferences.oracle.TableFilter"
+            name="表名过滤器">
+      </page>      
+   </extension>
+   <extension
+         point="com.easyfun.eclipse.performance.EasyFunNavigatorFolder">
+      <folder
+            id="com.easyfun.eclipse.performance.oracleFolder"
+            title="Oracle"
+            type="Oracle"
+            visible="true">
+      </folder>
+   </extension>
+   <extension
+         point="com.easyfun.eclipse.performance.EasyFunNavigatorElement">
+      <page
+            compositeClass="com.easyfun.eclipse.performance.oracle.item.TableAnalyzeComposite"
+            folder="com.easyfun.eclipse.performance.oracleFolder"
+            icon="icons/thread_ob.gif"
+            id="com.easyfun.eclipse.component.oracle.item.tableAnalyzeComposite"
+            title="Oracle表统计"
+            type="Oracle"
+            visible="true">
+      </page>
+   </extension>
+</plugin>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="com.easyfun.eclipse.performance.mysql.views.MySQLView"
+            icon="icons/easyfun.gif"
+            id="com.easyfun.eclipse.performance.mysql.views.MySQLView"
+            name="MySQL View">
+      </view>
+   </extension>
+   <extension
+         point="com.easyfun.eclipse.performance.EasyFunNavigatorFolder">
+      <folder
+            id="com.easyfun.eclipse.performance.mysql.mysqlFolder"
+            title="MySQL"
+            type="MySQL"
+            visible="true">
+      </folder>
+   </extension>
+   <extension
+         point="com.easyfun.eclipse.performance.EasyFunNavigatorElement">
+      <page
+            folder="com.easyfun.eclipse.performance.mysql.mysqlFolder"
+            icon="icons/easyfun.gif"
+            id="com.easyfun.eclipse.performance.mysql.mysqlPage"
+            title="MySQL"
+            type="MySQL"
+            viewId="com.easyfun.eclipse.performance.mysql.views.MySQLView"
+            visible="true">
+      </page>
+   </extension>
+
+</plugin>

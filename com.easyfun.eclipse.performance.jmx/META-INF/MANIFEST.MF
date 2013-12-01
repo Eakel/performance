@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Jmx Plug-in
+Bundle-SymbolicName: com.easyfun.eclipse.performance.jmx;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: com.easyfun.eclipse.performance.jmx.JmxActivator
+Bundle-Vendor: EASYFUN(Linzhaoming)
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ com.easyfun.eclipse.performance;bundle-version="1.0.0",
+ org.eclipse.ui.forms;bundle-version="3.3.100"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .,
+ lib/jbossall-client.jar,
+ lib/commons-logging-1.1.1.jar,
+ lib/log4j-1.2.15.jar
