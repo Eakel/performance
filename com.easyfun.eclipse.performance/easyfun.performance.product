@@ -4,7 +4,7 @@
 <product name="EasyFun Performance" id="com.easyfun.eclipse.performance.product" application="com.easyfun.eclipse.performance.application" version="1.0.0" useFeatures="false">
 
    <aboutInfo>
-      <image path="icons/easyfun.gif"/>
+      <image path="/com.easyfun.eclipse.performance/icons/esayfun.png"/>
       <text>
          EasyFun Performance(By Linzhaoming)
       </text>
@@ -17,7 +17,8 @@
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts</vmArgsMac>
    </launcherArgs>
 
-   <windowImages i16="icons/easyfun.gif"/>
+   <windowImages i16="/com.easyfun.eclipse.performance/icons/esayfun.png"/>
+
 
    <launcher>
       <solaris/>
@@ -25,6 +26,7 @@
          <bmp/>
       </win>
    </launcher>
+
 
    <vm>
    </vm>

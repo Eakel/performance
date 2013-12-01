@@ -44,7 +44,7 @@
             allowMultiple="true"
             category="com.easyfun.eclipse.utils.views.category"
             class="com.easyfun.eclipse.common.view.item.content.MainContentView"
-            icon="icons/easyfun.gif"
+            icon="icons/esayfun.png"
             id="com.easyfun.eclipse.performance.view.maincontent"
             name="Content"
             restorable="true">
@@ -119,11 +119,11 @@
          </property>
          <property
                name="windowImages"
-               value="icons/easyfun.gif">
+               value="icons/esayfun.png">
          </property>
          <property
                name="aboutImage"
-               value="icons/easyfun.gif">
+               value="icons/esayfun.png">
          </property>
          <property
                name="appName"
