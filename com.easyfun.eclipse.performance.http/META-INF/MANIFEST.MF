@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Http Plug-in
+Bundle-SymbolicName: com.easyfun.eclipse.performance.http;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: com.easyfun.eclipse.performance.http.HttpActivator
+Bundle-Vendor: EASYFUN(Linzhaoming)
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: lib/commons-httpclient-3.1.jar,
+ .,
+ lib/commons-codec-1.3.jar,
+ lib/commons-logging-1.1.1.jar,
+ lib/log4j-1.2.15.jar

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="com.easyfun.eclipse.performance.EasyFunNavigatorElement">
+      <page
+            folder="com.easyfun.eclipse.performance.otherFolder"
+            icon="icons/thread_ob.gif"
+            id="com.easyfun.eclipse.common.view.item.pub.httpClientView"
+            title="HTTP"
+            type="HTTP"
+            viewId="com.easyfun.eclipse.performance.view.httpclient"
+            visible="true">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="com.easyfun.eclipse.performance.http.views.HttpViewPart"
+            icon="icons/sample2.gif"
+            id="com.easyfun.eclipse.performance.view.httpclient"
+            name="Http Client">
+      </view>
+   </extension>
+</plugin>
