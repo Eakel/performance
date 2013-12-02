@@ -602,7 +602,11 @@ public class ThreadDumpComposite extends ItemComposite{
 		}
 		StringWriter sw = new StringWriter();
 		try {
-			IOUtil.copy(is, sw);
+			if(parserType == ParserType.MON){
+				IOUtil.copy(is, sw, "UTF8");
+			}else{
+				IOUtil.copy(is, sw);	
+			}
 		} catch (IOException e) {
 			DialogUtils.showError(getShell(), "¶ÁÈ¡ÄÚÈÝ´íÎó" + e.getMessage());
 			e.printStackTrace();
