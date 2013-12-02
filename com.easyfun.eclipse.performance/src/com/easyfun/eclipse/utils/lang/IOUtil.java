@@ -12,7 +12,13 @@ public class IOUtil {
 		return IOUtils.copy(input, output);
 	}
 	
+	/** 使用默认编码*/
 	public static void copy(InputStream input, Writer output)  throws IOException {
 		IOUtils.copy(input, output);
+	}
+	
+	/** 指定使用的编码方式*/
+	public static void copy(InputStream input, Writer output, String encoding)  throws IOException {
+		IOUtils.copy(input, output, encoding);
 	}
 }
