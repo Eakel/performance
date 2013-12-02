@@ -22,8 +22,10 @@ import com.easyfun.eclipse.common.config.cfg.ItemWrapper;
 import com.easyfun.eclipse.common.view.item.pub.DefaultItemProvider;
 
 /**
+ * ×ó²àµ¼º½Ê÷View
+ * 
  * @author linzhaoming
- *
+ * 
  * 2011-4-16
  *
  */

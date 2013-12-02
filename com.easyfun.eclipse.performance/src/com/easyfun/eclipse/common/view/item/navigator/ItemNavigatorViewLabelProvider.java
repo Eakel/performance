@@ -14,6 +14,13 @@ import com.easyfun.eclipse.common.config.cfg.ItemWrapper;
 import com.easyfun.eclipse.common.view.item.pub.DefaultItemProvider;
 import com.easyfun.eclipse.performance.PerformanceActivator;
 
+/**
+ * µ¼º½Ê÷LabelProvider
+ * @author linzhaoming
+ *
+ * 2013-12-2
+ *
+ */
 public class ItemNavigatorViewLabelProvider extends LabelProvider {
 
 	public String getText(Object obj) {

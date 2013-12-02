@@ -2,14 +2,13 @@ package com.easyfun.eclipse.common.view.item.content;
 
 import java.lang.reflect.Constructor;
 
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
-import org.osgi.framework.Bundle;
 
 import com.easyfun.eclipse.common.config.cfg.Item;
 import com.easyfun.eclipse.common.config.cfg.ItemWrapper;
@@ -81,6 +80,10 @@ public class MainContentView extends ViewPart {
 				}
 			}
 		}
+	}
+	
+	public void setImage(Image image){
+		setTitleImage(image);
 	}
 	
 }

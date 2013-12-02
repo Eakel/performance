@@ -1,12 +1,17 @@
 package com.easyfun.eclipse.common.view.item.pub;
 
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.resource.ImageRegistry;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 import com.easyfun.eclipse.common.UIConstants;
 import com.easyfun.eclipse.common.config.cfg.Item;
 import com.easyfun.eclipse.common.config.cfg.ItemWrapper;
 import com.easyfun.eclipse.common.util.DialogUtils;
 import com.easyfun.eclipse.common.view.item.content.MainContentView;
+import com.easyfun.eclipse.performance.PerformanceActivator;
 
 /**
  * 打开主内容View
@@ -22,6 +27,24 @@ public class DefaultItemHelper implements ItemHelper{
 		try {
 			ItemWrapper pair = DefaultItemProvider.getNavigatorByType(item);
 			MainContentView mainContentView = (MainContentView)page.showView(UIConstants.VIEWID_MAINCONTENT);
+			
+			//动态更改显示的图标
+			Image image = null;
+			Item selItem = pair.getItem();
+			ItemWrapper itemWrapper = DefaultItemProvider.getNavigatorByType(selItem);
+			String iconPath = itemWrapper.getHelper().getIcon(selItem);
+			
+			String regKey = selItem.getPluginId() + "_" + iconPath;
+			if (itemWrapper.getHelper().getIcon(selItem) != null) {
+				ImageRegistry registry = PerformanceActivator.getDefault().getImageRegistry();
+				if (registry.getDescriptor(regKey) == null) {
+					ImageDescriptor descriptor = AbstractUIPlugin.imageDescriptorFromPlugin(selItem.getPluginId(), iconPath);
+					registry.put(regKey, descriptor);
+				}
+				image = registry.get(regKey);
+			}
+			
+			mainContentView.setImage(image);
 			mainContentView.setCompositeName(pair);
 		} catch (Exception e) {
 			e.printStackTrace();

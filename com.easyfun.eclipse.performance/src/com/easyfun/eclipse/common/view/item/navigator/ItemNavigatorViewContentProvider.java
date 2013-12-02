@@ -8,6 +8,13 @@ import com.easyfun.eclipse.common.config.cfg.Folder;
 import com.easyfun.eclipse.common.config.cfg.Item;
 import com.easyfun.eclipse.common.config.cfg.Navigator;
 
+/**
+ * µ¼º½Ê÷ContentProvider
+ * @author linzhaoming
+ *
+ * 2013-12-2
+ *
+ */
 public class ItemNavigatorViewContentProvider implements IStructuredContentProvider, ITreeContentProvider {
 
 	public void inputChanged(Viewer v, Object oldInput, Object newInput) {
