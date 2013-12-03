@@ -36,7 +36,7 @@
             allowMultiple="true"
             category="com.easyfun.eclipse.utils.views.category"
             class="com.easyfun.eclipse.common.view.item.navigator.ItemNavigationView"
-            icon="icons/sample3.gif"
+            icon="icons/mail.gif"
             id="com.easyfun.eclipse.performance.navigationView"
             name="EasyFun">
       </view>
