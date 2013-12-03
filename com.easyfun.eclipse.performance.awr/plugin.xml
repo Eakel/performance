@@ -30,7 +30,7 @@
              <page
             compositeClass="com.easyfun.eclipse.performance.awr.item.OracleAWRComposite"
             folder="com.easyfun.eclipse.performance.oracleFolder"
-            icon="icons/threaddump.gif"
+            icon="icons/awr.gif"
             id="com.easyfun.eclipse.component.awr.item.oracleAWRComposite"
             itemHelper="com.easyfun.eclipse.common.view.item.pub.DefaultItemHelper"
             title="AWR"
