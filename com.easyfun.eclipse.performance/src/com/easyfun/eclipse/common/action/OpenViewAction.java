@@ -46,6 +46,10 @@ public class OpenViewAction extends Action {
 	public void setNeedMulti(boolean multi){
 		this.multi = multi;
 	}
+	
+	public void setViewImageDescriptor(String imageDesc){
+		setImageDescriptor(com.easyfun.eclipse.performance.PerformanceActivator.getImageDescriptor(imageDesc));
+	}
 
 	public void run() {
 		if (window != null) {

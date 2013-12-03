@@ -8,6 +8,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
 
 import com.easyfun.eclipse.common.UIConstants;
+import com.easyfun.eclipse.performance.PerformanceActivator;
 
 /**
  * ´ò¿ª¹Ø±ÕNavigator
@@ -21,6 +22,7 @@ public class ShowHideNavigatorViewAction extends Action implements IWorkbenchAct
 	public ShowHideNavigatorViewAction() {
 		setText("Close Navigator");
 		setId(getText());
+		setImageDescriptor(PerformanceActivator.getImageDescriptor("icons/esayfun.png"));
 	}
 
 	public void dispose() {

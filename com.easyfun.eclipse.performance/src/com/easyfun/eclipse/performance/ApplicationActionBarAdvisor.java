@@ -30,7 +30,6 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 	//File
     private IWorkbenchAction exitAction;		//Exit
     private IWorkbenchAction newWindowAction;	//Open in New Window
-//    private OpenViewAction openHttpViewAction;		//Open Another Message View
     private IWorkbenchAction closeAllAction;
     
     //Window
@@ -56,10 +55,6 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
         newWindowAction = ActionFactory.OPEN_NEW_WINDOW.create(window);
         register(newWindowAction);
                 
-//        openHttpViewAction = new OpenViewAction(window, "HTTP", ICommandIds.CMD_OPEN_HTTP, UIConstants.VIEWID_HTTPCLIENT, true);
-//        openHttpViewAction.setNeedMulti(true);
-//        register(openHttpViewAction);
-//        
         closeAllAction = new CloseAllAction();
 //        register(closeAllAction);
         
@@ -76,16 +71,18 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 		
 		openConsoleAction = new OpenViewAction(window, "Open Console", ICommandIds.CMD_OPEN_CONSOLE, IConsoleConstants.ID_CONSOLE_VIEW, false);
 		openConsoleAction.setText("Open Console");
+		openConsoleAction.setViewImageDescriptor("icons/eclipse/console.gif");
 		register(openConsoleAction);
+		
+		openErrorLogViewAction = new OpenViewAction(window, "Open Console", ICommandIds.CMD_OPEN_ERRORLOG, "org.eclipse.pde.runtime.LogView", false);
+		openErrorLogViewAction.setText("Error Log");
+		openErrorLogViewAction.setViewImageDescriptor("icons/eclipse/error_log.gif");
+		register(openErrorLogViewAction);
 		
 		preferencesAction = ActionFactory.PREFERENCES.create(window);
 		register(preferencesAction);
 		
 		//Help
-		openErrorLogViewAction = new OpenViewAction(window, "Open Console", ICommandIds.CMD_OPEN_ERRORLOG, "org.eclipse.pde.runtime.LogView", false);
-		openErrorLogViewAction.setText("Error Log");
-		register(openErrorLogViewAction);
-		
         aboutAction = ActionFactory.ABOUT.create(window);
         register(aboutAction);
     }
@@ -104,8 +101,6 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
         // File
         fileMenu.add(newWindowAction);
         fileMenu.add(new Separator());
-//        fileMenu.add(openHttpViewAction);
-        fileMenu.add(new Separator());
         fileMenu.add(closeAllAction);
         fileMenu.add(exitAction);
         
@@ -113,10 +108,10 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
         windowMenu.add(outlineAction);        
         windowMenu.add(toggleToolBarAction);
         windowMenu.add(openConsoleAction);
+        windowMenu.add(openErrorLogViewAction);
         windowMenu.add(preferencesAction);
         
         // Help
-        helpMenu.add(openErrorLogViewAction);
         helpMenu.add(aboutAction);
     }
     
