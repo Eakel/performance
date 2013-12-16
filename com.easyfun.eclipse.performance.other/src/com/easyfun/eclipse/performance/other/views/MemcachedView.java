@@ -1,142 +1,102 @@
 package com.easyfun.eclipse.performance.other.views;
 
+import java.util.List;
 
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.part.*;
-import org.eclipse.jface.viewers.*;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.jface.action.*;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.ui.*;
-import org.eclipse.swt.widgets.Menu;
+import org.apache.velocity.util.StringUtils;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.KeyAdapter;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.part.ViewPart;
 
+import com.easyfun.eclipse.common.console.LogHelper;
+import com.easyfun.eclipse.common.kv.KeyValueTableViewer;
+import com.easyfun.eclipse.performance.other.memcached.MemcachedStatUtil;
+
+/**
+ * 获取Memcache信息
+ * @author linzhaoming
+ *
+ * 2013-12-16
+ *
+ */
 public class MemcachedView extends ViewPart {
-	private TableViewer viewer;
-	private Action action1;
-	private Action action2;
-	private Action doubleClickAction;
-	 
-	class ViewContentProvider implements IStructuredContentProvider {
-		public void inputChanged(Viewer v, Object oldInput, Object newInput) {
-		}
-		public void dispose() {
-		}
-		public Object[] getElements(Object parent) {
-			return new String[] { "One", "Two", "Three" };
-		}
-	}
-	class ViewLabelProvider extends LabelProvider implements ITableLabelProvider {
-		public String getColumnText(Object obj, int index) {
-			return getText(obj);
-		}
-		public Image getColumnImage(Object obj, int index) {
-			return getImage(obj);
-		}
-		public Image getImage(Object obj) {
-			return PlatformUI.getWorkbench().
-					getSharedImages().getImage(ISharedImages.IMG_OBJ_ELEMENT);
-		}
-	}
-	class NameSorter extends ViewerSorter {
-	}
+	//TODO: 表格数显示多个Memcache情况
+	private Text addrText;
+	private KeyValueTableViewer tableViewer;
 
 	public MemcachedView() {
 	}
 
 	public void createPartControl(Composite parent) {
-		viewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
-		viewer.setContentProvider(new ViewContentProvider());
-		viewer.setLabelProvider(new ViewLabelProvider());
-		viewer.setSorter(new NameSorter());
-		viewer.setInput(getViewSite());
-		makeActions();
-		hookContextMenu();
-		hookDoubleClickAction();
-		contributeToActionBars();
-	}
-
-	private void hookContextMenu() {
-		MenuManager menuMgr = new MenuManager("#PopupMenu");
-		menuMgr.setRemoveAllWhenShown(true);
-		menuMgr.addMenuListener(new IMenuListener() {
-			public void menuAboutToShow(IMenuManager manager) {
-				MemcachedView.this.fillContextMenu(manager);
-			}
-		});
-		Menu menu = menuMgr.createContextMenu(viewer.getControl());
-		viewer.getControl().setMenu(menu);
-		getSite().registerContextMenu(menuMgr, viewer);
-	}
-
-	private void contributeToActionBars() {
-		IActionBars bars = getViewSite().getActionBars();
-		fillLocalPullDown(bars.getMenuManager());
-		fillLocalToolBar(bars.getToolBarManager());
-	}
-
-	private void fillLocalPullDown(IMenuManager manager) {
-		manager.add(action1);
-		manager.add(new Separator());
-		manager.add(action2);
-	}
-
-	private void fillContextMenu(IMenuManager manager) {
-		manager.add(action1);
-		manager.add(action2);
-		// Other plug-ins can contribute there actions here
-		manager.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
-	}
-	
-	private void fillLocalToolBar(IToolBarManager manager) {
-		manager.add(action1);
-		manager.add(action2);
-	}
-
-	private void makeActions() {
-		action1 = new Action() {
-			public void run() {
-				showMessage("Action 1 executed");
-			}
-		};
-		action1.setText("Action 1");
-		action1.setToolTipText("Action 1 tooltip");
-		action1.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().
-			getImageDescriptor(ISharedImages.IMG_OBJS_INFO_TSK));
+		Composite comp = new Composite(parent, SWT.NULL);
+		comp.setLayoutData(new GridData(GridData.FILL_BOTH));
+		comp.setLayout(new GridLayout(4, false));
 		
-		action2 = new Action() {
-			public void run() {
-				showMessage("Action 2 executed");
-			}
-		};
-		action2.setText("Action 2");
-		action2.setToolTipText("Action 2 tooltip");
-		action2.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().
-				getImageDescriptor(ISharedImages.IMG_OBJS_INFO_TSK));
-		doubleClickAction = new Action() {
-			public void run() {
-				ISelection selection = viewer.getSelection();
-				Object obj = ((IStructuredSelection)selection).getFirstElement();
-				showMessage("Double-click detected on "+obj.toString());
-			}
-		};
-	}
-
-	private void hookDoubleClickAction() {
-		viewer.addDoubleClickListener(new IDoubleClickListener() {
-			public void doubleClick(DoubleClickEvent event) {
-				doubleClickAction.run();
+		Label label = new Label(comp, SWT.NULL);
+		label.setText("地 址：");
+		label.setLayoutData(new GridData());
+		
+		addrText = new Text(comp, SWT.SINGLE | SWT.BORDER);
+		addrText.setText("test");
+		addrText.setToolTipText("提示信息");
+		GridData gridData1 = new GridData(SWT.LEFT, SWT.TOP, false, false);
+		gridData1.widthHint = 500;
+		addrText.setLayoutData(gridData1);
+		addrText.addKeyListener(new KeyAdapter(){
+			public void keyReleased(KeyEvent e) {
+				super.keyReleased(e);
+				if(e.keyCode == 13){	//Enter键盘
+					invoke(addrText.getText().trim());
+				}
 			}
 		});
-	}
-	private void showMessage(String message) {
-		MessageDialog.openInformation(
-			viewer.getControl().getShell(),
-			"Memcached View",
-			message);
+		
+		Button button = new Button(comp, SWT.PUSH);
+		button.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, false, false));
+		button.setText("Invoke");
+		button.addSelectionListener(new SelectionAdapter(){
+			public void widgetSelected(SelectionEvent e) {
+				invoke(addrText.getText().trim());
+			}
+		});
+		
+		label = new Label(comp, SWT.NULL);
+		label.setText("");
+		label.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		
+		String[] titles = new String[] { "Key", "Value" };
+		int[] widths = new int[] { 150, 450 };
+		tableViewer = new KeyValueTableViewer(comp, titles, widths);
+		GridData gridData = new GridData(GridData.FILL_BOTH);
+		gridData.horizontalSpan = 4;
+		tableViewer.getTable().setLayoutData(gridData);
 	}
 
 	public void setFocus() {
-		viewer.getControl().setFocus();
+		addrText.setFocus();
+	}
+	
+	private void invoke(String str){
+//		SWTUtil.showMessage(addrText.getShell(), text);
+		String[] tmp = StringUtils.split(str, ",");
+		StringBuffer sb = new StringBuffer();
+		for (int i = 0; i < tmp.length; i++) {
+			try {
+				String[] tmp2 = StringUtils.split(tmp[i], ":");
+				List map = MemcachedStatUtil.getStat(tmp2[0].trim(), Integer.parseInt(tmp2[1]));
+				tableViewer.setInput(map);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				LogHelper.error("获取信息出错", ex);
+			}
+		}
 	}
 }
