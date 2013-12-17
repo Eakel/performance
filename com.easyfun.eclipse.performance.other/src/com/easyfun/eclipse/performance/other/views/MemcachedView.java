@@ -1,8 +1,18 @@
 package com.easyfun.eclipse.performance.other.views;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.apache.velocity.util.StringUtils;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.ListViewer;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
@@ -17,8 +27,9 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
 
 import com.easyfun.eclipse.common.console.LogHelper;
-import com.easyfun.eclipse.common.kv.KeyValueTableViewer;
 import com.easyfun.eclipse.performance.other.memcached.MemcachedStatUtil;
+import com.easyfun.eclipse.performance.other.memcached.model.MemModel;
+import com.easyfun.eclipse.performance.other.memcached.model.MemTableViewer;
 
 /**
  * 获取Memcache信息
@@ -30,7 +41,9 @@ import com.easyfun.eclipse.performance.other.memcached.MemcachedStatUtil;
 public class MemcachedView extends ViewPart {
 	//TODO: 表格数显示多个Memcache情况
 	private Text addrText;
-	private KeyValueTableViewer tableViewer;
+	private MemTableViewer tableViewer;
+	private ListViewer listViewer;
+	private Map<String, List<MemModel>> valuesMap;
 
 	public MemcachedView() {
 	}
@@ -42,11 +55,11 @@ public class MemcachedView extends ViewPart {
 		
 		Label label = new Label(comp, SWT.NULL);
 		label.setText("地 址：");
-		label.setLayoutData(new GridData());
+		label.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_END));
 		
 		addrText = new Text(comp, SWT.SINGLE | SWT.BORDER);
-		addrText.setText("test");
-		addrText.setToolTipText("提示信息");
+		addrText.setText("localhost:11211");
+		addrText.setToolTipText("输入格式为：ip1:port1,ip2:port2");
 		GridData gridData1 = new GridData(SWT.LEFT, SWT.TOP, false, false);
 		gridData1.widthHint = 500;
 		addrText.setLayoutData(gridData1);
@@ -72,11 +85,23 @@ public class MemcachedView extends ViewPart {
 		label.setText("");
 		label.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		
-		String[] titles = new String[] { "Key", "Value" };
-		int[] widths = new int[] { 150, 450 };
-		tableViewer = new KeyValueTableViewer(comp, titles, widths);
+		listViewer = new ListViewer(comp, SWT.BORDER);
+		gridData1 = new GridData(GridData.FILL_VERTICAL);
+		gridData1.widthHint=200;
+		listViewer.getList().setLayoutData(gridData1);
+		listViewer.setContentProvider(new ArrayContentProvider());
+		listViewer.addSelectionChangedListener(new ISelectionChangedListener(){
+			public void selectionChanged(SelectionChangedEvent event) {
+				IStructuredSelection sel = (IStructuredSelection)listViewer.getSelection();
+				String select = (String)sel.getFirstElement();
+				List<MemModel> list = valuesMap.get(select);
+				tableViewer.setInput(list);
+			}
+		});
+		
+		tableViewer = new MemTableViewer(comp);
 		GridData gridData = new GridData(GridData.FILL_BOTH);
-		gridData.horizontalSpan = 4;
+		gridData.horizontalSpan = 3;
 		tableViewer.getTable().setLayoutData(gridData);
 	}
 
@@ -85,18 +110,27 @@ public class MemcachedView extends ViewPart {
 	}
 	
 	private void invoke(String str){
-//		SWTUtil.showMessage(addrText.getShell(), text);
 		String[] tmp = StringUtils.split(str, ",");
-		StringBuffer sb = new StringBuffer();
+		Set<String> addr = new TreeSet<String>();
+		valuesMap = new HashMap<String, List<MemModel>>();
+		Object first = null;
 		for (int i = 0; i < tmp.length; i++) {
 			try {
 				String[] tmp2 = StringUtils.split(tmp[i], ":");
-				List map = MemcachedStatUtil.getStat(tmp2[0].trim(), Integer.parseInt(tmp2[1]));
-				tableViewer.setInput(map);
+				List list = MemcachedStatUtil.getStat(tmp2[0].trim(), Integer.parseInt(tmp2[1]));				
+				addr.add(tmp[i]);
+				valuesMap.put(tmp[i], list);
+				if(i==0){
+					first = tmp[i];
+				}
 			} catch (Exception ex) {
 				ex.printStackTrace();
-				LogHelper.error("获取信息出错", ex);
+				LogHelper.error("获取 [" + tmp[i] + "] 的Memcached信息出错", ex);
 			}
+		}
+		listViewer.setInput(valuesMap.keySet());
+		if(first != null){
+			listViewer.setSelection(new StructuredSelection(first));
 		}
 	}
 }
