@@ -14,6 +14,7 @@ import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.math.NumberUtils;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
@@ -41,7 +42,7 @@ public class MenuUtils {
 		menuItem.setText("导出为文本...");
 		menuItem.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
-				File file = DialogUtils.openSaveDialog(tableViewer.getTable().getShell(), new String[]{"*.txt", "*.*"}, "OBD调用.txt");
+				File file = DialogUtils.openSaveDialog(tableViewer.getTable().getShell(), new String[]{"*.txt", "*.*"}, "导出文件.txt");
 				if(file == null){
 					return;
 				}
@@ -73,7 +74,7 @@ public class MenuUtils {
 		menuItem.setText("导出为Html...");
 		menuItem.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
-				File file = DialogUtils.openSaveDialog(tableViewer.getTable().getShell(), new String[]{"*.html", "*.*"}, "OBD调用.html");
+				File file = DialogUtils.openSaveDialog(tableViewer.getTable().getShell(), new String[]{"*.html", "*.*"}, "导出文件.html");
 				if(file == null){
 					return;
 				}
@@ -91,7 +92,7 @@ public class MenuUtils {
 						headers.add(column.getText());
 					}
 					VelocityContext context = new VelocityContext();
-					context.put("htmlTitile", "OBD调用");
+					context.put("htmlTitile", "文件信息");
 					context.put("headers", headers);
 					context.put("kvs", tableViewer.getInput());
 					
@@ -112,7 +113,7 @@ public class MenuUtils {
 		menuItem.setText("导出为PDF...");
 		menuItem.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
-				File file = DialogUtils.openSaveDialog(tableViewer.getTable().getShell(), new String[]{"*.pdf", "*.*"}, "OBD调用.pdf");
+				File file = DialogUtils.openSaveDialog(tableViewer.getTable().getShell(), new String[]{"*.pdf", "*.*"}, "导出文件.pdf");
 				if(file == null){
 					return;
 				}
@@ -123,7 +124,7 @@ public class MenuUtils {
 					
 					BaseFont bfChinese = BaseFont.createFont("STSongStd-Light", "UniGB-UCS2-H", false);
 					Font fontChinese = new Font(bfChinese, 10, Font.NORMAL, Color.BLACK);
-					document.add(new Paragraph("OBD调用信息", fontChinese));
+					document.add(new Paragraph("文件信息", fontChinese));
 					
 					
 					List<KeyValue> keyValues = (List<KeyValue>)tableViewer.getInput();
@@ -161,7 +162,7 @@ public class MenuUtils {
 		menuItem.setText("导出为Excel...");
 		menuItem.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
-				File file = DialogUtils.openSaveDialog(tableViewer.getTable().getShell(), new String[]{"*.xls", "*.*"}, "OBD调用.xls");
+				File file = DialogUtils.openSaveDialog(tableViewer.getTable().getShell(), new String[]{"*.xls", "*.*"}, "导出文件.xls");
 				if(file == null){
 					return;
 				}
@@ -185,8 +186,14 @@ public class MenuUtils {
 						Label label = new Label(0, i + 1, kv.getKey());
 						// 将定义好的单元格添加到工作表中
 						summarySheet.addCell(label);
-						jxl.write.Number number = new jxl.write.Number(1, i + 1, Integer.parseInt(kv.getValue()));
-						summarySheet.addCell(number);
+						if(NumberUtils.isNumber(kv.getValue())){
+							jxl.write.Number number = new jxl.write.Number(1, i + 1, Integer.parseInt(kv.getValue()));
+							summarySheet.addCell(number);
+						}else{
+							Label number = new Label(1, i + 1, kv.getValue());
+							summarySheet.addCell(number);
+						}
+
 					}
 					// 写入数据并关闭文件
 					book.write();

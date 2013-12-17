@@ -69,8 +69,9 @@ public class LogHelper {
 		Display.getDefault().asyncExec(new Runnable() {
 			public void run() {
 				Display.getDefault().asyncExec(new Runnable() {
-					String msg = "[" + dateFormat.format(new Date()) + " ERROR]" + " " + message;
 					public void run() {
+						String msg = "[" + dateFormat.format(new Date()) + " ERROR]" + " " + message;	
+						msg = msg + " " + t.getClass().getName() + " " + t.getMessage();
 						if (message.indexOf(PerformanceActivator.FILE) > -1 && message.indexOf(PerformanceActivator.LINE) > -1) {
 							String url = (message.substring(0, message.indexOf(PerformanceActivator.LINE))).trim();
 							int line = Integer.parseInt(message.substring(message.indexOf(PerformanceActivator.LINE) + 5).trim());

@@ -69,14 +69,23 @@ public class KeyValueTableViewer extends TableViewer {
 		column.getColumn().setMoveable(true);
 		column.setLabelProvider(new ColumnLabelProvider() {
 			public String getText(Object element) {
-				return ((KeyValue) element).getKey();
+				if(element instanceof KeyValue){
+					return ((KeyValue) element).getKey();
+				}else{
+					return element.toString();
+				}
+				
 			}
 		});
 		ColumnViewerSorter cSorter = new ColumnViewerSorter(tableViewer, column) {
 			protected int doCompare(Viewer viewer, Object e1, Object e2) {
-				KeyValue p1 = (KeyValue) e1;
-				KeyValue p2 = (KeyValue) e2;
-				return p1.getKey().compareToIgnoreCase(p2.getKey());
+				if(e1 instanceof KeyValue && e2 instanceof KeyValue){
+					KeyValue p1 = (KeyValue) e1;
+					KeyValue p2 = (KeyValue) e2;
+					return p1.getKey().compareToIgnoreCase(p2.getKey());
+				}else{
+					return e1.hashCode() - e2.hashCode();
+				}
 			}
 
 		};
@@ -91,7 +100,11 @@ public class KeyValueTableViewer extends TableViewer {
 		column.getColumn().setMoveable(false);
 		column.setLabelProvider(new ColumnLabelProvider() {
 			public String getText(Object element) {
-				return ((KeyValue) element).getValue();
+				if(element instanceof KeyValue){
+					return ((KeyValue) element).getValue();
+				}else{
+					return element.toString();
+				}
 			}
 		});
 
@@ -99,8 +112,20 @@ public class KeyValueTableViewer extends TableViewer {
 			protected int doCompare(Viewer viewer, Object e1, Object e2) {
 				KeyValue p1 = (KeyValue) e1;
 				KeyValue p2 = (KeyValue) e2;
-				Integer vlaue1 = Integer.valueOf(p1.getValue());
-				Integer value2 = Integer.valueOf(p2.getValue());
+				Integer vlaue1 = Integer.valueOf(0);
+				try {
+					vlaue1 = Integer.valueOf(p1.getValue());
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+					vlaue1 = Integer.valueOf(0);
+				}
+				Integer value2 = Integer.valueOf(0);
+				try {
+					value2 = Integer.valueOf(p2.getValue());
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+					vlaue1 = Integer.valueOf(0);
+				}
 				return vlaue1.compareTo(value2);
 			}
 		};
