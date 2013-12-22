@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="com.easyfun.eclipse.performance.EasyFunNavigatorFolder">
+      <folder
+            id="com.easyfun.eclipse.performance.appframeFolder"
+            title="AppFrame"
+            type="AppFrame"
+            visible="true">
+      </folder>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="com.easyfun.eclipse.performance.appframe.views.WebToolsView"
+            icon="icons/appframe.png"
+            id="com.easyfun.eclipse.performance.appframe.views.WebToolView"
+            name="WebTool">
+      </view>
+   </extension>
+   <extension
+         point="com.easyfun.eclipse.performance.EasyFunNavigatorElement">
+      <page
+            folder="com.easyfun.eclipse.performance.appframeFolder"
+            icon="icons/appframe.png"
+            id="com.easyfun.eclipse.performance.appframe"
+            title="WebTool"
+            type="AppFrame"
+            viewId="com.easyfun.eclipse.performance.appframe.views.WebToolView"
+            visible="true"></page>
+   </extension>
+
+</plugin>

@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Appframe Plug-in
+Bundle-SymbolicName: com.easyfun.eclipse.performance.appframe; singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: com.easyfun.eclipse.performance.appframe.AppFrameActivator
+Bundle-Vendor: EASYFUN
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.ui.editors;bundle-version="3.4.0",
+ org.eclipse.ui.forms;bundle-version="3.3.100",
+ org.eclipse.core.resources;bundle-version="3.4.0",
+ org.eclipse.ui.ide;bundle-version="3.4.0",
+ com.easyfun.eclipse.performance;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: lib/commons-io-1.4.jar,
+ lib/commons-lang-2.4.jar,
+ lib/dom4j.jar,
+ lib/md5.jar,
+ .
