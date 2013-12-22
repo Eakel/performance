@@ -26,12 +26,12 @@
       </win>
    </launcher>
 
-
    <vm>
    </vm>
 
    <plugins>
       <plugin id="com.easyfun.eclipse.performance"/>
+      <plugin id="com.easyfun.eclipse.performance.appframe"/>
       <plugin id="com.easyfun.eclipse.performance.awr"/>
       <plugin id="com.easyfun.eclipse.performance.http"/>
       <plugin id="com.easyfun.eclipse.performance.jmx"/>
