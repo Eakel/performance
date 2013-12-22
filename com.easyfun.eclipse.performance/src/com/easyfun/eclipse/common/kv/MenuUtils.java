@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -26,8 +27,8 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.TableColumn;
 
-import com.easyfun.eclipse.common.kv.KeyValue;
 import com.easyfun.eclipse.common.util.DialogUtils;
+import com.easyfun.eclipse.common.util.TimeUtil;
 import com.lowagie.text.Cell;
 import com.lowagie.text.Document;
 import com.lowagie.text.Font;
@@ -42,7 +43,8 @@ public class MenuUtils {
 		menuItem.setText("导出为文本...");
 		menuItem.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
-				File file = DialogUtils.openSaveDialog(tableViewer.getTable().getShell(), new String[]{"*.txt", "*.*"}, "导出文件.txt");
+				String fileName = "导出文件" + TimeUtil.getYYYYMMDDHHMMSS(new Date()) + ".txt";
+				File file = DialogUtils.openSaveDialog(tableViewer.getTable().getShell(), new String[]{"*.txt", "*.*"}, fileName);
 				if(file == null){
 					return;
 				}
@@ -61,7 +63,9 @@ public class MenuUtils {
 				}
 				
 				try {
-					IOUtils.writeLines(content, null, new FileOutputStream(file));
+					FileOutputStream out = new FileOutputStream(file);
+					IOUtils.writeLines(content, null, out);
+					out.close();
 				} catch (Exception e1) {
 					DialogUtils.showError(tableViewer.getTable().getShell(), "表格导出异常");
 				}
@@ -74,7 +78,8 @@ public class MenuUtils {
 		menuItem.setText("导出为Html...");
 		menuItem.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
-				File file = DialogUtils.openSaveDialog(tableViewer.getTable().getShell(), new String[]{"*.html", "*.*"}, "导出文件.html");
+				String fileName = "导出文件" + TimeUtil.getYYYYMMDDHHMMSS(new Date()) + ".html";
+				File file = DialogUtils.openSaveDialog(tableViewer.getTable().getShell(), new String[]{"*.html", "*.*"}, fileName);
 				if(file == null){
 					return;
 				}
@@ -100,6 +105,7 @@ public class MenuUtils {
 					FileWriter writer = new FileWriter(file);
 					aVmTemplate.merge(context, writer);
 					writer.flush();
+					writer.close();
 				} catch (Exception ex) {
 					ex.printStackTrace();
 					DialogUtils.showError(tableViewer.getTable().getShell(), "导出html文件出出错\n" + ex.getMessage());
@@ -113,7 +119,8 @@ public class MenuUtils {
 		menuItem.setText("导出为PDF...");
 		menuItem.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
-				File file = DialogUtils.openSaveDialog(tableViewer.getTable().getShell(), new String[]{"*.pdf", "*.*"}, "导出文件.pdf");
+				String fileName = "导出文件" + TimeUtil.getYYYYMMDDHHMMSS(new Date()) + ".pdf";
+				File file = DialogUtils.openSaveDialog(tableViewer.getTable().getShell(), new String[]{"*.pdf", "*.*"}, fileName);
 				if(file == null){
 					return;
 				}
@@ -162,13 +169,13 @@ public class MenuUtils {
 		menuItem.setText("导出为Excel...");
 		menuItem.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
-				File file = DialogUtils.openSaveDialog(tableViewer.getTable().getShell(), new String[]{"*.xls", "*.*"}, "导出文件.xls");
+				String fileName = "导出文件" + TimeUtil.getYYYYMMDDHHMMSS(new Date()) + ".xls";
+				File file = DialogUtils.openSaveDialog(tableViewer.getTable().getShell(), new String[]{"*.xls", "*.*"}, fileName);
 				if(file == null){
 					return;
 				}
 				
 				try {
-					long begin = System.currentTimeMillis();
 					WritableWorkbook book = Workbook.createWorkbook(file);		
 					WritableSheet summarySheet = book.createSheet("OBD调用", 0);	// i为页数量
 					
@@ -198,8 +205,6 @@ public class MenuUtils {
 					// 写入数据并关闭文件
 					book.write();
 					book.close();
-					
-					System.out.println("写入Excel文件时间: " + (System.currentTimeMillis() -begin)  + " ms");
 				} catch (Exception ex) {
 					ex.printStackTrace();
 					DialogUtils.showError(tableViewer.getTable().getShell(), "导出Excel文件出出错\n" + ex.getMessage());
