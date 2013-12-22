@@ -5,6 +5,7 @@ import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,33 +21,13 @@ public class MemcachedStatUtil {
 	public static final String SERVER_STATUS_END = "END";
 	
 	private static Properties p = new Properties();
-	//TODO: 将描述放入文件中，达到可配置
 	static {
-		p.setProperty("curr_connections", "当前连接数量");
-		p.setProperty("bytes", "内存对象字节数");
-		p.setProperty("total_items", "当前对象数量");
-		p.setProperty("cmd_set", "设置对象次数");
-		p.setProperty("uptime", "Memcached运行时间");
-		p.setProperty("get_hits", "hint查询次数");
-		p.setProperty("limit_maxbytes", "限制内存字节数");
-		p.setProperty("bytes_written", "输出字节数");
-		p.setProperty("bytes_read", "输入字节数");
-		p.setProperty("pid", "进程ID");
-		p.setProperty("version", "Memcached版本");
-		p.setProperty("pointer_size", "操作系统指针大小(32位系统一般是32bit,64就是64位操作系统)");
-		p.setProperty("curr_items", "Memcached当前存储的内容数量(PCE为当前对象数量)");
-		p.setProperty("threads", "当前线程数");
-		p.setProperty("accepting_conns", "服务器是否达到过最大连接(0/1)");
-		p.setProperty("cmd_flush", "Flush请求总数");
-		p.setProperty("cmd_get", "查询请求总数");
-		p.setProperty("get_misses", "查询成功未获取到数据的总次数");
-		p.setProperty("rusage_user", "该进程累计的用户时间，单位：秒");
-		p.setProperty("rusage_system", "该进程累计的系统时间，单位：秒");
-		p.setProperty("total_connections", "Memcached运行以来接受的连接总数");
-		p.setProperty("", "");
-		p.setProperty("", "");
-		p.setProperty("", "");
-		p.setProperty("", "");
+		InputStream input = Thread.currentThread().getContextClassLoader().getResourceAsStream("memhelp.properties");
+		try {
+			p.load(input);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/** 执行stats命令，获取Memcache信息*/
@@ -87,7 +68,14 @@ public class MemcachedStatUtil {
 	
 	private static String getDescByKey(String key){
 		if(p.containsKey(key)){
-			return p.getProperty(key);
+			String value = p.getProperty(key);
+			try {
+				return new String(value.getBytes("ISO-8859-1"), "GBK");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+				return value;
+			}
+//			return p.getProperty(key);
 		}else{
 			return "";
 		}

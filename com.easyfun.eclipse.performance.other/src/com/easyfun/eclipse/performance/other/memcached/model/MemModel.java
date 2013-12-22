@@ -1,16 +1,16 @@
 package com.easyfun.eclipse.performance.other.memcached.model;
 
+import com.easyfun.eclipse.common.kv.KeyValue;
+
 /**
- * Key Value pair.
+ * MemModel
  * 
  * @author linzhaoming
  *
- * 2011-4-16
+ * 2013-12-22
  *
  */
-public class MemModel {
-	private String key;
-	private String value;
+public class MemModel extends KeyValue{
 	private String desc;
 
 	public MemModel() {
@@ -18,24 +18,7 @@ public class MemModel {
 	}
 
 	public MemModel(String key, String value) {
-		this.key = key;
-		this.value = value;
-	}
-
-	public String getKey() {
-		return key;
-	}
-
-	public void setKey(String key) {
-		this.key = key;
-	}
-
-	public String getValue() {
-		return value;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
+		super(key, value);
 	}
 
 	public String getDesc() {
@@ -47,6 +30,6 @@ public class MemModel {
 	}
 
 	public String toString() {
-		return key + " = " + value;
+		return super.toString();
 	}
 }

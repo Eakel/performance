@@ -38,7 +38,6 @@ import com.easyfun.eclipse.performance.other.memcached.model.MemTableViewer;
  *
  */
 public class MemcachedView extends ViewPart {
-	//TODO: 表格数显示多个Memcache情况
 	private Text addrText;
 	private MemTableViewer tableViewer;
 	private ListViewer listViewer;

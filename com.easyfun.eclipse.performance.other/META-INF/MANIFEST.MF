@@ -11,4 +11,9 @@ Require-Bundle: org.eclipse.ui,
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: lib/commons-lang-2.4.jar,
- .
+ .,
+ config/,
+ lib/commons-io-1.4.jar,
+ lib/jxl.jar,
+ lib/iText-2.1.2.jar,
+ lib/iTextAsian.jar
