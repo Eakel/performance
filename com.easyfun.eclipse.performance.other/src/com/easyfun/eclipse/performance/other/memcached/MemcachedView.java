@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.performance.other.views;
+package com.easyfun.eclipse.performance.other.memcached;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,7 +27,6 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
 
 import com.easyfun.eclipse.common.console.LogHelper;
-import com.easyfun.eclipse.performance.other.memcached.MemcachedStatUtil;
 import com.easyfun.eclipse.performance.other.memcached.model.MemModel;
 import com.easyfun.eclipse.performance.other.memcached.model.MemTableViewer;
 

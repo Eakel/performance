@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            class="com.easyfun.eclipse.performance.other.views.MemcachedView"
+            class="com.easyfun.eclipse.performance.other.memcached.MemcachedView"
             icon="icons/memcache.png"
             id="com.easyfun.eclipse.performance.other.views.MemcachedView"
             name="Memcached">
