@@ -66,6 +66,117 @@ public class MemcachedStatUtil {
 		return list;
 	}
 	
+	/** 执行stats items命令，获取Memcache信息*/
+	//TODO:输出各个slab中的item信息。s
+	public static List<MemModel> getStatItems(String host, int port) throws Exception {
+		HashMap rtn = new HashMap();
+		List<MemModel> list = new ArrayList<MemModel>();
+		Socket socket = null;
+		try {
+			socket = new Socket(host, port);
+			BufferedInputStream in = new BufferedInputStream(socket.getInputStream());
+			BufferedOutputStream out = new BufferedOutputStream(socket.getOutputStream());
+			out.write("stats items".getBytes());
+			out.write(BYTE_CRLF);
+
+			out.flush();
+
+			rtn.put("host", socket.getInetAddress().getHostAddress() + ":" + socket.getPort());
+			String cmd = readLine(in);
+			while (!"END".equals(cmd)) {
+				String[] strs = StringUtils.split(cmd, " ");
+				MemModel model = new MemModel(strs[1], strs[2]);
+				String desc = getDescByKey(model.getKey());
+				model.setDesc(desc);
+				list.add(model);
+				cmd = readLine(in);
+			}
+		} catch (Exception ex) {
+			throw ex;
+		} finally {
+			if (socket != null) {
+				socket.close();
+				socket = null;
+			}
+		}
+
+		return list;
+	}
+	
+	/** 执行stats slabs命令，获取Memcache信息*/
+	//TODO: 输出slab中更详细的item信息
+	public static List<MemModel> getStatSlabs(String host, int port) throws Exception {
+		HashMap rtn = new HashMap();
+		List<MemModel> list = new ArrayList<MemModel>();
+		Socket socket = null;
+		try {
+			socket = new Socket(host, port);
+			BufferedInputStream in = new BufferedInputStream(socket.getInputStream());
+			BufferedOutputStream out = new BufferedOutputStream(socket.getOutputStream());
+			out.write("stats slabs".getBytes());
+			out.write(BYTE_CRLF);
+
+			out.flush();
+
+			rtn.put("host", socket.getInetAddress().getHostAddress() + ":" + socket.getPort());
+			String cmd = readLine(in);
+			while (!"END".equals(cmd)) {
+				String[] strs = StringUtils.split(cmd, " ");
+				MemModel model = new MemModel(strs[1], strs[2]);
+				String desc = getDescByKey(model.getKey());
+				model.setDesc(desc);
+				list.add(model);
+				cmd = readLine(in);
+			}
+		} catch (Exception ex) {
+			throw ex;
+		} finally {
+			if (socket != null) {
+				socket.close();
+				socket = null;
+			}
+		}
+
+		return list;
+	}
+	
+	/** 执行stats sizes命令，获取Memcache信息*/
+	//TODO: 输出所有item的大小和个数
+	public static List<MemModel> getStatSizes(String host, int port) throws Exception {
+		HashMap rtn = new HashMap();
+		List<MemModel> list = new ArrayList<MemModel>();
+		Socket socket = null;
+		try {
+			socket = new Socket(host, port);
+			BufferedInputStream in = new BufferedInputStream(socket.getInputStream());
+			BufferedOutputStream out = new BufferedOutputStream(socket.getOutputStream());
+			out.write("stats sizes".getBytes());
+			out.write(BYTE_CRLF);
+
+			out.flush();
+
+			rtn.put("host", socket.getInetAddress().getHostAddress() + ":" + socket.getPort());
+			String cmd = readLine(in);
+			while (!"END".equals(cmd)) {
+				String[] strs = StringUtils.split(cmd, " ");
+				MemModel model = new MemModel(strs[0], strs[1]);
+				String desc = getDescByKey(model.getKey());
+				model.setDesc(desc);
+				list.add(model);
+				cmd = readLine(in);
+			}
+		} catch (Exception ex) {
+			throw ex;
+		} finally {
+			if (socket != null) {
+				socket.close();
+				socket = null;
+			}
+		}
+
+		return list;
+	}
+	
 	private static String getDescByKey(String key){
 		if(p.containsKey(key)){
 			String value = p.getProperty(key);

@@ -23,12 +23,15 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
 
 import com.easyfun.eclipse.common.console.LogHelper;
 import com.easyfun.eclipse.performance.other.memcached.model.MemModel;
 import com.easyfun.eclipse.performance.other.memcached.model.MemTableViewer;
+import com.easyfun.eclipse.performance.other.memcached.prefs.OtherPrefUtil;
 
 /**
  * 获取Memcache信息
@@ -56,7 +59,9 @@ public class MemcachedView extends ViewPart {
 		label.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_END));
 		
 		addrText = new Text(comp, SWT.SINGLE | SWT.BORDER);
-		addrText.setText("localhost:11211");
+		OtherPrefUtil.getPreferenceStore().getBoolean("");
+//		addrText.setText("localhost:11211");
+		addrText.setText(OtherPrefUtil.getMemcachedUrl());
 		addrText.setToolTipText("输入格式为：ip1:port1,ip2:port2");
 		GridData gridData1 = new GridData(SWT.LEFT, SWT.TOP, false, false);
 		gridData1.widthHint = 500;
@@ -76,6 +81,7 @@ public class MemcachedView extends ViewPart {
 		button.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
 				invoke(addrText.getText().trim());
+				OtherPrefUtil.setMemcachedUrl(addrText.getText().trim());
 			}
 		});
 		
@@ -94,6 +100,81 @@ public class MemcachedView extends ViewPart {
 				String select = (String)sel.getFirstElement();
 				List<MemModel> list = valuesMap.get(select);
 				tableViewer.setInput(list);
+			}
+		});
+		
+		Menu menu = new Menu(listViewer.getList());
+		listViewer.getList().setMenu(menu);
+		
+		MenuItem item1 = new MenuItem(menu, SWT.PUSH);
+		item1.setText("stats");
+		item1.addSelectionListener(new SelectionAdapter(){
+			public void widgetSelected(SelectionEvent e) {
+				try {
+					IStructuredSelection sel = (IStructuredSelection)listViewer.getSelection();
+					String select = (String)sel.getFirstElement();
+					String[] tmp = StringUtils.split(select, ":");
+					String host = tmp[0];
+					int port = Integer.parseInt(tmp[1]);
+					List<MemModel> items = MemcachedStatUtil.getStat(host, port);
+					tableViewer.setInput(items);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		MenuItem item2 = new MenuItem(menu, SWT.PUSH);
+		item2.setText("stats items");
+		item2.addSelectionListener(new SelectionAdapter(){
+			public void widgetSelected(SelectionEvent e) {
+				try {
+					IStructuredSelection sel = (IStructuredSelection)listViewer.getSelection();
+					String select = (String)sel.getFirstElement();
+					String[] tmp = StringUtils.split(select, ":");
+					String host = tmp[0];
+					int port = Integer.parseInt(tmp[1]);
+					List<MemModel> items = MemcachedStatUtil.getStatItems(host, port);
+					tableViewer.setInput(items);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		MenuItem item3 = new MenuItem(menu, SWT.PUSH);
+		item3.setText("stats slabs");
+		item3.addSelectionListener(new SelectionAdapter(){
+			public void widgetSelected(SelectionEvent e) {
+				try {
+					IStructuredSelection sel = (IStructuredSelection)listViewer.getSelection();
+					String select = (String)sel.getFirstElement();
+					String[] tmp = StringUtils.split(select, ":");
+					String host = tmp[0];
+					int port = Integer.parseInt(tmp[1]);
+					List<MemModel> items = MemcachedStatUtil.getStatSlabs(host, port);
+					tableViewer.setInput(items);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+
+		MenuItem item4 = new MenuItem(menu, SWT.PUSH);
+		item4.setText("stats sizes");
+		item4.addSelectionListener(new SelectionAdapter(){
+			public void widgetSelected(SelectionEvent e) {
+				try {
+					IStructuredSelection sel = (IStructuredSelection)listViewer.getSelection();
+					String select = (String)sel.getFirstElement();
+					String[] tmp = StringUtils.split(select, ":");
+					String host = tmp[0];
+					int port = Integer.parseInt(tmp[1]);
+					List<MemModel> items = MemcachedStatUtil.getStatSizes(host, port);
+					tableViewer.setInput(items);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		
