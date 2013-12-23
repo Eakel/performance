@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -40,6 +41,7 @@ import com.easyfun.eclipse.common.jdbc.ConnectionModel;
 import com.easyfun.eclipse.common.kv.KeyValue;
 import com.easyfun.eclipse.common.kv.KeyValueTableViewer;
 import com.easyfun.eclipse.common.util.DialogUtils;
+import com.easyfun.eclipse.common.util.TimeUtil;
 import com.easyfun.eclipse.common.view.item.pub.ItemComposite;
 import com.easyfun.eclipse.performance.oracle.TableModel;
 import com.easyfun.eclipse.performance.oracle.preferences.OraclePrefUtil;
@@ -374,7 +376,8 @@ public class TableAnalyzeComposite extends ItemComposite {
 	 * @throws Exception
 	 */
 	private void exportUIResult(TabFolder tabFolder) throws Exception{
-		File file = DialogUtils.openSaveDialog(getShell(), new String[]{"*.xls", "*.*"}, "tableAnay.xls");
+		String fileName = "MySQL±í¸ñ·ÖÎö" + TimeUtil.getYYYYMMDDHHMMSS(new Date()) + ".xls";
+		File file = DialogUtils.openSaveDialog(getShell(), new String[]{"*.xls", "*.*"}, fileName);
 		if(file == null){
 			return;
 		}
