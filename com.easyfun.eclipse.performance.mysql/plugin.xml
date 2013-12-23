@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
-   <extension
+      <extension
          point="org.eclipse.ui.views">
-      <view
-            class="com.easyfun.eclipse.performance.mysql.views.MySQLView"
+         <view
+            class="com.easyfun.eclipse.performance.mysql.analyze.ui.MySQLView"
             icon="icons/mysql.png"
             id="com.easyfun.eclipse.performance.mysql.views.MySQLView"
-            name="MySQL View">
+            name="MySQL表统计">
       </view>
-   </extension>
+      </extension>
    <extension
          point="com.easyfun.eclipse.performance.EasyFunNavigatorFolder">
       <folder
@@ -18,6 +18,28 @@
             type="MySQL"
             visible="true">
       </folder>
+   </extension>
+   
+      <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="com.easyfun.eclipse.performance.mysql.analyze.pref.MySQLPrefInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="com.easyfun.eclipse.performance.preferences.EasyFunPreferencePage"
+            class="com.easyfun.eclipse.performance.mysql.analyze.pref.MySQLPreferencePage"
+            id="com.easyfun.eclipse.performance.preferences.mysql"
+            name="MySQL表统计">
+      </page>
+      <page
+            category="com.easyfun.eclipse.performance.preferences.mysql"
+            class="com.easyfun.eclipse.performance.mysql.analyze.pref.TableFilterPrefPage"
+            id="com.easyfun.eclipse.performance.preferences.mysql.TableFilter"
+            name="MySQL表名过滤器">
+      </page>      
    </extension>
    <extension
          point="com.easyfun.eclipse.performance.EasyFunNavigatorElement">
