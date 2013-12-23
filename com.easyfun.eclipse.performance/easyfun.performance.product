@@ -35,6 +35,7 @@
       <plugin id="com.easyfun.eclipse.performance.awr"/>
       <plugin id="com.easyfun.eclipse.performance.http"/>
       <plugin id="com.easyfun.eclipse.performance.jmx"/>
+      <plugin id="com.easyfun.eclipse.performance.mysql"/>
       <plugin id="com.easyfun.eclipse.performance.oracle"/>
       <plugin id="com.easyfun.eclipse.performance.other"/>
       <plugin id="com.easyfun.eclipse.performance.socket"/>
