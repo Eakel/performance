@@ -43,7 +43,8 @@ Bundle-ClassPath: lib/commons-beanutils-1.8.0.jar,
  lib/xstream-1.2.1.jar,
  lib/joda-time-1.5.2.jar,
  lib/trilead-ssh2-build213.jar,
- lib/ojdbc14_10_2_0_4.jar
+ lib/ojdbc14_10_2_0_4.jar,
+ lib/mysql-connector-java-5.1.17.jar
 Export-Package: com.easyfun.eclipse.common,
  com.easyfun.eclipse.common.action;uses:="org.eclipse.jface.action,org.eclipse.ui,org.eclipse.ui.actions",
  com.easyfun.eclipse.common.config;uses:="com.easyfun.eclipse.common.config.cfg",

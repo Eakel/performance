@@ -9,10 +9,10 @@ import java.sql.DriverManager;
  * Create Date: 2010-11-27
  */
 public class ConnectionModel {
-	private String url = "jdbc:oracle:thin:@127.0.0.1:1521:orcl";
-	private String driver = "oracle.jdbc.driver.OracleDriver";
-	private String name = "scott";
-	private String password ="tiger" ;
+	private String url = "jdbc:mysql://127.0.0.1:3306/base";
+	private String driver = "com.mysql.jdbc.Driver";
+	private String name = "base";
+	private String password ="base" ;
 	
 	private Connection connection;
 	private boolean initial = false;
