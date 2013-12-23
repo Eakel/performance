@@ -12,6 +12,8 @@ public class Item {
 	private String viewId;
 	private String pluginId;
 	
+	private int index;
+	
 	private Folder folder;
 	
 
@@ -90,6 +92,13 @@ public class Item {
 	public void setPluginId(String pluginId) {
 		this.pluginId = pluginId;
 	}
-	
+
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
 	
 }

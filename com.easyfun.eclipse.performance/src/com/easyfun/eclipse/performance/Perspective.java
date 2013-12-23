@@ -1,5 +1,7 @@
 package com.easyfun.eclipse.performance;
 
+import java.util.List;
+
 import org.apache.commons.lang.StringUtils;
 import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
@@ -24,10 +26,10 @@ public class Perspective implements IPerspectiveFactory {
 		topFolder.addView(UIConstants.VIEWID_MAINCONTENT);
 		
 		//处理所有扩展的ViewId，统一显示在同一个地方
-		Folder[] folders = DefaultItemProvider.getNavigator().getFolders();
+		List<Folder> folders = DefaultItemProvider.getNavigator().getFolders();
 		for (Folder folder : folders) {
 			if (("true").equalsIgnoreCase(folder.getVisible())) {
-				Item[] items = folder.getItems();
+				List<Item> items = folder.getItems();
 				for (Item item : items) {
 					if (("true").equalsIgnoreCase(item.getVisible())) {
 						String viewId = item.getViewId();

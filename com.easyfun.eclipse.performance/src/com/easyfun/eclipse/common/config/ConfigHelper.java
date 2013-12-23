@@ -1,6 +1,7 @@
 package com.easyfun.eclipse.common.config;
 
 import java.io.InputStream;
+import java.util.List;
 
 import org.apache.commons.digester.Digester;
 
@@ -41,9 +42,9 @@ public class ConfigHelper {
 		Navigator navigator = (Navigator) digester.parse(input);
 		
 		//TODO:父子关系，可以自动解析的，有点问题，先人工设定
-		Folder[] folders = navigator.getFolders();
+		List<Folder> folders = navigator.getFolders();
 		for (Folder folder : folders) {
-			Item[] items = folder.getItems();
+			List<Item> items = folder.getItems();
 			for (Item item : items) {
 				item.setFolder(folder);
 			}

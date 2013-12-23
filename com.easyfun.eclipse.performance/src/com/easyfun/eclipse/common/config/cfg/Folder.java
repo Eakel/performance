@@ -1,6 +1,8 @@
 package com.easyfun.eclipse.common.config.cfg;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -19,13 +21,15 @@ public class Folder {
 	
 	private String id;
 	
+	private int index;
+	
 	private Navigator navigator;
 
 	public void addItem(Item item) {
 		this.list.add(item);
 	}
 
-	public Item[] getItems() {
+	public List<Item> getItems() {
 		List<Item> retList = new ArrayList<Item>();
 		for(int i=0; i<this.list.size(); i++){
 			Item item = (Item)this.list.get(i);
@@ -33,7 +37,23 @@ public class Folder {
 				retList.add((Item)this.list.get(i));
 			}
 		}
-		return (Item[]) retList.toArray(new Item[0]);
+		
+		//°´×ÖÄ¸ÅÅÐò
+		Collections.sort(retList, new Comparator<Item>(){
+			public int compare(Item item1, Item item2) {
+				if(item2.getIndex() == -1 && item1.getIndex() == -1){
+					return item1.getTitle().compareTo(item2.getTitle());
+				}else if(item2.getIndex() == -1){
+					return 1;
+				}else if(item1.getIndex() == -1){
+					return -1;
+				}else{
+					return 0;
+				}
+			}
+		});
+		
+		return retList;
 	}
 
 	public String getTitle() {
@@ -82,6 +102,14 @@ public class Folder {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
 	}
 
 	public String toString() {

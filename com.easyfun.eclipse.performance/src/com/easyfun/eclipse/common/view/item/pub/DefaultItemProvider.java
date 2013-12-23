@@ -52,11 +52,10 @@ public class DefaultItemProvider{
 			//增加扩展点的
 			Folder[] folders = loadContributeFolders(); 
 			for (Folder folder : folders) {
-				Item[] items = null;
+				List<Item> items = null;
 				try {
 					items = folder.getItems();
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				for (Item item : items) {					
@@ -105,6 +104,12 @@ public class DefaultItemProvider{
 	    	folder.setTitle(folderConfigList[i].getAttribute("title"));
 	    	folder.setType(folderConfigList[i].getAttribute("type"));
 	    	
+	    	if(StringUtils.isNotEmpty(folderConfigList[i].getAttribute("index"))){
+	    		folder.setIndex(Integer.parseInt(folderConfigList[i].getAttribute("index")));
+	    	}else{
+	    		folder.setIndex(-1);
+	    	}
+	    	
 	    	String visible = folderConfigList[i].getAttribute("visible");
 	    	if(StringUtils.equalsIgnoreCase("false", visible)){
 	    		folder.setVisible("false");
@@ -132,6 +137,12 @@ public class DefaultItemProvider{
 	    	item.setHelper(elementConfigList[i].getAttribute("itemHelper"));
 	    	item.setType(elementConfigList[i].getAttribute("type"));
 	    	item.setTitle(elementConfigList[i].getAttribute("title"));
+	    	
+	    	if(StringUtils.isNotEmpty(elementConfigList[i].getAttribute("index"))){
+	    		item.setIndex(Integer.parseInt(elementConfigList[i].getAttribute("index")));
+	    	}else{
+	    		item.setIndex(-1);
+	    	}
 	    	
 	    	String visible = elementConfigList[i].getAttribute("visible");
 	    	if(StringUtils.equalsIgnoreCase("false", visible)){

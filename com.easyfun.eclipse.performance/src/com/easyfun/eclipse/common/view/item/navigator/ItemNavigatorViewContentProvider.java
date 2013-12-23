@@ -36,17 +36,17 @@ public class ItemNavigatorViewContentProvider implements IStructuredContentProvi
 
 	public Object[] getChildren(Object parent) {
 		if(parent instanceof Navigator){
-			return ((Navigator)parent).getFolders();
+			return ((Navigator)parent).getFolders().toArray();
 		}
 		if (parent instanceof Folder) {
-			return ((Folder) parent).getItems();
+			return ((Folder) parent).getItems().toArray();
 		}
 		return new Object[0];
 	}
 
 	public boolean hasChildren(Object parent) {
 		if (parent instanceof Folder) {
-			return ((Folder) parent).getItems().length != 0;
+			return ((Folder) parent).getItems().size() != 0;
 		}
 		return false;
 	}

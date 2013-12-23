@@ -77,6 +77,13 @@
                </documentation>
             </annotation>
          </attribute>
+         <attribute name="index" type="string">
+            <annotation>
+               <documentation>
+                  default is -1
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 
