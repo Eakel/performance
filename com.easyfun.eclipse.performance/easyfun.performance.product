@@ -19,12 +19,15 @@
 
    <windowImages i16="/com.easyfun.eclipse.performance/icons/esayfun.png"/>
 
-   <launcher>
+
+   <launcher name="easyfun">
       <solaris/>
       <win useIco="false">
-         <bmp/>
+         <bmp
+            winSmallHigh="/com.easyfun.eclipse.performance/icons/esayfun_16.bmp"/>
       </win>
    </launcher>
+
 
    <vm>
    </vm>
