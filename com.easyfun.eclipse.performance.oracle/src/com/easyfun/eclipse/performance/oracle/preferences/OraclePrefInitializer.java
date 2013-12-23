@@ -32,7 +32,7 @@ public class OraclePrefInitializer extends AbstractPreferenceInitializer {
 		sb.append("#base.filter=%SMS%").append("\n");
 		sb.append("base.mode=2").append("\n");
 		sb.append("log=true");
-		store.setDefault(OraclePrefConstants.TABLE_PREFIX_FILTER, sb.toString());
+		store.setDefault(OraclePrefConstants.ORACLE_TABLE_PREFIX_FILTER, sb.toString());
 		
 	}
 

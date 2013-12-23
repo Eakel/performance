@@ -54,7 +54,7 @@ public class TableFilterPrefPage extends PreferencePage implements
 		text.addFocusListener(new FocusAdapter(){
 			public void focusLost(FocusEvent e) {
 				IPreferenceStore store = OraclePrefUtil.getPreferenceStore();
-				store.setValue(OraclePrefConstants.TABLE_PREFIX_FILTER, text.getText());
+				store.setValue(OraclePrefConstants.ORACLE_TABLE_PREFIX_FILTER, text.getText());
 			}
 		});
 		return text;
@@ -66,7 +66,7 @@ public class TableFilterPrefPage extends PreferencePage implements
 
 	protected void performDefaults() {
 		IPreferenceStore store = OraclePrefUtil.getPreferenceStore();
-		String default1 = store.getDefaultString(OraclePrefConstants.TABLE_PREFIX_FILTER);
+		String default1 = store.getDefaultString(OraclePrefConstants.ORACLE_TABLE_PREFIX_FILTER);
 		text.setText(default1);
 		super.performDefaults();
 	}

@@ -20,7 +20,7 @@ public class OraclePrefUtil {
 	
 	/** 获取表格过滤器*/
 	public static String getTableFilter(){
-		return getPreferenceStore().getString(OraclePrefConstants.TABLE_PREFIX_FILTER);
+		return getPreferenceStore().getString(OraclePrefConstants.ORACLE_TABLE_PREFIX_FILTER);
 	}
 	
 	/** 获取首选项IPreferenceStore*/

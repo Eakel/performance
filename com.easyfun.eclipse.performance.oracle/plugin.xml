@@ -19,7 +19,7 @@
             category="com.easyfun.eclipse.performance.preferences.Oracle"
             class="com.easyfun.eclipse.performance.oracle.preferences.TableFilterPrefPage"
             id="com.easyfun.eclipse.performance.preferences.oracle.TableFilter"
-            name="表名过滤器">
+            name="Oracle表名过滤器">
       </page>      
    </extension>
    <extension
