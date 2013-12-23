@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -40,6 +41,7 @@ import com.easyfun.eclipse.common.jdbc.ConnectionModel;
 import com.easyfun.eclipse.common.kv.KeyValue;
 import com.easyfun.eclipse.common.kv.KeyValueTableViewer;
 import com.easyfun.eclipse.common.util.DialogUtils;
+import com.easyfun.eclipse.common.util.TimeUtil;
 import com.easyfun.eclipse.performance.mysql.analyze.model.TableModel;
 import com.easyfun.eclipse.performance.mysql.analyze.pref.MySQLPrefUtil;
 import com.easyfun.eclipse.performance.mysql.analyze.pref.MySQLPreferencePage;
@@ -179,7 +181,7 @@ private static final String SCHEMES = "schemes";
 				
 		//1、查询表名
 		for (String ownerName : ownerNames) {
-			String sql = "SELECT OWNER, TABLE_NAME, TABLESPACE_NAME FROM ALL_TABLES WHERE OWNER IN (?)";
+			String sql = "SELECT TABLE_SCHEMA AS OWNER, TABLE_NAME, ENGINE FROM TABLES WHERE TABLE_SCHEMA IN (?)";
 			String filterName = p.getProperty(ownerName.toLowerCase() + ".filter");
 			if (filterName != null && filterName.length() > 0) {
 				sql += " AND TABLE_NAME LIKE '" + filterName + "'";
@@ -195,7 +197,7 @@ private static final String SCHEMES = "schemes";
 			while(rs.next()){
 				TableModel model = new TableModel();
 				model.setTableName(rs.getString("TABLE_NAME"));
-				model.setTableSpace(rs.getString("TABLESPACE_NAME"));
+				model.setTableSpace(rs.getString("ENGINE"));
 				tableList.add(model);
 			}
 			
@@ -373,7 +375,8 @@ private static final String SCHEMES = "schemes";
 	 * @throws Exception
 	 */
 	private void exportUIResult(TabFolder tabFolder) throws Exception{
-		File file = DialogUtils.openSaveDialog(getViewSite().getShell(), new String[]{"*.xls", "*.*"}, "tableAnay.xls");
+		String fileName = "MySQL表格分析" + TimeUtil.getYYYYMMDDHHMMSS(new Date()) + ".xls";
+		File file = DialogUtils.openSaveDialog(getViewSite().getShell(), new String[]{"*.xls", "*.*"}, fileName);
 		if(file == null){
 			return;
 		}
