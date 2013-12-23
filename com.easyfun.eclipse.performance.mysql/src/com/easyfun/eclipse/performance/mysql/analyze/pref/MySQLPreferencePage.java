@@ -8,20 +8,21 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
 import com.easyfun.eclipse.performance.mysql.MySQLActivator;
 
 /**
- * Oracle JDBC …Ë÷√
+ * MySQL JDBC …Ë÷√
+ * 
  * @author linzhaoming
  *
- * 2011-5-7
+ * 2013-12-23
  *
  */
 public class MySQLPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 	
-	public static final String ID = "com.easyfun.eclipse.performance.preferences.Oracle";
+	public static final String ID = "com.easyfun.eclipse.performance.preferences.MySQL";
 
 	public MySQLPreferencePage() {
 		super(GRID);
 		setPreferenceStore(MySQLActivator.getDefault().getPreferenceStore());
-		setDescription("Oracle");
+		setDescription("MySQL");
 	}
 
 	/**
@@ -30,10 +31,10 @@ public class MySQLPreferencePage extends FieldEditorPreferencePage implements IW
 	 * editor knows how to save and restore itself.
 	 */
 	public void createFieldEditors() {
-		addField(new StringFieldEditor(MySQLPrefConstants.ORACLE_JDBC_URL, "&URL:", getFieldEditorParent()));
-		addField(new StringFieldEditor(MySQLPrefConstants.ORACLE_JDBC_DRIVER, "&Driver:", getFieldEditorParent()));
-		addField(new StringFieldEditor(MySQLPrefConstants.ORACLE_JDBC_USER, "&User", getFieldEditorParent()));
-		addField(new StringFieldEditor(MySQLPrefConstants.ORACLE_JDBC_PASSWORD, "&Password", getFieldEditorParent()));
+		addField(new StringFieldEditor(MySQLPrefConstants.MYSQL_JDBC_URL, "&URL:", getFieldEditorParent()));
+		addField(new StringFieldEditor(MySQLPrefConstants.MYSQL_JDBC_DRIVER, "&Driver:", getFieldEditorParent()));
+		addField(new StringFieldEditor(MySQLPrefConstants.MYSQL_JDBC_USER, "&User", getFieldEditorParent()));
+		addField(new StringFieldEditor(MySQLPrefConstants.MYSQL_JDBC_PASSWORD, "&Password", getFieldEditorParent()));
 	}
 
 	public void init(IWorkbench workbench) {

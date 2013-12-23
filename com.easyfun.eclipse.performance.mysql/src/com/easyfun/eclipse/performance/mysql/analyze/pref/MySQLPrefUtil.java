@@ -11,16 +11,16 @@ public class MySQLPrefUtil {
 	public static ConnectionModel getConnectionModel(){
 		ConnectionModel model = new ConnectionModel();
 		IPreferenceStore store = getPreferenceStore();
-		model.setDriver(store.getString(MySQLPrefConstants.ORACLE_JDBC_DRIVER));
-		model.setUrl(store.getString(MySQLPrefConstants.ORACLE_JDBC_URL));
-		model.setName(store.getString(MySQLPrefConstants.ORACLE_JDBC_USER));
-		model.setPassword(store.getString(MySQLPrefConstants.ORACLE_JDBC_PASSWORD));		
+		model.setDriver(store.getString(MySQLPrefConstants.MYSQL_JDBC_DRIVER));
+		model.setUrl(store.getString(MySQLPrefConstants.MYSQL_JDBC_URL));
+		model.setName(store.getString(MySQLPrefConstants.MYSQL_JDBC_USER));
+		model.setPassword(store.getString(MySQLPrefConstants.MYSQL_JDBC_PASSWORD));		
 		return model;
 	}
 	
 	/** 获取表格过滤器*/
 	public static String getTableFilter(){
-		return getPreferenceStore().getString(MySQLPrefConstants.TABLE_PREFIX_FILTER);
+		return getPreferenceStore().getString(MySQLPrefConstants.MYSQL_TABLE_PREFIX_FILTER);
 	}
 	
 	/** 获取首选项IPreferenceStore*/

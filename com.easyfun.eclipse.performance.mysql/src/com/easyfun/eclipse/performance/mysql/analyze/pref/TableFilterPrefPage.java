@@ -16,16 +16,16 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
 /**
- * 表名过滤器
+ * MySQL表名过滤器
  * @author linzhaoming
  *
- * 2013-3-28
+ * 2013-12-23
  *
  */
 public class TableFilterPrefPage extends PreferencePage implements
 		IWorkbenchPreferencePage {
 	
-	public static final String ID = "com.easyfun.eclipse.performance.preferences.oracle.TableFilter";
+	public static final String ID = "com.easyfun.eclipse.performance.preferences.mysql.TableFilter";
 	private StyledText text;
 
 	public TableFilterPrefPage() {
@@ -54,7 +54,7 @@ public class TableFilterPrefPage extends PreferencePage implements
 		text.addFocusListener(new FocusAdapter(){
 			public void focusLost(FocusEvent e) {
 				IPreferenceStore store = MySQLPrefUtil.getPreferenceStore();
-				store.setValue(MySQLPrefConstants.TABLE_PREFIX_FILTER, text.getText());
+				store.setValue(MySQLPrefConstants.MYSQL_TABLE_PREFIX_FILTER, text.getText());
 			}
 		});
 		return text;
@@ -66,7 +66,7 @@ public class TableFilterPrefPage extends PreferencePage implements
 
 	protected void performDefaults() {
 		IPreferenceStore store = MySQLPrefUtil.getPreferenceStore();
-		String default1 = store.getDefaultString(MySQLPrefConstants.TABLE_PREFIX_FILTER);
+		String default1 = store.getDefaultString(MySQLPrefConstants.MYSQL_TABLE_PREFIX_FILTER);
 		text.setText(default1);
 		super.performDefaults();
 	}

@@ -16,11 +16,10 @@ public class MySQLPrefInitializer extends AbstractPreferenceInitializer {
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = MySQLPrefUtil.getPreferenceStore();
 		//Oracle
-		store.setDefault(MySQLPrefConstants.ORACLE_JDBC_URL, "jdbc:oracle:thin:@127.0.0.1:1521:orcl");
-		store.setDefault(MySQLPrefConstants.ORACLE_JDBC_DRIVER, "oracle.jdbc.driver.OracleDriver");
-		store.setDefault(MySQLPrefConstants.ORACLE_JDBC_USER, "scott");
-		store.setDefault(MySQLPrefConstants.ORACLE_JDBC_PASSWORD, "tiger");
-		
+		store.setDefault(MySQLPrefConstants.MYSQL_JDBC_URL, "jdbc:mysql://127.0.0.1:3306/base");
+		store.setDefault(MySQLPrefConstants.MYSQL_JDBC_DRIVER, "com.mysql.jdbc.Driver");
+		store.setDefault(MySQLPrefConstants.MYSQL_JDBC_USER, "base");
+		store.setDefault(MySQLPrefConstants.MYSQL_JDBC_PASSWORD, "base");
 		
 		//Table
 		StringBuffer sb = new StringBuffer();
@@ -32,7 +31,7 @@ public class MySQLPrefInitializer extends AbstractPreferenceInitializer {
 		sb.append("#base.filter=%SMS%").append("\n");
 		sb.append("base.mode=2").append("\n");
 		sb.append("log=true");
-		store.setDefault(MySQLPrefConstants.TABLE_PREFIX_FILTER, sb.toString());
+		store.setDefault(MySQLPrefConstants.MYSQL_TABLE_PREFIX_FILTER, sb.toString());
 		
 	}
 

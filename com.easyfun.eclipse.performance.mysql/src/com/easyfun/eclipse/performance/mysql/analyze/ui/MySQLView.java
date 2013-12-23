@@ -62,7 +62,6 @@ private static final String SCHEMES = "schemes";
 	}
 
 	public void createPartControl(Composite parent) {
-//		super(parent, style, item);
 		parent.setLayout(new GridLayout());
 
 		final Composite topComposite = new Composite(parent, SWT.NONE);
@@ -103,25 +102,25 @@ private static final String SCHEMES = "schemes";
 		anaButton.setText("开始分析");
 		anaButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(final SelectionEvent e) {
-					anaButton.getDisplay().asyncExec(new Runnable() {
-						public void run() {
-							try {
-								anaButton.setEnabled(false);
-								connectionModel = MySQLPrefUtil.getConnectionModel();
-								Connection conn = connectionModel.getRefreshConnection();
-								DatabaseMetaData metaData = conn.getMetaData();
-								LogHelper.debug("使用的用户名为:" + metaData.getUserName());
-								initByConnection(conn);
-							} catch (Exception ex) {
-								ex.printStackTrace();
-								LogHelper.error("获取表格信息失败", ex);
-								SWTUtil.showError(getViewSite().getShell(), "获取表格信息失败\n" + ex.getMessage());
-							}finally{
-								anaButton.setEnabled(true);
-							}
+				anaButton.getDisplay().asyncExec(new Runnable() {
+					public void run() {
+						try {
+							anaButton.setEnabled(false);
+							connectionModel = MySQLPrefUtil.getConnectionModel();
+							Connection conn = connectionModel.getRefreshConnection();
+							DatabaseMetaData metaData = conn.getMetaData();
+							LogHelper.debug("使用的用户名为:" + metaData.getUserName());
+							initByConnection(conn);
+						} catch (Exception ex) {
+							ex.printStackTrace();
+							LogHelper.error("获取表格信息失败", ex);
+							SWTUtil.showError(getViewSite().getShell(), "获取表格信息失败\n" + ex.getMessage());
+						} finally {
+							anaButton.setEnabled(true);
 						}
+					}
 
-					});
+				});
 			}
 		});
 		
