@@ -653,8 +653,9 @@ public class WebToolsView extends ViewPart {
 		okButton.setText("Show Color");
 
 		final Label colorLabel = new Label(content, SWT.NULL);
-		GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
-		gridData.heightHint = 50;
+//		GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+//		gridData.heightHint = 50;
+		GridData gridData = new GridData(GridData.FILL_BOTH);
 		colorLabel.setLayoutData(gridData);
 
 		okButton.addSelectionListener(new SelectionAdapter() {
