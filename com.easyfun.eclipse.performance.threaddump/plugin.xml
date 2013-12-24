@@ -13,14 +13,24 @@
    <extension
          point="com.easyfun.eclipse.performance.EasyFunNavigatorElement">
       <page
-            compositeClass="com.easyfun.eclipse.performance.threaddump.ThreadDumpComposite"
             folder="com.easyfun.eclipse.performance.threaddumpFolder"
             icon="icons/threaddump.gif"
             id="com.easyfun.eclipse.component.threaddump.threadDump"
-            itemHelper="com.easyfun.eclipse.performance.threaddump.ThreadDumpItemHelper"
             title="ThreadDump"
             type="ThreadDump"
+            viewId="com.easyfun.eclipse.performance.threaddump.ThreadDump"
             visible="true">
       </page>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            category="com.easyfun.eclipse.utils.views.category"
+            class="com.easyfun.eclipse.performance.threaddump.ThreadDumpView"
+            icon="icons/threaddump.gif"
+            id="com.easyfun.eclipse.performance.threaddump.ThreadDump"
+            name="name"
+            restorable="true">
+      </view>
    </extension>
 </plugin>
