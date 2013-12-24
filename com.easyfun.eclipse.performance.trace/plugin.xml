@@ -13,13 +13,24 @@
    <extension
          point="com.easyfun.eclipse.performance.EasyFunNavigatorElement">
       <page
-            compositeClass="com.easyfun.eclipse.performance.trace.item.TraceComposite"
             folder="com.easyfun.eclipse.performance.oracleFolder"
             icon="icons/trace.png"
             id="com.easyfun.eclipse.component.trace.item.traceComposite"
             title="TRACE"
             type="trace"
+            viewId="com.easyfun.eclipse.performance.trace.traceview"
             visible="true">
       </page>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            category="com.easyfun.eclipse.utils.views.category"
+            class="com.easyfun.eclipse.performance.trace.item.TraceView"
+            icon="icons/trace.png"
+            id="com.easyfun.eclipse.performance.trace.traceview"
+            name="name"
+            restorable="true">
+      </view>
    </extension>
 </plugin>

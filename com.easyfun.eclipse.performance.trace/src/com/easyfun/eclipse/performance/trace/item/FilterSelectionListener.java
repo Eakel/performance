@@ -63,7 +63,7 @@ public class FilterSelectionListener extends SelectionAdapter {
 			if(dir.getType().equals(TraceTreeEnum.DIR_FTP)){
 				boolean isOK = false;
 				try {
-					isOK = TraceComposite.initFTPTrace(dir, treeViewer.getTree().getShell());
+					isOK = TraceView.initFTPTrace(dir, treeViewer.getTree().getShell());
 				} catch (Exception e) {
 					LogHelper.error(e);
 					return;
