@@ -15,7 +15,7 @@
       <page
             compositeClass="com.easyfun.eclipse.performance.socket.tcpclient.SWTSocketClient"
             folder="com.easyfun.eclipse.performance.socketFolder"
-            icon="icons/thread_ob.gif"
+            icon="icons/socket.png"
             id="com.easyfun.eclipse.component.socket.tcpclient.swtSocketClient"
             title="SocketClient"
             type="SocketClient"
@@ -24,7 +24,7 @@
       <page
             compositeClass="com.easyfun.eclipse.performance.socket.tcpserver.SWTSocketServer"
             folder="com.easyfun.eclipse.performance.socketFolder"
-            icon="icons/thread_ob.gif"
+            icon="icons/socket.png"
             id="com.easyfun.eclipse.component.socket.tcpserver.swtSocketServer"
             title="SocketServer"
             type="SocketServer"
@@ -33,7 +33,7 @@
       <page
             compositeClass="com.easyfun.eclipse.performance.socket.udp.SWTSocketUdp"
             folder="com.easyfun.eclipse.performance.socketFolder"
-            icon="icons/thread_ob.gif"
+            icon="icons/socket.png"
             id="com.easyfun.eclipse.component.socket.udp.swtSocketUdp"
             title="UDP"
             type="UDP"
