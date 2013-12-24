@@ -8,9 +8,10 @@ import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
 import org.eclipse.ui.console.IConsoleConstants;
 
-import com.easyfun.eclipse.common.UIConstants;
 import com.easyfun.eclipse.common.config.cfg.Folder;
 import com.easyfun.eclipse.common.config.cfg.Item;
+import com.easyfun.eclipse.common.view.item.content.MainContentView;
+import com.easyfun.eclipse.common.view.item.navigator.ItemNavigationView;
 import com.easyfun.eclipse.common.view.item.pub.DefaultItemProvider;
 
 public class Perspective implements IPerspectiveFactory {
@@ -19,11 +20,11 @@ public class Perspective implements IPerspectiveFactory {
 		String editorArea = layout.getEditorArea();
 		layout.setEditorAreaVisible(false);
 		
-		layout.addStandaloneView(UIConstants.VIEWID_NAVIGATION,  false, IPageLayout.LEFT, 0.15f, editorArea);
-		layout.getViewLayout(UIConstants.VIEWID_NAVIGATION).setCloseable(false);
+		layout.addStandaloneView(ItemNavigationView.VIEW_ID,  false, IPageLayout.LEFT, 0.15f, editorArea);
+		layout.getViewLayout(ItemNavigationView.VIEW_ID).setCloseable(false);
 		IFolderLayout topFolder = layout.createFolder("top", IPageLayout.TOP, 0.5f, editorArea);
-		topFolder.addPlaceholder(UIConstants.VIEWID_MAINCONTENT + ":*");
-		topFolder.addView(UIConstants.VIEWID_MAINCONTENT);
+		topFolder.addPlaceholder(MainContentView.VIEW_ID + ":*");
+		topFolder.addView(MainContentView.VIEW_ID);
 		
 		//处理所有扩展的ViewId，统一显示在同一个地方
 		List<Folder> folders = DefaultItemProvider.getNavigator().getFolders();

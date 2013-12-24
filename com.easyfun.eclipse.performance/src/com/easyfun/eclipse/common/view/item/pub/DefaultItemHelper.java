@@ -6,7 +6,6 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
-import com.easyfun.eclipse.common.UIConstants;
 import com.easyfun.eclipse.common.config.cfg.Item;
 import com.easyfun.eclipse.common.config.cfg.ItemWrapper;
 import com.easyfun.eclipse.common.util.DialogUtils;
@@ -26,7 +25,7 @@ public class DefaultItemHelper implements ItemHelper{
 	public void onDbClk(IWorkbenchPage page, Item item) {
 		try {
 			ItemWrapper pair = DefaultItemProvider.getNavigatorByType(item);
-			MainContentView mainContentView = (MainContentView)page.showView(UIConstants.VIEWID_MAINCONTENT);
+			MainContentView mainContentView = (MainContentView)page.showView(MainContentView.VIEW_ID);
 			
 			//动态更改显示的图标
 			Image image = null;

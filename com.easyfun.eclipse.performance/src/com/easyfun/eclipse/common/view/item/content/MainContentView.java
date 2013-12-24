@@ -24,6 +24,8 @@ import com.easyfun.eclipse.common.view.item.welcome.WelcomeComposite;
  *
  */
 public class MainContentView extends ViewPart {
+	public static final String VIEW_ID = "com.easyfun.eclipse.performance.view.maincontent";
+	
 	//TODO:为了提高效率，将已经创建的Composite缓存起来，即只初始化一次
 	
 	private StackLayout stackLayout = new StackLayout();

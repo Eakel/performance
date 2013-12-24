@@ -6,7 +6,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
 
-import com.easyfun.eclipse.common.UIConstants;
+import com.easyfun.eclipse.common.view.item.navigator.ItemNavigationView;
 
 /**
  * 关闭所有的View
@@ -19,13 +19,14 @@ import com.easyfun.eclipse.common.UIConstants;
 public class CloseAllAction  extends Action implements IWorkbenchAction{
 	public CloseAllAction(){
 		super("Close All");
+		setId("com.easyfun.eclipse.common.action.closeAll");
 	}
 	
 	public void run() {
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
         IViewReference[] iViewReferences = page.getViewReferences();
         for (IViewReference iViewReference: iViewReferences)
-             if (!UIConstants.VIEWID_NAVIGATION.equals(iViewReference.getId())){
+             if (!ItemNavigationView.VIEW_ID.equals(iViewReference.getId())){
                   page.hideView(iViewReference); 
              }
 	}

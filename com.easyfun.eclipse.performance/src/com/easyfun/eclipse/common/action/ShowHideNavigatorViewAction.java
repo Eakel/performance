@@ -7,7 +7,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
 
-import com.easyfun.eclipse.common.UIConstants;
+import com.easyfun.eclipse.common.view.item.navigator.ItemNavigationView;
 import com.easyfun.eclipse.performance.PerformanceActivator;
 
 /**
@@ -34,10 +34,10 @@ public class ShowHideNavigatorViewAction extends Action implements IWorkbenchAct
 			isOpened = !isOpened;
 			if (isOpened) {
 				setText("Close Navigator");
-				page.showView(UIConstants.VIEWID_NAVIGATION);
+				page.showView(ItemNavigationView.VIEW_ID);
 			} else {
 				setText("Open Navigator");
-				IViewReference ref = page.findViewReference(UIConstants.VIEWID_NAVIGATION);
+				IViewReference ref = page.findViewReference(ItemNavigationView.VIEW_ID);
 				page.hideView(ref);
 			}
 		} catch (PartInitException e) {

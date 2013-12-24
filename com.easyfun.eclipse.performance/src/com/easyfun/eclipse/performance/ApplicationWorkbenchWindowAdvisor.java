@@ -1,5 +1,6 @@
 package com.easyfun.eclipse.performance;
 
+import org.eclipse.jface.action.ICoolBarManager;
 import org.eclipse.jface.preference.PreferenceManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
@@ -39,6 +40,20 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
     
     public void postWindowOpen() {
 //    	super.postWindowOpen();
+    	 // 删除菜单栏中不用的项  
+//		IMenuManager mm = getWindowConfigurer().getActionBarConfigurer().getMenuManager();
+//		mm.remove("org.eclipse.search.menu");
+//		mm.remove("org.eclipse.ui.run");
+//		mm.remove("navigate");
+//		mm.update(true);  
+		
+		//删除工具栏中不用的项
+        ICoolBarManager coolbar = getWindowConfigurer().getActionBarConfigurer().getCoolBarManager();
+		coolbar.remove("org.eclipse.search.searchActionSet");							//search[File search]
+		coolbar.remove("org.eclipse.ui.edit.text.actionSet.annotationNavigation");		// annotation
+		coolbar.remove("org.eclipse.ui.edit.text.actionSet.navigation");				//last
+		// edit location
+		coolbar.update(true); 
     }
 
     /** 关闭窗口前*/

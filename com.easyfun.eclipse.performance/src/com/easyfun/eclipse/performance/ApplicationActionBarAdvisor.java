@@ -3,8 +3,12 @@ package com.easyfun.eclipse.performance;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.ICoolBarManager;
 import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.action.ToolBarContributionItem;
+import org.eclipse.jface.action.ToolBarManager;
+import org.eclipse.swt.SWT;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.actions.ActionFactory;
@@ -28,19 +32,19 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 	// This ensures that the actions aren't recreated when fillActionBars is called with FILL_PROXY.
 	
 	//File
-    private IWorkbenchAction exitAction;		//Exit
-    private IWorkbenchAction newWindowAction;	//Open in New Window
-    private IWorkbenchAction closeAllAction;
+    private IWorkbenchAction exitAction;				//"Exit"
+    private IWorkbenchAction newWindowAction;			//"Open in New Window"
+    private IWorkbenchAction closeAllAction;			//"Cose All"
     
     //Window
-	private IWorkbenchAction outlineAction;	
-	private IWorkbenchAction toggleToolBarAction;
-	private OpenViewAction openConsoleAction;
-	private IWorkbenchAction preferencesAction;
+	private IWorkbenchAction nagivatorAction;			//Open/Close Navigator
+	private IWorkbenchAction toggleToolBarAction;		//Show/Hide Toolbar
+	private OpenViewAction openConsoleAction;			//"Open Console"
+	private IWorkbenchAction preferencesAction;			//"Preferences"
 	
 	//Help
-	private OpenViewAction openErrorLogViewAction;		//Error Log
-	private IWorkbenchAction aboutAction;		//About
+	private OpenViewAction openErrorLogViewAction;		//"Error Log"
+	private IWorkbenchAction aboutAction;				//"About"
 
     public ApplicationActionBarAdvisor(IActionBarConfigurer configurer) {
         super(configurer);
@@ -56,14 +60,14 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
         register(newWindowAction);
                 
         closeAllAction = new CloseAllAction();
-//        register(closeAllAction);
+        register(closeAllAction);
         
         exitAction = ActionFactory.QUIT.create(window);
         register(exitAction);
         
 		// Window
-		outlineAction = new ShowHideNavigatorViewAction();
-		register(outlineAction);
+		nagivatorAction = new ShowHideNavigatorViewAction();
+		register(nagivatorAction);
 		
 		toggleToolBarAction = ActionFactory.TOGGLE_COOLBAR.create(window);
 		toggleToolBarAction.setText("Show/Hide ToolBar");
@@ -88,9 +92,10 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
     }
     
     protected void fillMenuBar(IMenuManager menuBar) {
-        MenuManager fileMenu = new MenuManager("&File", IWorkbenchActionConstants.M_FILE);
-        MenuManager windowMenu = new MenuManager("&Window", IWorkbenchActionConstants.M_WINDOW);
-        MenuManager helpMenu = new MenuManager("&Help", IWorkbenchActionConstants.M_HELP);        
+    	//不使用标准ID，避免受其他插件影响，引入没用的菜单
+        MenuManager fileMenu = new MenuManager("&File", "fileID");			//IWorkbenchActionConstants.M_FILE
+        MenuManager windowMenu = new MenuManager("&Window", "windowID");	//IWorkbenchActionConstants.M_WINDOW
+        MenuManager helpMenu = new MenuManager("&Help", "helpID");        	//IWorkbenchActionConstants.M_HELP
         
         menuBar.add(fileMenu);
         // Add a group marker indicating where action set menus will appear.
@@ -105,7 +110,7 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
         fileMenu.add(exitAction);
         
         //Window
-        windowMenu.add(outlineAction);        
+        windowMenu.add(nagivatorAction);        
         windowMenu.add(toggleToolBarAction);
         windowMenu.add(openConsoleAction);
         windowMenu.add(openErrorLogViewAction);
@@ -116,8 +121,10 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
     }
     
     protected void fillCoolBar(ICoolBarManager coolBar) {
-//        IToolBarManager toolbar = new ToolBarManager(SWT.FLAT | SWT.RIGHT);
-//        coolBar.add(new ToolBarContributionItem(toolbar, "main"));   
-//        toolbar.add(openHttpViewAction);
+        IToolBarManager toolbar = new ToolBarManager(SWT.FLAT | SWT.RIGHT);
+        coolBar.add(new ToolBarContributionItem(toolbar, "main"));   
+        toolbar.add(openConsoleAction);
+        toolbar.add(openErrorLogViewAction);
+        toolbar.add(nagivatorAction);
     }
 }
