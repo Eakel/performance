@@ -29,7 +29,7 @@
             class="com.easyfun.eclipse.performance.threaddump.ThreadDumpView"
             icon="icons/threaddump.gif"
             id="com.easyfun.eclipse.performance.threaddump.ThreadDump"
-            name="name"
+            name="ThreadDump"
             restorable="true">
       </view>
    </extension>
