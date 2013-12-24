@@ -4,13 +4,24 @@
    <extension
          point="com.easyfun.eclipse.performance.EasyFunNavigatorElement">
       <page
-            compositeClass="com.easyfun.eclipse.performance.jmx.JMXComposite"
             folder="com.easyfun.eclipse.performance.otherFolder"
             icon="icons/jmx.png"
             id="com.easyfun.eclipse.component.jmx.jmxComposite"
             title="JMX"
             type="welcome"
+            viewId="com.easyfun.eclipse.performance.jmx.view.JMXView"
             visible="true">
       </page>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            category="com.easyfun.eclipse.utils.views.category"
+            class="com.easyfun.eclipse.performance.jmx.JMXView"
+            icon="icons/jmx.png"
+            id="com.easyfun.eclipse.performance.jmx.view.JMXView"
+            name="JMX"
+            restorable="true">
+      </view>
    </extension>
 </plugin>
