@@ -20,6 +20,7 @@ import org.eclipse.ui.console.IConsoleConstants;
 import com.easyfun.eclipse.common.action.CloseAllAction;
 import com.easyfun.eclipse.common.action.OpenViewAction;
 import com.easyfun.eclipse.common.action.ShowHideNavigatorViewAction;
+import com.easyfun.eclipse.utils.common.ImageConstants;
 
 /**
  * An action bar advisor is responsible for creating, adding, and disposing of the
@@ -70,17 +71,17 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 		register(nagivatorAction);
 		
 		toggleToolBarAction = ActionFactory.TOGGLE_COOLBAR.create(window);
-		toggleToolBarAction.setText("Show/Hide ToolBar");
+		toggleToolBarAction.setText("ToolBar");
 		register(toggleToolBarAction);
 		
-		openConsoleAction = new OpenViewAction(window, "Open Console", ICommandIds.CMD_OPEN_CONSOLE, IConsoleConstants.ID_CONSOLE_VIEW, false);
-		openConsoleAction.setText("Open Console");
-		openConsoleAction.setViewImageDescriptor("icons/eclipse/console.gif");
+		openConsoleAction = new OpenViewAction(window, "Console", ICommandIds.CMD_OPEN_CONSOLE, IConsoleConstants.ID_CONSOLE_VIEW, false);
+		openConsoleAction.setText("Console");
+		openConsoleAction.setViewImageDescriptor(ImageConstants.CONSOLE_ICONS);
 		register(openConsoleAction);
 		
-		openErrorLogViewAction = new OpenViewAction(window, "Open Console", ICommandIds.CMD_OPEN_ERRORLOG, "org.eclipse.pde.runtime.LogView", false);
+		openErrorLogViewAction = new OpenViewAction(window, "Error Log", ICommandIds.CMD_OPEN_ERRORLOG, "org.eclipse.pde.runtime.LogView", false);
 		openErrorLogViewAction.setText("Error Log");
-		openErrorLogViewAction.setViewImageDescriptor("icons/eclipse/error_log.gif");
+		openErrorLogViewAction.setViewImageDescriptor(ImageConstants.ERRORLOG_ICONS);
 		register(openErrorLogViewAction);
 		
 		preferencesAction = ActionFactory.PREFERENCES.create(window);
@@ -123,8 +124,8 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
     protected void fillCoolBar(ICoolBarManager coolBar) {
         IToolBarManager toolbar = new ToolBarManager(SWT.FLAT | SWT.RIGHT);
         coolBar.add(new ToolBarContributionItem(toolbar, "main"));   
-        toolbar.add(openConsoleAction);
-        toolbar.add(openErrorLogViewAction);
+        toolbar.add(openConsoleAction);        
         toolbar.add(nagivatorAction);
+        toolbar.add(openErrorLogViewAction);
     }
 }

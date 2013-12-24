@@ -2,6 +2,7 @@ package com.easyfun.eclipse.common.action;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
@@ -38,6 +39,7 @@ public class OpenViewAction extends Action {
 		setId(commandId);
 		// Associate the action with a pre-defined command, to allow key bindings.
 		setActionDefinitionId(commandId);
+		setToolTipText("Show/Hide " + label);
 		if(needImage){
 			setImageDescriptor(com.easyfun.eclipse.performance.PerformanceActivator.getImageDescriptor("/icons/sample2.gif"));
 		}
@@ -52,15 +54,21 @@ public class OpenViewAction extends Action {
 	}
 
 	public void run() {
+		IWorkbenchPage page = window.getActivePage();
+		IViewPart viewPart = page.findView(viewId);
+		boolean visible = page.isPartVisible(viewPart);
 		if (window != null) {
 			try {
-				
 				if(multi){
-					window.getActivePage().showView(viewId, Integer.toString(instanceNum++), IWorkbenchPage.VIEW_ACTIVATE);
+					//显示多个不用处理
+					page.showView(viewId, Integer.toString(instanceNum++), IWorkbenchPage.VIEW_ACTIVATE);
 				}else{
-					window.getActivePage().showView(viewId, null, IWorkbenchPage.VIEW_ACTIVATE);	
+					if(visible){
+						page.hideView(viewPart);
+					}else{
+						page.showView(viewId, null, IWorkbenchPage.VIEW_ACTIVATE);
+					}
 				}
-//				window.getActivePage().showView(viewId);
 			} catch (PartInitException e) {
 				MessageDialog.openError(window.getShell(), "Error", "Error opening view:" + e.getMessage());
 			}

@@ -9,6 +9,7 @@ import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
 
 import com.easyfun.eclipse.common.view.item.navigator.ItemNavigationView;
 import com.easyfun.eclipse.performance.PerformanceActivator;
+import com.easyfun.eclipse.utils.common.ImageConstants;
 
 /**
  * ´ò¿ª¹Ø±ÕNavigator
@@ -20,9 +21,10 @@ public class ShowHideNavigatorViewAction extends Action implements IWorkbenchAct
 	private boolean isOpened = true;
 
 	public ShowHideNavigatorViewAction() {
-		setText("Close Navigator");
+		setText("Navigator");
+		setToolTipText("Show/Hide Navigator");
 		setId(getText());
-		setImageDescriptor(PerformanceActivator.getImageDescriptor("icons/esayfun.png"));
+		setImageDescriptor(PerformanceActivator.getImageDescriptor(ImageConstants.EASYFUN_ICONS));
 	}
 
 	public void dispose() {
@@ -33,10 +35,10 @@ public class ShowHideNavigatorViewAction extends Action implements IWorkbenchAct
 		try {
 			isOpened = !isOpened;
 			if (isOpened) {
-				setText("Close Navigator");
+//				setText("Close Navigator");
 				page.showView(ItemNavigationView.VIEW_ID);
 			} else {
-				setText("Open Navigator");
+//				setText("Open Navigator");
 				IViewReference ref = page.findViewReference(ItemNavigationView.VIEW_ID);
 				page.hideView(ref);
 			}

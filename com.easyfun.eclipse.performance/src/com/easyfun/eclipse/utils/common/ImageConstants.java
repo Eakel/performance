@@ -12,4 +12,13 @@ public class ImageConstants {
 	
 	/** 节点图标 */
 	public static String ITEM_PATH = "icons/item.gif";
+	
+	/** EasyFUN*/
+	public static final String EASYFUN_ICONS = "icons/esayfun.png";
+	
+	/** Console视图*/
+	public static final String CONSOLE_ICONS = "icons/eclipse/console.gif";
+	
+	/** Error Log视图*/
+	public static final String ERRORLOG_ICONS = "icons/eclipse/error_log.gif";
 }
