@@ -47,7 +47,7 @@
             folder="com.easyfun.eclipse.performance.mysql.mysqlFolder"
             icon="icons/mysql.png"
             id="com.easyfun.eclipse.performance.mysql.mysqlPage"
-            title="MySQL"
+            title="MySQL表统计"
             type="MySQL"
             viewId="com.easyfun.eclipse.performance.mysql.views.MySQLView"
             visible="true">
