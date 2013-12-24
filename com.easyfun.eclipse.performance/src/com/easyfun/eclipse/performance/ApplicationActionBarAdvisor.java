@@ -15,7 +15,6 @@ import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
 import org.eclipse.ui.application.ActionBarAdvisor;
 import org.eclipse.ui.application.IActionBarConfigurer;
-import org.eclipse.ui.console.IConsoleConstants;
 
 import com.easyfun.eclipse.common.action.CloseAllAction;
 import com.easyfun.eclipse.common.action.OpenViewAction;
@@ -74,12 +73,12 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 		toggleToolBarAction.setText("ToolBar");
 		register(toggleToolBarAction);
 		
-		openConsoleAction = new OpenViewAction(window, "Console", ICommandIds.CMD_OPEN_CONSOLE, IConsoleConstants.ID_CONSOLE_VIEW, false);
+		openConsoleAction = new OpenViewAction(window, "Console", IConstants.CMD_OPEN_CONSOLE, IConstants.CONSOLE_VIEW_ID, false);
 		openConsoleAction.setText("Console");
 		openConsoleAction.setViewImageDescriptor(ImageConstants.CONSOLE_ICONS);
 		register(openConsoleAction);
 		
-		openErrorLogViewAction = new OpenViewAction(window, "Error Log", ICommandIds.CMD_OPEN_ERRORLOG, "org.eclipse.pde.runtime.LogView", false);
+		openErrorLogViewAction = new OpenViewAction(window, "Error Log", IConstants.CMD_OPEN_ERRORLOG, IConstants.ERROR_LOG_VIEW_ID, false);
 		openErrorLogViewAction.setText("Error Log");
 		openErrorLogViewAction.setViewImageDescriptor(ImageConstants.ERRORLOG_ICONS);
 		register(openErrorLogViewAction);
@@ -126,6 +125,6 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
         coolBar.add(new ToolBarContributionItem(toolbar, "main"));   
         toolbar.add(openConsoleAction);        
         toolbar.add(nagivatorAction);
-        toolbar.add(openErrorLogViewAction);
+//        toolbar.add(openErrorLogViewAction);
     }
 }

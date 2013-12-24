@@ -49,6 +49,15 @@
             name="Content"
             restorable="true">
       </view>
+      <view
+            allowMultiple="true"
+            category="com.easyfun.eclipse.utils.views.category"
+            class="com.easyfun.eclipse.common.view.item.welcome.WelcomeView"
+            icon="icons/esayfun.png"
+            id="com.easyfun.eclipse.performance.view.WelcomeView"
+            name="EasyFun"
+            restorable="true">
+      </view>
    </extension>
    <extension
          point="org.eclipse.ui.commands">

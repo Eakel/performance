@@ -13,6 +13,7 @@ import com.easyfun.eclipse.common.config.cfg.Item;
 import com.easyfun.eclipse.common.view.item.content.MainContentView;
 import com.easyfun.eclipse.common.view.item.navigator.ItemNavigationView;
 import com.easyfun.eclipse.common.view.item.pub.DefaultItemProvider;
+import com.easyfun.eclipse.common.view.item.welcome.WelcomeView;
 
 public class Perspective implements IPerspectiveFactory {
 
@@ -41,10 +42,15 @@ public class Perspective implements IPerspectiveFactory {
 				}
 			}
 		}
+		topFolder.addPlaceholder(WelcomeView.VIEW_ID);
 		
 		//Console
 		IFolderLayout bottomFolder = layout.createFolder("bottom", IPageLayout.BOTTOM, 0.80f, "top");
 		bottomFolder.addView(IConsoleConstants.ID_CONSOLE_VIEW);
 		layout.getViewLayout(IConsoleConstants.ID_CONSOLE_VIEW).setCloseable(true);
+		
+		bottomFolder.addPlaceholder(IConstants.ERROR_LOG_VIEW_ID);
+		
+//		layout.setFixed(true);	//TODO:校验是否可以固定Perspective
 	}
 }

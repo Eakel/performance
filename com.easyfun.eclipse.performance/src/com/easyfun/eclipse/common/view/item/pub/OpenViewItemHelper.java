@@ -1,9 +1,11 @@
 package com.easyfun.eclipse.common.view.item.pub;
 
+import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPage;
 
 import com.easyfun.eclipse.common.config.cfg.Item;
 import com.easyfun.eclipse.common.util.DialogUtils;
+import com.easyfun.eclipse.common.view.item.welcome.WelcomeView;
 
 /**
  * 打开View ID
@@ -23,6 +25,14 @@ public class OpenViewItemHelper implements ItemHelper{
 		try {
 			//TODO:支持多个
 			page.showView(item.getViewId());
+			
+			//若Welcome可视，关闭Welcome
+			//TODO: 有BUG，
+			IViewPart viewPart = page.findView(WelcomeView.VIEW_ID);
+			boolean visible = page.isPartVisible(viewPart);
+			if(visible){
+				page.hideView(viewPart);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			DialogUtils.showError(page.getWorkbenchWindow().getShell(), "打开View异常:" + e.getMessage());

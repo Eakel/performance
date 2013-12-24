@@ -1,5 +1,6 @@
 package com.easyfun.eclipse.performance;
 
+import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.ICoolBarManager;
 import org.eclipse.jface.preference.PreferenceManager;
 import org.eclipse.swt.SWT;
