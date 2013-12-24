@@ -99,7 +99,7 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
         
         menuBar.add(fileMenu);
         // Add a group marker indicating where action set menus will appear.
-        menuBar.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
+//        menuBar.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));	//导出单独运行的时候多了空格
         menuBar.add(windowMenu);
         menuBar.add(helpMenu);
         
