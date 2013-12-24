@@ -28,14 +28,23 @@
       <extension
          point="com.easyfun.eclipse.performance.EasyFunNavigatorElement">
              <page
-            compositeClass="com.easyfun.eclipse.performance.awr.item.OracleAWRComposite"
-            folder="com.easyfun.eclipse.performance.oracleFolder"
-            icon="icons/awr.gif"
-            id="com.easyfun.eclipse.component.awr.item.oracleAWRComposite"
-            itemHelper="com.easyfun.eclipse.common.view.item.pub.DefaultItemHelper"
-            title="AWR"
-            type="awr"
-            visible="true">
+                   folder="com.easyfun.eclipse.performance.oracleFolder"
+                   icon="icons/awr.gif"
+                   id="com.easyfun.eclipse.component.awr.item.oracleAWRComposite"
+                   title="AWR"
+                   type="awr"
+                   viewId="com.easyfun.eclipse.performance.awr.views.AWRView"
+                   visible="true">
       </page>
     </extension>
+      <extension
+            point="org.eclipse.ui.views">
+         <view
+               class="com.easyfun.eclipse.performance.awr.item.AWRView"
+               icon="icons/awr.gif"
+               id="com.easyfun.eclipse.performance.awr.views.AWRView"
+               name="AWR"
+               restorable="true">
+         </view>
+      </extension>
 </plugin>
