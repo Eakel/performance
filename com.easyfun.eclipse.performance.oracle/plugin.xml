@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
+      <extension
+         point="org.eclipse.ui.views">
+         <view
+            class="com.easyfun.eclipse.performance.oracle.OracleTableView"
+            icon="icons/table.png"
+            id="com.easyfun.eclipse.performance.oracle.views.OracleTableView"
+            name="Oracle表统计">
+      </view>
+      </extension>
    <extension
          point="org.eclipse.core.runtime.preferences">
       <initializer
@@ -34,12 +43,12 @@
    <extension
          point="com.easyfun.eclipse.performance.EasyFunNavigatorElement">
       <page
-            compositeClass="com.easyfun.eclipse.performance.oracle.item.TableAnalyzeComposite"
             folder="com.easyfun.eclipse.performance.oracleFolder"
             icon="icons/table.png"
             id="com.easyfun.eclipse.component.oracle.item.tableAnalyzeComposite"
             title="Oracle表统计"
             type="Oracle"
+            viewId="com.easyfun.eclipse.performance.oracle.views.OracleTableView"
             visible="true">
       </page>
    </extension>
