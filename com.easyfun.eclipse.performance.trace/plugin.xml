@@ -29,7 +29,7 @@
             class="com.easyfun.eclipse.performance.trace.item.TraceView"
             icon="icons/trace.png"
             id="com.easyfun.eclipse.performance.trace.traceview"
-            name="name"
+            name="TRACE"
             restorable="true">
       </view>
    </extension>
