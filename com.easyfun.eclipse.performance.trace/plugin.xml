@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
-    <extension
+   <extension
          point="com.easyfun.eclipse.performance.EasyFunNavigatorFolder">
       <folder
-            id="com.easyfun.eclipse.performance.oracleFolder"
-            title="Oracle"
-            type="Oracle"
+            id="com.easyfun.eclipse.performance.appframeFolder"
+            title="AppFrame"
+            type="AppFrame"
             visible="true">
       </folder>
    </extension>
    <extension
          point="com.easyfun.eclipse.performance.EasyFunNavigatorElement">
       <page
-            folder="com.easyfun.eclipse.performance.oracleFolder"
+            folder="com.easyfun.eclipse.performance.appframeFolder"
             icon="icons/trace.png"
             id="com.easyfun.eclipse.component.trace.item.traceComposite"
             title="TRACE"

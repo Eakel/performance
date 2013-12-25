@@ -129,7 +129,7 @@ public class TraceView extends ViewPart {
 		
 		Label label = new Label(c2, SWT.NULL);
 		label.setText("所属类型：");
-		GridData gridData = new GridData();
+		GridData gridData = new GridData(GridData.HORIZONTAL_ALIGN_END);
 		label.setLayoutData(gridData);
 		
 		parentLabel = new Label(c2, SWT.BORDER);
@@ -139,7 +139,7 @@ public class TraceView extends ViewPart {
 		
 		label = new Label(c2, SWT.NULL);
 		label.setText("文件名：");
-		gridData = new GridData();
+		gridData = new GridData(GridData.HORIZONTAL_ALIGN_END);
 		label.setLayoutData(gridData);
 		
 		fileNameLabel = new Label(c2, SWT.BORDER);
@@ -149,7 +149,7 @@ public class TraceView extends ViewPart {
 		
 		label = new Label(c2, SWT.NULL);
 		label.setText("文件大小：");
-		gridData = new GridData();
+		gridData = new GridData(GridData.HORIZONTAL_ALIGN_END);
 		label.setLayoutData(gridData);
 		
 		fileLengthLabel = new Label(c2, SWT.BORDER);
@@ -159,7 +159,7 @@ public class TraceView extends ViewPart {
 		
 		label = new Label(c2, SWT.NULL);
 		label.setText("文件修改时间：");
-		gridData = new GridData();
+		gridData = new GridData(GridData.HORIZONTAL_ALIGN_END);
 		label.setLayoutData(gridData);
 		
 		fileTimeLabel = new Label(c2, SWT.BORDER);
@@ -169,7 +169,7 @@ public class TraceView extends ViewPart {
 		
 		label = new Label(c2, SWT.NULL);
 		label.setText("TRACE时间：");
-		gridData = new GridData();
+		gridData = new GridData(GridData.HORIZONTAL_ALIGN_END);
 		label.setLayoutData(gridData);
 		
 		traceTimeLabel = new Label(c2, SWT.BORDER);
@@ -179,7 +179,7 @@ public class TraceView extends ViewPart {
 		
 		label = new Label(c2, SWT.NULL);
 		label.setText("概括：");
-		gridData = new GridData();
+		gridData = new GridData(GridData.HORIZONTAL_ALIGN_END);
 		label.setLayoutData(gridData);
 		
 		summaryText = new Browser(c2, SWT.BORDER);
