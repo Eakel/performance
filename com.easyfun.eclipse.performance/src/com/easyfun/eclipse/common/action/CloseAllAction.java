@@ -3,10 +3,12 @@ package com.easyfun.eclipse.common.action;
 import org.eclipse.jface.action.Action;
 import org.eclipse.ui.IViewReference;
 import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
 
 import com.easyfun.eclipse.common.view.item.navigator.ItemNavigationView;
+import com.easyfun.eclipse.common.view.item.welcome.WelcomeView;
 import com.easyfun.eclipse.performance.PerformanceActivator;
 import com.easyfun.eclipse.utils.common.ImageConstants;
 
@@ -28,14 +30,20 @@ public class CloseAllAction  extends Action implements IWorkbenchAction{
 	public void run() {
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
         IViewReference[] iViewReferences = page.getViewReferences();
-        for (IViewReference iViewReference: iViewReferences)
+        for (IViewReference iViewReference: iViewReferences) {
              if (!ItemNavigationView.VIEW_ID.equals(iViewReference.getId())){
                   page.hideView(iViewReference); 
              }
+        }
+        
+        //œ‘ æWelcomeView
+		try {
+			page.showView(WelcomeView.VIEW_ID);
+		} catch (PartInitException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void dispose() {
-		// TODO Auto-generated method stub
-		
 	}
 }

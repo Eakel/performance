@@ -17,6 +17,7 @@ import org.eclipse.ui.part.ViewPart;
 public class WelcomeView extends ViewPart {
 	
 	public static final String VIEW_ID = "com.easyfun.eclipse.performance.view.WelcomeView";
+	private Label welcomeLabel;
 
 	public WelcomeView() {
 	}
@@ -24,15 +25,17 @@ public class WelcomeView extends ViewPart {
 	public void createPartControl(Composite parent) {
 		parent.setLayout(new GridLayout());
 
-		final Label label = new Label(parent, SWT.NONE);
+		welcomeLabel = new Label(parent, SWT.NONE);
 		
-		label.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, false));
-		label.setText("Welcome to EasyFun\n(Created by Linzhaoming)");
+		welcomeLabel.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, false));
+		welcomeLabel.setText("Welcome to EasyFun\n(Created by Linzhaoming)");
 	}
 
 	@Override
 	public void setFocus() {
-		
+		if (welcomeLabel != null) {
+			welcomeLabel.setFocus();
+		}
 	}
 
 	private Shell getShell(){

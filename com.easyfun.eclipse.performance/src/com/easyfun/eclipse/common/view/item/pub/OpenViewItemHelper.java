@@ -23,16 +23,16 @@ public class OpenViewItemHelper implements ItemHelper{
 
 	public void onDbClk(IWorkbenchPage page, Item item) {
 		try {
-			//TODO:支持多个
-			page.showView(item.getViewId());
-			
 			//若Welcome可视，关闭Welcome
-			//TODO: 有BUG，
 			IViewPart viewPart = page.findView(WelcomeView.VIEW_ID);
 			boolean visible = page.isPartVisible(viewPart);
 			if(visible){
 				page.hideView(viewPart);
 			}
+			
+			//TODO:支持多个
+			page.showView(item.getViewId());
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			DialogUtils.showError(page.getWorkbenchWindow().getShell(), "打开View异常:" + e.getMessage());

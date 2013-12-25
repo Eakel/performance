@@ -24,8 +24,10 @@ public class Perspective implements IPerspectiveFactory {
 		layout.addStandaloneView(ItemNavigationView.VIEW_ID,  false, IPageLayout.LEFT, 0.15f, editorArea);
 		layout.getViewLayout(ItemNavigationView.VIEW_ID).setCloseable(false);
 		IFolderLayout topFolder = layout.createFolder("top", IPageLayout.TOP, 0.5f, editorArea);
-		topFolder.addPlaceholder(MainContentView.VIEW_ID + ":*");
-		topFolder.addView(MainContentView.VIEW_ID);
+//		topFolder.addPlaceholder(MainContentView.VIEW_ID + ":*");
+//		topFolder.addView(MainContentView.VIEW_ID);
+		topFolder.addPlaceholder(WelcomeView.VIEW_ID + ":*");
+		topFolder.addView(WelcomeView.VIEW_ID);
 		
 		//处理所有扩展的ViewId，统一显示在同一个地方
 		List<Folder> folders = DefaultItemProvider.getNavigator().getFolders();
@@ -42,7 +44,7 @@ public class Perspective implements IPerspectiveFactory {
 				}
 			}
 		}
-		topFolder.addPlaceholder(WelcomeView.VIEW_ID);
+//		topFolder.addPlaceholder(WelcomeView.VIEW_ID);
 		
 		//Console
 		IFolderLayout bottomFolder = layout.createFolder("bottom", IPageLayout.BOTTOM, 0.80f, "top");

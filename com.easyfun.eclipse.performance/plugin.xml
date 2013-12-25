@@ -16,9 +16,10 @@
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            name="RCP Perspective"
             class="com.easyfun.eclipse.performance.Perspective"
-            id="com.easyfun.eclipse.performance.perspective">
+            icon="icons/esayfun.png"
+            id="com.easyfun.eclipse.performance.perspective"
+            name="EasyFun">
       </perspective>
    </extension>
    <extension
@@ -66,12 +67,6 @@
             id="com.easyfun.eclipse.performance.category">
       </category>
       <command
-            name="Open HTTP"
-            description="Open HTTP View"
-            categoryId="com.easyfun.eclipse.performance.category"
-            id="com.easyfun.eclipse.performance.openHttp">
-      </command>
-      <command
             categoryId="com.easyfun.eclipse.performance.category"
             id="com.easyfun.eclipse.performance.openConsole"
             name="Open Console">
@@ -85,11 +80,6 @@
    </extension>
    <extension
          point="org.eclipse.ui.bindings">
-      <key
-            commandId="com.easyfun.eclipse.performance.openHttp"
-            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-            sequence="CTRL+2">
-      </key>
       <key
             commandId="org.eclipse.ui.file.exit"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"

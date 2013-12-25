@@ -17,13 +17,6 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = PreferenceUtil.getPreferenceStore();
-		//EasyFun
-		store.setDefault(PreferenceConstants.P_BOOLEAN, true);
-		store.setDefault(PreferenceConstants.P_CHOICE, "choice2");
-		store.setDefault(PreferenceConstants.P_STRING, "Default value");
-		
-		//FTP
-//		store.setDefault(PreferenceConstants.EASYFUN_FTP, "localhost,21,0,linzm,pass,jvm.log");
 	}
 
 }
