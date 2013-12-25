@@ -19,7 +19,6 @@
 
    <windowImages i16="/com.easyfun.eclipse.performance/icons/esayfun.png"/>
 
-
    <launcher name="easyfun">
       <solaris/>
       <win useIco="false">
@@ -27,7 +26,6 @@
             winSmallHigh="/com.easyfun.eclipse.performance/icons/esayfun_16.bmp"/>
       </win>
    </launcher>
-
 
    <vm>
    </vm>
@@ -41,7 +39,6 @@
       <plugin id="com.easyfun.eclipse.performance.mysql"/>
       <plugin id="com.easyfun.eclipse.performance.oracle"/>
       <plugin id="com.easyfun.eclipse.performance.other"/>
-      <plugin id="com.easyfun.eclipse.performance.socket"/>
       <plugin id="com.easyfun.eclipse.performance.threaddump"/>
       <plugin id="com.easyfun.eclipse.performance.trace"/>
       <plugin id="com.ibm.icu"/>

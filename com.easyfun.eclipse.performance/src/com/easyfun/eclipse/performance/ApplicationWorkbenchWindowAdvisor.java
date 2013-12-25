@@ -33,10 +33,15 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
         configurer.setShowCoolBar(true);
         configurer.setShowStatusLine(false);
         
-        //做一些初始化工作
+        //做一些初始化工作，删除没用的Preference Page
         PreferenceManager mgr = PlatformUI.getWorkbench().getPreferenceManager();
         mgr.remove("org.eclipse.help.ui.browsersPreferencePage");
-        mgr.remove("org.eclipse.update.internal.ui.preferences.MainPreferencePage");
+        mgr.remove("org.eclipse.update.internal.ui.preferences.MainPreferencePage");	//Install/Update
+        mgr.remove("org.eclipse.debug.ui.DebugPreferencePage");							//Run/Debug
+        mgr.remove("org.eclipse.ui.preferencePages.Workbench");							//General
+        mgr.remove("org.eclipse.jdt.ui.preferences.JavaBasePreferencePage");			//Java
+        mgr.remove("org.eclipse.team.ui.TeamPreferences");								//Team
+        mgr.remove("org.apache.log4j.viewer.prefers.LogViewerPreferencePage");			//Log Viewer
     }
     
     public void postWindowOpen() {

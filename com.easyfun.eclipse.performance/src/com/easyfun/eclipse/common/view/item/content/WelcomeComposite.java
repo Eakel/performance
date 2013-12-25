@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.common.view.item.welcome;
+package com.easyfun.eclipse.common.view.item.content;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -12,6 +12,8 @@ import com.easyfun.eclipse.common.view.item.pub.ItemComposite;
 /**
  * 简介作用的Composite
  * @author linzhaoming
+ * 
+ * @deprecated 已经不再使用
  *
  * 2011-5-8
  *

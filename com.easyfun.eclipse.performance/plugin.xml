@@ -44,19 +44,10 @@
       <view
             allowMultiple="true"
             category="com.easyfun.eclipse.utils.views.category"
-            class="com.easyfun.eclipse.common.view.item.content.MainContentView"
-            icon="icons/esayfun.png"
-            id="com.easyfun.eclipse.performance.view.maincontent"
-            name="Content"
-            restorable="true">
-      </view>
-      <view
-            allowMultiple="true"
-            category="com.easyfun.eclipse.utils.views.category"
             class="com.easyfun.eclipse.common.view.item.welcome.WelcomeView"
             icon="icons/esayfun.png"
             id="com.easyfun.eclipse.performance.view.WelcomeView"
-            name="EasyFun"
+            name="Welcome"
             restorable="true">
       </view>
    </extension>
@@ -98,6 +89,12 @@
             class="com.easyfun.eclipse.performance.preferences.EasyFunPreferencePage"
             id="com.easyfun.eclipse.performance.preferences.EasyFunPreferencePage"
             name="EasyFun">
+      </page>
+            <page
+            category="com.easyfun.eclipse.performance.preferences.EasyFunPreferencePage"
+            class="com.easyfun.eclipse.performance.preferences.OraclePreferencePage"
+            id="com.easyfun.eclipse.performance.preferences.Oracle"
+            name="Oracle">
       </page>
    </extension>
    <extension

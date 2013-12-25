@@ -44,7 +44,6 @@ public class Perspective implements IPerspectiveFactory {
 				}
 			}
 		}
-//		topFolder.addPlaceholder(WelcomeView.VIEW_ID);
 		
 		//Console
 		IFolderLayout bottomFolder = layout.createFolder("bottom", IPageLayout.BOTTOM, 0.80f, "top");

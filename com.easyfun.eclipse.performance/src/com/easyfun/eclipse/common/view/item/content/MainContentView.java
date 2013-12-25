@@ -14,12 +14,12 @@ import com.easyfun.eclipse.common.config.cfg.Item;
 import com.easyfun.eclipse.common.config.cfg.ItemWrapper;
 import com.easyfun.eclipse.common.util.ClassUtil;
 import com.easyfun.eclipse.common.view.item.pub.ItemComposite;
-import com.easyfun.eclipse.common.view.item.welcome.WelcomeComposite;
 
 /**
  * MainContentView View
  * @author linzhaoming
  *
+ * @deprecated 已经不再使用
  * 2011-4-2
  *
  */

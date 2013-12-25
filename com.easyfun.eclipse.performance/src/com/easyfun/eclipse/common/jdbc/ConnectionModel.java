@@ -9,10 +9,15 @@ import java.sql.DriverManager;
  * Create Date: 2010-11-27
  */
 public class ConnectionModel {
-	private String url = "jdbc:mysql://127.0.0.1:3306/base";
-	private String driver = "com.mysql.jdbc.Driver";
-	private String name = "base";
-	private String password ="base" ;
+//	private String url = "jdbc:mysql://127.0.0.1:3306/base";
+//	private String driver = "com.mysql.jdbc.Driver";
+//	private String name = "base";
+//	private String password ="base" ;
+	
+	private String url = "";
+	private String driver = "";
+	private String name = "";
+	private String password ="" ;
 	
 	private Connection connection;
 	private boolean initial = false;
