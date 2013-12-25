@@ -16,7 +16,7 @@ public class UdpServer extends Thread {
     
     
     private DatagramSocket server;
-    private SWTSocketUdp parent;
+    private UDPSocketView parent;
     private boolean stop = false;
     private byte buffer[] = new byte[BUFFER_SIZE];
     
@@ -32,7 +32,7 @@ public class UdpServer extends Thread {
         }
     }
     
-    private UdpServer(SWTSocketUdp parent, DatagramSocket s) {
+    private UdpServer(UDPSocketView parent, DatagramSocket s) {
         super("SocketUdp");
         this.parent = parent;
         server=s;
@@ -40,7 +40,7 @@ public class UdpServer extends Thread {
         start();
     }
     
-    public static synchronized UdpServer handle(SWTSocketUdp parent, DatagramSocket s) {
+    public static synchronized UdpServer handle(UDPSocketView parent, DatagramSocket s) {
         if(udpServer==null)
             udpServer=new UdpServer(parent, s);
         else {
@@ -59,7 +59,7 @@ public class UdpServer extends Thread {
         return udpServer;
     }
     
-    public static synchronized UdpServer handleClient(SWTSocketUdp parent,
+    public static synchronized UdpServer handleClient(UDPSocketView parent,
             DatagramSocket s) {
         if(udpServer2==null)
             udpServer2=new UdpServer(parent, s);

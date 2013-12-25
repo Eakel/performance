@@ -7,37 +7,64 @@
             id="com.easyfun.eclipse.performance.socketFolder"
             title="Socket"
             type="Socket"
-            visible="false">
+            visible="true">
       </folder>
    </extension>
    <extension
          point="com.easyfun.eclipse.performance.EasyFunNavigatorElement">
       <page
-            compositeClass="com.easyfun.eclipse.performance.socket.tcpclient.SWTSocketClient"
             folder="com.easyfun.eclipse.performance.socketFolder"
             icon="icons/socket.png"
             id="com.easyfun.eclipse.component.socket.tcpclient.swtSocketClient"
             title="SocketClient"
             type="SocketClient"
+            viewId="com.easyfun.eclipse.performance.socket.view.TCPSocketClientView"
             visible="true">
       </page>
       <page
-            compositeClass="com.easyfun.eclipse.performance.socket.tcpserver.SWTSocketServer"
             folder="com.easyfun.eclipse.performance.socketFolder"
             icon="icons/socket.png"
             id="com.easyfun.eclipse.component.socket.tcpserver.swtSocketServer"
             title="SocketServer"
             type="SocketServer"
+            viewId="com.easyfun.eclipse.performance.socket.view.TCPSocketServerView"
             visible="true">
       </page>
       <page
-            compositeClass="com.easyfun.eclipse.performance.socket.udp.SWTSocketUdp"
             folder="com.easyfun.eclipse.performance.socketFolder"
             icon="icons/socket.png"
             id="com.easyfun.eclipse.component.socket.udp.swtSocketUdp"
             title="UDP"
             type="UDP"
+            viewId="com.easyfun.eclipse.performance.socket.view.UDPSocketView"
             visible="true">
       </page>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            category="com.easyfun.eclipse.utils.views.category"
+            class="com.easyfun.eclipse.performance.socket.tcpclient.TCPSocketClientView"
+            icon="icons/socket.png"
+            id="com.easyfun.eclipse.performance.socket.view.TCPSocketClientView"
+            name="SocketClient"
+            restorable="true">
+      </view>
+      <view
+            category="com.easyfun.eclipse.utils.views.category"
+            class="com.easyfun.eclipse.performance.socket.tcpserver.TCPSocketServerView"
+            icon="icons/socket.png"
+            id="com.easyfun.eclipse.performance.socket.view.TCPSocketServerView"
+            name="SocketServer"
+            restorable="true">
+      </view>
+      <view
+            category="com.easyfun.eclipse.utils.views.category"
+            class="com.easyfun.eclipse.performance.socket.udp.UDPSocketView"
+            icon="icons/socket.png"
+            id="com.easyfun.eclipse.performance.socket.view.UDPSocketView"
+            name="UDP"
+            restorable="true">
+      </view>
    </extension>
 </plugin>

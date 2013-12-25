@@ -19,7 +19,7 @@ public class SocketServer extends Thread {
 	private static SocketServer socketServer = null;
 	public Socket socket = null;
 	public ServerSocket server = null;
-	private SWTSocketServer parent;
+	private TCPSocketServerView parent;
 	private BufferedInputStream in;
 	private boolean desonnected = false;
 	private boolean stop = false;
@@ -46,7 +46,7 @@ public class SocketServer extends Thread {
 		}
 	}
 
-	public SocketServer(SWTSocketServer parent, ServerSocket s) {
+	public SocketServer(TCPSocketServerView parent, ServerSocket s) {
 		super("SocketServer");
 		this.parent = parent;
 		server = s;
@@ -55,7 +55,7 @@ public class SocketServer extends Thread {
 		start();
 	}
 
-	public static synchronized SocketServer handle(SWTSocketServer parent, ServerSocket serverSocket) {
+	public static synchronized SocketServer handle(TCPSocketServerView parent, ServerSocket serverSocket) {
 		if (socketServer == null) {
 			socketServer = new SocketServer(parent, serverSocket);
 		} else {
@@ -155,7 +155,7 @@ public class SocketServer extends Thread {
 		}
 	}
 
-	private void appendParent(final SWTSocketServer parent, final String msg) {
+	private void appendParent(final TCPSocketServerView parent, final String msg) {
 		parent.getDisplay().syncExec(new Runnable() {
 			public void run() {
 				parent.append(msg);
