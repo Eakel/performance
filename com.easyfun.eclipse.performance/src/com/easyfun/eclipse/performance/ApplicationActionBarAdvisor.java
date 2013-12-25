@@ -125,6 +125,7 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
         coolBar.add(new ToolBarContributionItem(toolbar, "main"));   
         toolbar.add(openConsoleAction);        
         toolbar.add(nagivatorAction);
+        toolbar.add(closeAllAction);
 //        toolbar.add(openErrorLogViewAction);
     }
 }

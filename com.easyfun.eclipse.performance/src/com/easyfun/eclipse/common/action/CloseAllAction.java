@@ -7,6 +7,8 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
 
 import com.easyfun.eclipse.common.view.item.navigator.ItemNavigationView;
+import com.easyfun.eclipse.performance.PerformanceActivator;
+import com.easyfun.eclipse.utils.common.ImageConstants;
 
 /**
  * 关闭所有的View
@@ -20,6 +22,7 @@ public class CloseAllAction  extends Action implements IWorkbenchAction{
 	public CloseAllAction(){
 		super("Close All");
 		setId("com.easyfun.eclipse.common.action.closeAll");
+		setImageDescriptor(PerformanceActivator.getImageDescriptor(ImageConstants.CLOSEALL_ICONS));
 	}
 	
 	public void run() {

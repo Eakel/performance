@@ -16,6 +16,9 @@ public class ImageConstants {
 	/** EasyFUN*/
 	public static final String EASYFUN_ICONS = "icons/esayfun.png";
 	
+	/** Close All*/
+	public static final String CLOSEALL_ICONS = "icons/close.png";
+	
 	/** Console ”Õº*/
 	public static final String CONSOLE_ICONS = "icons/eclipse/console.gif";
 	
