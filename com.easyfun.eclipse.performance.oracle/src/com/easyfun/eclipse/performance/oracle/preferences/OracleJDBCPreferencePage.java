@@ -14,11 +14,11 @@ import com.easyfun.eclipse.performance.oracle.OracleActivator;
  * 2011-5-7
  *
  */
-public class OraclePreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
+public class OracleJDBCPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 	
-	public static final String ID = "com.easyfun.eclipse.performance.preferences.Oracle";
+	public static final String PREF_ID = "com.easyfun.eclipse.performance.oracle.preferences.OracleJDBC";
 
-	public OraclePreferencePage() {
+	public OracleJDBCPreferencePage() {
 		super(GRID);
 		setPreferenceStore(OracleActivator.getDefault().getPreferenceStore());
 		setDescription("Oracle");

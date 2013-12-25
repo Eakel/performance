@@ -44,8 +44,8 @@ import com.easyfun.eclipse.common.kv.KeyValueTableViewer;
 import com.easyfun.eclipse.common.util.DialogUtils;
 import com.easyfun.eclipse.common.util.TimeUtil;
 import com.easyfun.eclipse.performance.oracle.preferences.OraclePrefUtil;
-import com.easyfun.eclipse.performance.oracle.preferences.OraclePreferencePage;
-import com.easyfun.eclipse.performance.oracle.preferences.TableFilterPrefPage;
+import com.easyfun.eclipse.performance.oracle.preferences.OracleJDBCPreferencePage;
+import com.easyfun.eclipse.performance.oracle.preferences.OracleTableFilterPreferencePage;
 import com.easyfun.eclipse.utils.lang.StringUtil;
 import com.easyfun.eclipse.utils.ui.SWTUtil;
 
@@ -80,8 +80,8 @@ public class OracleTableView extends ViewPart {
 		dbButton.setText("数据库设定");
 		dbButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(final SelectionEvent e) {
-				WorkbenchPreferenceDialog dialog = WorkbenchPreferenceDialog.createDialogOn(getShell(), OraclePreferencePage.ID);
-			    dialog.showOnly(new String[] { TableFilterPrefPage.ID });
+				WorkbenchPreferenceDialog dialog = WorkbenchPreferenceDialog.createDialogOn(getShell(), OracleJDBCPreferencePage.PREF_ID);
+			    dialog.showOnly(new String[] { OracleTableFilterPreferencePage.ID });
 			    dialog.open();
 			}
 		});
@@ -90,8 +90,8 @@ public class OracleTableView extends ViewPart {
 		filterSetttingButton.setText("过滤设定");
 		filterSetttingButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(final SelectionEvent e) {
-				WorkbenchPreferenceDialog dialog = WorkbenchPreferenceDialog.createDialogOn(getShell(), TableFilterPrefPage.ID);
-			    dialog.showOnly(new String[] { TableFilterPrefPage.ID });
+				WorkbenchPreferenceDialog dialog = WorkbenchPreferenceDialog.createDialogOn(getShell(), OracleTableFilterPreferencePage.ID);
+			    dialog.showOnly(new String[] { OracleTableFilterPreferencePage.ID });
 			    dialog.open();
 			    
 			    try {

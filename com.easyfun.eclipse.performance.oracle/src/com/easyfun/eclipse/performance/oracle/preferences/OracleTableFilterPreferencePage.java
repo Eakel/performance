@@ -22,20 +22,20 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
  * 2013-3-28
  *
  */
-public class TableFilterPrefPage extends PreferencePage implements
+public class OracleTableFilterPreferencePage extends PreferencePage implements
 		IWorkbenchPreferencePage {
 	
-	public static final String ID = "com.easyfun.eclipse.performance.preferences.oracle.TableFilter";
+	public static final String ID = "com.easyfun.eclipse.performance.oracle.preferences.OracleTableFilter";
 	private StyledText text;
 
-	public TableFilterPrefPage() {
+	public OracleTableFilterPreferencePage() {
 	}
 
-	public TableFilterPrefPage(String title) {
+	public OracleTableFilterPreferencePage(String title) {
 		super(title);
 	}
 
-	public TableFilterPrefPage(String title, ImageDescriptor image) {
+	public OracleTableFilterPreferencePage(String title, ImageDescriptor image) {
 		super(title, image);
 	}
 
