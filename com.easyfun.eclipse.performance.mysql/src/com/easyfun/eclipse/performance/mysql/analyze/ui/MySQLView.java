@@ -44,8 +44,8 @@ import com.easyfun.eclipse.common.util.DialogUtils;
 import com.easyfun.eclipse.common.util.TimeUtil;
 import com.easyfun.eclipse.performance.mysql.analyze.model.TableModel;
 import com.easyfun.eclipse.performance.mysql.analyze.pref.MySQLPrefUtil;
-import com.easyfun.eclipse.performance.mysql.analyze.pref.MySQLPreferencePage;
-import com.easyfun.eclipse.performance.mysql.analyze.pref.TableFilterPrefPage;
+import com.easyfun.eclipse.performance.mysql.analyze.pref.MySQLJDBCPreferencePage;
+import com.easyfun.eclipse.performance.mysql.analyze.pref.MySQLTableFilterPreferencePage;
 import com.easyfun.eclipse.utils.lang.StringUtil;
 import com.easyfun.eclipse.utils.ui.SWTUtil;
 
@@ -74,8 +74,8 @@ private static final String SCHEMES = "schemes";
 		dbButton.setText("数据库设定");
 		dbButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(final SelectionEvent e) {
-				WorkbenchPreferenceDialog dialog = WorkbenchPreferenceDialog.createDialogOn(getViewSite().getShell(), MySQLPreferencePage.ID);
-			    dialog.showOnly(new String[] { TableFilterPrefPage.ID });
+				WorkbenchPreferenceDialog dialog = WorkbenchPreferenceDialog.createDialogOn(getViewSite().getShell(), MySQLJDBCPreferencePage.PREF_ID);
+			    dialog.showOnly(new String[] { MySQLTableFilterPreferencePage.PREF_ID });
 			    dialog.open();
 			}
 		});
@@ -84,8 +84,8 @@ private static final String SCHEMES = "schemes";
 		filterSetttingButton.setText("过滤设定");
 		filterSetttingButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(final SelectionEvent e) {
-				WorkbenchPreferenceDialog dialog = WorkbenchPreferenceDialog.createDialogOn(getViewSite().getShell(), TableFilterPrefPage.ID);
-			    dialog.showOnly(new String[] { TableFilterPrefPage.ID });
+				WorkbenchPreferenceDialog dialog = WorkbenchPreferenceDialog.createDialogOn(getViewSite().getShell(), MySQLTableFilterPreferencePage.PREF_ID);
+			    dialog.showOnly(new String[] { MySQLTableFilterPreferencePage.PREF_ID });
 			    dialog.open();
 			    
 			    try {

@@ -31,13 +31,19 @@
       <page
             category="com.easyfun.eclipse.performance.preferences.EasyFunPreferencePage"
             class="com.easyfun.eclipse.performance.mysql.analyze.pref.MySQLPreferencePage"
-            id="com.easyfun.eclipse.performance.preferences.mysql"
+            id="com.easyfun.eclipse.performance.mysql.preferences.MySQL"
+            name="MySQL">
+      </page>
+      <page
+            category="com.easyfun.eclipse.performance.mysql.preferences.MySQL"
+            class="com.easyfun.eclipse.performance.mysql.analyze.pref.MySQLJDBCPreferencePage"
+            id="com.easyfun.eclipse.performance.mysql.preferences.MySQLJDBC"
             name="MySQL表统计">
       </page>
       <page
-            category="com.easyfun.eclipse.performance.preferences.mysql"
-            class="com.easyfun.eclipse.performance.mysql.analyze.pref.TableFilterPrefPage"
-            id="com.easyfun.eclipse.performance.preferences.mysql.TableFilter"
+            category="com.easyfun.eclipse.performance.mysql.preferences.MySQL"
+            class="com.easyfun.eclipse.performance.mysql.analyze.pref.MySQLTableFilterPreferencePage"
+            id="com.easyfun.eclipse.performance.mysql.preferences.MySQLTableFilter"
             name="MySQL表名过滤器">
       </page>      
    </extension>

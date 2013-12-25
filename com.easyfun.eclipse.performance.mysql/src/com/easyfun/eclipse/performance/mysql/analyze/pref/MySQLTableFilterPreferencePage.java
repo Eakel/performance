@@ -22,20 +22,19 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
  * 2013-12-23
  *
  */
-public class TableFilterPrefPage extends PreferencePage implements
-		IWorkbenchPreferencePage {
+public class MySQLTableFilterPreferencePage extends PreferencePage implements IWorkbenchPreferencePage {
 	
-	public static final String ID = "com.easyfun.eclipse.performance.preferences.mysql.TableFilter";
+	public static final String PREF_ID = "com.easyfun.eclipse.performance.mysql.preferences.MySQLTableFilter";
 	private StyledText text;
 
-	public TableFilterPrefPage() {
+	public MySQLTableFilterPreferencePage() {
 	}
 
-	public TableFilterPrefPage(String title) {
+	public MySQLTableFilterPreferencePage(String title) {
 		super(title);
 	}
 
-	public TableFilterPrefPage(String title, ImageDescriptor image) {
+	public MySQLTableFilterPreferencePage(String title, ImageDescriptor image) {
 		super(title, image);
 	}
 
