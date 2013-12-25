@@ -29,7 +29,7 @@ import com.easyfun.eclipse.common.util.DialogUtils;
 import com.easyfun.eclipse.performance.awr.AWRUtil;
 import com.easyfun.eclipse.performance.awr.model.AWRTableViewer;
 import com.easyfun.eclipse.performance.awr.model.SnapShot;
-import com.easyfun.eclipse.performance.awr.preferences.AwrPrefPage;
+import com.easyfun.eclipse.performance.awr.preferences.AwrJDBCPreferencePage;
 import com.easyfun.eclipse.performance.awr.preferences.AwrPrefUtil;
 import com.easyfun.eclipse.utils.resource.FileUtil;
 import com.easyfun.eclipse.utils.ui.SWTUtil;
@@ -72,8 +72,8 @@ public class AWRView extends ViewPart {
 		final Button dbButton = new Button(topComposite, SWT.NONE);
 		dbButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(final SelectionEvent e) {
-				WorkbenchPreferenceDialog dialog = WorkbenchPreferenceDialog.createDialogOn(getShell(), AwrPrefPage.ID);
-			    dialog.showOnly(new String[] { AwrPrefPage.ID });
+				WorkbenchPreferenceDialog dialog = WorkbenchPreferenceDialog.createDialogOn(getShell(), AwrJDBCPreferencePage.PREF_ID);
+			    dialog.showOnly(new String[] { AwrJDBCPreferencePage.PREF_ID });
 			    dialog.open();
 			}
 		});

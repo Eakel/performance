@@ -14,11 +14,11 @@ import com.easyfun.eclipse.performance.awr.AwrActivator;
  * 2011-5-7
  *
  */
-public class AwrPrefPage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
+public class AwrJDBCPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 	
-	public static final String ID = "com.easyfun.eclipse.performance.preferences.awr.oracle";
+	public static final String PREF_ID = "com.easyfun.eclipse.performance.preferences.awr.AwrJDBC";
 
-	public AwrPrefPage() {
+	public AwrJDBCPreferencePage() {
 		super(GRID);
 		setPreferenceStore(AwrActivator.getDefault().getPreferenceStore());
 		setDescription("Oracle");
