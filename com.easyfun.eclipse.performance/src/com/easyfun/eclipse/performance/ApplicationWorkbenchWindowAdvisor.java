@@ -14,6 +14,9 @@ import org.eclipse.ui.application.IActionBarConfigurer;
 import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
 import org.eclipse.ui.application.WorkbenchWindowAdvisor;
 
+import com.easyfun.eclipse.performance.helper.EasyFunPartListener;
+import com.easyfun.eclipse.utils.ui.IDEHelper;
+
 public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 
     public ApplicationWorkbenchWindowAdvisor(IWorkbenchWindowConfigurer configurer) {
@@ -30,8 +33,8 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
     	int width = Display.getCurrent().getBounds().width;
         IWorkbenchWindowConfigurer configurer = getWindowConfigurer();
         configurer.setInitialSize(new Point(width, height));
-        configurer.setShowCoolBar(true);
-        configurer.setShowStatusLine(false);
+        configurer.setShowCoolBar(true);		//显示工具栏
+        configurer.setShowStatusLine(false);	//不显示状态栏
         
         //做一些初始化工作，删除没用的Preference Page
         PreferenceManager mgr = PlatformUI.getWorkbench().getPreferenceManager();
@@ -60,6 +63,8 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 		coolbar.remove("org.eclipse.ui.edit.text.actionSet.navigation");				//last
 		// edit location
 		coolbar.update(true); 
+		
+		IDEHelper.getActivePage().addPartListener(new EasyFunPartListener());
     }
 
     /** 关闭窗口前*/

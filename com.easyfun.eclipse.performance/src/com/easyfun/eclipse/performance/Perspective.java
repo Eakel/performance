@@ -14,6 +14,7 @@ import com.easyfun.eclipse.common.view.item.content.MainContentView;
 import com.easyfun.eclipse.common.view.item.navigator.ItemNavigationView;
 import com.easyfun.eclipse.common.view.item.pub.DefaultItemProvider;
 import com.easyfun.eclipse.common.view.item.welcome.WelcomeView;
+import com.easyfun.eclipse.performance.helper.IConstants;
 
 public class Perspective implements IPerspectiveFactory {
 

@@ -6,6 +6,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IPropertyListener;
 import org.eclipse.ui.part.ViewPart;
 
 /**
@@ -29,6 +30,12 @@ public class WelcomeView extends ViewPart {
 		
 		welcomeLabel.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, false));
 		welcomeLabel.setText("Welcome to EasyFun\n(Created by Linzhaoming)");
+		
+		this.addPropertyListener(new IPropertyListener(){
+			public void propertyChanged(Object source, int propId) {
+					System.out.println("linzm: " + propId);
+			}
+		});
 	}
 
 	@Override
@@ -42,4 +49,5 @@ public class WelcomeView extends ViewPart {
 		return getSite().getShell();
 	}
 
+	
 }

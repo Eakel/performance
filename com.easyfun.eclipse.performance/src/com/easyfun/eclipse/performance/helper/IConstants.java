@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.performance;
+package com.easyfun.eclipse.performance.helper;
 
 import org.eclipse.ui.console.IConsoleConstants;
 

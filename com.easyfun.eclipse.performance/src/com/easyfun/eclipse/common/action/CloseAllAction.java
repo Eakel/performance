@@ -7,9 +7,9 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
 
-import com.easyfun.eclipse.common.view.item.navigator.ItemNavigationView;
 import com.easyfun.eclipse.common.view.item.welcome.WelcomeView;
 import com.easyfun.eclipse.performance.PerformanceActivator;
+import com.easyfun.eclipse.performance.helper.EasyFunUtils;
 import com.easyfun.eclipse.utils.common.ImageConstants;
 
 /**
@@ -21,6 +21,7 @@ import com.easyfun.eclipse.utils.common.ImageConstants;
  *
  */
 public class CloseAllAction  extends Action implements IWorkbenchAction{
+	
 	public CloseAllAction(){
 		super("Close All");
 		setId("com.easyfun.eclipse.common.action.closeAll");
@@ -31,9 +32,9 @@ public class CloseAllAction  extends Action implements IWorkbenchAction{
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
         IViewReference[] iViewReferences = page.getViewReferences();
         for (IViewReference iViewReference: iViewReferences) {
-             if (!ItemNavigationView.VIEW_ID.equals(iViewReference.getId())){
-                  page.hideView(iViewReference); 
-             }
+        	if(!EasyFunUtils.getUncontrolViews().contains(iViewReference.getId())){
+        		 page.hideView(iViewReference); 
+        	}
         }
         
         //œ‘ æWelcomeView
