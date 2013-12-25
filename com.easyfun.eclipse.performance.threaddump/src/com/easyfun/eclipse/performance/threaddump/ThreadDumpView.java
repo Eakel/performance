@@ -162,8 +162,8 @@ public class ThreadDumpView extends ViewPart {
 	/** 左侧Composite */
 	private void createLeftComposite(Composite parent){
 		Label label = new Label(parent, SWT.NULL);
-		label.setText("类型选择：");
-		label.setLayoutData(new GridData());
+		label.setText("ThreadDump类型：");
+		label.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false));
 		
 		parserCombo = new Combo(parent, SWT.READ_ONLY);
 		parserCombo.setLayoutData(new GridData());

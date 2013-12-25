@@ -132,6 +132,7 @@ public class FTPDialog extends Dialog {
 		hostText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
 		label = new Label(container, SWT.NONE);
+		label.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false));
 		label.setText("ÎÄ¼þÂ·¾¶£º");
 
 		filePathText = new Text(container, SWT.BORDER);
