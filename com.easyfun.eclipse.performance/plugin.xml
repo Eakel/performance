@@ -97,7 +97,6 @@
             name="Oracle">
       </page>
             <page
-                  category="com.easyfun.eclipse.performance.preferencePages.EasyFunPreferencePage"
                   class="com.easyfun.eclipse.performance.preferences.DBUrlPreferencePage"
                   id="com.easyfun.eclipse.performance.preferencePages.DBUrl"
                   name="Database URL">
