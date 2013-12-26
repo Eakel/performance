@@ -19,15 +19,15 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-            category="com.easyfun.eclipse.performance.preferences.Oracle"
+            category="com.easyfun.eclipse.performance.preferencePages.Oracle"
             class="com.easyfun.eclipse.performance.oracle.preferences.OracleJDBCPreferencePage"
-            id="com.easyfun.eclipse.performance.oracle.preferences.OracleJDBC"
+            id="com.easyfun.eclipse.performance.oracle.preferencePages.OracleJDBC"
             name="Oracle表统计">
       </page>
       <page
-            category="com.easyfun.eclipse.performance.preferences.Oracle"
+            category="com.easyfun.eclipse.performance.preferencePages.Oracle"
             class="com.easyfun.eclipse.performance.oracle.preferences.OracleTableFilterPreferencePage"
-            id="com.easyfun.eclipse.performance.oracle.preferences.OracleTableFilter"
+            id="com.easyfun.eclipse.performance.oracle.preferencePages.OracleTableFilter"
             name="Oracle表名过滤器">
       </page>      
    </extension>

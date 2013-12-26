@@ -16,7 +16,7 @@ import com.easyfun.eclipse.performance.oracle.OracleActivator;
  */
 public class OracleJDBCPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 	
-	public static final String PREF_ID = "com.easyfun.eclipse.performance.oracle.preferences.OracleJDBC";
+	public static final String PREF_ID = "com.easyfun.eclipse.performance.oracle.preferencePages.OracleJDBC";
 
 	public OracleJDBCPreferencePage() {
 		super(GRID);

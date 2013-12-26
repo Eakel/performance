@@ -22,10 +22,9 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
  * 2013-3-28
  *
  */
-public class OracleTableFilterPreferencePage extends PreferencePage implements
-		IWorkbenchPreferencePage {
+public class OracleTableFilterPreferencePage extends PreferencePage implements IWorkbenchPreferencePage {
 	
-	public static final String ID = "com.easyfun.eclipse.performance.oracle.preferences.OracleTableFilter";
+	public static final String ID = "com.easyfun.eclipse.performance.oracle.preferencePages.OracleTableFilter";
 	private StyledText text;
 
 	public OracleTableFilterPreferencePage() {
