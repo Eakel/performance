@@ -16,7 +16,7 @@ import com.easyfun.eclipse.performance.awr.AwrActivator;
  */
 public class AwrJDBCPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 	
-	public static final String PREF_ID = "com.easyfun.eclipse.performance.preferences.awr.AwrJDBC";
+	public static final String PREF_ID = "com.easyfun.eclipse.performance.awr.preferencePages.AwrJDBC";
 
 	public AwrJDBCPreferencePage() {
 		super(GRID);
