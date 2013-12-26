@@ -87,15 +87,21 @@
          point="org.eclipse.ui.preferencePages">
       <page
             class="com.easyfun.eclipse.performance.preferences.EasyFunPreferencePage"
-            id="com.easyfun.eclipse.performance.preferences.EasyFunPreferencePage"
+            id="com.easyfun.eclipse.performance.preferencePages.EasyFunPreferencePage"
             name="EasyFun">
       </page>
             <page
-            category="com.easyfun.eclipse.performance.preferences.EasyFunPreferencePage"
+            category="com.easyfun.eclipse.performance.preferencePages.EasyFunPreferencePage"
             class="com.easyfun.eclipse.performance.preferences.OraclePreferencePage"
-            id="com.easyfun.eclipse.performance.preferences.Oracle"
+            id="com.easyfun.eclipse.performance.preferencePages.Oracle"
             name="Oracle">
       </page>
+            <page
+                  category="com.easyfun.eclipse.performance.preferencePages.EasyFunPreferencePage"
+                  class="com.easyfun.eclipse.performance.preferences.DBUrlPreferencePage"
+                  id="com.easyfun.eclipse.performance.preferencePages.DBUrl"
+                  name="Database URL">
+            </page>
    </extension>
    <extension
          point="org.eclipse.core.runtime.preferences">
