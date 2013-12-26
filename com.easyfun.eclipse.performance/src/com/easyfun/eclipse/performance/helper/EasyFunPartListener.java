@@ -27,7 +27,6 @@ public class EasyFunPartListener implements IPartListener {
 	}
 	
 	public void partClosed(IWorkbenchPart part) {
-		System.out.println("partClosed " + part.getTitle());
 		IWorkbenchPage page = part.getSite().getPage();
 		IViewReference[] iViewReferences = page.getViewReferences();
 		boolean isExist = false;	//是否有一个工具View打开
