@@ -34,7 +34,7 @@ public class FileNode<T> extends  Node<T>{
 	
 	public String getDisplayName() {
 		if(file != null && file.exists()){
-			return file.getPath();
+			return file.getName() + " [" + file.getPath() + "]";
 		}
 		return super.getDisplayName();
 	}
