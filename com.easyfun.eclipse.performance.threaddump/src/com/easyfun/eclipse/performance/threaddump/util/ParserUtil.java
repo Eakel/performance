@@ -13,7 +13,7 @@ import java.util.Map.Entry;
 
 import org.apache.velocity.util.StringUtils;
 
-import com.easyfun.eclipse.common.kv.KeyValue;
+import com.easyfun.eclipse.common.ui.kv.KeyValue;
 import com.easyfun.eclipse.utils.lang.StringUtil;
 
 public class ParserUtil {

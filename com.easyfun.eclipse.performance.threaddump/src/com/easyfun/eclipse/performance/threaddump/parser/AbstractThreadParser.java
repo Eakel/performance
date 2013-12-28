@@ -4,7 +4,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.easyfun.eclipse.common.kv.KeyValue;
+import com.easyfun.eclipse.common.ui.kv.KeyValue;
 import com.easyfun.eclipse.performance.threaddump.util.ParserUtil;
 
 public abstract class AbstractThreadParser implements IThreadParser{

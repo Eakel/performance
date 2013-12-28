@@ -3,7 +3,7 @@ package com.easyfun.eclipse.performance.threaddump;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.easyfun.eclipse.common.tree.model.Directory;
+import com.easyfun.eclipse.common.ui.tree.model.Directory;
 
 /**
  * 用于保存打开的线程文件

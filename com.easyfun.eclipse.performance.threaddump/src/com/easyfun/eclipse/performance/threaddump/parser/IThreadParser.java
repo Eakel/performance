@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.eclipse.swt.graphics.Image;
 
-import com.easyfun.eclipse.common.kv.KeyValue;
+import com.easyfun.eclipse.common.ui.kv.KeyValue;
 
 public interface IThreadParser {
 	/** 解析后台接口调用情况*/
