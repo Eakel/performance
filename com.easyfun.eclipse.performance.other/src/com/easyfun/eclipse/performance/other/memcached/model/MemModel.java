@@ -1,6 +1,6 @@
 package com.easyfun.eclipse.performance.other.memcached.model;
 
-import com.easyfun.eclipse.common.kv.KeyValue;
+import com.easyfun.eclipse.common.ui.kv.KeyValue;
 
 /**
  * MemModel

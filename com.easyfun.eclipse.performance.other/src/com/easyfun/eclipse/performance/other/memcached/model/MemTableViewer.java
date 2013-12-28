@@ -20,8 +20,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 
-import com.easyfun.eclipse.common.kv.MenuUtils;
-import com.easyfun.eclipse.common.table.ColumnViewerSorter;
+import com.easyfun.eclipse.common.ui.ColumnViewerSorter;
+import com.easyfun.eclipse.common.ui.kv.MenuUtils;
 
 /**
  * MemModel TableViewer
