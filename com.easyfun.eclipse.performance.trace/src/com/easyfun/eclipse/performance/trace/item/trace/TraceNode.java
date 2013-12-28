@@ -1,6 +1,6 @@
 package com.easyfun.eclipse.performance.trace.item.trace;
 
-import com.easyfun.eclipse.common.tree.model.Node;
+import com.easyfun.eclipse.common.ui.tree.model.Node;
 import com.easyfun.eclipse.performance.trace.model.AppTrace;
 
 /**

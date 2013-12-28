@@ -10,7 +10,7 @@ import org.dom4j.Document;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.XMLWriter;
 
-import com.easyfun.eclipse.common.tree.model.ITreeModel;
+import com.easyfun.eclipse.common.ui.tree.model.ITreeModel;
 import com.easyfun.eclipse.performance.trace.builder.MyXMLWriter;
 import com.easyfun.eclipse.performance.trace.ui.TraceUIDesc;
 

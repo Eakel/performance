@@ -5,7 +5,7 @@ import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.internal.Workbench;
 
-import com.easyfun.eclipse.common.tree.model.ITreeModel;
+import com.easyfun.eclipse.common.ui.tree.model.ITreeModel;
 import com.easyfun.eclipse.performance.trace.TraceActivator;
 import com.easyfun.eclipse.performance.trace.item.trace.TraceNode;
 

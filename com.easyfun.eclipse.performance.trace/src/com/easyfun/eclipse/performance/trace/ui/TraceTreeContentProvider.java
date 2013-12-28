@@ -5,7 +5,7 @@ import java.util.Collection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
-import com.easyfun.eclipse.common.tree.model.ITreeModel;
+import com.easyfun.eclipse.common.ui.tree.model.ITreeModel;
 
 /**
  * 
