@@ -502,7 +502,6 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 		menuItem.setText("上传");
 		menuItem.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
-				localDirTableViewer.getSelection();
 				IStructuredSelection selection = (IStructuredSelection) localDirTableViewer.getSelection();
 				File file = (File) selection.getFirstElement();
 				try {
@@ -522,7 +521,15 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 		menuItem.setText("&打开");
 		menuItem.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
-				super.widgetSelected(e);
+				IStructuredSelection selection = (IStructuredSelection) localDirTableViewer.getSelection();
+				File file = (File) selection.getFirstElement();
+				if (file != null && file.exists()) {
+					try {
+						Runtime.getRuntime().exec("explorer " + file.getPath());
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+				}
 			}
 		});
 		
@@ -584,7 +591,7 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 				try {
 					String toFileName = FilenameUtils.concat(((File)localDirTableViewer.getInput()).getPath(), ftpFile.getName());
 					OutputStream out = new FileOutputStream(toFileName);
-					//上传文件  
+					//下载文件  
 					ftpClient.retrieveFile(ftpFile.getName(),out);  
 					out.close();
 					

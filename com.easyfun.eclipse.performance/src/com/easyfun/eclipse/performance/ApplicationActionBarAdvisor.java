@@ -14,9 +14,9 @@ import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
 import org.eclipse.ui.application.ActionBarAdvisor;
 import org.eclipse.ui.application.IActionBarConfigurer;
 
-import com.easyfun.eclipse.common.action.CloseAllAction;
-import com.easyfun.eclipse.common.action.OpenViewAction;
-import com.easyfun.eclipse.common.action.ShowHideNavigatorViewAction;
+import com.easyfun.eclipse.common.navigator.action.CloseAllAction;
+import com.easyfun.eclipse.common.navigator.action.OpenViewAction;
+import com.easyfun.eclipse.common.navigator.action.ShowHideNavigatorViewAction;
 import com.easyfun.eclipse.performance.helper.IConstants;
 import com.easyfun.eclipse.utils.common.ImageConstants;
 

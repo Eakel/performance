@@ -7,7 +7,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 
-import com.easyfun.eclipse.common.view.item.welcome.WelcomeView;
+import com.easyfun.eclipse.common.navigator.WelcomeView;
 
 /**
  * 监听视图的各种状态事件

@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.eclipse.ui.console.IConsoleConstants;
 
-import com.easyfun.eclipse.common.view.item.navigator.ItemNavigationView;
-import com.easyfun.eclipse.common.view.item.welcome.WelcomeView;
+import com.easyfun.eclipse.common.navigator.ItemNavigationView;
+import com.easyfun.eclipse.common.navigator.WelcomeView;
 
 public class EasyFunUtils {
 	

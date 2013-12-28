@@ -36,7 +36,7 @@
       <view
             allowMultiple="true"
             category="com.easyfun.eclipse.utils.views.category"
-            class="com.easyfun.eclipse.common.view.item.navigator.ItemNavigationView"
+            class="com.easyfun.eclipse.common.navigator.ItemNavigationView"
             icon="icons/mail.gif"
             id="com.easyfun.eclipse.performance.navigationView"
             name="EasyFun">
@@ -44,7 +44,7 @@
       <view
             allowMultiple="true"
             category="com.easyfun.eclipse.utils.views.category"
-            class="com.easyfun.eclipse.common.view.item.welcome.WelcomeView"
+            class="com.easyfun.eclipse.common.navigator.WelcomeView"
             icon="icons/esayfun.png"
             id="com.easyfun.eclipse.performance.view.WelcomeView"
             name="Welcome"
