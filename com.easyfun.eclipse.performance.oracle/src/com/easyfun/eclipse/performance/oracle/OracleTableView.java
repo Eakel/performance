@@ -38,9 +38,9 @@ import org.eclipse.ui.internal.dialogs.WorkbenchPreferenceDialog;
 import org.eclipse.ui.part.ViewPart;
 
 import com.easyfun.eclipse.common.console.LogHelper;
-import com.easyfun.eclipse.common.jdbc.ConnectionModel;
-import com.easyfun.eclipse.common.kv.KeyValue;
-import com.easyfun.eclipse.common.kv.KeyValueTableViewer;
+import com.easyfun.eclipse.common.ui.kv.KeyValue;
+import com.easyfun.eclipse.common.ui.kv.KeyValueTableViewer;
+import com.easyfun.eclipse.common.util.ConnectionModel;
 import com.easyfun.eclipse.common.util.DialogUtils;
 import com.easyfun.eclipse.common.util.TimeUtil;
 import com.easyfun.eclipse.performance.oracle.preferences.OraclePrefUtil;

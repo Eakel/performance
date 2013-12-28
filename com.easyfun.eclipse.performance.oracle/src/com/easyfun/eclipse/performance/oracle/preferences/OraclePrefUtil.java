@@ -2,7 +2,7 @@ package com.easyfun.eclipse.performance.oracle.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 
-import com.easyfun.eclipse.common.jdbc.ConnectionModel;
+import com.easyfun.eclipse.common.util.ConnectionModel;
 import com.easyfun.eclipse.performance.oracle.OracleActivator;
 
 public class OraclePrefUtil {
