@@ -2,7 +2,7 @@ package com.easyfun.eclipse.performance.mysql.analyze.pref;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 
-import com.easyfun.eclipse.common.jdbc.ConnectionModel;
+import com.easyfun.eclipse.common.util.ConnectionModel;
 import com.easyfun.eclipse.performance.mysql.MySQLActivator;
 
 public class MySQLPrefUtil {
