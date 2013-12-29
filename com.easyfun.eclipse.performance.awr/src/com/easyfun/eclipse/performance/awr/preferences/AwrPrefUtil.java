@@ -2,8 +2,8 @@ package com.easyfun.eclipse.performance.awr.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 
+import com.easyfun.eclipse.component.db.ConnectionModel;
 import com.easyfun.eclipse.performance.awr.AwrActivator;
-import com.easyfun.eclipse.util.ConnectionModel;
 
 public class AwrPrefUtil {
 	/** ªÒ»°JDBC…Ë÷√ */
