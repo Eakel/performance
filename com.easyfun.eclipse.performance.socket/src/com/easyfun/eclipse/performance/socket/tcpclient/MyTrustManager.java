@@ -10,7 +10,7 @@ import javax.net.ssl.X509TrustManager;
 
 import org.eclipse.swt.widgets.Composite;
 
-import com.easyfun.eclipse.common.util.DialogUtils;
+import com.easyfun.eclipse.common.util.ui.DialogUtils;
 
 
 /**

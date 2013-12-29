@@ -22,7 +22,7 @@ import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
 
-import com.easyfun.eclipse.common.ui.SWTUtil;
+import com.easyfun.eclipse.common.util.ui.SWTUtil;
 import com.easyfun.eclipse.performance.appframe.util.appf.AppFEncrypt;
 import com.easyfun.eclipse.performance.appframe.util.appf.K;
 import com.easyfun.eclipse.performance.appframe.util.appf.MD5;

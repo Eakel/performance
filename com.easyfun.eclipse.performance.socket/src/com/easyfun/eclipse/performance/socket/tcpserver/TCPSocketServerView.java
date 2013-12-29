@@ -25,8 +25,8 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
 
-import com.easyfun.eclipse.common.util.DialogUtils;
 import com.easyfun.eclipse.common.util.resource.FileUtil;
+import com.easyfun.eclipse.common.util.ui.DialogUtils;
 import com.easyfun.eclipse.performance.socket.common.SocketUtils;
 
 /**

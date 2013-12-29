@@ -14,8 +14,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-import com.easyfun.eclipse.common.util.DialogUtils;
 import com.easyfun.eclipse.common.util.lang.StringUtil;
+import com.easyfun.eclipse.common.util.ui.DialogUtils;
 
 /**
  * Dialog for SnapId input

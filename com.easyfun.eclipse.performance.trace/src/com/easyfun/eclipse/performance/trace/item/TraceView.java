@@ -37,15 +37,15 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.part.ViewPart;
 
-import com.easyfun.eclipse.common.ui.FtpClient;
-import com.easyfun.eclipse.common.ui.SWTUtil;
 import com.easyfun.eclipse.common.ui.file.DirectoryFieldComposite;
 import com.easyfun.eclipse.common.ui.file.FileFieldComposite;
 import com.easyfun.eclipse.common.ui.ftp.FTPBean;
 import com.easyfun.eclipse.common.ui.ftp.FTPFieldComposite;
-import com.easyfun.eclipse.common.util.DialogUtils;
+import com.easyfun.eclipse.common.ui.ftp.FtpClient;
 import com.easyfun.eclipse.common.util.lang.StringUtil;
 import com.easyfun.eclipse.common.util.resource.FileUtil;
+import com.easyfun.eclipse.common.util.ui.DialogUtils;
+import com.easyfun.eclipse.common.util.ui.SWTUtil;
 import com.easyfun.eclipse.performance.navigator.console.LogHelper;
 import com.easyfun.eclipse.performance.trace.SFtpClient;
 import com.easyfun.eclipse.performance.trace.builder.TraceBuilder;
