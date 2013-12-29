@@ -39,6 +39,11 @@ import org.eclipse.ui.PlatformUI;
  */
 public class IDEHelper {
     protected static IProject activeProject;
+    
+    /** 获取当前ActiveWindow*/
+    public static IWorkbenchWindow getActiveWindow(){
+    	return PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+    }
 
     /***
 	 * Get the active workbench page

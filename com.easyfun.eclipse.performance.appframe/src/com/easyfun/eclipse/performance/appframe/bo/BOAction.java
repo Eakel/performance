@@ -19,12 +19,12 @@ import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 
 import com.easyfun.eclipse.performance.appframe.bo.editors.BOCommentEditor;
 import com.easyfun.eclipse.performance.appframe.bo.editors.StringEditorInput;
 import com.easyfun.eclipse.performance.appframe.bo.editors.StringStorage;
+import com.easyfun.eclipse.rcp.IDEHelper;
 import com.easyfun.eclipse.rcp.RCPUtil;
 
 /**
@@ -102,7 +102,7 @@ public class BOAction implements IObjectActionDelegate {
 			}
 			StringStorage storage = new StringStorage(sb.toString());
 			StringEditorInput editorInput = new StringEditorInput(storage);
-			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+			IWorkbenchPage page = IDEHelper.getActivePage();
 			try {
 				IDE.openEditor(page, editorInput, BOCommentEditor.EDITOR_ID);
 			} catch (PartInitException e) {

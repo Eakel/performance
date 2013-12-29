@@ -10,6 +10,12 @@ import org.eclipse.swt.widgets.Display;
 
 import com.easyfun.eclipse.performance.PerformanceActivator;
 
+/**
+ * 将日志写到控制台
+ * 
+ * @author linzhaoming
+ *
+ */
 public class LogHelper {
 	
 	private static SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
@@ -54,7 +60,7 @@ public class LogHelper {
 				if (message.indexOf(PerformanceActivator.FILE) > -1 && message.indexOf(PerformanceActivator.LINE) > -1) {
 					String url = (message.substring(0, message.indexOf(PerformanceActivator.LINE))).trim();
 					int line = Integer.parseInt(message.substring(message.indexOf(PerformanceActivator.LINE) + 5).trim());
-					MyHyperLink hyperlink = new MyHyperLink(msg, url, line - 1);
+					EasyFunHyperLink hyperlink = new EasyFunHyperLink(msg, url, line - 1);
 					EasyFunConsole.getConsole().addLinkToConsole(hyperlink, new Color(null, 255, 0, 0));
 //					log.error(msg);
 				} else {
@@ -75,7 +81,7 @@ public class LogHelper {
 						if (message.indexOf(PerformanceActivator.FILE) > -1 && message.indexOf(PerformanceActivator.LINE) > -1) {
 							String url = (message.substring(0, message.indexOf(PerformanceActivator.LINE))).trim();
 							int line = Integer.parseInt(message.substring(message.indexOf(PerformanceActivator.LINE) + 5).trim());
-							MyHyperLink hyperlink = new MyHyperLink(msg, url, line - 1);
+							EasyFunHyperLink hyperlink = new EasyFunHyperLink(msg, url, line - 1);
 							EasyFunConsole.getConsole().addLinkToConsole(hyperlink, new Color(null, 255, 0, 0));
 //							log.error(msg);
 						} else {

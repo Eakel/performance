@@ -396,7 +396,7 @@ public class RCPUtil {
 		IPath path=new Path(fileName);
 		final IFileStore fileStore = EFS.getLocalFileSystem().getStore(path);
 		if (fileStore.fetchInfo().exists()) {
-			final IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+			final IWorkbenchPage page = IDEHelper.getActivePage();
 			try {
 				PerformanceActivator.getDefault().getWorkbench().getProgressService().run(
 						false, false, new IRunnableWithProgress() {

@@ -11,6 +11,7 @@ import com.easyfun.eclipse.performance.ImageConstants;
 import com.easyfun.eclipse.performance.PerformanceActivator;
 import com.easyfun.eclipse.performance.helper.EasyFunUtils;
 import com.easyfun.eclipse.performance.navigator.WelcomeView;
+import com.easyfun.eclipse.rcp.IDEHelper;
 
 /**
  * 关闭所有的View
@@ -29,7 +30,7 @@ public class CloseAllAction  extends Action implements IWorkbenchAction{
 	}
 	
 	public void run() {
-		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		IWorkbenchPage page = IDEHelper.getActivePage();
         IViewReference[] iViewReferences = page.getViewReferences();
         for (IViewReference iViewReference: iViewReferences) {
         	if(!EasyFunUtils.getUncontrolViews().contains(iViewReference.getId())){

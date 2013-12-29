@@ -10,6 +10,7 @@ import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
 import com.easyfun.eclipse.performance.ImageConstants;
 import com.easyfun.eclipse.performance.PerformanceActivator;
 import com.easyfun.eclipse.performance.navigator.ItemNavigationView;
+import com.easyfun.eclipse.rcp.IDEHelper;
 
 /**
  * ´ò¿ª¹Ø±ÕNavigator
@@ -31,7 +32,7 @@ public class ShowHideNavigatorViewAction extends Action implements IWorkbenchAct
 	}
 
 	public void run() {
-		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		IWorkbenchPage page = IDEHelper.getActivePage();
 		try {
 			isOpened = !isOpened;
 			if (isOpened) {

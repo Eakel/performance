@@ -17,24 +17,24 @@ import org.eclipse.ui.console.MessageConsoleStream;
 
 public class EasyFunConsole extends MessageConsole {
 
-	final public static String CONSOLE_NAME = "EasyFun";
+	private final static String CONSOLE_NAME = "EasyFun";
+	
+	private static final String JOB_NAME = "EasyFunConsole.addLinkToConsole";
 
 	private int addStrLen;
 
-	static class DocChangeListener implements IDocumentListener {
+	private static class DocChangeListener implements IDocumentListener {
 
-		int lenBeforeChange;
+		private int expectedlen;
 
-		int expectedlen;
+		private final EasyFunConsole console;
 
-		final EasyFunConsole mvnConsole;
+		private final EasyFunHyperLink hyperLink;
 
-		final MyHyperLink mvnLink;
-
-		public DocChangeListener(EasyFunConsole console, MyHyperLink link, int lenWanted) {
-			mvnConsole = console;
-			mvnLink = link;
-			expectedlen = lenWanted;
+		public DocChangeListener(EasyFunConsole console, EasyFunHyperLink hyperLink, int lenWanted) {
+			this.console = console;
+			this.hyperLink = hyperLink;
+			this.expectedlen = lenWanted;
 		}
 
 		public void documentAboutToBeChanged(DocumentEvent event) {
@@ -43,10 +43,10 @@ public class EasyFunConsole extends MessageConsole {
 		public void documentChanged(final DocumentEvent event) {
 			int strLenAfterChange = event.getDocument().getLength();
 			if (strLenAfterChange >= expectedlen) {
-				Job job = new Job("MavenMessageConsole.addLinkToConsole") {
+				Job job = new Job(JOB_NAME) {
 					public IStatus run(IProgressMonitor monitor) {
 						try {
-							mvnConsole.addHyperlink(mvnLink, expectedlen - mvnLink.getText().length(), mvnLink.getText().length());
+							console.addHyperlink(hyperLink, expectedlen - hyperLink.getText().length(), hyperLink.getText().length());
 						} catch (Exception e) {
 						}
 
@@ -72,8 +72,9 @@ public class EasyFunConsole extends MessageConsole {
 	public void printToConsole(final String msg, final Color color) {
 		final MessageConsoleStream stream = this.newMessageStream();
 		this.activate();
-		if (color != null)
+		if (color != null) {
 			stream.setColor(color);
+		}
 		addStrLen += msg.length() + 1;
 		stream.println(msg); // "\n" will take length 1, so use print, not println
 		try {
@@ -83,7 +84,7 @@ public class EasyFunConsole extends MessageConsole {
 		}
 	}
 
-	public void addLinkToConsole(final MyHyperLink link, Color color) {
+	public void addLinkToConsole(final EasyFunHyperLink link, Color color) {
 		if (link.valid()) {
 			try {
 				final EasyFunConsole console = this;
@@ -99,8 +100,9 @@ public class EasyFunConsole extends MessageConsole {
 		IConsoleManager manager = ConsolePlugin.getDefault().getConsoleManager();
 		IConsole[] curConsoles = manager.getConsoles();
 		for (IConsole co : curConsoles) {
-			if (co.getName().equals(CONSOLE_NAME))
+			if (co.getName().equals(CONSOLE_NAME)) {
 				return (EasyFunConsole) co;
+			}
 		}
 		EasyFunConsole myConsole = new EasyFunConsole();
 		manager.addConsoles(new IConsole[] { myConsole });

@@ -14,19 +14,22 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorRegistry;
 import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.console.IHyperlink;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 import org.eclipse.ui.texteditor.ITextEditor;
 
-public class MyHyperLink implements IHyperlink {
-	String text;
-	int linenum;
-	URL url;
+import com.easyfun.eclipse.rcp.IDEHelper;
 
-	public MyHyperLink(String text, String urlStr, int line) {
+public class EasyFunHyperLink implements IHyperlink {
+	private String text;
+	private int linenum;
+	private URL url;
+	
+	private static final String BROWSER_ID = "TestConsole";
+
+	public EasyFunHyperLink(String text, String urlStr, int line) {
 		try {
 			this.text = text;
 			this.url = new URL(urlStr);
@@ -46,14 +49,13 @@ public class MyHyperLink implements IHyperlink {
 
 	public void linkActivated() {
 		try {
-			IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-			if (window == null || window.getActivePage() == null) {
-				PlatformUI.getWorkbench().getBrowserSupport().createBrowser("TestConsole").openURL(url);
+			IWorkbenchPage page =  IDEHelper.getActivePage();
+			if(page == null){
+				PlatformUI.getWorkbench().getBrowserSupport().createBrowser(BROWSER_ID).openURL(url);
 				return;
 			}
-			IWorkbenchPage page = window.getActivePage();
 			if (ResourcesPlugin.getWorkspace().getRoot() == null) {
-				PlatformUI.getWorkbench().getBrowserSupport().createBrowser("TestConsole").openURL(url);
+				PlatformUI.getWorkbench().getBrowserSupport().createBrowser(BROWSER_ID).openURL(url);
 				return;
 			}
 
@@ -71,9 +73,10 @@ public class MyHyperLink implements IHyperlink {
 			}
 
 			if (file == null || !file.exists()) {
-				PlatformUI.getWorkbench().getBrowserSupport().createBrowser("TestConsole").openURL(url);
+				PlatformUI.getWorkbench().getBrowserSupport().createBrowser(BROWSER_ID).openURL(url);
 				return;
 			}
+			
 			IEditorRegistry registry = PlatformUI.getWorkbench().getEditorRegistry();
 			if (registry == null) {
 				return;
