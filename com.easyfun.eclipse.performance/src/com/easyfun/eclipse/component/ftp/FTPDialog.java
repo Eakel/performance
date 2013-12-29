@@ -16,7 +16,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-import com.easyfun.eclipse.util.ui.DialogUtils;
+import com.easyfun.eclipse.uiutil.DialogUtils;
 
 /**
  * Dialog for FTP settting

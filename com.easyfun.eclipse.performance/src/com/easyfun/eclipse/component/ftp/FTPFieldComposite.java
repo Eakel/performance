@@ -15,9 +15,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 
 import com.easyfun.eclipse.performance.preferences.PreferenceConstants;
-import com.easyfun.eclipse.util.ui.DialogUtils;
-import com.easyfun.eclipse.util.ui.PreferenceUtil;
-import com.easyfun.eclipse.util.ui.SWTUtil;
+import com.easyfun.eclipse.uiutil.DialogUtils;
+import com.easyfun.eclipse.uiutil.PreferenceUtil;
+import com.easyfun.eclipse.uiutil.SWTUtil;
 
 /**
  * ¶ÁÈ¡FTPµÄDialog

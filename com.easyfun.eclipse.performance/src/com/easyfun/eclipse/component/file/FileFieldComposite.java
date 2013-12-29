@@ -13,7 +13,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Text;
 
-import com.easyfun.eclipse.util.ui.SWTUtil;
+import com.easyfun.eclipse.uiutil.SWTUtil;
 
 /**
  * 打开文件Composite 
