@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.component.dialog;
+package com.easyfun.eclipse.rcp.dialog;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.wizard.IWizard;

@@ -29,7 +29,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.easyfun.eclipse.component.dialog.SafeMessageDialog;
+import com.easyfun.eclipse.rcp.dialog.SafeMessageDialog;
 
 /**
  * Utility class to help with xml

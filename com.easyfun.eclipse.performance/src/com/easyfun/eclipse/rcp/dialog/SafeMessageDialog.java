@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.component.dialog;
+package com.easyfun.eclipse.rcp.dialog;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
