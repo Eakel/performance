@@ -14,6 +14,7 @@ import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
 
 import com.easyfun.eclipse.common.util.TimeUtil;
+import com.easyfun.eclipse.common.util.lang.StringUtil;
 import com.easyfun.eclipse.performance.trace.TraceUtil;
 import com.easyfun.eclipse.performance.trace.model.AppTrace;
 import com.easyfun.eclipse.performance.trace.model.BccMemTrace;
@@ -30,7 +31,6 @@ import com.easyfun.eclipse.performance.trace.model.SvrTrace;
 import com.easyfun.eclipse.performance.trace.model.TraceTypeEnum;
 import com.easyfun.eclipse.performance.trace.model.WebTrace;
 import com.easyfun.eclipse.performance.trace.model.WsTrace;
-import com.easyfun.eclipse.utils.lang.StringUtil;
 import com.trilead.ssh2.SFTPv3DirectoryEntry;
 
 /**

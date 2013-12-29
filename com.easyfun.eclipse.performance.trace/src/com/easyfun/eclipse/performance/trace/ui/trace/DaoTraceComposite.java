@@ -7,11 +7,11 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
+import com.easyfun.eclipse.common.util.lang.StringUtil;
 import com.easyfun.eclipse.performance.trace.model.AppTrace;
 import com.easyfun.eclipse.performance.trace.model.DaoTrace;
 import com.easyfun.eclipse.performance.trace.model.ITrace;
 import com.easyfun.eclipse.performance.trace.ui.ITraceComposite;
-import com.easyfun.eclipse.utils.lang.StringUtil;
 
 
 /**

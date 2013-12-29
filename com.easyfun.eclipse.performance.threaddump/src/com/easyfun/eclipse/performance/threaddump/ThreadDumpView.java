@@ -69,6 +69,7 @@ import org.eclipse.swt.widgets.ToolTip;
 import org.eclipse.ui.part.ViewPart;
 
 import com.easyfun.eclipse.common.ui.ColumnViewerSorter;
+import com.easyfun.eclipse.common.ui.LayoutUtil;
 import com.easyfun.eclipse.common.ui.file.FileFieldComposite;
 import com.easyfun.eclipse.common.ui.ftp.FTPBean;
 import com.easyfun.eclipse.common.ui.ftp.FTPFieldComposite;
@@ -79,13 +80,12 @@ import com.easyfun.eclipse.common.ui.tree.TreeContentProvider;
 import com.easyfun.eclipse.common.ui.tree.TreeLabelProvider;
 import com.easyfun.eclipse.common.ui.tree.model.Directory;
 import com.easyfun.eclipse.common.util.DialogUtils;
+import com.easyfun.eclipse.common.util.lang.IOUtil;
 import com.easyfun.eclipse.performance.threaddump.parser.FilterWrapper;
 import com.easyfun.eclipse.performance.threaddump.parser.IThreadParser;
 import com.easyfun.eclipse.performance.threaddump.parser.ParserType;
 import com.easyfun.eclipse.performance.threaddump.parser.ThreadInfo;
 import com.easyfun.eclipse.performance.threaddump.parser.ThreadParserFactory;
-import com.easyfun.eclipse.utils.lang.IOUtil;
-import com.easyfun.eclipse.utils.ui.LayoutUtil;
 
 /**
  * @author linzhaoming

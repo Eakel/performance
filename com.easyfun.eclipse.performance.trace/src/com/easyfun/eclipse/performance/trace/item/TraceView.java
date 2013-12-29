@@ -38,11 +38,15 @@ import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.part.ViewPart;
 
 import com.easyfun.eclipse.common.ui.FtpClient;
+import com.easyfun.eclipse.common.ui.LayoutUtil;
+import com.easyfun.eclipse.common.ui.SWTUtil;
 import com.easyfun.eclipse.common.ui.file.DirectoryFieldComposite;
 import com.easyfun.eclipse.common.ui.file.FileFieldComposite;
 import com.easyfun.eclipse.common.ui.ftp.FTPBean;
 import com.easyfun.eclipse.common.ui.ftp.FTPFieldComposite;
 import com.easyfun.eclipse.common.util.DialogUtils;
+import com.easyfun.eclipse.common.util.lang.StringUtil;
+import com.easyfun.eclipse.common.util.resource.FileUtil;
 import com.easyfun.eclipse.performance.navigator.console.LogHelper;
 import com.easyfun.eclipse.performance.trace.SFtpClient;
 import com.easyfun.eclipse.performance.trace.builder.TraceBuilder;
@@ -56,10 +60,6 @@ import com.easyfun.eclipse.performance.trace.model.TraceTypeEnum;
 import com.easyfun.eclipse.performance.trace.ui.TraceDialog;
 import com.easyfun.eclipse.performance.trace.ui.TraceFileTreeLabelProvider;
 import com.easyfun.eclipse.performance.trace.ui.TraceTreeContentProvider;
-import com.easyfun.eclipse.utils.lang.StringUtil;
-import com.easyfun.eclipse.utils.resource.FileUtil;
-import com.easyfun.eclipse.utils.ui.LayoutUtil;
-import com.easyfun.eclipse.utils.ui.SWTUtil;
 import com.trilead.ssh2.SFTPv3DirectoryEntry;
 
 /**
