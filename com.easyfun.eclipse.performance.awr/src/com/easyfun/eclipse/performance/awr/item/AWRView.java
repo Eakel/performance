@@ -31,7 +31,7 @@ import com.easyfun.eclipse.performance.awr.preferences.AwrPrefUtil;
 import com.easyfun.eclipse.performance.navigator.console.LogHelper;
 import com.easyfun.eclipse.rcp.RCPUtil;
 import com.easyfun.eclipse.util.ConnectionModel;
-import com.easyfun.eclipse.util.FileUtil;
+import com.easyfun.eclipse.util.IOUtil;
 
 /**
  * @author linzhaoming
@@ -312,7 +312,7 @@ public class AWRView extends ViewPart {
 				return;
 			}
 			
-			FileUtil.writeTextFile(awrBrowser.getText(), file);
+			IOUtil.writeTextFile(awrBrowser.getText(), file);
 		}
 		
 		//导出文本
@@ -322,7 +322,7 @@ public class AWRView extends ViewPart {
 				return;
 			}
 			
-			FileUtil.writeTextFile(awrText.getText(), file);
+			IOUtil.writeTextFile(awrText.getText(), file);
 		}
 
 		// 写入数据并关闭文件

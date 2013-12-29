@@ -56,7 +56,7 @@ import com.easyfun.eclipse.performance.trace.ui.TraceDialog;
 import com.easyfun.eclipse.performance.trace.ui.TraceFileTreeLabelProvider;
 import com.easyfun.eclipse.performance.trace.ui.TraceTreeContentProvider;
 import com.easyfun.eclipse.rcp.RCPUtil;
-import com.easyfun.eclipse.util.FileUtil;
+import com.easyfun.eclipse.util.IOUtil;
 import com.easyfun.eclipse.util.StringUtil;
 import com.trilead.ssh2.SFTPv3DirectoryEntry;
 
@@ -698,7 +698,7 @@ public class TraceView extends ViewPart {
 		}
 		parentLabel.setText(appTrace.getUiDesc().getParentDesc());
 		fileNameLabel.setText(appTrace.getUiDesc().getFileName());
-		fileLengthLabel.setText(FileUtil.getDisplayFileSize(appTrace.getUiDesc().getFileSize()));
+		fileLengthLabel.setText(IOUtil.getDisplayFileSize(appTrace.getUiDesc().getFileSize()));
 		fileTimeLabel.setText(appTrace.getUiDesc().getFileTime());
 		traceTimeLabel.setText(appTrace.getUiDesc().getTraceTime());
 		StringBuffer sb = new StringBuffer();

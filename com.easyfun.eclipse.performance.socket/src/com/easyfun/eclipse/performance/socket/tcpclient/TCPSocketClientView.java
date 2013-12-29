@@ -33,7 +33,7 @@ import org.eclipse.ui.part.ViewPart;
 import com.easyfun.eclipse.performance.socket.common.PortDialog;
 import com.easyfun.eclipse.performance.socket.common.SocketUtils;
 import com.easyfun.eclipse.rcp.RCPUtil;
-import com.easyfun.eclipse.util.FileUtil;
+import com.easyfun.eclipse.util.IOUtil;
 
 /**
  * @author linzhaoming
@@ -190,7 +190,7 @@ public class TCPSocketClientView extends ViewPart {
 				File file = RCPUtil.openSaveDialog(getShell(), new String[]{"*.txt", "*.*"}, "socketServer.txt");
 				if(file != null){
 					try {
-						FileUtil.writeTextFile(messagesField.getText(), file);
+						IOUtil.writeTextFile(messagesField.getText(), file);
 					} catch (IOException ex) {
 						RCPUtil.showMessage(getShell(), "" + ex.getMessage(), "Error saving to file..");
 					}

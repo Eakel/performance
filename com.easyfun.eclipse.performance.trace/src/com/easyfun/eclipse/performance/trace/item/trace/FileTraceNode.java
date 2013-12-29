@@ -5,7 +5,7 @@ import java.io.File;
 import com.easyfun.eclipse.performance.trace.TraceUtil;
 import com.easyfun.eclipse.performance.trace.item.TraceTreeEnum;
 import com.easyfun.eclipse.performance.trace.item.TraceTreeMem;
-import com.easyfun.eclipse.util.FileUtil;
+import com.easyfun.eclipse.util.IOUtil;
 import com.easyfun.eclipse.util.TimeUtil;
 
 /**
@@ -32,7 +32,7 @@ public class FileTraceNode<T> extends TraceNode<T> {
 	public String getDisplayName() {
 		String time = TimeUtil.getLongDisplayTime(nodeFile.lastModified());
 		String cost = String.valueOf(TraceUtil.getCostByFileName(nodeFile.getName()));
-		String display = "(" + cost + "ms) [" + time + "] (" + FileUtil.getDisplayFileSize(nodeFile.length()) + ") " + nodeFile.getName();
+		String display = "(" + cost + "ms) [" + time + "] (" + IOUtil.getDisplayFileSize(nodeFile.length()) + ") " + nodeFile.getName();
 		return display;
 	}
 	

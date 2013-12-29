@@ -9,7 +9,7 @@ import com.easyfun.eclipse.performance.trace.SFtpClient;
 import com.easyfun.eclipse.performance.trace.TraceUtil;
 import com.easyfun.eclipse.performance.trace.builder.TraceBuilder;
 import com.easyfun.eclipse.performance.trace.model.AppTrace;
-import com.easyfun.eclipse.util.FileUtil;
+import com.easyfun.eclipse.util.IOUtil;
 import com.easyfun.eclipse.util.TimeUtil;
 import com.trilead.ssh2.Connection;
 import com.trilead.ssh2.SCPClient;
@@ -46,7 +46,7 @@ public class SFtpTraceNode<T> extends TraceNode<T>{
 	public String getDisplayName() {
 		String time = TimeUtil.getLongDisplayTime(ftpEntry.attributes.atime);
 		String cost = String.valueOf(TraceUtil.getCostByFileName(ftpEntry.filename));
-		String display = "(" + cost + "ms) [" + time + "] (" + FileUtil.getDisplayFileSize(ftpEntry.attributes.size) + ") " + ftpEntry.filename;
+		String display = "(" + cost + "ms) [" + time + "] (" + IOUtil.getDisplayFileSize(ftpEntry.attributes.size) + ") " + ftpEntry.filename;
 		return display;
 	}
 
