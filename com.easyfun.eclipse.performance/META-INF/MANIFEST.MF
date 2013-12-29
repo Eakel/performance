@@ -53,7 +53,6 @@ Export-Package: com.easyfun.eclipse.component.db,
  com.easyfun.eclipse.component.sql,
  com.easyfun.eclipse.component.tree,
  com.easyfun.eclipse.component.tree.model,
- com.easyfun.eclipse.component.tree2,
  com.easyfun.eclipse.component.xml,
  com.easyfun.eclipse.performance;
   uses:="org.eclipse.jface.action,
