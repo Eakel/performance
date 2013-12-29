@@ -28,8 +28,8 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
 
-import com.easyfun.eclipse.common.util.ui.SWTUtil;
 import com.easyfun.eclipse.performance.jmx.model.MBeanModel;
+import com.easyfun.eclipse.util.ui.SWTUtil;
 
 /**
  * FormPage for the tomcat services

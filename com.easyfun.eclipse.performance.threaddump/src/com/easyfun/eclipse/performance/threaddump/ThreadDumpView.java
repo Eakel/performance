@@ -68,24 +68,24 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.ToolTip;
 import org.eclipse.ui.part.ViewPart;
 
-import com.easyfun.eclipse.common.ui.file.FileFieldComposite;
-import com.easyfun.eclipse.common.ui.ftp.FTPBean;
-import com.easyfun.eclipse.common.ui.ftp.FTPFieldComposite;
-import com.easyfun.eclipse.common.ui.ftp.FTPUtil;
-import com.easyfun.eclipse.common.ui.kv.KeyValue;
-import com.easyfun.eclipse.common.ui.kv.KeyValueTableViewer;
-import com.easyfun.eclipse.common.ui.tree.TreeContentProvider;
-import com.easyfun.eclipse.common.ui.tree.TreeLabelProvider;
-import com.easyfun.eclipse.common.ui.tree.model.Directory;
-import com.easyfun.eclipse.common.util.lang.IOUtil;
-import com.easyfun.eclipse.common.util.ui.ColumnViewerSorter;
-import com.easyfun.eclipse.common.util.ui.DialogUtils;
-import com.easyfun.eclipse.common.util.ui.SWTUtil;
+import com.easyfun.eclipse.component.file.FileFieldComposite;
+import com.easyfun.eclipse.component.ftp.FTPBean;
+import com.easyfun.eclipse.component.ftp.FTPFieldComposite;
+import com.easyfun.eclipse.component.ftp.FTPUtil;
+import com.easyfun.eclipse.component.kv.KeyValue;
+import com.easyfun.eclipse.component.kv.KeyValueTableViewer;
+import com.easyfun.eclipse.component.tree.TreeContentProvider;
+import com.easyfun.eclipse.component.tree.TreeLabelProvider;
+import com.easyfun.eclipse.component.tree.model.Directory;
 import com.easyfun.eclipse.performance.threaddump.parser.FilterWrapper;
 import com.easyfun.eclipse.performance.threaddump.parser.IThreadParser;
 import com.easyfun.eclipse.performance.threaddump.parser.ParserType;
 import com.easyfun.eclipse.performance.threaddump.parser.ThreadInfo;
 import com.easyfun.eclipse.performance.threaddump.parser.ThreadParserFactory;
+import com.easyfun.eclipse.util.lang.IOUtil;
+import com.easyfun.eclipse.util.ui.ColumnViewerSorter;
+import com.easyfun.eclipse.util.ui.DialogUtils;
+import com.easyfun.eclipse.util.ui.SWTUtil;
 
 /**
  * @author linzhaoming

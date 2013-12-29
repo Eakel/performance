@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import com.easyfun.eclipse.common.ui.tree.model.AbstractTreeModel;
+import com.easyfun.eclipse.component.tree.model.AbstractTreeModel;
 import com.easyfun.eclipse.performance.trace.model.TraceTypeEnum;
 
 

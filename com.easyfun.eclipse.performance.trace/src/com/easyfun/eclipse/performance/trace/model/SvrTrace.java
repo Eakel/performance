@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import com.easyfun.eclipse.common.ui.tree.model.ITreeModel;
+import com.easyfun.eclipse.component.tree.model.ITreeModel;
 
 public class SvrTrace extends DefaultTrace implements ITrace, ITreeModel {
 	private String className = "";

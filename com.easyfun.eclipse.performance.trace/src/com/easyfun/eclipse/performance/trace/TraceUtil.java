@@ -1,6 +1,6 @@
 package com.easyfun.eclipse.performance.trace;
 
-import com.easyfun.eclipse.common.util.lang.StringUtil;
+import com.easyfun.eclipse.util.lang.StringUtil;
 
 
 public class TraceUtil {

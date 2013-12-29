@@ -2,7 +2,7 @@ package com.easyfun.eclipse.performance.trace.model;
 
 import java.util.Collection;
 
-import com.easyfun.eclipse.common.ui.tree.model.ITreeModel;
+import com.easyfun.eclipse.component.tree.model.ITreeModel;
 
 
 public class WsTrace extends DefaultTrace implements ITrace, ITreeModel {

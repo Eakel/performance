@@ -2,7 +2,7 @@ package com.easyfun.eclipse.performance.threaddump;
 
 import java.io.File;
 
-import com.easyfun.eclipse.common.ui.tree.model.Node;
+import com.easyfun.eclipse.component.tree.model.Node;
 import com.easyfun.eclipse.performance.threaddump.parser.ParserType;
 
 /**

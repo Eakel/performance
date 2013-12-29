@@ -8,7 +8,7 @@ import java.util.List;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.graphics.Image;
 
-import com.easyfun.eclipse.common.ui.kv.KeyValue;
+import com.easyfun.eclipse.component.kv.KeyValue;
 
 public class EmptyThreadParser implements IThreadParser {
 

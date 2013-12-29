@@ -4,13 +4,13 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.Collection;
 
-import com.easyfun.eclipse.common.ui.ftp.FTPBean;
-import com.easyfun.eclipse.common.util.TimeUtil;
-import com.easyfun.eclipse.common.util.resource.FileUtil;
+import com.easyfun.eclipse.component.ftp.FTPBean;
 import com.easyfun.eclipse.performance.trace.SFtpClient;
 import com.easyfun.eclipse.performance.trace.TraceUtil;
 import com.easyfun.eclipse.performance.trace.builder.TraceBuilder;
 import com.easyfun.eclipse.performance.trace.model.AppTrace;
+import com.easyfun.eclipse.util.TimeUtil;
+import com.easyfun.eclipse.util.resource.FileUtil;
 import com.trilead.ssh2.Connection;
 import com.trilead.ssh2.SCPClient;
 import com.trilead.ssh2.SFTPv3DirectoryEntry;

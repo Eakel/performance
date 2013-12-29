@@ -2,11 +2,11 @@ package com.easyfun.eclipse.performance.trace.item.trace;
 
 import java.io.File;
 
-import com.easyfun.eclipse.common.util.TimeUtil;
-import com.easyfun.eclipse.common.util.resource.FileUtil;
 import com.easyfun.eclipse.performance.trace.TraceUtil;
 import com.easyfun.eclipse.performance.trace.item.TraceTreeEnum;
 import com.easyfun.eclipse.performance.trace.item.TraceTreeMem;
+import com.easyfun.eclipse.util.TimeUtil;
+import com.easyfun.eclipse.util.resource.FileUtil;
 
 /**
  * 文件 Trace树节点

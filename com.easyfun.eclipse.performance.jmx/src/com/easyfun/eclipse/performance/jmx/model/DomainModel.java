@@ -9,7 +9,7 @@ import java.util.TreeSet;
 import javax.management.MBeanServerConnection;
 import javax.management.ObjectName;
 
-import com.easyfun.eclipse.common.ui.tree2.ITreeModel;
+import com.easyfun.eclipse.component.tree2.ITreeModel;
 
 
 /**

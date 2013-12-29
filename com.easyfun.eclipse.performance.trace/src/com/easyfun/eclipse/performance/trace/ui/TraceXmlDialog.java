@@ -18,9 +18,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 
-import com.easyfun.eclipse.common.ui.xml.XmlEditor;
-import com.easyfun.eclipse.common.util.ui.DialogUtils;
+import com.easyfun.eclipse.component.xml.XmlEditor;
 import com.easyfun.eclipse.performance.trace.model.AppTrace;
+import com.easyfun.eclipse.util.ui.DialogUtils;
 
 public class TraceXmlDialog extends TrayDialog {
 	

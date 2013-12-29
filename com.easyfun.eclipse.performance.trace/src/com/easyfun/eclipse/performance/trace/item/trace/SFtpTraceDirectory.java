@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import com.easyfun.eclipse.common.ui.ftp.FTPBean;
+import com.easyfun.eclipse.component.ftp.FTPBean;
 
 
 /**

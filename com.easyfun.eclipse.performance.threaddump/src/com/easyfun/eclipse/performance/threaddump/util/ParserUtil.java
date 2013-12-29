@@ -13,8 +13,8 @@ import java.util.Map.Entry;
 
 import org.apache.velocity.util.StringUtils;
 
-import com.easyfun.eclipse.common.ui.kv.KeyValue;
-import com.easyfun.eclipse.common.util.lang.StringUtil;
+import com.easyfun.eclipse.component.kv.KeyValue;
+import com.easyfun.eclipse.util.lang.StringUtil;
 
 public class ParserUtil {
 	/** 读取文件的内容*/

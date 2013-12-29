@@ -6,13 +6,13 @@ import java.util.List;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.graphics.Image;
 
-import com.easyfun.eclipse.common.util.lang.StringUtil;
 import com.easyfun.eclipse.performance.threaddump.ImageConstants;
 import com.easyfun.eclipse.performance.threaddump.ThreadDumpActivator;
 import com.easyfun.eclipse.performance.threaddump.parser.AbstractThreadParser;
 import com.easyfun.eclipse.performance.threaddump.parser.FilterWrapper;
 import com.easyfun.eclipse.performance.threaddump.parser.IThreadState;
 import com.easyfun.eclipse.performance.threaddump.parser.ThreadInfo;
+import com.easyfun.eclipse.util.lang.StringUtil;
 
 
 /**

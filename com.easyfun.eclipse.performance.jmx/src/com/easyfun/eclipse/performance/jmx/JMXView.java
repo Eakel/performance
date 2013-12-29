@@ -38,12 +38,12 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
 
-import com.easyfun.eclipse.common.ui.tree2.TreeViewerFactory;
-import com.easyfun.eclipse.common.util.lang.StringUtil;
-import com.easyfun.eclipse.common.util.ui.SWTUtil;
+import com.easyfun.eclipse.component.tree2.TreeViewerFactory;
 import com.easyfun.eclipse.performance.jmx.model.DomainModel;
 import com.easyfun.eclipse.performance.jmx.model.MBeanModel;
 import com.easyfun.eclipse.performance.jmx.util.JBOSSUtils;
+import com.easyfun.eclipse.util.lang.StringUtil;
+import com.easyfun.eclipse.util.ui.SWTUtil;
 
 /**
  * @author linzhaoming
