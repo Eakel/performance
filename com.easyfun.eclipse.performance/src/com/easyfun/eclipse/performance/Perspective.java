@@ -8,12 +8,12 @@ import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
 import org.eclipse.ui.console.IConsoleConstants;
 
-import com.easyfun.eclipse.common.navigator.ItemNavigationView;
-import com.easyfun.eclipse.common.navigator.WelcomeView;
-import com.easyfun.eclipse.common.navigator.cfg.model.Folder;
-import com.easyfun.eclipse.common.navigator.cfg.model.Item;
-import com.easyfun.eclipse.common.navigator.helper.DefaultItemProvider;
 import com.easyfun.eclipse.performance.helper.IConstants;
+import com.easyfun.eclipse.performance.navigator.ItemNavigationView;
+import com.easyfun.eclipse.performance.navigator.WelcomeView;
+import com.easyfun.eclipse.performance.navigator.cfg.model.Folder;
+import com.easyfun.eclipse.performance.navigator.cfg.model.Item;
+import com.easyfun.eclipse.performance.navigator.helper.DefaultItemProvider;
 
 public class Perspective implements IPerspectiveFactory {
 

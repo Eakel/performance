@@ -1,11 +1,11 @@
-package com.easyfun.eclipse.common.navigator.helper;
+package com.easyfun.eclipse.performance.navigator.helper;
 
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPage;
 
-import com.easyfun.eclipse.common.navigator.WelcomeView;
-import com.easyfun.eclipse.common.navigator.cfg.model.Item;
 import com.easyfun.eclipse.common.util.DialogUtils;
+import com.easyfun.eclipse.performance.navigator.WelcomeView;
+import com.easyfun.eclipse.performance.navigator.cfg.model.Item;
 
 /**
  * ´ò¿ªView ID

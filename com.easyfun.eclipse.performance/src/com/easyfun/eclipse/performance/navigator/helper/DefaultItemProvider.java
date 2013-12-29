@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.common.navigator.helper;
+package com.easyfun.eclipse.performance.navigator.helper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,10 +11,10 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 
-import com.easyfun.eclipse.common.navigator.cfg.model.Folder;
-import com.easyfun.eclipse.common.navigator.cfg.model.Item;
-import com.easyfun.eclipse.common.navigator.cfg.model.ItemWrapper;
-import com.easyfun.eclipse.common.navigator.cfg.model.Navigator;
+import com.easyfun.eclipse.performance.navigator.cfg.model.Folder;
+import com.easyfun.eclipse.performance.navigator.cfg.model.Item;
+import com.easyfun.eclipse.performance.navigator.cfg.model.ItemWrapper;
+import com.easyfun.eclipse.performance.navigator.cfg.model.Navigator;
 
 /**
  * 导航树助手，从配置config.xml获取数据

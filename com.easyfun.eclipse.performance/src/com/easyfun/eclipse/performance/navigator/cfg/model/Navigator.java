@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.common.navigator.cfg.model;
+package com.easyfun.eclipse.performance.navigator.cfg.model;
 
 import java.util.ArrayList;
 import java.util.Collections;

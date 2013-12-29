@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.common.navigator.console;
+package com.easyfun.eclipse.performance.navigator.console;
 
 import java.net.URL;
 

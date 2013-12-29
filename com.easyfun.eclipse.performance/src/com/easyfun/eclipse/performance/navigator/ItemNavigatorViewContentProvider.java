@@ -1,12 +1,12 @@
-package com.easyfun.eclipse.common.navigator;
+package com.easyfun.eclipse.performance.navigator;
 
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
-import com.easyfun.eclipse.common.navigator.cfg.model.Folder;
-import com.easyfun.eclipse.common.navigator.cfg.model.Item;
-import com.easyfun.eclipse.common.navigator.cfg.model.Navigator;
+import com.easyfun.eclipse.performance.navigator.cfg.model.Folder;
+import com.easyfun.eclipse.performance.navigator.cfg.model.Item;
+import com.easyfun.eclipse.performance.navigator.cfg.model.Navigator;
 
 /**
  * µ¼º½Ê÷ContentProvider

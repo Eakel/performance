@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.common.navigator.ui;
+package com.easyfun.eclipse.performance.navigator.ui;
 
 import java.lang.reflect.Constructor;
 
@@ -10,10 +10,10 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 
-import com.easyfun.eclipse.common.navigator.cfg.model.Item;
-import com.easyfun.eclipse.common.navigator.cfg.model.ItemWrapper;
-import com.easyfun.eclipse.common.navigator.helper.ItemComposite;
 import com.easyfun.eclipse.common.util.ClassUtil;
+import com.easyfun.eclipse.performance.navigator.cfg.model.Item;
+import com.easyfun.eclipse.performance.navigator.cfg.model.ItemWrapper;
+import com.easyfun.eclipse.performance.navigator.helper.ItemComposite;
 
 /**
  * MainContentView View

@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.common.navigator.action;
+package com.easyfun.eclipse.performance.navigator.action;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.ui.IViewReference;
@@ -7,9 +7,9 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
 
-import com.easyfun.eclipse.common.navigator.WelcomeView;
 import com.easyfun.eclipse.performance.PerformanceActivator;
 import com.easyfun.eclipse.performance.helper.EasyFunUtils;
+import com.easyfun.eclipse.performance.navigator.WelcomeView;
 import com.easyfun.eclipse.utils.common.ImageConstants;
 
 /**

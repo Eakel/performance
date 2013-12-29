@@ -1,13 +1,13 @@
-package com.easyfun.eclipse.common.navigator.cfg;
+package com.easyfun.eclipse.performance.navigator.cfg;
 
 import java.io.InputStream;
 import java.util.List;
 
 import org.apache.commons.digester.Digester;
 
-import com.easyfun.eclipse.common.navigator.cfg.model.Folder;
-import com.easyfun.eclipse.common.navigator.cfg.model.Item;
-import com.easyfun.eclipse.common.navigator.cfg.model.Navigator;
+import com.easyfun.eclipse.performance.navigator.cfg.model.Folder;
+import com.easyfun.eclipse.performance.navigator.cfg.model.Item;
+import com.easyfun.eclipse.performance.navigator.cfg.model.Navigator;
 
 
 /**

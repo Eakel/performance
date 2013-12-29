@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.common.navigator.helper;
+package com.easyfun.eclipse.performance.navigator.helper;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
@@ -6,11 +6,11 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
-import com.easyfun.eclipse.common.navigator.cfg.model.Item;
-import com.easyfun.eclipse.common.navigator.cfg.model.ItemWrapper;
-import com.easyfun.eclipse.common.navigator.ui.MainContentView;
 import com.easyfun.eclipse.common.util.DialogUtils;
 import com.easyfun.eclipse.performance.PerformanceActivator;
+import com.easyfun.eclipse.performance.navigator.cfg.model.Item;
+import com.easyfun.eclipse.performance.navigator.cfg.model.ItemWrapper;
+import com.easyfun.eclipse.performance.navigator.ui.MainContentView;
 
 /**
  * 打开主内容View

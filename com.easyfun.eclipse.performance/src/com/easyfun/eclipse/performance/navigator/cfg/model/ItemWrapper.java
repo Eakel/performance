@@ -1,11 +1,11 @@
-package com.easyfun.eclipse.common.navigator.cfg.model;
+package com.easyfun.eclipse.performance.navigator.cfg.model;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.easyfun.eclipse.common.navigator.helper.DefaultItemHelper;
-import com.easyfun.eclipse.common.navigator.helper.ItemHelper;
-import com.easyfun.eclipse.common.navigator.helper.OpenViewItemHelper;
 import com.easyfun.eclipse.common.util.ClassUtil;
+import com.easyfun.eclipse.performance.navigator.helper.DefaultItemHelper;
+import com.easyfun.eclipse.performance.navigator.helper.ItemHelper;
+import com.easyfun.eclipse.performance.navigator.helper.OpenViewItemHelper;
 
 public class ItemWrapper {
 	private Item item;

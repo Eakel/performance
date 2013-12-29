@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.common.navigator;
+package com.easyfun.eclipse.performance.navigator;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;

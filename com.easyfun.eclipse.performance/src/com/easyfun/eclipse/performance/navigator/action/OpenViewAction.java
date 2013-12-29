@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.common.navigator.action;
+package com.easyfun.eclipse.performance.navigator.action;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.MessageDialog;

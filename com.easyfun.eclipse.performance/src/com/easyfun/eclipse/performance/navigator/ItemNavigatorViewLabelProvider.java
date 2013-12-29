@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.common.navigator;
+package com.easyfun.eclipse.performance.navigator;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
@@ -8,11 +8,11 @@ import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
-import com.easyfun.eclipse.common.navigator.cfg.model.Folder;
-import com.easyfun.eclipse.common.navigator.cfg.model.Item;
-import com.easyfun.eclipse.common.navigator.cfg.model.ItemWrapper;
-import com.easyfun.eclipse.common.navigator.helper.DefaultItemProvider;
 import com.easyfun.eclipse.performance.PerformanceActivator;
+import com.easyfun.eclipse.performance.navigator.cfg.model.Folder;
+import com.easyfun.eclipse.performance.navigator.cfg.model.Item;
+import com.easyfun.eclipse.performance.navigator.cfg.model.ItemWrapper;
+import com.easyfun.eclipse.performance.navigator.helper.DefaultItemProvider;
 
 /**
  * µ¼º½Ê÷LabelProvider

@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.common.navigator.ui;
+package com.easyfun.eclipse.performance.navigator.ui;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -6,8 +6,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
-import com.easyfun.eclipse.common.navigator.cfg.model.Item;
-import com.easyfun.eclipse.common.navigator.helper.ItemComposite;
+import com.easyfun.eclipse.performance.navigator.cfg.model.Item;
+import com.easyfun.eclipse.performance.navigator.helper.ItemComposite;
 
 /**
  * ¼ò½é×÷ÓÃµÄComposite

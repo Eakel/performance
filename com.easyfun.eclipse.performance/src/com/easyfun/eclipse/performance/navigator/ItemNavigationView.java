@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.common.navigator;
+package com.easyfun.eclipse.performance.navigator;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -16,10 +16,10 @@ import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.part.ViewPart;
 
-import com.easyfun.eclipse.common.navigator.cfg.model.Folder;
-import com.easyfun.eclipse.common.navigator.cfg.model.Item;
-import com.easyfun.eclipse.common.navigator.cfg.model.ItemWrapper;
-import com.easyfun.eclipse.common.navigator.helper.DefaultItemProvider;
+import com.easyfun.eclipse.performance.navigator.cfg.model.Folder;
+import com.easyfun.eclipse.performance.navigator.cfg.model.Item;
+import com.easyfun.eclipse.performance.navigator.cfg.model.ItemWrapper;
+import com.easyfun.eclipse.performance.navigator.helper.DefaultItemProvider;
 
 /**
  * ×ó²àµ¼º½Ê÷View
