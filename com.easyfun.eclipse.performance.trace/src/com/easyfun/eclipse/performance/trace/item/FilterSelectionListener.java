@@ -9,7 +9,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.MenuItem;
 
-import com.easyfun.eclipse.common.console.LogHelper;
+import com.easyfun.eclipse.common.navigator.console.LogHelper;
 import com.easyfun.eclipse.performance.trace.item.trace.TraceDirectory;
 import com.easyfun.eclipse.performance.trace.item.trace.TraceNode;
 import com.easyfun.eclipse.performance.trace.model.AppTrace;

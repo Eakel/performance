@@ -37,7 +37,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.part.ViewPart;
 
-import com.easyfun.eclipse.common.console.LogHelper;
+import com.easyfun.eclipse.common.navigator.console.LogHelper;
 import com.easyfun.eclipse.common.ui.FtpClient;
 import com.easyfun.eclipse.common.ui.file.DirectoryFieldComposite;
 import com.easyfun.eclipse.common.ui.file.FileFieldComposite;
