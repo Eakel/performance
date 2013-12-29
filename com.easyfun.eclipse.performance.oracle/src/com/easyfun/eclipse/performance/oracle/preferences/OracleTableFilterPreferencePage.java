@@ -24,7 +24,7 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
  */
 public class OracleTableFilterPreferencePage extends PreferencePage implements IWorkbenchPreferencePage {
 	
-	public static final String ID = "com.easyfun.eclipse.performance.oracle.preferencePages.OracleTableFilter";
+	public static final String PREF_ID = "com.easyfun.eclipse.performance.oracle.preferencePages.OracleTableFilter";
 	private StyledText text;
 
 	public OracleTableFilterPreferencePage() {

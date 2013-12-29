@@ -2,6 +2,8 @@ package com.easyfun.eclipse.performance.trace.item;
 
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -17,6 +19,8 @@ import com.easyfun.eclipse.performance.trace.model.TraceTypeEnum;
 
 public class FilterSelectionListener extends SelectionAdapter {
 	private TreeViewer treeViewer;
+	
+	private static final Log log = LogFactory.getLog(FilterSelectionListener.class);
 
 	public FilterSelectionListener(TreeViewer treeVierer) {
 		this.treeViewer = treeVierer;
@@ -39,8 +43,7 @@ public class FilterSelectionListener extends SelectionAdapter {
 			FilterThread t = new FilterThread(treeViewer, dir, type);
 			Display.getDefault().asyncExec(t);
 		} catch (Exception e1) {
-			e1.printStackTrace();
-			LogHelper.error(e1);
+			LogHelper.error(log, e1);
 		}
 	}
 	
@@ -65,7 +68,7 @@ public class FilterSelectionListener extends SelectionAdapter {
 				try {
 					isOK = TraceView.initFTPTrace(dir, treeViewer.getTree().getShell());
 				} catch (Exception e) {
-					LogHelper.error(e);
+					LogHelper.error(log, e);
 					return;
 				}
 				if(isOK == false){

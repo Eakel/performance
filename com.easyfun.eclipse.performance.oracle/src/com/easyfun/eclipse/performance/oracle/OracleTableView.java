@@ -21,6 +21,8 @@ import jxl.write.Label;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -34,7 +36,6 @@ import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
-import org.eclipse.ui.internal.dialogs.WorkbenchPreferenceDialog;
 import org.eclipse.ui.part.ViewPart;
 
 import com.easyfun.eclipse.component.db.ConnectionModel;
@@ -64,6 +65,8 @@ public class OracleTableView extends ViewPart {
 	private Properties tablePrefixProp;
 	
 	private TabFolder tabFolder;
+	
+	private static final Log log = LogFactory.getLog(OracleTableView.class);
 
 	public OracleTableView() {
 	}
@@ -79,9 +82,7 @@ public class OracleTableView extends ViewPart {
 		dbButton.setText("数据库设定");
 		dbButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(final SelectionEvent e) {
-				WorkbenchPreferenceDialog dialog = WorkbenchPreferenceDialog.createDialogOn(getShell(), OracleJDBCPreferencePage.PREF_ID);
-			    dialog.showOnly(new String[] { OracleTableFilterPreferencePage.ID });
-			    dialog.open();
+				RCPUtil.showPreferencPage(getSite().getShell(), OracleJDBCPreferencePage.PREF_ID);
 			}
 		});
 
@@ -89,9 +90,7 @@ public class OracleTableView extends ViewPart {
 		filterSetttingButton.setText("过滤设定");
 		filterSetttingButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(final SelectionEvent e) {
-				WorkbenchPreferenceDialog dialog = WorkbenchPreferenceDialog.createDialogOn(getShell(), OracleTableFilterPreferencePage.ID);
-			    dialog.showOnly(new String[] { OracleTableFilterPreferencePage.ID });
-			    dialog.open();
+				RCPUtil.showPreferencPage(getSite().getShell(), OracleTableFilterPreferencePage.PREF_ID);
 			    
 			    try {
 					tablePrefixProp = new Properties();
@@ -116,11 +115,11 @@ public class OracleTableView extends ViewPart {
 								connectionModel = OraclePrefUtil.getConnectionModel();
 								Connection conn = connectionModel.getRefreshConnection();
 								DatabaseMetaData metaData = conn.getMetaData();
-								LogHelper.debug("使用的用户名为:" + metaData.getUserName());
+								LogHelper.debug(log, "使用的用户名为:" + metaData.getUserName());
 								initByConnection(conn);
 							} catch (Exception ex) {
 								ex.printStackTrace();
-								LogHelper.error("获取表格信息失败", ex);
+								LogHelper.error(log, "获取表格信息失败", ex);
 								RCPUtil.showError(getShell(), "获取表格信息失败\n" + ex.getMessage());
 							}finally{
 								anaButton.setEnabled(true);
@@ -138,8 +137,7 @@ public class OracleTableView extends ViewPart {
 				try {
 					exportUIResult(tabFolder);
 				} catch (Exception ex) {
-					ex.printStackTrace();
-					LogHelper.error(ex);
+					LogHelper.error(log, ex);
 				}
 			}
 		});
@@ -154,8 +152,7 @@ public class OracleTableView extends ViewPart {
 		try {
 			init();
 		} catch (Exception e1) {
-			e1.printStackTrace();
-			LogHelper.error(e1);
+			LogHelper.error(log, e1);
 			RCPUtil.showError(getShell(), e1.getMessage());
 		}
 	}
@@ -213,7 +210,7 @@ public class OracleTableView extends ViewPart {
 		
 		//2、根据用户名，查找所有表的大小
 		Set<String> userNameSet = ownerTableMap.keySet();
-		for (Iterator iter = userNameSet.iterator(); iter.hasNext();) {
+		for (Iterator<String> iter = userNameSet.iterator(); iter.hasNext();) {
 			String ownerName = (String) iter.next();
 			List<TableModel> tableList = ownerTableMap.get(ownerName);
 
@@ -222,7 +219,7 @@ public class OracleTableView extends ViewPart {
 			if(StringUtil.isNumeric(modeValue)){
 				mode = Integer.valueOf(modeValue);
 			}else{
-				LogHelper.error("配置的[" + ownerName + "." + "mode]不为数字或为空，取默认值2");
+				LogHelper.error(log, "配置的[" + ownerName + "." + "mode]不为数字或为空，取默认值2");
 				mode = 2;
 			}
 			CountDownLatch latch = new CountDownLatch(mode);
@@ -233,8 +230,7 @@ public class OracleTableView extends ViewPart {
 			latch.await();
 		}
 
-		System.out.println("查询数据库花费时间：" + (System.currentTimeMillis() - begin) + " ms");
-		LogHelper.info("查询数据库花费时间：" + (System.currentTimeMillis() - begin) + " ms");
+		LogHelper.info(log, "查询数据库花费时间：" + (System.currentTimeMillis() - begin) + " ms");
 		updateResult(ownerTableMap, filterMap);
 		
 		try {
@@ -311,12 +307,10 @@ public class OracleTableView extends ViewPart {
 						conn.close();
 					}
 				} catch (SQLException e) {
-					e.printStackTrace();
-					LogHelper.error(e);
+					LogHelper.error(log, e);
 				}
 			}
-			System.out.println("线程" + getName() + "处理的时间：" + (System.currentTimeMillis() - t1) + " ms");
-			LogHelper.info("线程" + getName() + "处理的时间：" + (System.currentTimeMillis() - t1) + " ms");
+			LogHelper.info(log, "线程" + getName() + "处理的时间：" + (System.currentTimeMillis() - t1) + " ms");
 		}
 	}
 	
@@ -333,9 +327,9 @@ public class OracleTableView extends ViewPart {
 		//总体情况
 		KeyValueTableViewer tableViewer = new KeyValueTableViewer(tabFolder, new String[]{"用户名", "表格数量"});
 		tabItem.setControl(tableViewer.getTable());
-		List summaryList = new ArrayList();
-		for (Iterator iter = ownerTableMap.keySet().iterator(); iter.hasNext();) {
-			String ownerName = (String) iter.next();
+		List<KeyValue> summaryList = new ArrayList<KeyValue>();
+		for (Iterator<String> iter = ownerTableMap.keySet().iterator(); iter.hasNext();) {
+			String ownerName = iter.next();
 			KeyValue kv = new KeyValue();
 			kv.setKey(ownerName);
 			List<TableModel> list = ownerTableMap.get(ownerName);
@@ -344,8 +338,8 @@ public class OracleTableView extends ViewPart {
 		}
 		tableViewer.setInput(summaryList);
 		
-		for (Iterator iter = ownerTableMap.keySet().iterator(); iter.hasNext();) {
-			String ownerName = (String) iter.next();
+		for (Iterator<String> iter = ownerTableMap.keySet().iterator(); iter.hasNext();) {
+			String ownerName = iter.next();
 			List<TableModel> list = ownerTableMap.get(ownerName);
 			if(list != null && list.size() >0){
 				final TabItem tabItem1 = new TabItem(tabFolder, SWT.NONE);
@@ -354,7 +348,7 @@ public class OracleTableView extends ViewPart {
 				KeyValueTableViewer tableViewer1 = new KeyValueTableViewer(tabFolder, new String[]{"表名", "记录数"});
 				tabItem1.setControl(tableViewer1.getTable());
 				
-				List tt = new ArrayList();
+				List<KeyValue> tt = new ArrayList<KeyValue>();
 				for(int j=0; j<list.size(); j++){
 					TableModel tableModel = list.get(j);
 					KeyValue kv1= new KeyValue();
@@ -366,8 +360,7 @@ public class OracleTableView extends ViewPart {
 			}
 		}
 		tabFolder.setSelection(1);
-		System.out.println("处理数据库返回结果花费时间: " + (System.currentTimeMillis() -begin)  + " ms");
-		LogHelper.info("处理数据库返回结果花费时间: " + (System.currentTimeMillis() -begin)  + " ms");
+		LogHelper.info(log, "处理数据库返回结果花费时间: " + (System.currentTimeMillis() -begin)  + " ms");
 	}
 	
 	/**
@@ -410,8 +403,7 @@ public class OracleTableView extends ViewPart {
 		book.write();
 		book.close();
 		
-		System.out.println("写入Excel文件时间: " + (System.currentTimeMillis() -begin)  + " ms");
-		LogHelper.info("写入Excel文件时间: " + (System.currentTimeMillis() -begin)  + " ms");
+		LogHelper.info(log, "写入Excel文件时间: " + (System.currentTimeMillis() -begin)  + " ms");
 	}
 	
 	private void init() throws Exception{
@@ -422,8 +414,8 @@ public class OracleTableView extends ViewPart {
 	
 	private void refreshTabByProp(Properties prop2) throws Exception{
 		Set<Object> keySet = prop2.keySet();
-		List list = new ArrayList();
-		for (Iterator iter = keySet.iterator(); iter.hasNext();) {
+		List<KeyValue> list = new ArrayList<KeyValue>();
+		for (Iterator<Object> iter = keySet.iterator(); iter.hasNext();) {
 			String key = (String) iter.next();
 			String value = prop2.getProperty(key);
 			KeyValue kv = new KeyValue(key, value);

@@ -11,8 +11,8 @@ import com.easyfun.eclipse.performance.awr.model.SnapShot;
 public class AWRUtil {
 	
 	/** 获取数据库的AWR列表*/
-	public static List getSnaps(Connection conn) throws Exception{
-		List snapshot = new ArrayList();
+	public static List<SnapShot> getSnaps(Connection conn) throws Exception{
+		List<SnapShot> snapshot = new ArrayList<SnapShot>();
 		
 		PreparedStatement ptmt = null;
 		ResultSet rs = null;

@@ -32,7 +32,7 @@ public class MemcachedStatUtil {
 
 	/** 执行stats命令，获取Memcache信息*/
 	public static List<MemModel> getStat(String host, int port) throws Exception {
-		HashMap rtn = new HashMap();
+		HashMap<String, String> rtn = new HashMap<String, String>();
 		List<MemModel> list = new ArrayList<MemModel>();
 		Socket socket = null;
 		try {
@@ -69,7 +69,7 @@ public class MemcachedStatUtil {
 	/** 执行stats items命令，获取Memcache信息*/
 	//TODO:输出各个slab中的item信息。s
 	public static List<MemModel> getStatItems(String host, int port) throws Exception {
-		HashMap rtn = new HashMap();
+		HashMap<String, String> rtn = new HashMap<String, String>();
 		List<MemModel> list = new ArrayList<MemModel>();
 		Socket socket = null;
 		try {
@@ -106,7 +106,7 @@ public class MemcachedStatUtil {
 	/** 执行stats slabs命令，获取Memcache信息*/
 	//TODO: 输出slab中更详细的item信息
 	public static List<MemModel> getStatSlabs(String host, int port) throws Exception {
-		HashMap rtn = new HashMap();
+		HashMap<String, String> rtn = new HashMap<String, String>();
 		List<MemModel> list = new ArrayList<MemModel>();
 		Socket socket = null;
 		try {
@@ -143,7 +143,7 @@ public class MemcachedStatUtil {
 	/** 执行stats sizes命令，获取Memcache信息*/
 	//TODO: 输出所有item的大小和个数
 	public static List<MemModel> getStatSizes(String host, int port) throws Exception {
-		HashMap rtn = new HashMap();
+		HashMap<String, String> rtn = new HashMap<String, String>();
 		List<MemModel> list = new ArrayList<MemModel>();
 		Socket socket = null;
 		try {

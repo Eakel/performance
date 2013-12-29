@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
@@ -57,6 +59,9 @@ public class AWRView extends ViewPart {
 	private Button genHTMLButton;
 
 	private Button genTextButton;
+	
+	private static final Log log = LogFactory.getLog(AWRView.class);
+
 
 	public AWRView() {
 	}
@@ -85,14 +90,14 @@ public class AWRView extends ViewPart {
 				try {
 					Connection conn = connectionModel.getRefreshConnection();
 					DatabaseMetaData metaData = conn.getMetaData();
-					LogHelper.debug("使用的用户名为:" + metaData.getUserName());
+					LogHelper.debug(log, "使用的用户名为:" + metaData.getUserName());
 					initByConnection(conn);
 					exportButton.setEnabled(false);
 					genHTMLButton.setEnabled(true);
 					genTextButton.setEnabled(true);
 				} catch (Exception ex) {
 					RCPUtil.showError(getShell(), ex.getMessage());
-					LogHelper.error("获取AWR日志失败", ex);
+					LogHelper.error(log, "获取AWR日志失败", ex);
 					exportButton.setEnabled(false);
 					genHTMLButton.setEnabled(false);
 					genTextButton.setEnabled(false);
@@ -107,7 +112,7 @@ public class AWRView extends ViewPart {
 			public void widgetSelected(SelectionEvent e) {
 				try {
 					String tabTitle = AWR_HTML_TITLE;
-					Iterator iter = ((IStructuredSelection)awrTableViewer.getSelection()).iterator();
+					Iterator<IStructuredSelection> iter = ((IStructuredSelection)awrTableViewer.getSelection()).iterator();
 					selectedSnaps = new ArrayList();
 					while(iter.hasNext()){
 						SnapShot snap = (SnapShot)iter.next();
@@ -171,8 +176,8 @@ public class AWRView extends ViewPart {
 			public void widgetSelected(SelectionEvent e) {
 				try {
 					String tabTitle = AWR_TEXT_TITLE;
-					Iterator iter = ((IStructuredSelection)awrTableViewer.getSelection()).iterator();
-					List selectedSnaps = new ArrayList();
+					Iterator<IStructuredSelection> iter = ((IStructuredSelection)awrTableViewer.getSelection()).iterator();
+					List<SnapShot> selectedSnaps = new ArrayList<SnapShot>();
 					while(iter.hasNext()){
 						SnapShot snap = (SnapShot)iter.next();
 						selectedSnaps.add(snap);
@@ -263,9 +268,9 @@ public class AWRView extends ViewPart {
 	
 	private void initByConnection(Connection conn) throws Exception{
 		long begin = System.currentTimeMillis();
-		List snaps = AWRUtil.getSnaps(conn);
+		List<SnapShot> snaps = AWRUtil.getSnaps(conn);
 		
-		LogHelper.info("读取AWR记录的数据库时间：" + (System.currentTimeMillis() - begin) + " ms");
+		LogHelper.info(log, "读取AWR记录的数据库时间：" + (System.currentTimeMillis() - begin) + " ms");
 		updateResult(snaps);
 	}
 	

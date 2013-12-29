@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.velocity.util.StringUtils;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -46,6 +48,8 @@ public class MemcachedView extends ViewPart {
 	private ListViewer listViewer;
 	private Map<String, List<MemModel>> valuesMap;
 
+	private static final Log log = LogFactory.getLog(MemcachedView.class);
+	
 	public MemcachedView() {
 	}
 
@@ -196,15 +200,14 @@ public class MemcachedView extends ViewPart {
 		for (int i = 0; i < tmp.length; i++) {
 			try {
 				String[] tmp2 = StringUtils.split(tmp[i], ":");
-				List list = MemcachedStatUtil.getStat(tmp2[0].trim(), Integer.parseInt(tmp2[1]));				
+				List<MemModel> list = MemcachedStatUtil.getStat(tmp2[0].trim(), Integer.parseInt(tmp2[1]));				
 				addr.add(tmp[i]);
 				valuesMap.put(tmp[i], list);
 				if(i==0){
 					first = tmp[i];
 				}
 			} catch (Exception ex) {
-				ex.printStackTrace();
-				LogHelper.error("获取 [" + tmp[i] + "] 的Memcached信息出错", ex);
+				LogHelper.error(log, "获取 [" + tmp[i] + "] 的Memcached信息出错", ex);
 			}
 		}
 		listViewer.setInput(valuesMap.keySet());

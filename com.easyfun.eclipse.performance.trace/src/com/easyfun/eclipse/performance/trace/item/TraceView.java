@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.io.filefilter.SuffixFileFilter;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -91,6 +93,8 @@ public class TraceView extends ViewPart {
 	private Text searchText;
 
 	private Label parentLabel;
+	
+	private static final Log log = LogFactory.getLog(TraceView.class);
 
 	public TraceView() {
 	}
@@ -413,8 +417,7 @@ public class TraceView extends ViewPart {
 								}
 							}
 						} catch (Exception e1) {
-							e1.printStackTrace();
-							LogHelper.error(e1.getMessage());
+							LogHelper.error(log, e1.getMessage());
 						}
 					}
 				});
@@ -758,7 +761,7 @@ public class TraceView extends ViewPart {
 					dir.addChild(traceNode);
 				} catch (Exception e) {
 					e.printStackTrace();
-					LogHelper.error("文件[" + file.getPath() + "]trace解析异常", e);
+					LogHelper.error(log, "文件[" + file.getPath() + "]trace解析异常", e);
 				}
 
 				// dir.sortTrace(TraceDirectory.SORT_FILETIME);
@@ -822,14 +825,14 @@ public class TraceView extends ViewPart {
 			if(isOK == false){
 				return false;
 			}
-			LogHelper.info("[开始]初始化所有Trace文件: " + dir.getDisplayName());
+			LogHelper.info(log, "[开始]初始化所有Trace文件: " + dir.getDisplayName());
 			for (TraceNode traceNode : children) {
 				if (traceNode.getAppTrace() == null) {
-					LogHelper.info("文件: " + traceNode.getDisplayName());
+					LogHelper.info(log, "文件: " + traceNode.getDisplayName());
 					((SFtpTraceNode)traceNode).initAppTrace();
 				}
 			}
-			LogHelper.info("[结束]初始化所有Trace文件: " + dir.getDisplayName());
+			LogHelper.info(log, "[结束]初始化所有Trace文件: " + dir.getDisplayName());
 			dir.setInitAll(true);
 		}
 		

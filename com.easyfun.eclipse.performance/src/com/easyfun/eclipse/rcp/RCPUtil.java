@@ -47,6 +47,7 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.ide.FileStoreEditorInput;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.internal.Workbench;
+import org.eclipse.ui.internal.dialogs.WorkbenchPreferenceDialog;
 import org.eclipse.ui.internal.keys.WorkbenchKeyboard;
 
 import com.easyfun.eclipse.performance.PerformanceActivator;
@@ -363,7 +364,7 @@ public class RCPUtil {
 //		box.setMessage(message);
 //		box.open();
 		
-		MessageDialog.openQuestion(shell, title, message);
+		MessageDialog.openError(shell, title, message);
 	}
 	
 	/**
@@ -421,4 +422,11 @@ public class RCPUtil {
 			}
 		}
 	}	
+	
+	/** 显示指定PREF_ID的窗口*/
+	public static void showPreferencPage(Shell shell, String prefId){
+		WorkbenchPreferenceDialog dialog = WorkbenchPreferenceDialog.createDialogOn(shell, prefId);
+	    dialog.showOnly(new String[] { prefId });
+	    dialog.open();
+	}
 }

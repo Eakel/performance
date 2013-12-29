@@ -4,7 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
 
@@ -20,9 +19,8 @@ public class LogHelper {
 	
 	private static SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 	
-	private static Log log = LogFactory.getLog(EasyFunConsole.class);
 	
-	public static void debug(final String message) {
+	public static void debug(final Log log,final String message) {
 		Display.getDefault().asyncExec(new Runnable() {
 			public void run() {
 				String msg = "[" + dateFormat.format(new Date()) + " DEBUG] " + " " + message;
@@ -32,28 +30,28 @@ public class LogHelper {
 
 		});
 	}
-
-	public static void info(final String message) {
+	
+	public static void info(final Log log, final String message) {
 		Display.getDefault().asyncExec(new Runnable() {
 			public void run() {
 				String msg = "[" + dateFormat.format(new Date()) + " INFO] " + message;
 				EasyFunConsole.getConsole().printToConsole(msg, new Color(null, 0, 0, 255));
-//				log.info(msg);
+				log.info(msg);
 			}
 		});
 	}
 
-	public static void error(final Throwable t) {
+	public static void error(final Log log,final Throwable t) {
 		Display.getDefault().asyncExec(new Runnable() {
 			public void run() {
 				String msg = "[" + dateFormat.format(new Date()) + " DEGBUG] " + t.getMessage();
 				EasyFunConsole.getConsole().printToConsole(msg, new Color(null, 255, 0, 0));
-				t.printStackTrace();
+				log.error(t);
 			}
 		});
 	}
 
-	public static void error(final String message) {
+	public static void error(final Log log,final String message) {
 		Display.getDefault().asyncExec(new Runnable() {
 			String msg = "[" + dateFormat.format(new Date()) + " ERROR]" + " " + message;
 			public void run() {
@@ -62,16 +60,16 @@ public class LogHelper {
 					int line = Integer.parseInt(message.substring(message.indexOf(PerformanceActivator.LINE) + 5).trim());
 					EasyFunHyperLink hyperlink = new EasyFunHyperLink(msg, url, line - 1);
 					EasyFunConsole.getConsole().addLinkToConsole(hyperlink, new Color(null, 255, 0, 0));
-//					log.error(msg);
+					log.error(msg);
 				} else {
 					EasyFunConsole.getConsole().printToConsole(msg, new Color(null, 255, 0, 0));
-//					log.error(msg);
+					log.error(msg);
 				}
 			}
 		});
 	}
 
-	public static void error(final String message, final Throwable t) {
+	public static void error(final Log log,final String message, final Throwable t) {
 		Display.getDefault().asyncExec(new Runnable() {
 			public void run() {
 				Display.getDefault().asyncExec(new Runnable() {
@@ -83,10 +81,10 @@ public class LogHelper {
 							int line = Integer.parseInt(message.substring(message.indexOf(PerformanceActivator.LINE) + 5).trim());
 							EasyFunHyperLink hyperlink = new EasyFunHyperLink(msg, url, line - 1);
 							EasyFunConsole.getConsole().addLinkToConsole(hyperlink, new Color(null, 255, 0, 0));
-//							log.error(msg);
+							log.error(msg);
 						} else {
 							EasyFunConsole.getConsole().printToConsole(msg, new Color(null, 255, 0, 0));
-//							log.error(msg);
+							log.error(msg);
 						}
 					}
 				});
