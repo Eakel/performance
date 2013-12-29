@@ -38,7 +38,7 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
 
-import com.easyfun.eclipse.component.tree2.TreeViewerFactory;
+import com.easyfun.eclipse.component.tree.TreeViewerFactory;
 import com.easyfun.eclipse.performance.jmx.model.DomainModel;
 import com.easyfun.eclipse.performance.jmx.model.MBeanModel;
 import com.easyfun.eclipse.performance.jmx.util.JBOSSUtils;
