@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-import com.easyfun.eclipse.common.navigator.console.LogHelper;
 import com.easyfun.eclipse.common.ui.ftp.FTPBean;
+import com.easyfun.eclipse.performance.navigator.console.LogHelper;
 import com.trilead.ssh2.Connection;
 import com.trilead.ssh2.SFTPv3Client;
 import com.trilead.ssh2.SFTPv3DirectoryEntry;

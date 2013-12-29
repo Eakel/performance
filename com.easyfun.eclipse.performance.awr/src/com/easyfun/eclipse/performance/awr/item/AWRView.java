@@ -23,7 +23,6 @@ import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.ui.internal.dialogs.WorkbenchPreferenceDialog;
 import org.eclipse.ui.part.ViewPart;
 
-import com.easyfun.eclipse.common.navigator.console.LogHelper;
 import com.easyfun.eclipse.common.util.ConnectionModel;
 import com.easyfun.eclipse.common.util.DialogUtils;
 import com.easyfun.eclipse.performance.awr.AWRUtil;
@@ -31,6 +30,7 @@ import com.easyfun.eclipse.performance.awr.model.AWRTableViewer;
 import com.easyfun.eclipse.performance.awr.model.SnapShot;
 import com.easyfun.eclipse.performance.awr.preferences.AwrJDBCPreferencePage;
 import com.easyfun.eclipse.performance.awr.preferences.AwrPrefUtil;
+import com.easyfun.eclipse.performance.navigator.console.LogHelper;
 import com.easyfun.eclipse.utils.resource.FileUtil;
 import com.easyfun.eclipse.utils.ui.SWTUtil;
 

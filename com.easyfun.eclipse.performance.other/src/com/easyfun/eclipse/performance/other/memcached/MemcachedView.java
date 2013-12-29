@@ -28,7 +28,7 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
 
-import com.easyfun.eclipse.common.navigator.console.LogHelper;
+import com.easyfun.eclipse.performance.navigator.console.LogHelper;
 import com.easyfun.eclipse.performance.other.memcached.model.MemModel;
 import com.easyfun.eclipse.performance.other.memcached.model.MemTableViewer;
 import com.easyfun.eclipse.performance.other.memcached.prefs.OtherPrefUtil;

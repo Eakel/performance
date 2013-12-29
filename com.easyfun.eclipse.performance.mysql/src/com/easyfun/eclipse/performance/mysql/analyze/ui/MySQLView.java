@@ -36,7 +36,6 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.ui.internal.dialogs.WorkbenchPreferenceDialog;
 import org.eclipse.ui.part.ViewPart;
 
-import com.easyfun.eclipse.common.navigator.console.LogHelper;
 import com.easyfun.eclipse.common.ui.kv.KeyValue;
 import com.easyfun.eclipse.common.ui.kv.KeyValueTableViewer;
 import com.easyfun.eclipse.common.util.ConnectionModel;
@@ -46,6 +45,7 @@ import com.easyfun.eclipse.performance.mysql.analyze.model.TableModel;
 import com.easyfun.eclipse.performance.mysql.analyze.pref.MySQLPrefUtil;
 import com.easyfun.eclipse.performance.mysql.analyze.pref.MySQLJDBCPreferencePage;
 import com.easyfun.eclipse.performance.mysql.analyze.pref.MySQLTableFilterPreferencePage;
+import com.easyfun.eclipse.performance.navigator.console.LogHelper;
 import com.easyfun.eclipse.utils.lang.StringUtil;
 import com.easyfun.eclipse.utils.ui.SWTUtil;
 
