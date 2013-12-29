@@ -18,7 +18,6 @@ import com.easyfun.eclipse.performance.helper.IConstants;
 import com.easyfun.eclipse.performance.navigator.action.CloseAllAction;
 import com.easyfun.eclipse.performance.navigator.action.OpenViewAction;
 import com.easyfun.eclipse.performance.navigator.action.ShowHideNavigatorViewAction;
-import com.easyfun.eclipse.util.common.ImageConstants;
 
 /**
  * An action bar advisor is responsible for creating, adding, and disposing of the

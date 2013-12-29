@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.util.common;
+package com.easyfun.eclipse.performance;
 
 /**
  * 常量定义

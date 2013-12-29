@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.uiutil;
+package com.easyfun.eclipse.performance.preferences;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

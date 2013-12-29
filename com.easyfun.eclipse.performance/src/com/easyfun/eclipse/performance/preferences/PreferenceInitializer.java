@@ -3,7 +3,6 @@ package com.easyfun.eclipse.performance.preferences;
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
 
-import com.easyfun.eclipse.uiutil.PreferenceUtil;
 
 /**
  * 设置Preference的默认值，配置plugin.xml中

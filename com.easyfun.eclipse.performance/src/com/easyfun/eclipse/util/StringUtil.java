@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.util.lang;
+package com.easyfun.eclipse.util;
 
 import java.util.ArrayList;
 import java.util.StringTokenizer;

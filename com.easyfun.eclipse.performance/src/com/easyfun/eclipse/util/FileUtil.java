@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.util.resource;
+package com.easyfun.eclipse.util;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

@@ -1,13 +1,22 @@
 package com.easyfun.eclipse.uiutil;
 
+import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.eclipse.core.filesystem.EFS;
+import org.eclipse.core.filesystem.IFileStore;
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.bindings.keys.formatting.IKeyFormatter;
 import org.eclipse.jface.bindings.keys.formatting.KeyFormatterFactory;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
@@ -21,20 +30,26 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.ScrollBar;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.browser.IWebBrowser;
 import org.eclipse.ui.browser.IWorkbenchBrowserSupport;
 import org.eclipse.ui.forms.IFormColors;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.eclipse.ui.ide.FileStoreEditorInput;
+import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.internal.Workbench;
 import org.eclipse.ui.internal.keys.WorkbenchKeyboard;
+
+import com.easyfun.eclipse.performance.PerformanceActivator;
 
 /**
  * 
@@ -44,7 +59,11 @@ import org.eclipse.ui.internal.keys.WorkbenchKeyboard;
  * 
  */
 @SuppressWarnings("restriction")
-public class SWTUtil {
+public class RCPUtil {
+	private static final String MESSAGE_ERROR = "ERROR";
+	private static final String MESSAGE_MESSAGE = "MESSAGE";
+	private static final String MESSAGE_CONFIRM = "CONFIRM";
+	
 	/**
 	 * Hide or show the vertical scroll bar based on the text height within this text control. <br>
 	 * 
@@ -288,36 +307,118 @@ public class SWTUtil {
 	}
 	
 	//Form end
-	
+	/** 显示提示窗口 */
 	public static void showMessage(Shell shell, String message) {
-		if(shell == null){
-			shell = IDEHelper.getActivePage().getActivePart().getSite().getShell();
-		}
-		MessageBox box = new MessageBox(shell, SWT.ICON_INFORMATION | SWT.YES);
-		box.setMessage(message);
-		box.open();
+		showMessage(shell, message, MESSAGE_MESSAGE);
 	}
-
-	public static boolean showQuestion(Shell shell, String message) {
-		if(shell == null){
-			shell = IDEHelper.getActivePage().getActivePart().getSite().getShell();
-		}
-		MessageBox box = new MessageBox(shell, SWT.ICON_QUESTION | SWT.YES | SWT.NO);
-		box.setMessage(message);
-		int ret = box.open();
+	
+	/** 显示提示窗口 */
+	public static void showMessage(Shell shell, String message, String title) {
+//		if(shell == null){
+//			shell = IDEHelper.getActivePage().getActivePart().getSite().getShell();
+//		}
+//		MessageBox box = new MessageBox(shell, SWT.ICON_INFORMATION | SWT.YES);
+//		box.setMessage(message);
+//		box.open();
 		
-		if (ret == SWT.YES){
-			return true;
-		}
-		return false;
-	}
-
-	public static void showError(Shell shell, String message) {
 		if(shell == null){
 			shell = IDEHelper.getActivePage().getActivePart().getSite().getShell();
 		}
-		MessageBox box = new MessageBox(shell, SWT.ICON_ERROR | SWT.YES);
-		box.setMessage(message);
-		box.open();
+		MessageDialog.openInformation(shell, title, message);
 	}
+
+	/** 显示Confirm窗口 */
+	public static boolean showConfirm(Shell shell, String message) {		
+		return showConfirm(shell, message, MESSAGE_CONFIRM);
+	}
+	
+	/** 显示提问窗口 */
+	public static boolean showConfirm(Shell shell, String message, String title) {
+		if(shell == null){
+			shell = IDEHelper.getActivePage().getActivePart().getSite().getShell();
+		}
+//		MessageBox box = new MessageBox(shell, SWT.ICON_QUESTION | SWT.YES | SWT.NO);
+//		box.setMessage(message);
+//		int ret = box.open();
+//		
+//		if (ret == SWT.YES){
+//			return true;
+//		}
+//		return false;
+		
+		return MessageDialog.openQuestion(shell, title, message);
+	}
+
+	/** 显示错误窗口 */
+	public static void showError(Shell shell, String message) {
+		showError(shell, message, MESSAGE_ERROR);
+	}
+	
+	/** 显示错误窗口 */
+	public static void showError(Shell shell, String message, String title) {
+		if(shell == null){
+			shell = IDEHelper.getActivePage().getActivePart().getSite().getShell();
+		}
+//		MessageBox box = new MessageBox(shell, SWT.ICON_ERROR | SWT.YES);
+//		box.setMessage(message);
+//		box.open();
+		
+		MessageDialog.openQuestion(shell, title, message);
+	}
+	
+	/**
+	 * 打开文件保存对话框
+	 * @param shell
+	 * @param extensions 运行的文件扩展名，例子：new String[]{"*.txt", "*.*"}
+	 * @param initFileName 初始的文件名 例子threadDump.txt
+	 * @return 可以写入为返回的File，否则为null
+	 */
+	public static File openSaveDialog(Shell shell, String[] extensions, String initFileName){
+		FileDialog dialog = new FileDialog(shell, SWT.SAVE);
+		dialog.setFilterExtensions(extensions);
+		dialog.setFileName(initFileName);
+		String path = dialog.open();
+		if(path == null){
+			return null;
+		}
+		File file = new File(path);
+		if(file.exists()){
+			boolean result = RCPUtil.showConfirm(shell, "文件名已存在，确认覆盖?");
+			if(result == false){
+				return null;
+			}
+		}
+		return file;
+	}
+	
+	/** 根据文件名打开TextEditor*/
+	public static void openTextEditorForFile(String fileName){
+		IPath path=new Path(fileName);
+		final IFileStore fileStore = EFS.getLocalFileSystem().getStore(path);
+		if (fileStore.fetchInfo().exists()) {
+			final IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+			try {
+				PerformanceActivator.getDefault().getWorkbench().getProgressService().run(
+						false, false, new IRunnableWithProgress() {
+							public void run(IProgressMonitor monitor)
+									throws InvocationTargetException,
+									InterruptedException {
+								try {
+									IDE.openEditorOnFileStore(page, fileStore);
+									IEditorInput editorInput=new FileStoreEditorInput(fileStore);
+									IDE.openEditor(page, editorInput, "org.eclipse.ui.DefaultTextEditor");
+								} catch (PartInitException e) {
+									e.printStackTrace();
+								}
+							}
+
+						});
+
+			} catch (InvocationTargetException e) {
+				e.printStackTrace();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}	
 }

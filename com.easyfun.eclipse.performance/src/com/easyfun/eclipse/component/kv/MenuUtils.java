@@ -27,7 +27,7 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.TableColumn;
 
-import com.easyfun.eclipse.uiutil.DialogUtils;
+import com.easyfun.eclipse.uiutil.RCPUtil;
 import com.easyfun.eclipse.util.TimeUtil;
 import com.lowagie.text.Cell;
 import com.lowagie.text.Document;
@@ -44,7 +44,7 @@ public class MenuUtils {
 		menuItem.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
 				String fileName = "导出文件" + TimeUtil.getYYYYMMDDHHMMSS(new Date()) + ".txt";
-				File file = DialogUtils.openSaveDialog(tableViewer.getTable().getShell(), new String[]{"*.txt", "*.*"}, fileName);
+				File file = RCPUtil.openSaveDialog(tableViewer.getTable().getShell(), new String[]{"*.txt", "*.*"}, fileName);
 				if(file == null){
 					return;
 				}
@@ -67,7 +67,7 @@ public class MenuUtils {
 					IOUtils.writeLines(content, null, out);
 					out.close();
 				} catch (Exception e1) {
-					DialogUtils.showError(tableViewer.getTable().getShell(), "表格导出异常");
+					RCPUtil.showError(tableViewer.getTable().getShell(), "表格导出异常");
 				}
 			}
 		});
@@ -79,7 +79,7 @@ public class MenuUtils {
 		menuItem.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
 				String fileName = "导出文件" + TimeUtil.getYYYYMMDDHHMMSS(new Date()) + ".html";
-				File file = DialogUtils.openSaveDialog(tableViewer.getTable().getShell(), new String[]{"*.html", "*.*"}, fileName);
+				File file = RCPUtil.openSaveDialog(tableViewer.getTable().getShell(), new String[]{"*.html", "*.*"}, fileName);
 				if(file == null){
 					return;
 				}
@@ -108,7 +108,7 @@ public class MenuUtils {
 					writer.close();
 				} catch (Exception ex) {
 					ex.printStackTrace();
-					DialogUtils.showError(tableViewer.getTable().getShell(), "导出html文件出出错\n" + ex.getMessage());
+					RCPUtil.showError(tableViewer.getTable().getShell(), "导出html文件出出错\n" + ex.getMessage());
 				}
 			}
 		});
@@ -120,7 +120,7 @@ public class MenuUtils {
 		menuItem.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
 				String fileName = "导出文件" + TimeUtil.getYYYYMMDDHHMMSS(new Date()) + ".pdf";
-				File file = DialogUtils.openSaveDialog(tableViewer.getTable().getShell(), new String[]{"*.pdf", "*.*"}, fileName);
+				File file = RCPUtil.openSaveDialog(tableViewer.getTable().getShell(), new String[]{"*.pdf", "*.*"}, fileName);
 				if(file == null){
 					return;
 				}
@@ -158,7 +158,7 @@ public class MenuUtils {
 					document.close();
 				} catch (Exception ex) {
 					ex.printStackTrace();
-					DialogUtils.showError(tableViewer.getTable().getShell(), "导出PDF文件出出错\n" + ex.getMessage());
+					RCPUtil.showError(tableViewer.getTable().getShell(), "导出PDF文件出出错\n" + ex.getMessage());
 				}
 			}
 		});
@@ -170,7 +170,7 @@ public class MenuUtils {
 		menuItem.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
 				String fileName = "导出文件" + TimeUtil.getYYYYMMDDHHMMSS(new Date()) + ".xls";
-				File file = DialogUtils.openSaveDialog(tableViewer.getTable().getShell(), new String[]{"*.xls", "*.*"}, fileName);
+				File file = RCPUtil.openSaveDialog(tableViewer.getTable().getShell(), new String[]{"*.xls", "*.*"}, fileName);
 				if(file == null){
 					return;
 				}
@@ -207,7 +207,7 @@ public class MenuUtils {
 					book.close();
 				} catch (Exception ex) {
 					ex.printStackTrace();
-					DialogUtils.showError(tableViewer.getTable().getShell(), "导出Excel文件出出错\n" + ex.getMessage());
+					RCPUtil.showError(tableViewer.getTable().getShell(), "导出Excel文件出出错\n" + ex.getMessage());
 				}
 			}
 		});

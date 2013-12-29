@@ -64,7 +64,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 import com.easyfun.eclipse.component.ftp.FTPBean;
-import com.easyfun.eclipse.uiutil.SWTUtil;
+import com.easyfun.eclipse.uiutil.RCPUtil;
 
 public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableViewer.ILocalTableListener, RemoteDirectoryBrowser.IRemoteTableListener{
 	/** 左侧目录表格 */
@@ -244,7 +244,7 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 		//"About" Button
 		abboutAction = new Action() {
 			public void run() {
-				SWTUtil.showMessage(getShell(), "FTP Client v1.0\nAll right reserved by Linzhaoming.");
+				RCPUtil.showMessage(getShell(), "FTP Client v1.0\nAll right reserved by Linzhaoming.");
 			}
 		};
 		abboutAction.setText("About");
@@ -253,7 +253,7 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 		//"Exit" Button
 		exitAction = new Action() {
 			public void run() {
-				if (!SWTUtil.showQuestion(getShell(), "Are you sure you want to exit?"))
+				if (!RCPUtil.showConfirm(getShell(), "Are you sure you want to exit?"))
 					return;
 				try {
 					ftpClient.disconnect();
@@ -334,7 +334,7 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 					String text = (String) event.data;
 					File target = new File((File) localDirTableViewer.getInput(), text);
 					if (target.exists()) {
-						if (!SWTUtil.showQuestion(getShell(), "Overwrite file " + target + "?")) {
+						if (!RCPUtil.showConfirm(getShell(), "Overwrite file " + target + "?")) {
 							return;
 						}
 					}
@@ -664,12 +664,12 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 	
 	private void initLocalTable(File rootFile){
 		if(!rootFile.exists()){
-			SWTUtil.showError(getShell(), "\"" + rootFile.getPath() + "\"" + "不存在或者无法访问");
+			RCPUtil.showError(getShell(), "\"" + rootFile.getPath() + "\"" + "不存在或者无法访问");
 			return;
 		}
 		
 		if(!rootFile.isDirectory()){
-			SWTUtil.showError(getShell(), "\"" + rootFile.getPath() + "\"" + "不是目录");
+			RCPUtil.showError(getShell(), "\"" + rootFile.getPath() + "\"" + "不是目录");
 			return;
 		}
 		localDirTableViewer.setInput(rootFile);

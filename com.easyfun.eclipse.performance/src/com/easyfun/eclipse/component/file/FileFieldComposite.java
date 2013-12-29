@@ -13,7 +13,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Text;
 
-import com.easyfun.eclipse.uiutil.SWTUtil;
+import com.easyfun.eclipse.uiutil.RCPUtil;
 
 /**
  * 打开文件Composite 
@@ -37,7 +37,7 @@ public class FileFieldComposite extends Composite{
 	
 	private void init(Composite p){
 		p.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-		p.setLayout(SWTUtil.getNoMarginLayout(2, false));
+		p.setLayout(RCPUtil.getNoMarginLayout(2, false));
 
 		final Button button = new Button(p, SWT.NONE);
 		GridData gridData = new GridData(SWT.LEFT, SWT.TOP, false, false);

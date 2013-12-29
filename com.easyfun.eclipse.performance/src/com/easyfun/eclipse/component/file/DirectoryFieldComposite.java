@@ -15,8 +15,8 @@ import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Text;
 
 import com.easyfun.eclipse.performance.preferences.PreferenceConstants;
-import com.easyfun.eclipse.uiutil.PreferenceUtil;
-import com.easyfun.eclipse.uiutil.SWTUtil;
+import com.easyfun.eclipse.performance.preferences.PreferenceUtil;
+import com.easyfun.eclipse.uiutil.RCPUtil;
 
 /**
  * Ŀ¼
@@ -46,7 +46,7 @@ public class DirectoryFieldComposite extends Composite{
 	
 	private void init(Composite p){
 		p.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-		p.setLayout(SWTUtil.getNoMarginLayout(2, false));
+		p.setLayout(RCPUtil.getNoMarginLayout(2, false));
 
 		final Button button = new Button(p, SWT.NONE);
 		GridData gridData = new GridData(SWT.LEFT, SWT.TOP, false, false);

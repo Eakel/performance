@@ -16,7 +16,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-import com.easyfun.eclipse.uiutil.DialogUtils;
+import com.easyfun.eclipse.uiutil.RCPUtil;
 
 /**
  * Dialog for FTP settting
@@ -171,27 +171,27 @@ public class FTPDialog extends Dialog {
 	
 	private boolean checkUI(){
 		if(checkTextField(this.hostText) == false){
-			DialogUtils.showError(getShell(), "主机不能为空");
+			RCPUtil.showError(getShell(), "主机不能为空");
 			return false;
 		}
 		
 		if(checkTextField(this.portText) == false){
-			DialogUtils.showError(getShell(), "端口不能为空");
+			RCPUtil.showError(getShell(), "端口不能为空");
 			return false;
 		}
 		
 		if(checkTextField(this.userNameText) == false){
-			DialogUtils.showError(getShell(), "用户名不能为空");
+			RCPUtil.showError(getShell(), "用户名不能为空");
 			return false;
 		}
 		
 		if(checkTextField(this.passwdText) == false){
-			DialogUtils.showError(getShell(), "密码不能为空");
+			RCPUtil.showError(getShell(), "密码不能为空");
 			return false;
 		}
 		
 //		if(checkTextField(this.filePathText) == false){
-//			DialogUtils.showError(getShell(), "文件名不能为空");
+//			SWTUtil.showError(getShell(), "文件名不能为空");
 //			return false;
 //		}
 		

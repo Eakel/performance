@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.uiutil;
+package com.easyfun.eclipse.component.sql;
 
 import java.util.ArrayList;
 import java.util.List;

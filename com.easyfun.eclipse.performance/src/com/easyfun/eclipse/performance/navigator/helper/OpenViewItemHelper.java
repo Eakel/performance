@@ -5,7 +5,7 @@ import org.eclipse.ui.IWorkbenchPage;
 
 import com.easyfun.eclipse.performance.navigator.WelcomeView;
 import com.easyfun.eclipse.performance.navigator.cfg.model.Item;
-import com.easyfun.eclipse.uiutil.DialogUtils;
+import com.easyfun.eclipse.uiutil.RCPUtil;
 
 /**
  * 打开View ID
@@ -35,7 +35,7 @@ public class OpenViewItemHelper implements ItemHelper{
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			DialogUtils.showError(page.getWorkbenchWindow().getShell(), "打开View异常:" + e.getMessage());
+			RCPUtil.showError(page.getWorkbenchWindow().getShell(), "打开View异常:" + e.getMessage());
 		}
 	}
 	
