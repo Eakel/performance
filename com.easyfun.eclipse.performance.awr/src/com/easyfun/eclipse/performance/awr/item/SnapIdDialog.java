@@ -14,7 +14,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-import com.easyfun.eclipse.uiutil.RCPUtil;
+import com.easyfun.eclipse.rcp.RCPUtil;
 import com.easyfun.eclipse.util.StringUtil;
 
 /**

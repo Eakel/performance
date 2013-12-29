@@ -29,7 +29,7 @@ import com.easyfun.eclipse.performance.awr.model.SnapShot;
 import com.easyfun.eclipse.performance.awr.preferences.AwrJDBCPreferencePage;
 import com.easyfun.eclipse.performance.awr.preferences.AwrPrefUtil;
 import com.easyfun.eclipse.performance.navigator.console.LogHelper;
-import com.easyfun.eclipse.uiutil.RCPUtil;
+import com.easyfun.eclipse.rcp.RCPUtil;
 import com.easyfun.eclipse.util.ConnectionModel;
 import com.easyfun.eclipse.util.FileUtil;
 

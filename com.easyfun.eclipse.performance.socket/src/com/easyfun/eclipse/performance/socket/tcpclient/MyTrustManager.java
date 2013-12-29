@@ -10,7 +10,7 @@ import javax.net.ssl.X509TrustManager;
 
 import org.eclipse.swt.widgets.Composite;
 
-import com.easyfun.eclipse.uiutil.RCPUtil;
+import com.easyfun.eclipse.rcp.RCPUtil;
 
 
 /**

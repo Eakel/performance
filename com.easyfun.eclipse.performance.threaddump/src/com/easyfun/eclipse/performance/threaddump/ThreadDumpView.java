@@ -82,8 +82,8 @@ import com.easyfun.eclipse.performance.threaddump.parser.IThreadParser;
 import com.easyfun.eclipse.performance.threaddump.parser.ParserType;
 import com.easyfun.eclipse.performance.threaddump.parser.ThreadInfo;
 import com.easyfun.eclipse.performance.threaddump.parser.ThreadParserFactory;
-import com.easyfun.eclipse.uiutil.ColumnViewerSorter;
-import com.easyfun.eclipse.uiutil.RCPUtil;
+import com.easyfun.eclipse.rcp.ColumnViewerSorter;
+import com.easyfun.eclipse.rcp.RCPUtil;
 import com.easyfun.eclipse.util.IOUtil;
 
 /**

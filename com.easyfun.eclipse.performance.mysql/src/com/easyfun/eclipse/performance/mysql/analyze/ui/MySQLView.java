@@ -43,7 +43,7 @@ import com.easyfun.eclipse.performance.mysql.analyze.pref.MySQLJDBCPreferencePag
 import com.easyfun.eclipse.performance.mysql.analyze.pref.MySQLPrefUtil;
 import com.easyfun.eclipse.performance.mysql.analyze.pref.MySQLTableFilterPreferencePage;
 import com.easyfun.eclipse.performance.navigator.console.LogHelper;
-import com.easyfun.eclipse.uiutil.RCPUtil;
+import com.easyfun.eclipse.rcp.RCPUtil;
 import com.easyfun.eclipse.util.ConnectionModel;
 import com.easyfun.eclipse.util.StringUtil;
 import com.easyfun.eclipse.util.TimeUtil;

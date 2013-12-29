@@ -21,7 +21,7 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 
 import com.easyfun.eclipse.component.kv.MenuUtils;
-import com.easyfun.eclipse.uiutil.ColumnViewerSorter;
+import com.easyfun.eclipse.rcp.ColumnViewerSorter;
 
 /**
  * AWRTableViewer TableViewer

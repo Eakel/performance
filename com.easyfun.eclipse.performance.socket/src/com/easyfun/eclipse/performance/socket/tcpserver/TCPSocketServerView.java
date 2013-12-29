@@ -26,7 +26,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
 
 import com.easyfun.eclipse.performance.socket.common.SocketUtils;
-import com.easyfun.eclipse.uiutil.RCPUtil;
+import com.easyfun.eclipse.rcp.RCPUtil;
 import com.easyfun.eclipse.util.FileUtil;
 
 /**

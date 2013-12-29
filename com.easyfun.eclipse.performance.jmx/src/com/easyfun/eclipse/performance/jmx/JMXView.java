@@ -42,7 +42,7 @@ import com.easyfun.eclipse.component.tree2.TreeViewerFactory;
 import com.easyfun.eclipse.performance.jmx.model.DomainModel;
 import com.easyfun.eclipse.performance.jmx.model.MBeanModel;
 import com.easyfun.eclipse.performance.jmx.util.JBOSSUtils;
-import com.easyfun.eclipse.uiutil.RCPUtil;
+import com.easyfun.eclipse.rcp.RCPUtil;
 import com.easyfun.eclipse.util.StringUtil;
 
 /**

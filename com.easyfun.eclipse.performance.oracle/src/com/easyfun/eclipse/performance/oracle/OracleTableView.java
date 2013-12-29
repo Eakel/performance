@@ -43,7 +43,7 @@ import com.easyfun.eclipse.performance.navigator.console.LogHelper;
 import com.easyfun.eclipse.performance.oracle.preferences.OracleJDBCPreferencePage;
 import com.easyfun.eclipse.performance.oracle.preferences.OraclePrefUtil;
 import com.easyfun.eclipse.performance.oracle.preferences.OracleTableFilterPreferencePage;
-import com.easyfun.eclipse.uiutil.RCPUtil;
+import com.easyfun.eclipse.rcp.RCPUtil;
 import com.easyfun.eclipse.util.ConnectionModel;
 import com.easyfun.eclipse.util.StringUtil;
 import com.easyfun.eclipse.util.TimeUtil;

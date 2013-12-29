@@ -20,7 +20,7 @@ import org.eclipse.swt.widgets.Shell;
 
 import com.easyfun.eclipse.component.xml.XmlEditor;
 import com.easyfun.eclipse.performance.trace.model.AppTrace;
-import com.easyfun.eclipse.uiutil.RCPUtil;
+import com.easyfun.eclipse.rcp.RCPUtil;
 
 public class TraceXmlDialog extends TrayDialog {
 	
