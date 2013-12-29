@@ -10,7 +10,7 @@ import com.easyfun.eclipse.performance.PerformanceActivator;
 import com.easyfun.eclipse.performance.navigator.cfg.model.Item;
 import com.easyfun.eclipse.performance.navigator.cfg.model.ItemWrapper;
 import com.easyfun.eclipse.performance.navigator.ui.MainContentView;
-import com.easyfun.eclipse.uiutil.RCPUtil;
+import com.easyfun.eclipse.rcp.RCPUtil;
 
 /**
  * 打开主内容View

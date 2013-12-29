@@ -16,7 +16,7 @@ import org.eclipse.swt.widgets.Text;
 
 import com.easyfun.eclipse.performance.preferences.PreferenceConstants;
 import com.easyfun.eclipse.performance.preferences.PreferenceUtil;
-import com.easyfun.eclipse.uiutil.RCPUtil;
+import com.easyfun.eclipse.rcp.RCPUtil;
 
 /**
  * ¶ÁÈ¡FTPµÄDialog

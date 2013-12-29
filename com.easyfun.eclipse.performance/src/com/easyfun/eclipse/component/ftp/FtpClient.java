@@ -16,7 +16,7 @@ import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPSClient;
 
-import com.easyfun.eclipse.uiutil.ConcurrentCapacity;
+import com.easyfun.eclipse.rcp.ConcurrentCapacity;
 
 public class FtpClient {
 	private static transient Log log = LogFactory.getLog(FtpClient.class);
