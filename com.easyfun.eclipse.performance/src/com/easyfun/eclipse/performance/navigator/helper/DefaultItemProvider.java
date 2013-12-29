@@ -15,6 +15,7 @@ import com.easyfun.eclipse.performance.navigator.cfg.model.Folder;
 import com.easyfun.eclipse.performance.navigator.cfg.model.Item;
 import com.easyfun.eclipse.performance.navigator.cfg.model.ItemWrapper;
 import com.easyfun.eclipse.performance.navigator.cfg.model.Navigator;
+import com.easyfun.eclipse.performance.navigator.console.LogHelper;
 
 /**
  * 导航树助手，从配置config.xml获取数据
@@ -125,7 +126,7 @@ public class DefaultItemProvider{
 	    List<Item> itemList = new ArrayList<Item>();
 	    Set<String> itemKeysSet = new TreeSet<String>();
 	    for (int i = 0; i < elementConfigList.length; i++){
-	    	System.out.println("id: " + elementConfigList[i].getAttribute("id"));
+	    	LogHelper.debug(null, elementConfigList[i].getAttribute("id"));
 	    	if(itemKeysSet.contains(elementConfigList[i].getAttribute("id"))){
 	    		//重复ID不增加
 	    		continue;

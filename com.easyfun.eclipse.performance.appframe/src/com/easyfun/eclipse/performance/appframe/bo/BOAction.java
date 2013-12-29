@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
@@ -24,6 +26,7 @@ import org.eclipse.ui.ide.IDE;
 import com.easyfun.eclipse.performance.appframe.bo.editors.BOCommentEditor;
 import com.easyfun.eclipse.performance.appframe.bo.editors.StringEditorInput;
 import com.easyfun.eclipse.performance.appframe.bo.editors.StringStorage;
+import com.easyfun.eclipse.performance.navigator.console.LogHelper;
 import com.easyfun.eclipse.rcp.IDEHelper;
 import com.easyfun.eclipse.rcp.RCPUtil;
 
@@ -41,6 +44,8 @@ public class BOAction implements IObjectActionDelegate {
 	private IStructuredSelection selection;
 	
 	IWorkbenchPart part;
+	
+	private static final Log log = LogFactory.getLog(BOAction.class);
 	
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
 		part = targetPart;
@@ -74,7 +79,7 @@ public class BOAction implements IObjectActionDelegate {
 				if(tableName.startsWith("{") && tableName.endsWith("}")){
 					//TODO: 处理分表的情况 {CM_BUSI_LOG_DTL}，只给基表加注释
 					tableName = tableName.substring(1, tableName.length() -1);
-					System.out.println("分表：" + tableName);
+					LogHelper.debug(log, "分表：" + tableName);
 				}
 				if(StringUtils.isNotEmpty(dataSource)){
 					tableName = dataSource + "." + tableName;

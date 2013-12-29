@@ -15,13 +15,11 @@ public class TmpTest {
 	public static void main(String[] args) throws Exception{
 		File file = new File("D:\\1.gz");
 		GZIPInputStream stream = new GZIPInputStream(new FileInputStream(file));
-		System.out.println(stream);
 		List<String> readLines = IOUtils.readLines(stream);
 		StringBuffer sb = new StringBuffer();
 		for (String str : readLines) {
 			sb.append(str);
 		}
-		// System.out.println(readLines.get(0));
 
 		final Display display = new Display();
 		Shell shell = new Shell(display);

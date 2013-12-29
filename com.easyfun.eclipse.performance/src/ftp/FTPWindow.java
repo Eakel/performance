@@ -64,6 +64,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 import com.easyfun.eclipse.component.ftp.FTPBean;
+import com.easyfun.eclipse.performance.navigator.console.LogHelper;
 import com.easyfun.eclipse.rcp.RCPUtil;
 
 public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableViewer.ILocalTableListener, RemoteDirectoryBrowser.IRemoteTableListener{
@@ -279,7 +280,7 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 
 		dragSource.addDragListener(new DragSourceListener() {
 			public void dragStart(DragSourceEvent event) {
-				System.out.println("DND starts");
+				LogHelper.info(null,"DND starts");
 				// disallows DND if no remote file is selected.
 				IStructuredSelection selection = (IStructuredSelection) remoteDirTableViewer.getSelection();
 				FTPFile file = (FTPFile) selection.getFirstElement();

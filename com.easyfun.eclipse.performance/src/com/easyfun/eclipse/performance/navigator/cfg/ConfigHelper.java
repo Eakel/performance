@@ -8,6 +8,7 @@ import org.apache.commons.digester.Digester;
 import com.easyfun.eclipse.performance.navigator.cfg.model.Folder;
 import com.easyfun.eclipse.performance.navigator.cfg.model.Item;
 import com.easyfun.eclipse.performance.navigator.cfg.model.Navigator;
+import com.easyfun.eclipse.performance.navigator.console.LogHelper;
 
 
 /**
@@ -57,6 +58,6 @@ public class ConfigHelper {
 	
 	public static void main(String[] args) throws Exception{
 		Navigator navigator = getNavigator();
-		System.out.println(navigator);
+		LogHelper.info(null, navigator.toString());
 	}
 }

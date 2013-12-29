@@ -19,11 +19,9 @@ import com.easyfun.eclipse.performance.navigator.WelcomeView;
  */
 public class EasyFunPartListener implements IPartListener {
 	public void partActivated(IWorkbenchPart part) {
-//		System.out.println("partActivated " + part.getTitle());
 	}
 	
 	public void partBroughtToTop(IWorkbenchPart part) {
-//		System.out.println("partBroughtToTop " + part.getTitle());
 	}
 	
 	public void partClosed(IWorkbenchPart part) {
@@ -31,7 +29,6 @@ public class EasyFunPartListener implements IPartListener {
 		IViewReference[] iViewReferences = page.getViewReferences();
 		boolean isExist = false;	//是否有一个工具View打开
 		for (IViewReference viewReference : iViewReferences) {
-			IWorkbenchPart activePart = viewReference.getPart(false);
 			if(!EasyFunUtils.getUncontrolViews().contains(viewReference.getId())){
 				isExist = true;
 				break;
@@ -59,10 +56,8 @@ public class EasyFunPartListener implements IPartListener {
 	}
 	
 	public void partDeactivated(IWorkbenchPart part) {
-//		System.out.println("partDeactivated " + part.getTitle());
 	}
 	
 	public void partOpened(IWorkbenchPart part) {
-//		System.out.println("partOpened " + part.getTitle());
 	}
 }

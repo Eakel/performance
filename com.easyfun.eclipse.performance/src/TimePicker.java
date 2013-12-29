@@ -11,6 +11,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
+import com.easyfun.eclipse.performance.navigator.console.LogHelper;
+
 /**
  * 
  * @author linzhaoming
@@ -64,15 +66,15 @@ public class TimePicker extends Dialog {
 		ok.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
 		ok.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
-				System.out.println(" Calendar date selected (MM/DD/YYYY) = "
+				LogHelper.info(null," Calendar date selected (MM/DD/YYYY) = "
 						+ (calendar.getMonth() + 1) + " / " + calendar.getDay()
 						+ " / " + calendar.getYear());
-				System.out.println(" Date selected (MM/YYYY) = "
+				LogHelper.info(null," Date selected (MM/YYYY) = "
 						+ (date.getMonth() + 1) + " / " + date.getYear());
-				System.out.println(" Time selected (HH:MM) = "
+				LogHelper.info(null," Time selected (HH:MM) = "
 						+ time.getHours() + " : " + time.getMinutes());
 
-				System.out.println("(YYYY/MM/DD/HH:MM)" + calendar.getYear()
+				LogHelper.info(null,"(YYYY/MM/DD/HH:MM)" + calendar.getYear()
 						+ "/" + (calendar.getMonth() + 1 )
 						+ "/" + calendar.getDay() + "/" + time.getHours() + ":"
 						+ time.getMinutes());

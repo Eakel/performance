@@ -331,8 +331,7 @@ public class AWRView extends ViewPart {
 		}
 
 		// 写入数据并关闭文件
-		
-		System.out.println("写入文件时间: " + (System.currentTimeMillis() -begin)  + " ms");
+		LogHelper.info(log, "写入文件时间: " + (System.currentTimeMillis() -begin)  + " ms");
 	}
 	
 	private void init(){

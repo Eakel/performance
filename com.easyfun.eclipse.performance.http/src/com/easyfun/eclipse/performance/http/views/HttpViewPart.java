@@ -3,6 +3,8 @@ package com.easyfun.eclipse.performance.http.views;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.SWTError;
 import org.eclipse.swt.browser.Browser;
@@ -21,6 +23,7 @@ import org.eclipse.ui.part.ViewPart;
 
 import com.easyfun.eclipse.performance.http.model.interfaces.IEntityEnclosingMethod;
 import com.easyfun.eclipse.performance.http.model.interfaces.IHttpMethod;
+import com.easyfun.eclipse.performance.navigator.console.LogHelper;
 
 /**
  * The Http Client View Part.
@@ -45,6 +48,8 @@ public class HttpViewPart extends ViewPart implements PropertyChangeListener {
 	
 	private Composite responseComposite;
 	private Browser browser;
+	
+	private static final Log log = LogFactory.getLog(HttpViewPart.class);
 
 	public HttpViewPart() {
 	}
@@ -207,7 +212,7 @@ public class HttpViewPart extends ViewPart implements PropertyChangeListener {
 			browser = new Browser(comp2, SWT.H_SCROLL);
 			browser.setLayoutData(new GridData(GridData.FILL_BOTH));			
 		} catch (SWTError e) {
-			System.out.println("Could not instantiate Browser: ");
+			LogHelper.error(log, "Could not instantiate Browser: ");
 			e.printStackTrace();
 		} catch(Exception ex){
 			ex.printStackTrace();

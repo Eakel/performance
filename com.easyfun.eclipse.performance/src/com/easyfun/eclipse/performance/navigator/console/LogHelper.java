@@ -25,7 +25,11 @@ public class LogHelper {
 			public void run() {
 				String msg = "[" + dateFormat.format(new Date()) + " DEBUG] " + " " + message;
 				EasyFunConsole.getConsole().printToConsole(msg, null);
-				log.debug(msg);
+				if(log == null){
+					System.out.println(msg);
+				}else{
+					log.info(msg);
+				}
 			}
 
 		});
@@ -36,7 +40,11 @@ public class LogHelper {
 			public void run() {
 				String msg = "[" + dateFormat.format(new Date()) + " INFO] " + message;
 				EasyFunConsole.getConsole().printToConsole(msg, new Color(null, 0, 0, 255));
-				log.info(msg);
+				if(log == null){
+					System.out.println(msg);
+				}else{
+					log.info(msg);
+				}
 			}
 		});
 	}
@@ -46,7 +54,11 @@ public class LogHelper {
 			public void run() {
 				String msg = "[" + dateFormat.format(new Date()) + " DEGBUG] " + t.getMessage();
 				EasyFunConsole.getConsole().printToConsole(msg, new Color(null, 255, 0, 0));
-				log.error(t);
+				if (log == null) {
+					t.printStackTrace();
+				} else {
+					log.error(t);
+				}
 			}
 		});
 	}
@@ -60,10 +72,18 @@ public class LogHelper {
 					int line = Integer.parseInt(message.substring(message.indexOf(PerformanceActivator.LINE) + 5).trim());
 					EasyFunHyperLink hyperlink = new EasyFunHyperLink(msg, url, line - 1);
 					EasyFunConsole.getConsole().addLinkToConsole(hyperlink, new Color(null, 255, 0, 0));
-					log.error(msg);
+					if (log == null) {
+						System.err.println(msg);
+					} else {
+						log.error(msg);
+					}
 				} else {
 					EasyFunConsole.getConsole().printToConsole(msg, new Color(null, 255, 0, 0));
-					log.error(msg);
+					if (log == null) {
+						System.err.println(msg);
+					} else {
+						log.error(msg);
+					}
 				}
 			}
 		});
@@ -81,7 +101,11 @@ public class LogHelper {
 							int line = Integer.parseInt(message.substring(message.indexOf(PerformanceActivator.LINE) + 5).trim());
 							EasyFunHyperLink hyperlink = new EasyFunHyperLink(msg, url, line - 1);
 							EasyFunConsole.getConsole().addLinkToConsole(hyperlink, new Color(null, 255, 0, 0));
-							log.error(msg);
+							if (log == null) {
+								System.err.println(msg);
+							} else {
+								log.error(msg);
+							}
 						} else {
 							EasyFunConsole.getConsole().printToConsole(msg, new Color(null, 255, 0, 0));
 							log.error(msg);
