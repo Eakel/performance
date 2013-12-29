@@ -28,15 +28,15 @@ import com.easyfun.eclipse.component.ftp.FTPBean;
 public class FTPConnectionDialog extends Dialog {
 	private static final String DIALOG_SETTING_FILE = "ftp.connection.xml";
 	
-	private static final String KEY_TYPE = "TYPE";
+	private static final String FTP_TYPE_KEY = "TYPE";
 
-	private static final String KEY_HOST = "HOST";
+	private static final String FTP_HOST_KEY = "HOST";
 
-	private static final String KEY_PORT = "PORT";
+	private static final String FTP_PORT_KEY = "PORT";
 
-	private static final String KEY_USERNAME = "USER";
+	private static final String FTP_USERNAME_KEY = "USER";
 
-	private static final String KEY_PASSWORD = "PASSWORD";
+	private static final String FTP_PASSWORD_KEY = "PASSWORD";
 
 	private Text hostText;
 
@@ -118,10 +118,11 @@ public class FTPConnectionDialog extends Dialog {
 		passwordtext.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
 		try {
-			hostText.setText(dialogSettings.get(KEY_HOST));
-			portText.setText(dialogSettings.getInt(KEY_PORT) + "");
-			usernameText.setText(dialogSettings.get(KEY_USERNAME));
-			passwordtext.setText(dialogSettings.get(KEY_PASSWORD));
+			ftpTypeCombo.select(dialogSettings.getInt(FTP_TYPE_KEY));
+			hostText.setText(dialogSettings.get(FTP_HOST_KEY));
+			portText.setText(dialogSettings.getInt(FTP_PORT_KEY) + "");
+			usernameText.setText(dialogSettings.get(FTP_USERNAME_KEY));
+			passwordtext.setText(dialogSettings.get(FTP_PASSWORD_KEY));
 		} catch (Exception e) {
 			// ignore.
 		}
@@ -138,10 +139,12 @@ public class FTPConnectionDialog extends Dialog {
 			if (!new File(DIALOG_SETTING_FILE).exists()) {
 				new File(DIALOG_SETTING_FILE).createNewFile();
 			}
-			dialogSettings.put(KEY_HOST, hostText.getText().trim());
-			dialogSettings.put(KEY_PORT, Integer.parseInt(portText.getText().trim()));
-			dialogSettings.put(KEY_USERNAME, usernameText.getText().trim());
-			dialogSettings.put(KEY_PASSWORD, passwordtext.getText().trim());
+			
+			dialogSettings.put(FTP_TYPE_KEY, ftpTypeCombo.getSelectionIndex());
+			dialogSettings.put(FTP_HOST_KEY, hostText.getText().trim());
+			dialogSettings.put(FTP_PORT_KEY, Integer.parseInt(portText.getText().trim()));
+			dialogSettings.put(FTP_USERNAME_KEY, usernameText.getText().trim());
+			dialogSettings.put(FTP_PASSWORD_KEY, passwordtext.getText().trim());
 			dialogSettings.save(DIALOG_SETTING_FILE);
 		} catch (Exception e) {
 			e.printStackTrace();
