@@ -89,7 +89,7 @@ public class FtpClient {
 		boolean isAcquire = false;
 		try {
 			isAcquire = SEM.acquire();
-			List list = new ArrayList();
+			List<String> list = new ArrayList<String>();
 
 			FTPFile[] ftpFiles = this.client.listFiles(pathName);
 			for (int i = 0; i < ftpFiles.length; i++) {
@@ -139,7 +139,7 @@ public class FtpClient {
 		boolean isAcquire = false;
 		try {
 			isAcquire = SEM.acquire();
-			List list = new ArrayList();
+			List<String> list = new ArrayList<String>();
 
 			FTPFile[] ftpFiles = this.client.listFiles();
 			for (int i = 0; i < ftpFiles.length; i++) {
@@ -148,7 +148,7 @@ public class FtpClient {
 				}
 			}
 
-			return (String[]) list.toArray(new String[0]);
+			return list.toArray(new String[0]);
 		} finally {
 			if (isAcquire)
 				SEM.release();
@@ -187,7 +187,7 @@ public class FtpClient {
 		try {
 			isAcquire = SEM.acquire();
 
-			List list = new ArrayList();
+			List<String> list = new ArrayList<String>();
 
 			FTPFile[] ftpFiles = this.client.listFiles();
 
@@ -197,7 +197,7 @@ public class FtpClient {
 				}
 			}
 
-			return (String[]) (String[]) list.toArray(new String[0]);
+			return list.toArray(new String[0]);
 		} finally {
 			if (isAcquire)
 				SEM.release();
