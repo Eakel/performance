@@ -19,7 +19,8 @@ import com.easyfun.eclipse.performance.preferences.PreferenceUtil;
 import com.easyfun.eclipse.rcp.RCPUtil;
 
 /**
- * 目录
+ * 打开目录Composite
+ * 
  * @author linzhaoming
  *
  * 2013-4-6
