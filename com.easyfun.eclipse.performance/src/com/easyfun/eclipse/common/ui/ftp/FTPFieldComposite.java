@@ -1,6 +1,5 @@
 package com.easyfun.eclipse.common.ui.ftp;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +14,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 
-import com.easyfun.eclipse.common.ui.LayoutUtil;
+import com.easyfun.eclipse.common.ui.SWTUtil;
 import com.easyfun.eclipse.common.util.DialogUtils;
 import com.easyfun.eclipse.common.util.PreferenceUtil;
 import com.easyfun.eclipse.performance.preferences.PreferenceConstants;
@@ -41,7 +40,7 @@ public class FTPFieldComposite extends Composite{
 	
 	private void init(Composite ftpComposite){
 		ftpComposite.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-		ftpComposite.setLayout(LayoutUtil.getNoMarginLayout(2, false));
+		ftpComposite.setLayout(SWTUtil.getNoMarginLayout(2, false));
 
 		final Button ftpButton = new Button(ftpComposite, SWT.NONE);
 		GridData gridData = new GridData(SWT.LEFT, SWT.TOP, false, false);

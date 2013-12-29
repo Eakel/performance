@@ -1,6 +1,11 @@
 package com.easyfun.eclipse.common.ui;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.jface.bindings.keys.formatting.IKeyFormatter;
+import org.eclipse.jface.bindings.keys.formatting.KeyFormatterFactory;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.swt.SWT;
@@ -12,6 +17,7 @@ import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
@@ -20,6 +26,12 @@ import org.eclipse.swt.widgets.ScrollBar;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.browser.IWebBrowser;
+import org.eclipse.ui.browser.IWorkbenchBrowserSupport;
+import org.eclipse.ui.internal.Workbench;
+import org.eclipse.ui.internal.keys.WorkbenchKeyboard;
 
 /**
  * 
@@ -28,6 +40,7 @@ import org.eclipse.swt.widgets.Text;
  * @author linzhaoming
  * 
  */
+@SuppressWarnings("restriction")
 public class SWTUtil {
 	/**
 	 * Hide or show the vertical scroll bar based on the text height within this text control. <br>
@@ -183,6 +196,55 @@ public class SWTUtil {
 			int y = bounds.y + (bounds.height - rect.height) / 2;
 			shell.setLocation (x, y);
 		}
+	}
+	
+	/**
+	 * If the plugin org.eclipse.ui.browser is available, will open the inline browser in the editor area.
+	 * <p> Other will open the default browser.
+	 */
+	public static void openBrowser(String url){
+		try {
+			IWorkbenchBrowserSupport support = PlatformUI.getWorkbench().getBrowserSupport();
+			IWebBrowser browser = support.createBrowser(
+					IWorkbenchBrowserSupport.LOCATION_BAR | IWorkbenchBrowserSupport.NAVIGATION_BAR, "myid", "my name", "my tooltip");
+			browser.openURL(new URL(url));
+		} catch (PartInitException ex) {
+			ex.printStackTrace();
+		} catch (MalformedURLException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	public static void showKeyAssisShell(){
+		Workbench workbench=(Workbench)PlatformUI.getWorkbench();
+		WorkbenchKeyboard workbenchKeyboard=new WorkbenchKeyboard(workbench);
+		workbenchKeyboard.openMultiKeyAssistShell();
+	}
+	
+	public static void showKeyAssisShell(IKeyFormatter keyFormatter){
+		IKeyFormatter prevFormatter=KeyFormatterFactory.getDefault();
+		KeyFormatterFactory.setDefault(keyFormatter);
+		Workbench workbench=(Workbench)PlatformUI.getWorkbench();
+		WorkbenchKeyboard workbenchKeyboard=new WorkbenchKeyboard(workbench);
+		workbenchKeyboard.openMultiKeyAssistShell();
+		KeyFormatterFactory.setDefault(prevFormatter);
+	}
+	
+	/** 四个Margin都为0*/
+	public static GridLayout getNoMarginLayout(){
+		GridLayout layout = new GridLayout();
+		layout.marginLeft = 0;
+		layout.marginRight = 0;
+		layout.marginTop = 0;
+		layout.marginBottom = 0;
+		return layout;
+	}
+	
+	public static GridLayout getNoMarginLayout(int numColumns, boolean makeColumnsEqualWidth){
+		GridLayout layout = getNoMarginLayout();
+		layout.numColumns = numColumns;
+		layout.makeColumnsEqualWidth = makeColumnsEqualWidth;
+		return layout;
 	}
 	
 	public static void showMessage(Shell shell, String message) {

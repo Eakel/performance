@@ -38,7 +38,6 @@ import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.part.ViewPart;
 
 import com.easyfun.eclipse.common.ui.FtpClient;
-import com.easyfun.eclipse.common.ui.LayoutUtil;
 import com.easyfun.eclipse.common.ui.SWTUtil;
 import com.easyfun.eclipse.common.ui.file.DirectoryFieldComposite;
 import com.easyfun.eclipse.common.ui.file.FileFieldComposite;
@@ -98,22 +97,22 @@ public class TraceView extends ViewPart {
 	}
 
 	public void createPartControl(Composite parent) {
-		parent.setLayout(LayoutUtil.getNoMarginLayout());
+		parent.setLayout(SWTUtil.getNoMarginLayout());
 		parent.setLayoutData(new GridData(GridData.FILL_BOTH));
 		init(parent);
 	}
 	
 	private void init(Composite parent){
 		SashForm sup = new SashForm(parent, SWT.HORIZONTAL|SWT.SMOOTH);
-		sup.setLayout(LayoutUtil.getNoMarginLayout(2, false));
+		sup.setLayout(SWTUtil.getNoMarginLayout(2, false));
 		sup.setLayoutData(new GridData(GridData.FILL_BOTH));
 		
 		Composite c1 = new Composite(sup, SWT.NULL);
-		c1.setLayout(LayoutUtil.getNoMarginLayout(3, false));
+		c1.setLayout(SWTUtil.getNoMarginLayout(3, false));
 		c1.setLayoutData(new GridData());
 		
 		Composite c2 = new Composite(sup, SWT.NULL);
-		GridLayout layout = LayoutUtil.getNoMarginLayout();
+		GridLayout layout = SWTUtil.getNoMarginLayout();
 		layout.numColumns = 2;
 		c2.setLayout(layout);
 		c2.setLayoutData(new GridData(GridData.FILL_BOTH));
@@ -229,7 +228,7 @@ public class TraceView extends ViewPart {
 		GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
 		gridData.horizontalSpan = 3;
 		c1.setLayoutData(gridData);
-		c1.setLayout(LayoutUtil.getNoMarginLayout(2, false));
+		c1.setLayout(SWTUtil.getNoMarginLayout(2, false));
 		
 		Button searchButton = new Button(c1, SWT.NULL);
 		searchButton.setLayoutData(new GridData(SWT.RIGHT, SWT.TOP, false, false));

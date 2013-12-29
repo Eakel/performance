@@ -38,7 +38,6 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
 
-import com.easyfun.eclipse.common.ui.LayoutUtil;
 import com.easyfun.eclipse.common.ui.SWTUtil;
 import com.easyfun.eclipse.common.ui.tree2.TreeViewerFactory;
 import com.easyfun.eclipse.common.util.lang.StringUtil;
@@ -74,7 +73,7 @@ public class JMXView extends ViewPart {
 	}
 
 	public void createPartControl(Composite parent) {
-		parent.setLayout(LayoutUtil.getNoMarginLayout());
+		parent.setLayout(SWTUtil.getNoMarginLayout());
 		parent.setLayoutData(new GridData(GridData.FILL_BOTH));
 		init(parent);
 	}
@@ -82,7 +81,7 @@ public class JMXView extends ViewPart {
 	private void init(Composite parent){
 		Composite top = new Composite(parent, SWT.NULL);
 		top.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		top.setLayout(LayoutUtil.getNoMarginLayout(3, false));
+		top.setLayout(SWTUtil.getNoMarginLayout(3, false));
 		
 		final Button connButton = new Button(top, SWT.NULL);
 		connButton.setLayoutData(new GridData());
@@ -114,17 +113,17 @@ public class JMXView extends ViewPart {
 		
 		
 		SashForm sup = new SashForm(parent, SWT.HORIZONTAL|SWT.SMOOTH);
-		sup.setLayout(LayoutUtil.getNoMarginLayout());
+		sup.setLayout(SWTUtil.getNoMarginLayout());
 		sup.setLayoutData(new GridData(GridData.FILL_BOTH));
 		
 		Composite c1 = new Composite(sup, SWT.NULL);
-		c1.setLayout(LayoutUtil.getNoMarginLayout(2, false));
+		c1.setLayout(SWTUtil.getNoMarginLayout(2, false));
 		GridData gridData = new GridData();
 		gridData.widthHint = 150;
 		c1.setLayoutData(gridData);
 		
 		Composite c2 = new Composite(sup, SWT.NULL);
-		c2.setLayout(LayoutUtil.getNoMarginLayout());
+		c2.setLayout(SWTUtil.getNoMarginLayout());
 		c2.setLayoutData(new GridData(GridData.FILL_BOTH));
 		
 		sup.setWeights(new int[]{20,80});
@@ -149,7 +148,7 @@ public class JMXView extends ViewPart {
 		GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
 		gridData.horizontalSpan = 2;
 		filterComp.setLayoutData(gridData);
-		filterComp.setLayout(LayoutUtil.getNoMarginLayout(2, false));
+		filterComp.setLayout(SWTUtil.getNoMarginLayout(2, false));
 		
 		final Button filterButton = new Button(filterComp, SWT.NULL);
 		filterButton.setLayoutData(new GridData());

@@ -69,7 +69,7 @@ import org.eclipse.swt.widgets.ToolTip;
 import org.eclipse.ui.part.ViewPart;
 
 import com.easyfun.eclipse.common.ui.ColumnViewerSorter;
-import com.easyfun.eclipse.common.ui.LayoutUtil;
+import com.easyfun.eclipse.common.ui.SWTUtil;
 import com.easyfun.eclipse.common.ui.file.FileFieldComposite;
 import com.easyfun.eclipse.common.ui.ftp.FTPBean;
 import com.easyfun.eclipse.common.ui.ftp.FTPFieldComposite;
@@ -121,22 +121,22 @@ public class ThreadDumpView extends ViewPart {
 	}
 
 	public void createPartControl(Composite parent) {
-		parent.setLayout(LayoutUtil.getNoMarginLayout());
+		parent.setLayout(SWTUtil.getNoMarginLayout());
 		parent.setLayoutData(new GridData(GridData.FILL_BOTH));
 		init(parent);
 	}
 	
 	private void init(Composite parent){
 		SashForm sup = new SashForm(parent, SWT.HORIZONTAL|SWT.SMOOTH);
-		sup.setLayout(LayoutUtil.getNoMarginLayout(2, false));
+		sup.setLayout(SWTUtil.getNoMarginLayout(2, false));
 		sup.setLayoutData(new GridData(GridData.FILL_BOTH));
 		
 		Composite c1 = new Composite(sup, SWT.NULL);
-		c1.setLayout(LayoutUtil.getNoMarginLayout(2, false));
+		c1.setLayout(SWTUtil.getNoMarginLayout(2, false));
 		c1.setLayoutData(new GridData());
 		
 		Composite c2 = new Composite(sup, SWT.NULL);
-		c2.setLayout(LayoutUtil.getNoMarginLayout());
+		c2.setLayout(SWTUtil.getNoMarginLayout());
 		c2.setLayoutData(new GridData(GridData.FILL_BOTH));
 		
 		sup.setWeights(new int[]{20,80});

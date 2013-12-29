@@ -46,7 +46,6 @@ Bundle-ClassPath: lib/commons-beanutils-1.8.0.jar,
  lib/ojdbc14_10_2_0_4.jar,
  lib/mysql-connector-java-5.1.17.jar
 Export-Package: com.easyfun.eclipse.common.ui;uses:="com.easyfun.eclipse.common.ui.ftp,com.trilead.ssh2,org.apache.commons.net.ftp",
- com.easyfun.eclipse.common.ui.browser,
  com.easyfun.eclipse.common.ui.db,
  com.easyfun.eclipse.common.ui.dialog,
  com.easyfun.eclipse.common.ui.file;uses:="org.eclipse.swt.widgets",
