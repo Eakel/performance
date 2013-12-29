@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-import com.easyfun.eclipse.common.ui.ftp.FTPBean;
+import com.easyfun.eclipse.component.ftp.FTPBean;
 
 /**
  * 连接设定Diaglog

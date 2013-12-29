@@ -26,9 +26,9 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
-import com.easyfun.eclipse.common.ui.db.DBTypeEnum;
-import com.easyfun.eclipse.common.ui.db.DBUrlDialog;
-import com.easyfun.eclipse.common.ui.db.DBUrlBean;
+import com.easyfun.eclipse.component.db.DBTypeEnum;
+import com.easyfun.eclipse.component.db.DBUrlBean;
+import com.easyfun.eclipse.component.db.DBUrlDialog;
 
 /**
  * 

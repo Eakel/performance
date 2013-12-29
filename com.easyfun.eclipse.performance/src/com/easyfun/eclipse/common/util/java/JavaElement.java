@@ -18,7 +18,7 @@ import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.core.Signature;
 
-import com.easyfun.eclipse.common.ui.dialog.SafeMessageDialog;
+import com.easyfun.eclipse.component.dialog.SafeMessageDialog;
 
 
 /**
