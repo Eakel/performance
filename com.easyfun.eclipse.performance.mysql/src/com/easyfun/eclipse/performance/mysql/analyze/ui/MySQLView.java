@@ -43,11 +43,11 @@ import com.easyfun.eclipse.performance.mysql.analyze.pref.MySQLPrefUtil;
 import com.easyfun.eclipse.performance.mysql.analyze.pref.MySQLJDBCPreferencePage;
 import com.easyfun.eclipse.performance.mysql.analyze.pref.MySQLTableFilterPreferencePage;
 import com.easyfun.eclipse.performance.navigator.console.LogHelper;
+import com.easyfun.eclipse.uiutil.DialogUtils;
+import com.easyfun.eclipse.uiutil.SWTUtil;
 import com.easyfun.eclipse.util.ConnectionModel;
 import com.easyfun.eclipse.util.TimeUtil;
 import com.easyfun.eclipse.util.lang.StringUtil;
-import com.easyfun.eclipse.util.ui.DialogUtils;
-import com.easyfun.eclipse.util.ui.SWTUtil;
 
 public class MySQLView extends ViewPart {
 private static final String SCHEMES = "schemes";

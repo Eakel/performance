@@ -55,10 +55,10 @@ import com.easyfun.eclipse.performance.trace.model.TraceTypeEnum;
 import com.easyfun.eclipse.performance.trace.ui.TraceDialog;
 import com.easyfun.eclipse.performance.trace.ui.TraceFileTreeLabelProvider;
 import com.easyfun.eclipse.performance.trace.ui.TraceTreeContentProvider;
+import com.easyfun.eclipse.uiutil.DialogUtils;
+import com.easyfun.eclipse.uiutil.SWTUtil;
 import com.easyfun.eclipse.util.lang.StringUtil;
 import com.easyfun.eclipse.util.resource.FileUtil;
-import com.easyfun.eclipse.util.ui.DialogUtils;
-import com.easyfun.eclipse.util.ui.SWTUtil;
 import com.trilead.ssh2.SFTPv3DirectoryEntry;
 
 /**

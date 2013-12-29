@@ -43,11 +43,11 @@ import com.easyfun.eclipse.performance.navigator.console.LogHelper;
 import com.easyfun.eclipse.performance.oracle.preferences.OracleJDBCPreferencePage;
 import com.easyfun.eclipse.performance.oracle.preferences.OraclePrefUtil;
 import com.easyfun.eclipse.performance.oracle.preferences.OracleTableFilterPreferencePage;
+import com.easyfun.eclipse.uiutil.DialogUtils;
+import com.easyfun.eclipse.uiutil.SWTUtil;
 import com.easyfun.eclipse.util.ConnectionModel;
 import com.easyfun.eclipse.util.TimeUtil;
 import com.easyfun.eclipse.util.lang.StringUtil;
-import com.easyfun.eclipse.util.ui.DialogUtils;
-import com.easyfun.eclipse.util.ui.SWTUtil;
 
 /**
  * @author linzhaoming

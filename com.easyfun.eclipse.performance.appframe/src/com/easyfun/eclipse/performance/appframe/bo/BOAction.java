@@ -25,7 +25,7 @@ import org.eclipse.ui.ide.IDE;
 import com.easyfun.eclipse.performance.appframe.bo.editors.BOCommentEditor;
 import com.easyfun.eclipse.performance.appframe.bo.editors.StringEditorInput;
 import com.easyfun.eclipse.performance.appframe.bo.editors.StringStorage;
-import com.easyfun.eclipse.util.ui.SWTUtil;
+import com.easyfun.eclipse.uiutil.SWTUtil;
 
 /**
  * 获取BO文件的注释

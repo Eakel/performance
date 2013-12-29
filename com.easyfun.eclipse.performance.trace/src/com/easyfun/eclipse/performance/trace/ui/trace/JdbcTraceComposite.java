@@ -14,8 +14,8 @@ import com.easyfun.eclipse.performance.trace.model.AppTrace;
 import com.easyfun.eclipse.performance.trace.model.ITrace;
 import com.easyfun.eclipse.performance.trace.model.JdbcTrace;
 import com.easyfun.eclipse.performance.trace.ui.ITraceComposite;
+import com.easyfun.eclipse.uiutil.SQLSegmentLineStyleListener;
 import com.easyfun.eclipse.util.lang.StringUtil;
-import com.easyfun.eclipse.util.ui.SQLSegmentLineStyleListener;
 
 /**
  * չʾJdbcTrace

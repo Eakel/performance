@@ -29,7 +29,7 @@ import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
 
 import com.easyfun.eclipse.performance.jmx.model.MBeanModel;
-import com.easyfun.eclipse.util.ui.SWTUtil;
+import com.easyfun.eclipse.uiutil.SWTUtil;
 
 /**
  * FormPage for the tomcat services

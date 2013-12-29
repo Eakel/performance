@@ -29,10 +29,10 @@ import com.easyfun.eclipse.performance.awr.model.SnapShot;
 import com.easyfun.eclipse.performance.awr.preferences.AwrJDBCPreferencePage;
 import com.easyfun.eclipse.performance.awr.preferences.AwrPrefUtil;
 import com.easyfun.eclipse.performance.navigator.console.LogHelper;
+import com.easyfun.eclipse.uiutil.DialogUtils;
+import com.easyfun.eclipse.uiutil.SWTUtil;
 import com.easyfun.eclipse.util.ConnectionModel;
 import com.easyfun.eclipse.util.resource.FileUtil;
-import com.easyfun.eclipse.util.ui.DialogUtils;
-import com.easyfun.eclipse.util.ui.SWTUtil;
 
 /**
  * @author linzhaoming

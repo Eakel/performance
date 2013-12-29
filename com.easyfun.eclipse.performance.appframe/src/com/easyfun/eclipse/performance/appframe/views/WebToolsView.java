@@ -26,7 +26,7 @@ import com.easyfun.eclipse.performance.appframe.util.appf.AppFEncrypt;
 import com.easyfun.eclipse.performance.appframe.util.appf.K;
 import com.easyfun.eclipse.performance.appframe.util.appf.MD5;
 import com.easyfun.eclipse.performance.appframe.util.appf.RC2;
-import com.easyfun.eclipse.util.ui.SWTUtil;
+import com.easyfun.eclipse.uiutil.SWTUtil;
 
 /**
  * WebTools Views.

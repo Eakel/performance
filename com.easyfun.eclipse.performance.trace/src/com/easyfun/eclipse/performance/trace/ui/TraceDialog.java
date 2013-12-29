@@ -26,8 +26,8 @@ import org.eclipse.swt.widgets.Shell;
 import com.easyfun.eclipse.component.tree.TreeContentProvider;
 import com.easyfun.eclipse.performance.trace.model.AppTrace;
 import com.easyfun.eclipse.performance.trace.model.ITrace;
+import com.easyfun.eclipse.uiutil.SWTUtil;
 import com.easyfun.eclipse.util.lang.StringUtil;
-import com.easyfun.eclipse.util.ui.SWTUtil;
 
 
 /**
