@@ -7,10 +7,10 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
 
+import com.easyfun.eclipse.common.util.common.ImageConstants;
 import com.easyfun.eclipse.performance.PerformanceActivator;
 import com.easyfun.eclipse.performance.helper.EasyFunUtils;
 import com.easyfun.eclipse.performance.navigator.WelcomeView;
-import com.easyfun.eclipse.utils.common.ImageConstants;
 
 /**
  * 关闭所有的View

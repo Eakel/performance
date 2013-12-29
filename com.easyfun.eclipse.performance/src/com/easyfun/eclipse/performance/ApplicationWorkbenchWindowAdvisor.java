@@ -14,8 +14,8 @@ import org.eclipse.ui.application.IActionBarConfigurer;
 import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
 import org.eclipse.ui.application.WorkbenchWindowAdvisor;
 
+import com.easyfun.eclipse.common.ui.IDEHelper;
 import com.easyfun.eclipse.performance.helper.EasyFunPartListener;
-import com.easyfun.eclipse.utils.ui.IDEHelper;
 
 public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 

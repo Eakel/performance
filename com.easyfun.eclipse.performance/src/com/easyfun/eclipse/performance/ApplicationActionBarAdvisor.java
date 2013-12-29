@@ -14,11 +14,11 @@ import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
 import org.eclipse.ui.application.ActionBarAdvisor;
 import org.eclipse.ui.application.IActionBarConfigurer;
 
+import com.easyfun.eclipse.common.util.common.ImageConstants;
 import com.easyfun.eclipse.performance.helper.IConstants;
 import com.easyfun.eclipse.performance.navigator.action.CloseAllAction;
 import com.easyfun.eclipse.performance.navigator.action.OpenViewAction;
 import com.easyfun.eclipse.performance.navigator.action.ShowHideNavigatorViewAction;
-import com.easyfun.eclipse.utils.common.ImageConstants;
 
 /**
  * An action bar advisor is responsible for creating, adding, and disposing of the
