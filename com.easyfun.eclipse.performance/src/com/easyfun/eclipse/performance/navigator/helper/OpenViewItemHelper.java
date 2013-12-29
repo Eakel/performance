@@ -3,9 +3,9 @@ package com.easyfun.eclipse.performance.navigator.helper;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPage;
 
-import com.easyfun.eclipse.common.util.ui.DialogUtils;
 import com.easyfun.eclipse.performance.navigator.WelcomeView;
 import com.easyfun.eclipse.performance.navigator.cfg.model.Item;
+import com.easyfun.eclipse.util.ui.DialogUtils;
 
 /**
  * ´ò¿ªView ID

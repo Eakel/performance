@@ -14,10 +14,10 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 
-import com.easyfun.eclipse.common.util.ui.DialogUtils;
-import com.easyfun.eclipse.common.util.ui.PreferenceUtil;
-import com.easyfun.eclipse.common.util.ui.SWTUtil;
 import com.easyfun.eclipse.performance.preferences.PreferenceConstants;
+import com.easyfun.eclipse.util.ui.DialogUtils;
+import com.easyfun.eclipse.util.ui.PreferenceUtil;
+import com.easyfun.eclipse.util.ui.SWTUtil;
 
 /**
  * ¶ÁÈ¡FTPµÄDialog

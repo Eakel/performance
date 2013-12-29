@@ -27,8 +27,8 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.TableColumn;
 
-import com.easyfun.eclipse.common.util.TimeUtil;
-import com.easyfun.eclipse.common.util.ui.DialogUtils;
+import com.easyfun.eclipse.util.TimeUtil;
+import com.easyfun.eclipse.util.ui.DialogUtils;
 import com.lowagie.text.Cell;
 import com.lowagie.text.Document;
 import com.lowagie.text.Font;

@@ -3,8 +3,8 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
-import com.easyfun.eclipse.common.util.common.ImageConstants;
 import com.easyfun.eclipse.performance.PerformanceActivator;
+import com.easyfun.eclipse.util.common.ImageConstants;
 
 
 /**

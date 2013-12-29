@@ -7,9 +7,9 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
 
-import com.easyfun.eclipse.common.util.common.ImageConstants;
 import com.easyfun.eclipse.performance.PerformanceActivator;
 import com.easyfun.eclipse.performance.navigator.ItemNavigationView;
+import com.easyfun.eclipse.util.common.ImageConstants;
 
 /**
  * ´ò¿ª¹Ø±ÕNavigator

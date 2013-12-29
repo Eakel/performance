@@ -20,7 +20,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Table;
 
-import com.easyfun.eclipse.common.util.TimeUtil;
+import com.easyfun.eclipse.util.TimeUtil;
 
 /**
  * Ô¶³ÌÄ¿Â¼TableViewer

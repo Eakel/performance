@@ -10,10 +10,10 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 
-import com.easyfun.eclipse.common.util.ClassUtil;
 import com.easyfun.eclipse.performance.navigator.cfg.model.Item;
 import com.easyfun.eclipse.performance.navigator.cfg.model.ItemWrapper;
 import com.easyfun.eclipse.performance.navigator.helper.ItemComposite;
+import com.easyfun.eclipse.util.ClassUtil;
 
 /**
  * MainContentView View
