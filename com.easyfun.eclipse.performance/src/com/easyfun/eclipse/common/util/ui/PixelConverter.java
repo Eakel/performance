@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.common.ui;
+package com.easyfun.eclipse.common.util.ui;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.swt.graphics.Font;

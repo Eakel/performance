@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.common.ui;
+package com.easyfun.eclipse.common.ui.ftp;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -16,7 +16,7 @@ import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPSClient;
 
-import com.easyfun.eclipse.common.ui.ftp.FTPBean;
+import com.easyfun.eclipse.common.util.ui.ConcurrentCapacity;
 
 public class FtpClient {
 	private static transient Log log = LogFactory.getLog(FtpClient.class);

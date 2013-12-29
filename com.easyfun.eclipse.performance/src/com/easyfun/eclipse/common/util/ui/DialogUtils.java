@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.common.util;
+package com.easyfun.eclipse.common.util.ui;
 
 import java.io.File;
 

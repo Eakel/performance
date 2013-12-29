@@ -14,9 +14,9 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 
-import com.easyfun.eclipse.common.ui.SWTUtil;
-import com.easyfun.eclipse.common.util.DialogUtils;
-import com.easyfun.eclipse.common.util.PreferenceUtil;
+import com.easyfun.eclipse.common.util.ui.DialogUtils;
+import com.easyfun.eclipse.common.util.ui.PreferenceUtil;
+import com.easyfun.eclipse.common.util.ui.SWTUtil;
 import com.easyfun.eclipse.performance.preferences.PreferenceConstants;
 
 /**

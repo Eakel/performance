@@ -45,8 +45,7 @@ Bundle-ClassPath: lib/commons-beanutils-1.8.0.jar,
  lib/trilead-ssh2-build213.jar,
  lib/ojdbc14_10_2_0_4.jar,
  lib/mysql-connector-java-5.1.17.jar
-Export-Package: com.easyfun.eclipse.common.ui;uses:="com.easyfun.eclipse.common.ui.ftp,com.trilead.ssh2,org.apache.commons.net.ftp",
- com.easyfun.eclipse.common.ui.db,
+Export-Package: com.easyfun.eclipse.common.ui.db,
  com.easyfun.eclipse.common.ui.dialog,
  com.easyfun.eclipse.common.ui.file;uses:="org.eclipse.swt.widgets",
  com.easyfun.eclipse.common.ui.ftp;
@@ -74,6 +73,7 @@ Export-Package: com.easyfun.eclipse.common.ui;uses:="com.easyfun.eclipse.common.
  com.easyfun.eclipse.common.util.java,
  com.easyfun.eclipse.common.util.lang,
  com.easyfun.eclipse.common.util.resource,
+ com.easyfun.eclipse.common.util.ui,
  com.easyfun.eclipse.common.util.xml,
  com.easyfun.eclipse.performance;
   uses:="org.eclipse.jface.action,

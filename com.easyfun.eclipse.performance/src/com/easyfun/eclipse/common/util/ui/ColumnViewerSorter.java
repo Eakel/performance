@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.common.ui;
+package com.easyfun.eclipse.common.util.ui;
 
 import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;

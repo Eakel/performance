@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.common.ui;
+package com.easyfun.eclipse.common.util.xml;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -7,7 +7,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import com.easyfun.eclipse.common.util.xml.XmlConstants;
 
 /**
  * 

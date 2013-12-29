@@ -1,5 +1,5 @@
 
-package com.easyfun.eclipse.common.ui;
+package com.easyfun.eclipse.common.util.ui;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -20,8 +20,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
-import com.easyfun.eclipse.common.ui.ColumnViewerSorter;
 import com.easyfun.eclipse.common.util.TimeUtil;
+import com.easyfun.eclipse.common.util.ui.ColumnViewerSorter;
 
 /**
  * ±¾µØÄ¿Â¼TableViewer

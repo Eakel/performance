@@ -14,8 +14,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Text;
 
-import com.easyfun.eclipse.common.ui.SWTUtil;
-import com.easyfun.eclipse.common.util.PreferenceUtil;
+import com.easyfun.eclipse.common.util.ui.PreferenceUtil;
+import com.easyfun.eclipse.common.util.ui.SWTUtil;
 import com.easyfun.eclipse.performance.preferences.PreferenceConstants;
 
 /**

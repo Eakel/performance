@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.common.ui;
+package com.easyfun.eclipse.common.util.ui;
 
 import java.io.Serializable;
 import java.util.concurrent.Semaphore;

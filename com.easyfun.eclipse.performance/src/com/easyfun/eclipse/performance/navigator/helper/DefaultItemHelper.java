@@ -6,7 +6,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
-import com.easyfun.eclipse.common.util.DialogUtils;
+import com.easyfun.eclipse.common.util.ui.DialogUtils;
 import com.easyfun.eclipse.performance.PerformanceActivator;
 import com.easyfun.eclipse.performance.navigator.cfg.model.Item;
 import com.easyfun.eclipse.performance.navigator.cfg.model.ItemWrapper;

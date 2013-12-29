@@ -63,8 +63,8 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-import com.easyfun.eclipse.common.ui.SWTUtil;
 import com.easyfun.eclipse.common.ui.ftp.FTPBean;
+import com.easyfun.eclipse.common.util.ui.SWTUtil;
 
 public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableViewer.ILocalTableListener, RemoteDirectoryBrowser.IRemoteTableListener{
 	/** ×ó²àÄ¿Â¼±í¸ñ */
