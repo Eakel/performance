@@ -10,7 +10,7 @@ import javax.net.ssl.X509TrustManager;
 
 import org.eclipse.swt.widgets.Composite;
 
-import com.easyfun.eclipse.uiutil.DialogUtils;
+import com.easyfun.eclipse.uiutil.RCPUtil;
 
 
 /**
@@ -93,7 +93,7 @@ public class MyTrustManager implements X509TrustManager {
 				 }
 			 }
 
-			 boolean option = DialogUtils.showConfirm(parentComponent.getShell(),
+			 boolean option = RCPUtil.showConfirm(parentComponent.getShell(),
 				sb.toString(), "Certificate Confirmation");
 
 			 if(option==false) {

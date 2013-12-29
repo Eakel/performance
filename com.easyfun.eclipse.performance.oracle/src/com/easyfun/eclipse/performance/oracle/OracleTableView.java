@@ -43,11 +43,10 @@ import com.easyfun.eclipse.performance.navigator.console.LogHelper;
 import com.easyfun.eclipse.performance.oracle.preferences.OracleJDBCPreferencePage;
 import com.easyfun.eclipse.performance.oracle.preferences.OraclePrefUtil;
 import com.easyfun.eclipse.performance.oracle.preferences.OracleTableFilterPreferencePage;
-import com.easyfun.eclipse.uiutil.DialogUtils;
-import com.easyfun.eclipse.uiutil.SWTUtil;
+import com.easyfun.eclipse.uiutil.RCPUtil;
 import com.easyfun.eclipse.util.ConnectionModel;
+import com.easyfun.eclipse.util.StringUtil;
 import com.easyfun.eclipse.util.TimeUtil;
-import com.easyfun.eclipse.util.lang.StringUtil;
 
 /**
  * @author linzhaoming
@@ -100,7 +99,7 @@ public class OracleTableView extends ViewPart {
 					refreshTabByProp(tablePrefixProp);
 				} catch (Exception e1) {
 					e1.printStackTrace();
-					SWTUtil.showError(getShell(), e1.getMessage());
+					RCPUtil.showError(getShell(), e1.getMessage());
 				}
 			}
 			
@@ -122,7 +121,7 @@ public class OracleTableView extends ViewPart {
 							} catch (Exception ex) {
 								ex.printStackTrace();
 								LogHelper.error("获取表格信息失败", ex);
-								SWTUtil.showError(getShell(), "获取表格信息失败\n" + ex.getMessage());
+								RCPUtil.showError(getShell(), "获取表格信息失败\n" + ex.getMessage());
 							}finally{
 								anaButton.setEnabled(true);
 							}
@@ -157,7 +156,7 @@ public class OracleTableView extends ViewPart {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 			LogHelper.error(e1);
-			SWTUtil.showError(getShell(), e1.getMessage());
+			RCPUtil.showError(getShell(), e1.getMessage());
 		}
 	}
 
@@ -378,7 +377,7 @@ public class OracleTableView extends ViewPart {
 	 */
 	private void exportUIResult(TabFolder tabFolder) throws Exception{
 		String fileName = "MySQL表格分析" + TimeUtil.getYYYYMMDDHHMMSS(new Date()) + ".xls";
-		File file = DialogUtils.openSaveDialog(getShell(), new String[]{"*.xls", "*.*"}, fileName);
+		File file = RCPUtil.openSaveDialog(getShell(), new String[]{"*.xls", "*.*"}, fileName);
 		if(file == null){
 			return;
 		}

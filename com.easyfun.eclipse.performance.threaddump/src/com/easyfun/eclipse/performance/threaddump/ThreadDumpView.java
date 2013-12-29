@@ -83,9 +83,8 @@ import com.easyfun.eclipse.performance.threaddump.parser.ParserType;
 import com.easyfun.eclipse.performance.threaddump.parser.ThreadInfo;
 import com.easyfun.eclipse.performance.threaddump.parser.ThreadParserFactory;
 import com.easyfun.eclipse.uiutil.ColumnViewerSorter;
-import com.easyfun.eclipse.uiutil.DialogUtils;
-import com.easyfun.eclipse.uiutil.SWTUtil;
-import com.easyfun.eclipse.util.lang.IOUtil;
+import com.easyfun.eclipse.uiutil.RCPUtil;
+import com.easyfun.eclipse.util.IOUtil;
 
 /**
  * @author linzhaoming
@@ -121,22 +120,22 @@ public class ThreadDumpView extends ViewPart {
 	}
 
 	public void createPartControl(Composite parent) {
-		parent.setLayout(SWTUtil.getNoMarginLayout());
+		parent.setLayout(RCPUtil.getNoMarginLayout());
 		parent.setLayoutData(new GridData(GridData.FILL_BOTH));
 		init(parent);
 	}
 	
 	private void init(Composite parent){
 		SashForm sup = new SashForm(parent, SWT.HORIZONTAL|SWT.SMOOTH);
-		sup.setLayout(SWTUtil.getNoMarginLayout(2, false));
+		sup.setLayout(RCPUtil.getNoMarginLayout(2, false));
 		sup.setLayoutData(new GridData(GridData.FILL_BOTH));
 		
 		Composite c1 = new Composite(sup, SWT.NULL);
-		c1.setLayout(SWTUtil.getNoMarginLayout(2, false));
+		c1.setLayout(RCPUtil.getNoMarginLayout(2, false));
 		c1.setLayoutData(new GridData());
 		
 		Composite c2 = new Composite(sup, SWT.NULL);
-		c2.setLayout(SWTUtil.getNoMarginLayout());
+		c2.setLayout(RCPUtil.getNoMarginLayout());
 		c2.setLayoutData(new GridData(GridData.FILL_BOTH));
 		
 		sup.setWeights(new int[]{20,80});
@@ -214,7 +213,7 @@ public class ThreadDumpView extends ViewPart {
 					is = new FileInputStream(file);
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
-					DialogUtils.showError(getShell(), "文件名不存在" + e.getMessage());
+					RCPUtil.showError(getShell(), "文件名不存在" + e.getMessage());
 					return;
 				}
 				updateByInputStream(is, fileNode.getParserType());
@@ -422,7 +421,7 @@ public class ThreadDumpView extends ViewPart {
 					if(item.getType().equals(ThreadFileEnum.FILE)){
 						fileComposite.openFileDialog();
 					}else{
-						DialogUtils.showMsg(getShell(), "非文件格式暂时还不支持");
+						RCPUtil.showMessage(getShell(), "非文件格式暂时还不支持");
 					}
 				}
 			}
@@ -505,7 +504,7 @@ public class ThreadDumpView extends ViewPart {
 		menuItem.setText("导出为文件...");
 		menuItem.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
-				File file = DialogUtils.openSaveDialog(getShell(), new String[]{"*.txt", "*.*"}, "threadDump.txt");
+				File file = RCPUtil.openSaveDialog(getShell(), new String[]{"*.txt", "*.*"}, "threadDump.txt");
 				if(file == null){
 					return;
 				}
@@ -513,7 +512,7 @@ public class ThreadDumpView extends ViewPart {
 					IOUtil.copy(new ByteArrayInputStream(pureThreadDump.getDocument().get().getBytes()), new FileOutputStream(file));
 				} catch (Exception e1) {
 					e1.printStackTrace();
-					DialogUtils.showError(getShell(), "文件保存错误");
+					RCPUtil.showError(getShell(), "文件保存错误");
 				}
 			}
 		});
@@ -569,7 +568,7 @@ public class ThreadDumpView extends ViewPart {
 			is = new FileInputStream(file);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-			DialogUtils.showError(getShell(), "文件名不存在" + e.getMessage());
+			RCPUtil.showError(getShell(), "文件名不存在" + e.getMessage());
 			return;
 		}
 		updateByInputStream(is, parserType);
@@ -608,7 +607,7 @@ public class ThreadDumpView extends ViewPart {
 				IOUtil.copy(is, sw);	
 			}
 		} catch (IOException e) {
-			DialogUtils.showError(getShell(), "读取内容错误" + e.getMessage());
+			RCPUtil.showError(getShell(), "读取内容错误" + e.getMessage());
 			e.printStackTrace();
 		}
 		String content = sw.toString();

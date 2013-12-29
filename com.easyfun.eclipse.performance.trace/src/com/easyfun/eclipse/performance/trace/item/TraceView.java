@@ -55,10 +55,9 @@ import com.easyfun.eclipse.performance.trace.model.TraceTypeEnum;
 import com.easyfun.eclipse.performance.trace.ui.TraceDialog;
 import com.easyfun.eclipse.performance.trace.ui.TraceFileTreeLabelProvider;
 import com.easyfun.eclipse.performance.trace.ui.TraceTreeContentProvider;
-import com.easyfun.eclipse.uiutil.DialogUtils;
-import com.easyfun.eclipse.uiutil.SWTUtil;
-import com.easyfun.eclipse.util.lang.StringUtil;
-import com.easyfun.eclipse.util.resource.FileUtil;
+import com.easyfun.eclipse.uiutil.RCPUtil;
+import com.easyfun.eclipse.util.FileUtil;
+import com.easyfun.eclipse.util.StringUtil;
 import com.trilead.ssh2.SFTPv3DirectoryEntry;
 
 /**
@@ -97,22 +96,22 @@ public class TraceView extends ViewPart {
 	}
 
 	public void createPartControl(Composite parent) {
-		parent.setLayout(SWTUtil.getNoMarginLayout());
+		parent.setLayout(RCPUtil.getNoMarginLayout());
 		parent.setLayoutData(new GridData(GridData.FILL_BOTH));
 		init(parent);
 	}
 	
 	private void init(Composite parent){
 		SashForm sup = new SashForm(parent, SWT.HORIZONTAL|SWT.SMOOTH);
-		sup.setLayout(SWTUtil.getNoMarginLayout(2, false));
+		sup.setLayout(RCPUtil.getNoMarginLayout(2, false));
 		sup.setLayoutData(new GridData(GridData.FILL_BOTH));
 		
 		Composite c1 = new Composite(sup, SWT.NULL);
-		c1.setLayout(SWTUtil.getNoMarginLayout(3, false));
+		c1.setLayout(RCPUtil.getNoMarginLayout(3, false));
 		c1.setLayoutData(new GridData());
 		
 		Composite c2 = new Composite(sup, SWT.NULL);
-		GridLayout layout = SWTUtil.getNoMarginLayout();
+		GridLayout layout = RCPUtil.getNoMarginLayout();
 		layout.numColumns = 2;
 		c2.setLayout(layout);
 		c2.setLayoutData(new GridData(GridData.FILL_BOTH));
@@ -123,7 +122,7 @@ public class TraceView extends ViewPart {
 			createLeftComposite(c1);
 		} catch (Exception e) {
 			e.printStackTrace();
-			SWTUtil.showError(getShell(), e.getMessage());
+			RCPUtil.showError(getShell(), e.getMessage());
 		}
 		
 		Label label = new Label(c2, SWT.NULL);
@@ -198,7 +197,7 @@ public class TraceView extends ViewPart {
 					addFile(file);
 				} catch (Exception e) {
 					e.printStackTrace();
-					SWTUtil.showError(getShell(), e.getMessage());
+					RCPUtil.showError(getShell(), e.getMessage());
 				}
 			}
 		});
@@ -228,7 +227,7 @@ public class TraceView extends ViewPart {
 		GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
 		gridData.horizontalSpan = 3;
 		c1.setLayoutData(gridData);
-		c1.setLayout(SWTUtil.getNoMarginLayout(2, false));
+		c1.setLayout(RCPUtil.getNoMarginLayout(2, false));
 		
 		Button searchButton = new Button(c1, SWT.NULL);
 		searchButton.setLayoutData(new GridData(SWT.RIGHT, SWT.TOP, false, false));
@@ -284,7 +283,7 @@ public class TraceView extends ViewPart {
 						dia.open();
 					} catch (Exception e) {
 						e.printStackTrace();
-						DialogUtils.showError(getShell(), "打开Trace文件出现错误:" + e.getMessage());
+						RCPUtil.showError(getShell(), "打开Trace文件出现错误:" + e.getMessage());
 						return;
 					}
 				} else if(treeNode.getType() == TraceTreeEnum.NODE_FTP){
@@ -328,7 +327,7 @@ public class TraceView extends ViewPart {
 								updateUIByAppTrace(treeNode.getAppTrace());
 							} catch (Exception e) {
 								e.printStackTrace();
-								SWTUtil.showError(getShell(), e.getMessage());
+								RCPUtil.showError(getShell(), e.getMessage());
 							}
 						}else if(treeNode.getType() == TraceTreeEnum.NODE_FTP){
 							try {
@@ -341,7 +340,7 @@ public class TraceView extends ViewPart {
 								}
 							} catch (Exception e) {
 								e.printStackTrace();
-								SWTUtil.showError(getShell(), e.getMessage());
+								RCPUtil.showError(getShell(), e.getMessage());
 							}
 						}
 					}
@@ -393,7 +392,7 @@ public class TraceView extends ViewPart {
 							if (dir.getType().equals(TraceTreeEnum.DIR_FILE)) {
 								fileComposite.openFileDialog();
 							} else {
-								DialogUtils.showMsg(getShell(), "不支持非文件格式");
+								RCPUtil.showMessage(getShell(), "不支持非文件格式");
 							}
 						}
 					}
@@ -410,7 +409,7 @@ public class TraceView extends ViewPart {
 								if (dir.getType().equals(TraceTreeEnum.DIR_DIR)) {
 									dirComposite.openDirDialog();
 								} else {
-									DialogUtils.showMsg(getShell(), "不支持非目录格式");
+									RCPUtil.showMessage(getShell(), "不支持非目录格式");
 								}
 							}
 						} catch (Exception e1) {
@@ -430,7 +429,7 @@ public class TraceView extends ViewPart {
 							if (dir.getType().equals(TraceTreeEnum.DIR_FTP)) {
 								ftpComposite.openFTPDialog();
 							} else {
-								DialogUtils.showMsg(getShell(), "不支持非目录格式");
+								RCPUtil.showMessage(getShell(), "不支持非目录格式");
 							}
 						}
 					}
@@ -446,7 +445,7 @@ public class TraceView extends ViewPart {
 							if (dir.getType().equals(TraceTreeEnum.DIR_FTP)) {
 								ftpComposite.openFTPDialog();
 							} else {
-								DialogUtils.showMsg(getShell(), "不支持非目录格式");
+								RCPUtil.showMessage(getShell(), "不支持非目录格式");
 							}
 						}
 					}
@@ -464,7 +463,7 @@ public class TraceView extends ViewPart {
 							addFile(fileNode.getNodeFile());
 						} catch (Exception e1) {
 							e1.printStackTrace();
-							SWTUtil.showError(getShell(), e1.getMessage());
+							RCPUtil.showError(getShell(), e1.getMessage());
 						}
 					}else if(ele instanceof DirTraceDirectory){
 						DirTraceDirectory dir = (DirTraceDirectory)ele;
@@ -635,7 +634,7 @@ public class TraceView extends ViewPart {
 								updateUIByAppTrace(null);
 							} catch (Exception e1) {
 								e1.printStackTrace();
-								SWTUtil.showError(getShell(), e1.getMessage());
+								RCPUtil.showError(getShell(), e1.getMessage());
 							}
 						}
 					}
@@ -661,7 +660,7 @@ public class TraceView extends ViewPart {
 			updateUIByAppTrace(appTrace);
 		} catch (Exception e) {
 			e.printStackTrace();
-			SWTUtil.showError(getShell(), "Trace文件解析错误:\n" + e.getMessage());
+			RCPUtil.showError(getShell(), "Trace文件解析错误:\n" + e.getMessage());
 			return;
 		}
 		
@@ -683,7 +682,7 @@ public class TraceView extends ViewPart {
 			}			
 		} catch (Exception e) {
 			e.printStackTrace();
-			SWTUtil.showError(getShell(), e.getMessage());
+			RCPUtil.showError(getShell(), e.getMessage());
 		}
 	}
 	
@@ -737,7 +736,7 @@ public class TraceView extends ViewPart {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			SWTUtil.showError(getShell(), e.getMessage());
+			RCPUtil.showError(getShell(), e.getMessage());
 		}
 	}
 	
@@ -819,7 +818,7 @@ public class TraceView extends ViewPart {
 		List<TraceNode> children = dir.getRealChildren();
 		// FTP先初始化所有Trace文件
 		if (dir.isInitAll()==false && children.size() > 0) {
-			boolean isOK = SWTUtil.showQuestion(shell, "执行该操作，需要先解析FTP目录下所有的Trace文件，请确认是否操作?");
+			boolean isOK = RCPUtil.showConfirm(shell, "执行该操作，需要先解析FTP目录下所有的Trace文件，请确认是否操作?");
 			if(isOK == false){
 				return false;
 			}

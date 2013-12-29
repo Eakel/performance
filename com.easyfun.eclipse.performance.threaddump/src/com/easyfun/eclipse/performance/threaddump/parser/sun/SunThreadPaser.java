@@ -12,7 +12,7 @@ import com.easyfun.eclipse.performance.threaddump.parser.AbstractThreadParser;
 import com.easyfun.eclipse.performance.threaddump.parser.FilterWrapper;
 import com.easyfun.eclipse.performance.threaddump.parser.IThreadState;
 import com.easyfun.eclipse.performance.threaddump.parser.ThreadInfo;
-import com.easyfun.eclipse.util.lang.StringUtil;
+import com.easyfun.eclipse.util.StringUtil;
 
 /**
  * ½âÎöWebLogicµÄThreadDump

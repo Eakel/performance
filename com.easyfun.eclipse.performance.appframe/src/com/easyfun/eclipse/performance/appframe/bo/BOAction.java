@@ -25,7 +25,7 @@ import org.eclipse.ui.ide.IDE;
 import com.easyfun.eclipse.performance.appframe.bo.editors.BOCommentEditor;
 import com.easyfun.eclipse.performance.appframe.bo.editors.StringEditorInput;
 import com.easyfun.eclipse.performance.appframe.bo.editors.StringStorage;
-import com.easyfun.eclipse.uiutil.SWTUtil;
+import com.easyfun.eclipse.uiutil.RCPUtil;
 
 /**
  * 获取BO文件的注释
@@ -110,7 +110,7 @@ public class BOAction implements IObjectActionDelegate {
 			}
 		} catch (CoreException e) {
 			e.printStackTrace();
-			SWTUtil.showError(shell, "处理出错:" + e.getMessage());
+			RCPUtil.showError(shell, "处理出错:" + e.getMessage());
 		}
 		
 	}

@@ -42,8 +42,8 @@ import com.easyfun.eclipse.component.tree2.TreeViewerFactory;
 import com.easyfun.eclipse.performance.jmx.model.DomainModel;
 import com.easyfun.eclipse.performance.jmx.model.MBeanModel;
 import com.easyfun.eclipse.performance.jmx.util.JBOSSUtils;
-import com.easyfun.eclipse.uiutil.SWTUtil;
-import com.easyfun.eclipse.util.lang.StringUtil;
+import com.easyfun.eclipse.uiutil.RCPUtil;
+import com.easyfun.eclipse.util.StringUtil;
 
 /**
  * @author linzhaoming
@@ -73,7 +73,7 @@ public class JMXView extends ViewPart {
 	}
 
 	public void createPartControl(Composite parent) {
-		parent.setLayout(SWTUtil.getNoMarginLayout());
+		parent.setLayout(RCPUtil.getNoMarginLayout());
 		parent.setLayoutData(new GridData(GridData.FILL_BOTH));
 		init(parent);
 	}
@@ -81,7 +81,7 @@ public class JMXView extends ViewPart {
 	private void init(Composite parent){
 		Composite top = new Composite(parent, SWT.NULL);
 		top.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		top.setLayout(SWTUtil.getNoMarginLayout(3, false));
+		top.setLayout(RCPUtil.getNoMarginLayout(3, false));
 		
 		final Button connButton = new Button(top, SWT.NULL);
 		connButton.setLayoutData(new GridData());
@@ -113,17 +113,17 @@ public class JMXView extends ViewPart {
 		
 		
 		SashForm sup = new SashForm(parent, SWT.HORIZONTAL|SWT.SMOOTH);
-		sup.setLayout(SWTUtil.getNoMarginLayout());
+		sup.setLayout(RCPUtil.getNoMarginLayout());
 		sup.setLayoutData(new GridData(GridData.FILL_BOTH));
 		
 		Composite c1 = new Composite(sup, SWT.NULL);
-		c1.setLayout(SWTUtil.getNoMarginLayout(2, false));
+		c1.setLayout(RCPUtil.getNoMarginLayout(2, false));
 		GridData gridData = new GridData();
 		gridData.widthHint = 150;
 		c1.setLayoutData(gridData);
 		
 		Composite c2 = new Composite(sup, SWT.NULL);
-		c2.setLayout(SWTUtil.getNoMarginLayout());
+		c2.setLayout(RCPUtil.getNoMarginLayout());
 		c2.setLayoutData(new GridData(GridData.FILL_BOTH));
 		
 		sup.setWeights(new int[]{20,80});
@@ -148,7 +148,7 @@ public class JMXView extends ViewPart {
 		GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
 		gridData.horizontalSpan = 2;
 		filterComp.setLayoutData(gridData);
-		filterComp.setLayout(SWTUtil.getNoMarginLayout(2, false));
+		filterComp.setLayout(RCPUtil.getNoMarginLayout(2, false));
 		
 		final Button filterButton = new Button(filterComp, SWT.NULL);
 		filterButton.setLayoutData(new GridData());
@@ -156,7 +156,7 @@ public class JMXView extends ViewPart {
 		filterButton.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
 				//处理过滤
-				SWTUtil.showMessage(getShell(), "TODO:");
+				RCPUtil.showMessage(getShell(), "TODO:");
 			}
 		});
 		
@@ -211,7 +211,7 @@ public class JMXView extends ViewPart {
 		jmx_domainLabel = new Label(composite, SWT.NULL);
 		jmx_domainLabel.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		jmx_domainLabel.setText("");
-		SWTUtil.setBold(jmx_domainLabel);
+		RCPUtil.setBold(jmx_domainLabel);
 		
 		label = new Label(composite, SWT.NULL);
 		label.setLayoutData(new GridData());
@@ -220,7 +220,7 @@ public class JMXView extends ViewPart {
 		jmx_displayNameModel = new Label(composite, SWT.NULL);
 		jmx_displayNameModel.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		jmx_displayNameModel.setText("");
-		SWTUtil.setBold(jmx_displayNameModel);
+		RCPUtil.setBold(jmx_displayNameModel);
 		
 		label = new Label(composite, SWT.NULL);
 		label.setLayoutData(new GridData());
@@ -229,7 +229,7 @@ public class JMXView extends ViewPart {
 		jmxClassNamelabel = new Label(composite, SWT.NULL);
 		jmxClassNamelabel.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		jmxClassNamelabel.setText("");
-		SWTUtil.setBold(jmxClassNamelabel);
+		RCPUtil.setBold(jmxClassNamelabel);
 		
 		
 		attrsTable = new Table(composite, SWT.BORDER|SWT.FULL_SELECTION);
@@ -277,7 +277,7 @@ public class JMXView extends ViewPart {
 		Label label = new Label(composite, SWT.NULL);
 		label.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		label.setText("参数列表");
-		SWTUtil.setBold(label);
+		RCPUtil.setBold(label);
 		
 		paraTable = new Table(composite, SWT.BORDER|SWT.FULL_SELECTION);
 		gridData = new GridData(GridData.FILL_HORIZONTAL);
@@ -442,7 +442,7 @@ public class JMXView extends ViewPart {
 	private void processConnect() {
 		String url = urlText.getText().trim();
 		if(StringUtil.isEmpty(url)){
-			SWTUtil.showError(getShell(), "URL地址不能为空");
+			RCPUtil.showError(getShell(), "URL地址不能为空");
 			urlText.setFocus();
 			return;
 		}
@@ -453,7 +453,7 @@ public class JMXView extends ViewPart {
 			treeViewer.setColumnProperties(new String[]{"a", "b"});
 		} catch (Exception e) {
 			e.printStackTrace();
-			SWTUtil.showError(getShell(), "连接JMX出现错误：" + e.getMessage());
+			RCPUtil.showError(getShell(), "连接JMX出现错误：" + e.getMessage());
 			treeViewer.setInput(null);
 			urlText.setFocus();
 		}

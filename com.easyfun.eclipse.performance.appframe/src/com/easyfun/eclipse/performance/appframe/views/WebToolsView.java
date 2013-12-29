@@ -26,7 +26,7 @@ import com.easyfun.eclipse.performance.appframe.util.appf.AppFEncrypt;
 import com.easyfun.eclipse.performance.appframe.util.appf.K;
 import com.easyfun.eclipse.performance.appframe.util.appf.MD5;
 import com.easyfun.eclipse.performance.appframe.util.appf.RC2;
-import com.easyfun.eclipse.uiutil.SWTUtil;
+import com.easyfun.eclipse.uiutil.RCPUtil;
 
 /**
  * WebTools Views.
@@ -674,7 +674,7 @@ public class WebToolsView extends ViewPart {
 						int blue = Integer.parseInt(colorStr.substring(4, 6), 16);
 						rgb = new RGB(red, green, blue);
 					} catch (NumberFormatException ex) {
-						SWTUtil.showMessage(getSite().getShell(), "Format is not allowed" + ex.getMessage());
+						RCPUtil.showMessage(getSite().getShell(), "Format is not allowed" + ex.getMessage());
 					}
 				} else if (colorStr.length() == 3) {
 					try {
@@ -683,10 +683,10 @@ public class WebToolsView extends ViewPart {
 						int blue = Integer.parseInt(colorStr.substring(2, 3), 16);
 						rgb = new RGB(red, green, blue);
 					} catch (NumberFormatException ex) {
-						SWTUtil.showMessage(getSite().getShell(), "Format is not allowed");
+						RCPUtil.showMessage(getSite().getShell(), "Format is not allowed");
 					}
 				} else {
-					SWTUtil.showMessage(getSite().getShell(), "Format is not allowed, number is not correct.");	
+					RCPUtil.showMessage(getSite().getShell(), "Format is not allowed, number is not correct.");	
 					return;
 				}
 

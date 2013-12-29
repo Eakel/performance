@@ -14,8 +14,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-import com.easyfun.eclipse.uiutil.DialogUtils;
-import com.easyfun.eclipse.util.lang.StringUtil;
+import com.easyfun.eclipse.uiutil.RCPUtil;
+import com.easyfun.eclipse.util.StringUtil;
 
 /**
  * Dialog for SnapId input
@@ -99,12 +99,12 @@ public class SnapIdDialog extends Dialog {
 	
 	private boolean checkUI(){
 		if(checkTextField(this.beginIdText) == false){
-			DialogUtils.showError(getShell(), "主机不能为空");
+			RCPUtil.showError(getShell(), "主机不能为空");
 			return false;
 		}
 		
 		if(checkTextField(this.endIdText) == false){
-			DialogUtils.showError(getShell(), "端口不能为空");
+			RCPUtil.showError(getShell(), "端口不能为空");
 			return false;
 		}
 		

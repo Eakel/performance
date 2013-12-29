@@ -20,7 +20,7 @@ import org.eclipse.swt.widgets.Shell;
 
 import com.easyfun.eclipse.component.xml.XmlEditor;
 import com.easyfun.eclipse.performance.trace.model.AppTrace;
-import com.easyfun.eclipse.uiutil.DialogUtils;
+import com.easyfun.eclipse.uiutil.RCPUtil;
 
 public class TraceXmlDialog extends TrayDialog {
 	
@@ -75,7 +75,7 @@ public class TraceXmlDialog extends TrayDialog {
 		b3.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
 				String content = rootTrace.getTraceContent(false);
-				File file = DialogUtils.openSaveDialog(b3.getShell(), new String[]{"*.trc", "*.*"}, rootTrace.getUiDesc().getFileName());
+				File file = RCPUtil.openSaveDialog(b3.getShell(), new String[]{"*.trc", "*.*"}, rootTrace.getUiDesc().getFileName());
 				if(file == null){
 					return;
 				}
@@ -85,7 +85,7 @@ public class TraceXmlDialog extends TrayDialog {
 					IOUtils.write(content, out);
 					out.close();
 				} catch (Exception e1) {
-					DialogUtils.showError(b3.getShell(), "保存Trace文件出现异常: " + e1.getMessage());
+					RCPUtil.showError(b3.getShell(), "保存Trace文件出现异常: " + e1.getMessage());
 				}
 			}
 		});

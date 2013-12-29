@@ -23,8 +23,8 @@ import org.eclipse.ui.part.ViewPart;
 
 import com.easyfun.eclipse.performance.socket.common.PortDialog;
 import com.easyfun.eclipse.performance.socket.common.SocketUtils;
-import com.easyfun.eclipse.uiutil.DialogUtils;
-import com.easyfun.eclipse.util.resource.FileUtil;
+import com.easyfun.eclipse.uiutil.RCPUtil;
+import com.easyfun.eclipse.util.FileUtil;
 
 /**
  * @author linzhaoming
@@ -188,7 +188,7 @@ public class UDPSocketView extends ViewPart {
                 if(!msg.equals(""))
                     sendMessage(msg);
                 else {
-                	boolean result = DialogUtils.showConfirm(getShell(), "Send Blank Line ?", "");
+                	boolean result = RCPUtil.showConfirm(getShell(), "Send Blank Line ?", "");
                     if (result == true)
                         sendMessage(msg);
                 }
@@ -204,12 +204,12 @@ public class UDPSocketView extends ViewPart {
 		saveButton.setText(" &Save ");
 		saveButton.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
-				File file = DialogUtils.openSaveDialog(getShell(), new String[]{"*.txt", "*.*"}, "socketServer.txt");
+				File file = RCPUtil.openSaveDialog(getShell(), new String[]{"*.txt", "*.*"}, "socketServer.txt");
 				if(file != null){
 					try {
 						FileUtil.writeTextFile(messagesField.getText(), file);
 					} catch (IOException ex) {
-						DialogUtils.showMsg(getShell(), "" + ex.getMessage(), "Error saving to file..");
+						RCPUtil.showMessage(getShell(), "" + ex.getMessage(), "Error saving to file..");
 					}
 				}
 			}
@@ -235,19 +235,19 @@ public class UDPSocketView extends ViewPart {
         String ip=ipField1.getText();
         String port=portField1.getText();
         if(ip==null || ip.equals("")) {
-        	DialogUtils.showMsg(getShell(), "No IP Address. Please enter IP Address", "");
+        	RCPUtil.showMessage(getShell(), "No IP Address. Please enter IP Address", "");
             ipField1.setFocus();
             ipField1.selectAll();
             return;
         }
         if(port==null || port.equals("")) {
-        	DialogUtils.showMsg(getShell(), "No Port number. Please enter Port number", "");
+        	RCPUtil.showMessage(getShell(), "No Port number. Please enter Port number", "");
             portField1.setFocus();
             portField1.selectAll();
             return;
         }
         if(!SocketUtils.checkHost(ip)) {
-        	DialogUtils.showMsg(getShell(), "Bad IP Address", "");
+        	RCPUtil.showMessage(getShell(), "Bad IP Address", "");
             ipField1.setFocus();
             ipField1.selectAll();
             return;
@@ -256,7 +256,7 @@ public class UDPSocketView extends ViewPart {
         try	{
             portNo=Integer.parseInt(port);
         } catch (Exception e) {
-        	DialogUtils.showMsg(getShell(), "Bad Port number. Please enter Port number", "");
+        	RCPUtil.showMessage(getShell(), "Bad Port number. Please enter Port number", "");
             portField1.setFocus();
             portField1.selectAll();
             return;
@@ -305,19 +305,19 @@ public class UDPSocketView extends ViewPart {
             String ip=ipField2.getText();
             String port=portField2.getText();
             if(ip==null || ip.equals("")) {
-            	DialogUtils.showMsg(getShell(), "No IP Address. Please enter IP Address", "");
+            	RCPUtil.showMessage(getShell(), "No IP Address. Please enter IP Address", "");
                 ipField2.setFocus();
                 ipField2.selectAll();
                 return;
             }
             if(port==null || port.equals("")) {
-            	DialogUtils.showMsg(getShell(), "No Port number. Please enter Port number", "");
+            	RCPUtil.showMessage(getShell(), "No Port number. Please enter Port number", "");
                 portField2.setFocus();
                 portField2.selectAll();
                 return;
             }
             if(!SocketUtils.checkHost(ip)) {
-            	DialogUtils.showMsg(getShell(), "Bad IP Address", "");
+            	RCPUtil.showMessage(getShell(), "Bad IP Address", "");
                 ipField2.setFocus();
                 ipField2.selectAll();
                 return;
@@ -326,7 +326,7 @@ public class UDPSocketView extends ViewPart {
             try	{
                 portNo=Integer.parseInt(port);
             } catch (Exception e) {
-            	DialogUtils.showMsg(getShell(), "Bad Port number. Please enter Port number", "");
+            	RCPUtil.showMessage(getShell(), "Bad Port number. Please enter Port number", "");
                 portField2.setFocus();
                 portField2.selectAll();
                 return;
@@ -345,7 +345,7 @@ public class UDPSocketView extends ViewPart {
             client.send(pack);
             sendField.setText("");
         } catch (Exception e) {
-        	DialogUtils.showMsg(getShell(), "Error Sending Message", "");
+        	RCPUtil.showMessage(getShell(), "Error Sending Message", "");
             client=null;
         }
     }
@@ -353,13 +353,13 @@ public class UDPSocketView extends ViewPart {
     public void error(String error) {
         if(error==null || error.equals(""))
             return;
-        DialogUtils.showMsg(getShell(), error, "Error");
+        RCPUtil.showMessage(getShell(), error, "Error");
     }
     
     public void error(String error, String heading) {
         if(error==null || error.equals(""))
             return;
-        DialogUtils.showMsg(getShell(), error, heading);
+        RCPUtil.showMessage(getShell(), error, heading);
     }
     
     public void append(String msg) {

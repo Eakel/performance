@@ -32,8 +32,8 @@ import org.eclipse.ui.part.ViewPart;
 
 import com.easyfun.eclipse.performance.socket.common.PortDialog;
 import com.easyfun.eclipse.performance.socket.common.SocketUtils;
-import com.easyfun.eclipse.uiutil.DialogUtils;
-import com.easyfun.eclipse.util.resource.FileUtil;
+import com.easyfun.eclipse.uiutil.RCPUtil;
+import com.easyfun.eclipse.util.FileUtil;
 
 /**
  * @author linzhaoming
@@ -172,7 +172,7 @@ public class TCPSocketClientView extends ViewPart {
 				if (!msg.equals(""))
 					sendMessage(msg);
 				else {
-					boolean value = DialogUtils.showConfirm(getShell(), "Send Blank Line ?", "Send Data To Server");
+					boolean value = RCPUtil.showConfirm(getShell(), "Send Blank Line ?", "Send Data To Server");
 					if (value == true)
 						sendMessage(msg);
 				}
@@ -187,12 +187,12 @@ public class TCPSocketClientView extends ViewPart {
 		saveButton = new Button(composite, SWT.NONE);
 		saveButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(final SelectionEvent e) {
-				File file = DialogUtils.openSaveDialog(getShell(), new String[]{"*.txt", "*.*"}, "socketServer.txt");
+				File file = RCPUtil.openSaveDialog(getShell(), new String[]{"*.txt", "*.*"}, "socketServer.txt");
 				if(file != null){
 					try {
 						FileUtil.writeTextFile(messagesField.getText(), file);
 					} catch (IOException ex) {
-						DialogUtils.showMsg(getShell(), "" + ex.getMessage(), "Error saving to file..");
+						RCPUtil.showMessage(getShell(), "" + ex.getMessage(), "Error saving to file..");
 					}
 				}
 			}
@@ -218,13 +218,13 @@ public class TCPSocketClientView extends ViewPart {
 		final String ip = ipField.getText();
 		final String port = portField.getText();
 		if (ip == null || ip.equals("")) {
-			DialogUtils.showMsg(getShell(), "No IP Address. Please enter IP Address", "Error connecting");
+			RCPUtil.showMessage(getShell(), "No IP Address. Please enter IP Address", "Error connecting");
 			ipField.setFocus();
 			ipField.selectAll();
 			return;
 		}
 		if (port == null || port.equals("")) {
-			DialogUtils.showMsg(getShell(), "No Port number. Please enter Port number", "Error connecting");
+			RCPUtil.showMessage(getShell(), "No Port number. Please enter Port number", "Error connecting");
 			portField.setFocus();
 			portField.selectAll();
 			return;
@@ -232,7 +232,7 @@ public class TCPSocketClientView extends ViewPart {
 		BusyIndicator.showWhile(getShell().getDisplay(), new Runnable() {
 			public void run() {
 				if (!SocketUtils.checkHost(ip)) {
-					DialogUtils.showMsg(getShell(), "Bad IP Address", "Error connecting");
+					RCPUtil.showMessage(getShell(), "Bad IP Address", "Error connecting");
 					ipField.setFocus();
 					ipField.selectAll();
 					return;
@@ -241,7 +241,7 @@ public class TCPSocketClientView extends ViewPart {
 				try {
 					portNo = Integer.parseInt(port);
 				} catch (Exception e) {
-					DialogUtils.showMsg(getShell(), "Bad Port number. Please enter Port number", "Error connecting");
+					RCPUtil.showMessage(getShell(), "Bad Port number. Please enter Port number", "Error connecting");
 					portField.setFocus();
 					portField.selectAll();
 					return;
@@ -286,7 +286,7 @@ public class TCPSocketClientView extends ViewPart {
 			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-			DialogUtils.showError(getShell(), "Error closing client : " + e.getMessage());
+			RCPUtil.showError(getShell(), "Error closing client : " + e.getMessage());
 		}
 		socket = null;
 		out = null;
@@ -302,13 +302,13 @@ public class TCPSocketClientView extends ViewPart {
 	public void error(String error) {
 		if (error == null || error.equals(""))
 			return;
-		DialogUtils.showMsg(getShell(), error, "Error");
+		RCPUtil.showMessage(getShell(), error, "Error");
 	}
 
 	public void error(String error, String heading) {
 		if (error == null || error.equals(""))
 			return;
-		DialogUtils.showMsg(getShell(), error, heading);
+		RCPUtil.showMessage(getShell(), error, heading);
 	}
 
 	public void append(String msg) {
@@ -331,7 +331,7 @@ public class TCPSocketClientView extends ViewPart {
 					out.flush();
 					sendField.setText("");
 				} catch (Exception e) {
-					DialogUtils.showMsg(getShell(), e.getMessage(), "Error Sending Message");
+					RCPUtil.showMessage(getShell(), e.getMessage(), "Error Sending Message");
 					disconnect();
 				}
 			}

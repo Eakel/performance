@@ -29,10 +29,9 @@ import com.easyfun.eclipse.performance.awr.model.SnapShot;
 import com.easyfun.eclipse.performance.awr.preferences.AwrJDBCPreferencePage;
 import com.easyfun.eclipse.performance.awr.preferences.AwrPrefUtil;
 import com.easyfun.eclipse.performance.navigator.console.LogHelper;
-import com.easyfun.eclipse.uiutil.DialogUtils;
-import com.easyfun.eclipse.uiutil.SWTUtil;
+import com.easyfun.eclipse.uiutil.RCPUtil;
 import com.easyfun.eclipse.util.ConnectionModel;
-import com.easyfun.eclipse.util.resource.FileUtil;
+import com.easyfun.eclipse.util.FileUtil;
 
 /**
  * @author linzhaoming
@@ -92,7 +91,7 @@ public class AWRView extends ViewPart {
 					genHTMLButton.setEnabled(true);
 					genTextButton.setEnabled(true);
 				} catch (Exception ex) {
-					SWTUtil.showError(getShell(), ex.getMessage());
+					RCPUtil.showError(getShell(), ex.getMessage());
 					LogHelper.error("获取AWR日志失败", ex);
 					exportButton.setEnabled(false);
 					genHTMLButton.setEnabled(false);
@@ -116,7 +115,7 @@ public class AWRView extends ViewPart {
 					}
 					
 					if(selectedSnaps.size() <2){
-						SWTUtil.showMessage(getShell(), "需要选择至少两条记录");
+						RCPUtil.showMessage(getShell(), "需要选择至少两条记录");
 						return;
 					}
 					
@@ -160,7 +159,7 @@ public class AWRView extends ViewPart {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 					exportButton.setEnabled(false);
-					SWTUtil.showError(getShell(), e1.getMessage());
+					RCPUtil.showError(getShell(), e1.getMessage());
 				}
 			}
 		});
@@ -180,7 +179,7 @@ public class AWRView extends ViewPart {
 					}
 					
 					if(selectedSnaps.size() <2){
-						SWTUtil.showMessage(getShell(), "需要选择至少两条记录");
+						RCPUtil.showMessage(getShell(), "需要选择至少两条记录");
 						return;
 					}
 					
@@ -224,7 +223,7 @@ public class AWRView extends ViewPart {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 					exportButton.setEnabled(false);
-					SWTUtil.showError(getShell(), e1.getMessage());
+					RCPUtil.showError(getShell(), e1.getMessage());
 				}
 			}
 		});
@@ -283,7 +282,7 @@ public class AWRView extends ViewPart {
 		long begin = System.currentTimeMillis();
 		
 		if(! ((awrBrowser != null && awrBrowser.isVisible())) || (awrText != null && awrText.isVisible())){
-			SWTUtil.showMessage(getShell(), "请先生成AWR报告，再导出");
+			RCPUtil.showMessage(getShell(), "请先生成AWR报告，再导出");
 			return;
 		}
 		
@@ -308,7 +307,7 @@ public class AWRView extends ViewPart {
 		
 		//导出HTML
 		if(awrBrowser != null && awrBrowser.isVisible()){
-			File file = DialogUtils.openSaveDialog(getShell(), new String[]{"*.html", "*.*"}, fileName + ".html");
+			File file = RCPUtil.openSaveDialog(getShell(), new String[]{"*.html", "*.*"}, fileName + ".html");
 			if(file == null){
 				return;
 			}
@@ -318,7 +317,7 @@ public class AWRView extends ViewPart {
 		
 		//导出文本
 		if(awrText != null && awrText.isVisible()){
-			File file = DialogUtils.openSaveDialog(getShell(), new String[]{"*.txt", "*.*"}, fileName + ".txt");
+			File file = RCPUtil.openSaveDialog(getShell(), new String[]{"*.txt", "*.*"}, fileName + ".txt");
 			if(file == null){
 				return;
 			}

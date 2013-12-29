@@ -2,7 +2,7 @@ package com.easyfun.eclipse.performance.trace.item.trace;
 
 import java.io.File;
 
-import com.easyfun.eclipse.util.lang.StringUtil;
+import com.easyfun.eclipse.util.StringUtil;
 
 /**
  * [目录] Trace目录节点

@@ -39,15 +39,14 @@ import org.eclipse.ui.part.ViewPart;
 import com.easyfun.eclipse.component.kv.KeyValue;
 import com.easyfun.eclipse.component.kv.KeyValueTableViewer;
 import com.easyfun.eclipse.performance.mysql.analyze.model.TableModel;
-import com.easyfun.eclipse.performance.mysql.analyze.pref.MySQLPrefUtil;
 import com.easyfun.eclipse.performance.mysql.analyze.pref.MySQLJDBCPreferencePage;
+import com.easyfun.eclipse.performance.mysql.analyze.pref.MySQLPrefUtil;
 import com.easyfun.eclipse.performance.mysql.analyze.pref.MySQLTableFilterPreferencePage;
 import com.easyfun.eclipse.performance.navigator.console.LogHelper;
-import com.easyfun.eclipse.uiutil.DialogUtils;
-import com.easyfun.eclipse.uiutil.SWTUtil;
+import com.easyfun.eclipse.uiutil.RCPUtil;
 import com.easyfun.eclipse.util.ConnectionModel;
+import com.easyfun.eclipse.util.StringUtil;
 import com.easyfun.eclipse.util.TimeUtil;
-import com.easyfun.eclipse.util.lang.StringUtil;
 
 public class MySQLView extends ViewPart {
 private static final String SCHEMES = "schemes";
@@ -94,7 +93,7 @@ private static final String SCHEMES = "schemes";
 					refreshTabByProp(tablePrefixProp);
 				} catch (Exception e1) {
 					e1.printStackTrace();
-					SWTUtil.showError(getViewSite().getShell(), e1.getMessage());
+					RCPUtil.showError(getViewSite().getShell(), e1.getMessage());
 				}
 			}
 			
@@ -116,7 +115,7 @@ private static final String SCHEMES = "schemes";
 						} catch (Exception ex) {
 							ex.printStackTrace();
 							LogHelper.error("获取表格信息失败", ex);
-							SWTUtil.showError(getViewSite().getShell(), "获取表格信息失败\n" + ex.getMessage());
+							RCPUtil.showError(getViewSite().getShell(), "获取表格信息失败\n" + ex.getMessage());
 						} finally {
 							anaButton.setEnabled(true);
 						}
@@ -151,7 +150,7 @@ private static final String SCHEMES = "schemes";
 		} catch (Exception e1) {
 			e1.printStackTrace();
 			LogHelper.error(e1);
-			SWTUtil.showError(getViewSite().getShell(), e1.getMessage());
+			RCPUtil.showError(getViewSite().getShell(), e1.getMessage());
 		}
 	}
 
@@ -376,7 +375,7 @@ private static final String SCHEMES = "schemes";
 	 */
 	private void exportUIResult(TabFolder tabFolder) throws Exception{
 		String fileName = "MySQL表格分析" + TimeUtil.getYYYYMMDDHHMMSS(new Date()) + ".xls";
-		File file = DialogUtils.openSaveDialog(getViewSite().getShell(), new String[]{"*.xls", "*.*"}, fileName);
+		File file = RCPUtil.openSaveDialog(getViewSite().getShell(), new String[]{"*.xls", "*.*"}, fileName);
 		if(file == null){
 			return;
 		}

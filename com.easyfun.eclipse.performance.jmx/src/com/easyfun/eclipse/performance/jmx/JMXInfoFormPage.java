@@ -29,7 +29,7 @@ import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
 
 import com.easyfun.eclipse.performance.jmx.model.MBeanModel;
-import com.easyfun.eclipse.uiutil.SWTUtil;
+import com.easyfun.eclipse.uiutil.RCPUtil;
 
 /**
  * FormPage for the tomcat services
@@ -92,7 +92,7 @@ public class JMXInfoFormPage extends FormPage {
 		label = new Label(composite, SWT.NULL);
 		label.setLayoutData(new GridData());
 		label.setText(mbeanModel.getObjectName().getDomain());
-		SWTUtil.setBold(label);
+		RCPUtil.setBold(label);
 		
 		label = new Label(composite, SWT.NULL);
 		label.setLayoutData(new GridData());
@@ -138,7 +138,7 @@ public class JMXInfoFormPage extends FormPage {
 			e.printStackTrace();
 		}
 		
-		SWTUtil.setBold(label);
+		RCPUtil.setBold(label);
 		
 		toolkit.paintBordersFor(composite);
 	}

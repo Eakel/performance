@@ -29,8 +29,8 @@ import com.easyfun.eclipse.performance.trace.model.SvrTrace;
 import com.easyfun.eclipse.performance.trace.model.TraceTypeEnum;
 import com.easyfun.eclipse.performance.trace.model.WebTrace;
 import com.easyfun.eclipse.performance.trace.model.WsTrace;
+import com.easyfun.eclipse.util.StringUtil;
 import com.easyfun.eclipse.util.TimeUtil;
-import com.easyfun.eclipse.util.lang.StringUtil;
 import com.trilead.ssh2.SFTPv3DirectoryEntry;
 
 /**
