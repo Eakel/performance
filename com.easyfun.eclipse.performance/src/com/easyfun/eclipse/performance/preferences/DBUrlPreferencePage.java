@@ -41,9 +41,7 @@ import com.easyfun.eclipse.component.db.DBUtil;
  */
 public class DBUrlPreferencePage extends PreferencePage implements IWorkbenchPreferencePage{
 	//TODO: 
-	//1. 序列化保存
 	//2. 导入/导出到文件
-	//3. 数据库开始替换已有的Oralce与MySQL
 
 	private Table jdbcTable;
 	private TableViewer tableViewer;
@@ -125,6 +123,14 @@ public class DBUrlPreferencePage extends PreferencePage implements IWorkbenchPre
 					list.add(bean);
 					tableViewer.setInput(list);
 					tableViewer.setSelection(new StructuredSelection(bean));
+					
+					TableItem[] items = tableViewer.getTable().getItems();
+					for (TableItem item : items) {
+						if(item.getData().equals(bean)){
+							item.setChecked(true);
+							break;
+						}
+					}
 				}
 			}
 		});

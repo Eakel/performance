@@ -26,11 +26,15 @@ public class DBUtil {
 	public static ConnectionModel getConnectionModel(){
 		ConnectionModel model = new ConnectionModel();
 		DBUrlBean bean = getSelectBean();
+		if(bean != null){
 		model.setDriverClass(bean.getDriverClass());
-		model.setUrl(bean.getUrl());
-		model.setUsername(bean.getUsername());
-		model.setPassword(bean.getPassword());		
-		return model;
+			model.setUrl(bean.getUrl());
+			model.setUsername(bean.getUsername());
+			model.setPassword(bean.getPassword());
+			return model;
+		}else{
+			return null;
+		}
 	}
 	
 	public static List<DBUrlBean> getDBUrlBeans(){
