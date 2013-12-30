@@ -1,4 +1,4 @@
-package ftp;
+package com.easyfun.eclipse.component.ftp.ui;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -69,8 +69,10 @@ import org.eclipse.swt.widgets.Text;
 import com.easyfun.eclipse.component.ftp.FTPBean;
 import com.easyfun.eclipse.component.ftp.FTPDialog;
 import com.easyfun.eclipse.component.ftp.FTPHelper;
+import com.easyfun.eclipse.component.ftp.ui.LocalDirectoryTableViewer.ILocalTableListener;
 import com.easyfun.eclipse.performance.navigator.console.LogHelper;
 import com.easyfun.eclipse.rcp.RCPUtil;
+
 
 public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableViewer.ILocalTableListener{
 	/** ×ó²àÄ¿Â¼±í¸ñ */
@@ -161,7 +163,7 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 		connectAction = new Action() {
 			public void run() {
 				if (connectionDialog == null) {
-					connectionDialog = new FTPDialog(getShell());
+					connectionDialog = new FTPDialog(getShell(), FTPDialog.TYPE_ADD);
 				}
 				if (connectionDialog.open() == Dialog.OK) {
 					ftpBean = connectionDialog.getFTPBean();

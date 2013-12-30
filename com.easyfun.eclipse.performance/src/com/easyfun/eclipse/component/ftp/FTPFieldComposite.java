@@ -87,7 +87,7 @@ public class FTPFieldComposite extends Composite{
 				}
 			}
 		}
-		FTPDialog dialog = new FTPDialog(getShell(), ftpBean);
+		FTPDialog dialog = new FTPDialog(getShell(), FTPDialog.TYPE_ADD, ftpBean);
 		if (dialog.open() == Dialog.OK) {
 			ftpBean = dialog.getFTPBean();
 			ftpDescText.setText(ftpBean.getFTPDesc());

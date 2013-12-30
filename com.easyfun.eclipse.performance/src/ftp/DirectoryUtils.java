@@ -13,6 +13,8 @@ import org.apache.commons.net.ftp.FTPFile;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 
+import com.easyfun.eclipse.component.ftp.ui.ImageConstants;
+
 public class DirectoryUtils {
 	/** 文件类型与图片路径对应关系*/
 	private static Properties imgProperties = new Properties();

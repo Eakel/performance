@@ -120,6 +120,12 @@
                   id="com.easyfun.eclipse.performance.preferencePages.TableFilter"
                   name="表名过滤器">
             </page>
+            <page
+                  category="ccom.easyfun.eclipse.performance.preferencePages.NetworkPreferencePage"
+                  class="com.easyfun.eclipse.performance.preferences.FTPPreferencePage"
+                  id="com.easyfun.eclipse.performance.preferencePages.FTP"
+                  name="FTP">
+            </page>
    </extension>
    <extension
          point="org.eclipse.core.runtime.preferences">

@@ -1,5 +1,7 @@
 package com.easyfun.eclipse.component.ftp;
 
+import com.easyfun.eclipse.component.db.DBUrlBean;
+
 /**
  * POJO for FTP
  * @author linzhaoming
@@ -15,6 +17,8 @@ public class FTPBean {
 	public static final int TYPE_SFTP = 1;
 
 	private int ftpType = TYPE_FTP;
+	
+	private String name;
 
 	private String host = "";
 	private int port = 21;
@@ -65,6 +69,28 @@ public class FTPBean {
 	public void setFtpType(int ftpType) {
 		this.ftpType = ftpType;
 	}
+	
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public FTPBean copy(){
+		FTPBean bean = new FTPBean();
+		bean.setFtpType(ftpType);
+		bean.setHost(host);
+		bean.setName("CopyOf" + name);
+		bean.setPasswd(passwd);
+		bean.setPort(port);
+		bean.setRemotePath(remotePath);
+		bean.setUserName(userName);
+		return bean;
+	}
+
 	public String getFTPDesc(){
 		StringBuffer desc = new StringBuffer();
 		desc.append("host:").append(getHost()).append("\t");

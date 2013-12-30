@@ -1,4 +1,4 @@
-package ftp;
+package com.easyfun.eclipse.component.ftp.ui;
 
 import org.apache.commons.net.ftp.FTPFile;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -15,6 +15,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 
 import com.easyfun.eclipse.util.TimeUtil;
+
+import ftp.DirectoryUtils;
 
 /**
  * Ô¶³ÌÄ¿Â¼TableViewer

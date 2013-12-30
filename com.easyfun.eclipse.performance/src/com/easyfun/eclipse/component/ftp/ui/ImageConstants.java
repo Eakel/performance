@@ -1,4 +1,4 @@
-package ftp;
+package com.easyfun.eclipse.component.ftp.ui;
 
 public interface ImageConstants {
 	public static final String ICON_FTP_LOCAL_UP = "icons/ftp/up.png";

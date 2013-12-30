@@ -37,13 +37,22 @@ public class FTPDialog extends Dialog {
 	private FTPBean ftpBean;
 	private Combo ftpTypeCombo;
 	
-	public FTPDialog(Shell parentShell) {
+	private int type = 1;
+	
+	/** ÐÂÔö */
+	public static final int TYPE_ADD = 1;
+	/** ÐÞ¸Ä */
+	public static final int TYPE_EDIT = 2;
+	
+	public FTPDialog(Shell parentShell, int type) {
 		super(parentShell);
+		this.type = type;
 		this.ftpBean = new FTPBean();
 	}
 	
-	public FTPDialog(Shell parentShell, FTPBean ftpBean) {
+	public FTPDialog(Shell parentShell, int type, FTPBean ftpBean) {
 		super(parentShell);
+		this.type = type;
 		this.ftpBean = ftpBean;
 	}
 
