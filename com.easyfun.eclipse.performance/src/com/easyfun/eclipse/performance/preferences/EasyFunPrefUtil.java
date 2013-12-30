@@ -6,13 +6,18 @@ import org.eclipse.jface.preference.IPreferenceStore;
 
 import com.easyfun.eclipse.performance.PerformanceActivator;
 
-public class PreferenceUtil {
-	private static Log log = LogFactory.getLog(PreferenceUtil.class);
+public class EasyFunPrefUtil {
+	private static Log log = LogFactory.getLog(EasyFunPrefUtil.class);
 	
 	/** 获取首选项IPreferenceStore*/
 	public static IPreferenceStore getPreferenceStore(){
 		IPreferenceStore store = PerformanceActivator.getDefault().getPreferenceStore();
 		return store;
+	}
+	
+	/** 获取表格过滤信息*/
+	public static String getTableFilter(){
+		return getPreferenceStore().getString(PreferenceConstants.TABLE_PREFIX_FILTER);
 	}
 
 }

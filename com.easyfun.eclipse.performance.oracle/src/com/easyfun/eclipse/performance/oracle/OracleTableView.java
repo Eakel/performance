@@ -43,9 +43,9 @@ import com.easyfun.eclipse.component.db.DBUtil;
 import com.easyfun.eclipse.component.kv.KeyValue;
 import com.easyfun.eclipse.component.kv.KeyValueTableViewer;
 import com.easyfun.eclipse.performance.navigator.console.LogHelper;
-import com.easyfun.eclipse.performance.oracle.preferences.OraclePrefUtil;
-import com.easyfun.eclipse.performance.oracle.preferences.OracleTableFilterPreferencePage;
 import com.easyfun.eclipse.performance.preferences.DBUrlPreferencePage;
+import com.easyfun.eclipse.performance.preferences.EasyFunPrefUtil;
+import com.easyfun.eclipse.performance.preferences.TableFilterPreferencePage;
 import com.easyfun.eclipse.rcp.RCPUtil;
 import com.easyfun.eclipse.util.StringUtil;
 import com.easyfun.eclipse.util.TimeUtil;
@@ -91,11 +91,11 @@ public class OracleTableView extends ViewPart {
 		filterSetttingButton.setText("过滤设定");
 		filterSetttingButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(final SelectionEvent e) {
-				RCPUtil.showPreferencPage(getSite().getShell(), OracleTableFilterPreferencePage.PREF_ID);
+				RCPUtil.showPreferencPage(getSite().getShell(), TableFilterPreferencePage.PREF_ID);
 			    
 			    try {
 					tablePrefixProp = new Properties();
-					tablePrefixProp.load(new ByteArrayInputStream(OraclePrefUtil.getTableFilter().getBytes()));
+					tablePrefixProp.load(new ByteArrayInputStream(EasyFunPrefUtil.getTableFilter().getBytes()));
 					refreshTabByProp(tablePrefixProp);
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -173,7 +173,7 @@ public class OracleTableView extends ViewPart {
 	
 	private void initByConnection(Connection conn) throws Exception{
 		Properties p = new Properties();
-		ByteArrayInputStream bis = new ByteArrayInputStream(OraclePrefUtil.getTableFilter().getBytes());
+		ByteArrayInputStream bis = new ByteArrayInputStream(EasyFunPrefUtil.getTableFilter().getBytes());
 		p.load(bis);
 		
 		String[] ownerNames = p.getProperty(SCHEMES).split(";");	//用户名列表，用";"分割
@@ -410,7 +410,7 @@ public class OracleTableView extends ViewPart {
 	
 	private void init() throws Exception{
 		tablePrefixProp = new Properties();
-		tablePrefixProp.load(new ByteArrayInputStream(OraclePrefUtil.getTableFilter().getBytes()));
+		tablePrefixProp.load(new ByteArrayInputStream(EasyFunPrefUtil.getTableFilter().getBytes()));
 		refreshTabByProp(tablePrefixProp);
 	}
 	

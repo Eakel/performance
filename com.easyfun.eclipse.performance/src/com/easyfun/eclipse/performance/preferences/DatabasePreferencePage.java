@@ -1,24 +1,24 @@
-package com.easyfun.eclipse.performance.mysql.analyze.pref;
+package com.easyfun.eclipse.performance.preferences;
 
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
-import com.easyfun.eclipse.performance.mysql.MySQLActivator;
+import com.easyfun.eclipse.performance.PerformanceActivator;
 
 /**
- * EasyFun设置
+ * 通用数据库配置
  * @author linzhaoming
  *
  * 2011-5-7
  *
  */
-public class MySQLPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
+public class DatabasePreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 
-	public MySQLPreferencePage() {
+	public DatabasePreferencePage() {
 		super(GRID);
-		setPreferenceStore(MySQLActivator.getDefault().getPreferenceStore());
-		setDescription("设置MySQL相关的自定义配置");
+		setPreferenceStore(PerformanceActivator.getDefault().getPreferenceStore());
+		setDescription("通用数据库自定义配置");
 	}
 
 	/**

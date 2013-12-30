@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Text;
 
 import com.easyfun.eclipse.performance.preferences.PreferenceConstants;
-import com.easyfun.eclipse.performance.preferences.PreferenceUtil;
+import com.easyfun.eclipse.performance.preferences.EasyFunPrefUtil;
 import com.easyfun.eclipse.rcp.RCPUtil;
 
 /**
@@ -79,7 +79,7 @@ public class DirectoryFieldComposite extends Composite{
 		dialog.setText("Ñ¡ÔñÄ¿Â¼");
 		dialog.setMessage(diagMsg);
 		
-		String dir = PreferenceUtil.getPreferenceStore().getString(prefKey);
+		String dir = EasyFunPrefUtil.getPreferenceStore().getString(prefKey);
 		if(StringUtils.isNotEmpty(dir)){
 			dialog.setFilterPath(dir);
 		}
@@ -91,7 +91,7 @@ public class DirectoryFieldComposite extends Composite{
 				return;
 			}					
 			dirNameText.setText(file.getAbsolutePath());
-			PreferenceUtil.getPreferenceStore().setValue(prefKey, file.getAbsolutePath());
+			EasyFunPrefUtil.getPreferenceStore().setValue(prefKey, file.getAbsolutePath());
 			
 			for (IDiectorychangeListener listener : listeners) {
 				listener.onDirChange(file);

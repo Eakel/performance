@@ -21,4 +21,7 @@ public class PreferenceConstants {
 	
 	/** SFTP…Ë÷√*/
 	public static final String EASYFUN_SFTP = EASYFUN_PREFIX + "SFTP";
+	
+	/** Table Filter Key*/
+	public static final String TABLE_PREFIX_FILTER = EASYFUN_PREFIX + "Table_Filter";
 }

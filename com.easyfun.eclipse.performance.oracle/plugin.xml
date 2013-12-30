@@ -11,21 +11,6 @@
       </view>
       </extension>
    <extension
-         point="org.eclipse.core.runtime.preferences">
-      <initializer
-            class="com.easyfun.eclipse.performance.oracle.preferences.OraclePrefInitializer">
-      </initializer>
-   </extension>
-   <extension
-         point="org.eclipse.ui.preferencePages">
-      <page
-            category="com.easyfun.eclipse.performance.preferencePages.Oracle"
-            class="com.easyfun.eclipse.performance.oracle.preferences.OracleTableFilterPreferencePage"
-            id="com.easyfun.eclipse.performance.oracle.preferencePages.OracleTableFilter"
-            name="Oracle表名过滤器">
-      </page>      
-   </extension>
-   <extension
          point="com.easyfun.eclipse.performance.EasyFunNavigatorFolder">
       <folder
             id="com.easyfun.eclipse.performance.oracleFolder"

@@ -20,27 +20,6 @@
       </folder>
    </extension>
    
-      <extension
-         point="org.eclipse.core.runtime.preferences">
-      <initializer
-            class="com.easyfun.eclipse.performance.mysql.analyze.pref.MySQLPrefInitializer">
-      </initializer>
-   </extension>
-   <extension
-         point="org.eclipse.ui.preferencePages">
-      <page
-            category="com.easyfun.eclipse.performance.preferencePages.EasyFunPreferencePage"
-            class="com.easyfun.eclipse.performance.mysql.analyze.pref.MySQLPreferencePage"
-            id="com.easyfun.eclipse.performance.mysql.preferencePages.MySQL"
-            name="MySQL">
-      </page>
-      <page
-            category="com.easyfun.eclipse.performance.mysql.preferencePages.MySQL"
-            class="com.easyfun.eclipse.performance.mysql.analyze.pref.MySQLTableFilterPreferencePage"
-            id="com.easyfun.eclipse.performance.mysql.preferences.MySQLTableFilter"
-            name="MySQL表名过滤器">
-      </page>      
-   </extension>
    <extension
          point="com.easyfun.eclipse.performance.EasyFunNavigatorElement">
       <page

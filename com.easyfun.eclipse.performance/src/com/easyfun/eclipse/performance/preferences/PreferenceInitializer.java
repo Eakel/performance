@@ -15,7 +15,19 @@ import org.eclipse.jface.preference.IPreferenceStore;
 public class PreferenceInitializer extends AbstractPreferenceInitializer {
 
 	public void initializeDefaultPreferences() {
-		IPreferenceStore store = PreferenceUtil.getPreferenceStore();
+		IPreferenceStore store = EasyFunPrefUtil.getPreferenceStore();
+		
+		//Table
+		StringBuffer sb = new StringBuffer();
+		sb.append("#用户名列表，多个用分号隔开").append("\n");
+		sb.append("schemes=base;channel").append("\n");
+		sb.append("#过滤表名字").append("\n");
+		sb.append("#so1.filter=%SMS%").append("\n");
+		sb.append("#so2.filter=%SMS%").append("\n");
+		sb.append("#base.filter=%SMS%").append("\n");
+		sb.append("base.mode=2").append("\n");
+		sb.append("log=true");
+		store.setDefault(PreferenceConstants.TABLE_PREFIX_FILTER, sb.toString());
 	}
 
 }

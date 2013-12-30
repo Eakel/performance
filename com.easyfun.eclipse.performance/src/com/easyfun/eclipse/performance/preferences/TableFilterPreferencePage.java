@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.performance.mysql.analyze.pref;
+package com.easyfun.eclipse.performance.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferencePage;
@@ -16,25 +16,25 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
 /**
- * MySQL表名过滤器
+ * 表名过滤器
  * @author linzhaoming
  *
  * 2013-12-23
  *
  */
-public class MySQLTableFilterPreferencePage extends PreferencePage implements IWorkbenchPreferencePage {
+public class TableFilterPreferencePage extends PreferencePage implements IWorkbenchPreferencePage {
 	
-	public static final String PREF_ID = "com.easyfun.eclipse.performance.mysql.preferences.MySQLTableFilter";
+	public static final String PREF_ID = "com.easyfun.eclipse.performance.preferencePages.TableFilter";
 	private StyledText text;
 
-	public MySQLTableFilterPreferencePage() {
+	public TableFilterPreferencePage() {
 	}
 
-	public MySQLTableFilterPreferencePage(String title) {
+	public TableFilterPreferencePage(String title) {
 		super(title);
 	}
 
-	public MySQLTableFilterPreferencePage(String title, ImageDescriptor image) {
+	public TableFilterPreferencePage(String title, ImageDescriptor image) {
 		super(title, image);
 	}
 
@@ -49,11 +49,11 @@ public class MySQLTableFilterPreferencePage extends PreferencePage implements IW
 		
 		text = new StyledText(composite, SWT.BORDER);
 		text.setLayoutData(new GridData(GridData.FILL_BOTH));
-		text.setText(MySQLPrefUtil.getTableFilter());
+		text.setText(EasyFunPrefUtil.getTableFilter());
 		text.addFocusListener(new FocusAdapter(){
 			public void focusLost(FocusEvent e) {
-				IPreferenceStore store = MySQLPrefUtil.getPreferenceStore();
-				store.setValue(MySQLPrefConstants.MYSQL_TABLE_PREFIX_FILTER, text.getText());
+				IPreferenceStore store = EasyFunPrefUtil.getPreferenceStore();
+				store.setValue(PreferenceConstants.TABLE_PREFIX_FILTER, text.getText());
 			}
 		});
 		return text;
@@ -64,8 +64,8 @@ public class MySQLTableFilterPreferencePage extends PreferencePage implements IW
 	}
 
 	protected void performDefaults() {
-		IPreferenceStore store = MySQLPrefUtil.getPreferenceStore();
-		String default1 = store.getDefaultString(MySQLPrefConstants.MYSQL_TABLE_PREFIX_FILTER);
+		IPreferenceStore store = EasyFunPrefUtil.getPreferenceStore();
+		String default1 = store.getDefaultString(PreferenceConstants.TABLE_PREFIX_FILTER);
 		text.setText(default1);
 		super.performDefaults();
 	}

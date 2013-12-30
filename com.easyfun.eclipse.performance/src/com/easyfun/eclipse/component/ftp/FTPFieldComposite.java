@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 
 import com.easyfun.eclipse.performance.preferences.PreferenceConstants;
-import com.easyfun.eclipse.performance.preferences.PreferenceUtil;
+import com.easyfun.eclipse.performance.preferences.EasyFunPrefUtil;
 import com.easyfun.eclipse.rcp.RCPUtil;
 
 /**
@@ -68,7 +68,7 @@ public class FTPFieldComposite extends Composite{
 	
 	public void openFTPDialog(){
 		FTPBean ftpBean = new FTPBean();
-		IPreferenceStore store = PreferenceUtil.getPreferenceStore();
+		IPreferenceStore store = EasyFunPrefUtil.getPreferenceStore();
 		String ftpDesc = store.getString(PreferenceConstants.EASYFUN_FTP);
 		if (StringUtils.isNotEmpty(ftpDesc)) {
 			String[] strs = ftpDesc.split(",");

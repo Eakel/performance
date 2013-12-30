@@ -90,6 +90,12 @@
             id="com.easyfun.eclipse.performance.preferencePages.EasyFunPreferencePage"
             name="EasyFun">
       </page>
+      <page
+            category="com.easyfun.eclipse.performance.preferencePages.EasyFunPreferencePage"
+            class="com.easyfun.eclipse.performance.preferences.DatabasePreferencePage"
+            id="com.easyfun.eclipse.performance.preferencePages.DatabasePreferencePage"
+            name="数据库">
+      </page>
             <page
             category="com.easyfun.eclipse.performance.preferencePages.EasyFunPreferencePage"
             class="com.easyfun.eclipse.performance.preferences.OraclePreferencePage"
@@ -97,9 +103,22 @@
             name="Oracle">
       </page>
             <page
+                  category="com.easyfun.eclipse.performance.preferencePages.EasyFunPreferencePage"
+                  class="com.easyfun.eclipse.performance.preferences.NetworkPreferencePage"
+                  id="ccom.easyfun.eclipse.performance.preferencePages.NetworkPreferencePage"
+                  name="网络">
+            </page>
+            <page
+                  category="com.easyfun.eclipse.performance.preferencePages.DatabasePreferencePage"
                   class="com.easyfun.eclipse.performance.preferences.DBUrlPreferencePage"
                   id="com.easyfun.eclipse.performance.preferencePages.DBUrl"
                   name="Database URL">
+            </page>
+            <page
+                  category="com.easyfun.eclipse.performance.preferencePages.DatabasePreferencePage"
+                  class="com.easyfun.eclipse.performance.preferences.TableFilterPreferencePage"
+                  id="com.easyfun.eclipse.performance.preferencePages.TableFilter"
+                  name="表名过滤器">
             </page>
    </extension>
    <extension
