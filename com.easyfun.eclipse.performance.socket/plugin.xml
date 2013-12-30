@@ -15,7 +15,7 @@
       <page
             folder="com.easyfun.eclipse.performance.socketFolder"
             icon="icons/socket.png"
-            id="com.easyfun.eclipse.component.socket.tcpclient.swtSocketClient"
+            id="com.easyfun.eclipse.performance.socket.item.TCPSocketClientView"
             title="SocketClient"
             type="SocketClient"
             viewId="com.easyfun.eclipse.performance.socket.view.TCPSocketClientView"
@@ -24,7 +24,7 @@
       <page
             folder="com.easyfun.eclipse.performance.socketFolder"
             icon="icons/socket.png"
-            id="com.easyfun.eclipse.component.socket.tcpserver.swtSocketServer"
+            id="com.easyfun.eclipse.performance.socket.item.TCPSocketServerView"
             title="SocketServer"
             type="SocketServer"
             viewId="com.easyfun.eclipse.performance.socket.view.TCPSocketServerView"
@@ -33,7 +33,7 @@
       <page
             folder="com.easyfun.eclipse.performance.socketFolder"
             icon="icons/socket.png"
-            id="com.easyfun.eclipse.component.socket.udp.swtSocketUdp"
+            id="com.easyfun.eclipse.performance.socket.item.UDPSocketView"
             title="UDP"
             type="UDP"
             viewId="com.easyfun.eclipse.performance.socket.view.UDPSocketView"

@@ -15,7 +15,7 @@
       <view
             class="com.easyfun.eclipse.performance.appframe.views.WebToolsView"
             icon="icons/appframe.png"
-            id="com.easyfun.eclipse.performance.appframe.views.WebToolView"
+            id="com.easyfun.eclipse.performance.appframe.view.WebToolView"
             name="WebTool">
       </view>
    </extension>
@@ -24,10 +24,10 @@
       <page
             folder="com.easyfun.eclipse.performance.appframeFolder"
             icon="icons/appframe.png"
-            id="com.easyfun.eclipse.performance.appframe"
+            id="com.easyfun.eclipse.performance.appframe.items.WebToolView"
             title="WebTool"
             type="AppFrame"
-            viewId="com.easyfun.eclipse.performance.appframe.views.WebToolView"
+            viewId="com.easyfun.eclipse.performance.appframe.view.WebToolView"
             visible="true"></page>
    </extension>
 

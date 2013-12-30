@@ -6,7 +6,7 @@
       <page
             folder="com.easyfun.eclipse.performance.otherFolder"
             icon="icons/jmx.png"
-            id="com.easyfun.eclipse.component.jmx.jmxComposite"
+            id="com.easyfun.eclipse.performance.jmx.item.JMXView"
             title="JMX"
             type="welcome"
             viewId="com.easyfun.eclipse.performance.jmx.view.JMXView"

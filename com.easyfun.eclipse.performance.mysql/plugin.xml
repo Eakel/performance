@@ -6,7 +6,7 @@
          <view
             class="com.easyfun.eclipse.performance.mysql.analyze.ui.MySQLView"
             icon="icons/mysql.png"
-            id="com.easyfun.eclipse.performance.mysql.views.MySQLView"
+            id="com.easyfun.eclipse.performance.mysql.view.MySQLView"
             name="MySQL表统计">
       </view>
       </extension>
@@ -25,10 +25,10 @@
       <page
             folder="com.easyfun.eclipse.performance.mysql.mysqlFolder"
             icon="icons/mysql.png"
-            id="com.easyfun.eclipse.performance.mysql.mysqlPage"
+            id="com.easyfun.eclipse.performance.mysql.item.MySQLView"
             title="MySQL表统计"
             type="MySQL"
-            viewId="com.easyfun.eclipse.performance.mysql.views.MySQLView"
+            viewId="com.easyfun.eclipse.performance.mysql.view.MySQLView"
             visible="true">
       </page>
    </extension>

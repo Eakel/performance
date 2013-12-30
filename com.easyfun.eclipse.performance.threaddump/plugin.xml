@@ -18,7 +18,7 @@
             id="com.easyfun.eclipse.component.threaddump.threadDump"
             title="ThreadDump"
             type="ThreadDump"
-            viewId="com.easyfun.eclipse.performance.threaddump.ThreadDump"
+            viewId="com.easyfun.eclipse.performance.threaddump.view.ThreadDumpView"
             visible="true">
       </page>
    </extension>
@@ -28,7 +28,7 @@
             category="com.easyfun.eclipse.utils.views.category"
             class="com.easyfun.eclipse.performance.threaddump.ThreadDumpView"
             icon="icons/threaddump.gif"
-            id="com.easyfun.eclipse.performance.threaddump.ThreadDump"
+            id="com.easyfun.eclipse.performance.threaddump.view.ThreadDumpView"
             name="ThreadDump"
             restorable="true">
       </view>

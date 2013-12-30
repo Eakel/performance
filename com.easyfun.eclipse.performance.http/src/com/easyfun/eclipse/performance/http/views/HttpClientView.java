@@ -31,7 +31,7 @@ import com.easyfun.eclipse.performance.navigator.console.LogHelper;
  * @author linzhaoming
  *
  */
-public class HttpViewPart extends ViewPart implements PropertyChangeListener {
+public class HttpClientView extends ViewPart implements PropertyChangeListener {
 	private RequestStartLine requestStartLine = null;
 	private ResponseStatusLine responseStatusLine = null;
 	
@@ -49,9 +49,9 @@ public class HttpViewPart extends ViewPart implements PropertyChangeListener {
 	private Composite responseComposite;
 	private Browser browser;
 	
-	private static final Log log = LogFactory.getLog(HttpViewPart.class);
+	private static final Log log = LogFactory.getLog(HttpClientView.class);
 
-	public HttpViewPart() {
+	public HttpClientView() {
 	}
 
 	public void createPartControl(Composite parent) {

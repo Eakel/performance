@@ -36,7 +36,7 @@ import com.easyfun.eclipse.performance.navigator.helper.DefaultItemProvider;
  *
  */
 public class ItemNavigationView extends ViewPart {
-	public static String VIEW_ID = "com.easyfun.eclipse.performance.navigationView";
+	public static String VIEW_ID = "com.easyfun.eclipse.performance.view.ItemNavigationView";
 	private TreeViewer viewer;
 	
 	protected static Log log = LogFactory.getLog(ItemNavigationView.class);

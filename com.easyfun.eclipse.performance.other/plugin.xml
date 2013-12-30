@@ -6,7 +6,7 @@
       <view
             class="com.easyfun.eclipse.performance.other.memcached.MemcachedView"
             icon="icons/memcache.png"
-            id="com.easyfun.eclipse.performance.other.views.MemcachedView"
+            id="com.easyfun.eclipse.performance.other.view.MemcachedView"
             name="Memcached">
       </view>
    </extension>
@@ -15,10 +15,10 @@
       <page
             folder="com.easyfun.eclipse.performance.otherFolder"
             icon="icons/memcache.png"
-            id="com.easyfun.eclipse.performance.memcache"
+            id="com.easyfun.eclipse.performance.other.item.MemcachedView"
             title="Memcached"
             type="Memcached"
-            viewId="com.easyfun.eclipse.performance.other.views.MemcachedView"
+            viewId="com.easyfun.eclipse.performance.other.view.MemcachedView"
             visible="true"></page>
    </extension>
 </plugin>

@@ -15,10 +15,10 @@
              <page
                    folder="com.easyfun.eclipse.performance.oracleFolder"
                    icon="icons/awr.gif"
-                   id="com.easyfun.eclipse.component.awr.item.oracleAWRComposite"
+                   id="com.easyfun.eclipse.performance.awr.items.AWRView"
                    title="AWR"
                    type="awr"
-                   viewId="com.easyfun.eclipse.performance.awr.views.AWRView"
+                   viewId="com.easyfun.eclipse.performance.awr.view.AWRView"
                    visible="true">
       </page>
     </extension>
@@ -27,7 +27,7 @@
          <view
                class="com.easyfun.eclipse.performance.awr.item.AWRView"
                icon="icons/awr.gif"
-               id="com.easyfun.eclipse.performance.awr.views.AWRView"
+               id="com.easyfun.eclipse.performance.awr.view.AWRView"
                name="AWR"
                restorable="true">
          </view>

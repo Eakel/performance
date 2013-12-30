@@ -15,10 +15,10 @@
       <page
             folder="com.easyfun.eclipse.performance.appframeFolder"
             icon="icons/trace.png"
-            id="com.easyfun.eclipse.component.trace.item.traceComposite"
+            id="com.easyfun.eclipse.performance.trace.item.TraceView"
             title="TRACE"
             type="trace"
-            viewId="com.easyfun.eclipse.performance.trace.traceview"
+            viewId="com.easyfun.eclipse.performance.trace.view.TraceView"
             visible="true">
       </page>
    </extension>
@@ -28,7 +28,7 @@
             category="com.easyfun.eclipse.utils.views.category"
             class="com.easyfun.eclipse.performance.trace.item.TraceView"
             icon="icons/trace.png"
-            id="com.easyfun.eclipse.performance.trace.traceview"
+            id="com.easyfun.eclipse.performance.trace.view.TraceView"
             name="TRACE"
             restorable="true">
       </view>
