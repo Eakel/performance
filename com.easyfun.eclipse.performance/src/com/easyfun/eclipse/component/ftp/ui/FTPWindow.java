@@ -69,7 +69,6 @@ import org.eclipse.swt.widgets.Text;
 import com.easyfun.eclipse.component.ftp.FTPBean;
 import com.easyfun.eclipse.component.ftp.FTPDialog;
 import com.easyfun.eclipse.component.ftp.FTPHelper;
-import com.easyfun.eclipse.component.ftp.ui.LocalDirectoryTableViewer.ILocalTableListener;
 import com.easyfun.eclipse.performance.navigator.console.LogHelper;
 import com.easyfun.eclipse.rcp.RCPUtil;
 
