@@ -16,8 +16,6 @@ import org.eclipse.swt.widgets.Table;
 
 import com.easyfun.eclipse.util.TimeUtil;
 
-import ftp.DirectoryUtils;
-
 /**
  * Ô¶³ÌÄ¿Â¼TableViewer
  * 

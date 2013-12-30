@@ -23,8 +23,6 @@ import org.eclipse.swt.widgets.Listener;
 import com.easyfun.eclipse.rcp.ColumnViewerSorter;
 import com.easyfun.eclipse.util.TimeUtil;
 
-import ftp.DirectoryUtils;
-
 /**
  * ±¾µØÄ¿Â¼TableViewer
  * 
