@@ -8,6 +8,7 @@ import com.easyfun.eclipse.component.ftp.FTPBean;
 import com.easyfun.eclipse.performance.trace.SFtpClient;
 import com.easyfun.eclipse.performance.trace.TraceUtil;
 import com.easyfun.eclipse.performance.trace.builder.TraceBuilder;
+import com.easyfun.eclipse.performance.trace.item.TraceTreeEnum;
 import com.easyfun.eclipse.performance.trace.model.AppTrace;
 import com.easyfun.eclipse.util.IOUtil;
 import com.easyfun.eclipse.util.TimeUtil;
@@ -23,12 +24,12 @@ import com.trilead.ssh2.SFTPv3DirectoryEntry;
  *
  * @param <T>
  */
-public class SFtpTraceNode<T> extends TraceNode<T>{
+public class SFtpTraceNode extends TraceNode<TraceTreeEnum>{
 	private SFTPv3DirectoryEntry ftpEntry;
 	private SFtpClient ftpClient;
 	private FTPBean ftpBean = null;
 	
-	public SFtpTraceNode(T type, SFtpClient sftpClient, SFTPv3DirectoryEntry ftpEntry, FTPBean ftpBean){
+	public SFtpTraceNode(TraceTreeEnum type, SFtpClient sftpClient, SFTPv3DirectoryEntry ftpEntry, FTPBean ftpBean){
 		super(type, ftpEntry.filename);
 		this.ftpClient = sftpClient;
 		this.ftpEntry = ftpEntry;
@@ -78,10 +79,10 @@ public class SFtpTraceNode<T> extends TraceNode<T>{
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
 		String filePath = "";
-		if (ftpBean.getFilePath().endsWith("/")) {
-			filePath = ftpBean.getFilePath() + entry.filename;
+		if (ftpBean.getRemotePath().endsWith("/")) {
+			filePath = ftpBean.getRemotePath() + entry.filename;
 		} else {
-			filePath = ftpBean.getFilePath() + "/" + entry.filename;
+			filePath = ftpBean.getRemotePath() + "/" + entry.filename;
 		}
 		scp.get(filePath, bos);
 

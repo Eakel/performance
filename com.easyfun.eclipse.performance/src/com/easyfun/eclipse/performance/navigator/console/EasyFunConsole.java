@@ -69,13 +69,18 @@ public class EasyFunConsole extends MessageConsole {
 		this.addStrLen = 0;
 	}
 
-	public void printToConsole(final String msg, final Color color) {
-		final MessageConsoleStream stream = this.newMessageStream();
-		this.activate();
+	public static void printToConsole(final String msg, final Color color) {
+		EasyFunConsole console = getConsole();
+		if(console == null){
+			return;
+		}
+		
+		final MessageConsoleStream stream = console.newMessageStream();
+		console.activate();
 		if (color != null) {
 			stream.setColor(color);
 		}
-		addStrLen += msg.length() + 1;
+		console.addStrLen += msg.length() + 1;
 		stream.println(msg); // "\n" will take length 1, so use print, not println
 		try {
 			stream.flush();
@@ -84,11 +89,14 @@ public class EasyFunConsole extends MessageConsole {
 		}
 	}
 
-	public void addLinkToConsole(final EasyFunHyperLink link, Color color) {
+	public static void addLinkToConsole(final EasyFunHyperLink link, Color color) {
+		EasyFunConsole console = getConsole();
+		if(console == null){
+			return;
+		}
 		if (link.valid()) {
 			try {
-				final EasyFunConsole console = this;
-				final int currentStrLen = addStrLen;
+				final int currentStrLen = console.addStrLen;
 				printToConsole(link.getText(), color);
 				console.getDocument().addDocumentListener(new DocChangeListener(console, link, currentStrLen + link.getText().length()));
 			} catch (Exception e) {
@@ -96,8 +104,13 @@ public class EasyFunConsole extends MessageConsole {
 		}
 	}
 
-	public static EasyFunConsole getConsole() {
-		IConsoleManager manager = ConsolePlugin.getDefault().getConsoleManager();
+	private static EasyFunConsole getConsole() {
+		ConsolePlugin consolePlugin = ConsolePlugin.getDefault();
+		if(consolePlugin == null){
+			return null;
+		}
+		
+		IConsoleManager manager = consolePlugin.getConsoleManager();
 		IConsole[] curConsoles = manager.getConsoles();
 		for (IConsole co : curConsoles) {
 			if (co.getName().equals(CONSOLE_NAME)) {

@@ -1,5 +1,7 @@
 package com.easyfun.eclipse.performance.trace.item.trace;
 
+import com.easyfun.eclipse.performance.trace.item.TraceTreeEnum;
+
 
 
 /**
@@ -11,9 +13,9 @@ package com.easyfun.eclipse.performance.trace.item.trace;
  *
  * @param <T>
  */
-public class FileTraceDirectory<T> extends TraceDirectory<T>{
+public class FileTraceDirectory extends TraceDirectory<TraceTreeEnum>{
 	
-	public FileTraceDirectory(T type){
+	public FileTraceDirectory(TraceTreeEnum type){
 		super(type);
 	}
 	

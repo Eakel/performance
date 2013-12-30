@@ -21,7 +21,7 @@ public class FTPUtil {
 		client.connect(ftpBean.getHost(), ftpBean.getPort());
 		client.login(ftpBean.getUserName(), ftpBean.getPasswd());
 		client.setFileType(FTP.ASCII_FILE_TYPE);
-		InputStream is = client.retrieveFileStream(ftpBean.getFilePath());
+		InputStream is = client.retrieveFileStream(ftpBean.getRemotePath());
 		return is;
 	}
 }

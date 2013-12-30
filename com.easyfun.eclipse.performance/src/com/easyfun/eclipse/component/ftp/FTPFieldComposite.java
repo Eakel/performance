@@ -77,7 +77,7 @@ public class FTPFieldComposite extends Composite{
 				try {
 					ftpBean.setHost(strs[0]);
 					ftpBean.setPort(Integer.valueOf(strs[1]));
-					ftpBean.setFilePath(strs[2]);
+					ftpBean.setRemotePath(strs[2]);
 					ftpBean.setFtpType(Integer.valueOf(strs[3]));
 					ftpBean.setUserName(strs[4]);
 					ftpBean.setPasswd(strs[5]);
@@ -91,7 +91,7 @@ public class FTPFieldComposite extends Composite{
 		if (dialog.open() == Dialog.OK) {
 			ftpBean = dialog.getFTPBean();
 			ftpDescText.setText(ftpBean.getFTPDesc());
-			String ftpDesc2 = ftpBean.getHost() + "," + ftpBean.getPort() + "," + ftpBean.getFilePath() + "," + ftpBean.getFtpType() + "," + ftpBean.getUserName()
+			String ftpDesc2 = ftpBean.getHost() + "," + ftpBean.getPort() + "," + ftpBean.getRemotePath() + "," + ftpBean.getFtpType() + "," + ftpBean.getUserName()
 					+ "," + ftpBean.getPasswd();
 			store.setValue(PreferenceConstants.EASYFUN_FTP, ftpDesc2);
 			try {

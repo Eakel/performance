@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import com.easyfun.eclipse.component.ftp.FTPBean;
+import com.easyfun.eclipse.performance.trace.item.TraceTreeEnum;
 
 
 /**
@@ -17,11 +18,11 @@ import com.easyfun.eclipse.component.ftp.FTPBean;
  *
  * @param <T>
  */
-public class SFtpTraceDirectory<T> extends TraceDirectory<T>{
+public class SFtpTraceDirectory extends TraceDirectory<TraceTreeEnum>{
 	
 	private FTPBean ftpBean;
 	
-	public SFtpTraceDirectory(T type){
+	public SFtpTraceDirectory(TraceTreeEnum type){
 		super(type);
 	}
 	
@@ -43,7 +44,7 @@ public class SFtpTraceDirectory<T> extends TraceDirectory<T>{
 		if(ftpBean == null){
 			return "SFTP";
 		}else{
-			String path = "[" + ftpBean.getHost() + ":" + ftpBean.getPort() + "] " + ftpBean.getFilePath();
+			String path = "[" + ftpBean.getHost() + ":" + ftpBean.getPort() + "] " + ftpBean.getRemotePath();
 			return "SFTP " + path + " (" + getChildren().size() + ")";
 		}
 	}

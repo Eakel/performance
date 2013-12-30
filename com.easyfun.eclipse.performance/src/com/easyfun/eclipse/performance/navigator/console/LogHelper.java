@@ -24,7 +24,7 @@ public class LogHelper {
 		Display.getDefault().asyncExec(new Runnable() {
 			public void run() {
 				String msg = "[" + dateFormat.format(new Date()) + " DEBUG] " + " " + message;
-				EasyFunConsole.getConsole().printToConsole(msg, null);
+				EasyFunConsole.printToConsole(msg, null);
 				if(log == null){
 					System.out.println(msg);
 				}else{
@@ -39,7 +39,7 @@ public class LogHelper {
 		Display.getDefault().asyncExec(new Runnable() {
 			public void run() {
 				String msg = "[" + dateFormat.format(new Date()) + " INFO] " + message;
-				EasyFunConsole.getConsole().printToConsole(msg, new Color(null, 0, 0, 255));
+				EasyFunConsole.printToConsole(msg, new Color(null, 0, 0, 255));
 				if(log == null){
 					System.out.println(msg);
 				}else{
@@ -53,7 +53,7 @@ public class LogHelper {
 		Display.getDefault().asyncExec(new Runnable() {
 			public void run() {
 				String msg = "[" + dateFormat.format(new Date()) + " DEGBUG] " + t.getMessage();
-				EasyFunConsole.getConsole().printToConsole(msg, new Color(null, 255, 0, 0));
+				EasyFunConsole.printToConsole(msg, new Color(null, 255, 0, 0));
 				if (log == null) {
 					t.printStackTrace();
 				} else {
@@ -71,14 +71,14 @@ public class LogHelper {
 					String url = (message.substring(0, message.indexOf(PerformanceActivator.LINE))).trim();
 					int line = Integer.parseInt(message.substring(message.indexOf(PerformanceActivator.LINE) + 5).trim());
 					EasyFunHyperLink hyperlink = new EasyFunHyperLink(msg, url, line - 1);
-					EasyFunConsole.getConsole().addLinkToConsole(hyperlink, new Color(null, 255, 0, 0));
+					EasyFunConsole.addLinkToConsole(hyperlink, new Color(null, 255, 0, 0));
 					if (log == null) {
 						System.err.println(msg);
 					} else {
 						log.error(msg);
 					}
 				} else {
-					EasyFunConsole.getConsole().printToConsole(msg, new Color(null, 255, 0, 0));
+					EasyFunConsole.printToConsole(msg, new Color(null, 255, 0, 0));
 					if (log == null) {
 						System.err.println(msg);
 					} else {
@@ -100,14 +100,14 @@ public class LogHelper {
 							String url = (message.substring(0, message.indexOf(PerformanceActivator.LINE))).trim();
 							int line = Integer.parseInt(message.substring(message.indexOf(PerformanceActivator.LINE) + 5).trim());
 							EasyFunHyperLink hyperlink = new EasyFunHyperLink(msg, url, line - 1);
-							EasyFunConsole.getConsole().addLinkToConsole(hyperlink, new Color(null, 255, 0, 0));
+							EasyFunConsole.addLinkToConsole(hyperlink, new Color(null, 255, 0, 0));
 							if (log == null) {
 								System.err.println(msg);
 							} else {
 								log.error(msg);
 							}
 						} else {
-							EasyFunConsole.getConsole().printToConsole(msg, new Color(null, 255, 0, 0));
+							EasyFunConsole.printToConsole(msg, new Color(null, 255, 0, 0));
 							log.error(msg);
 						}
 					}

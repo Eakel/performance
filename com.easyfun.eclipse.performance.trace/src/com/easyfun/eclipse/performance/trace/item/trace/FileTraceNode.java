@@ -17,10 +17,10 @@ import com.easyfun.eclipse.util.TimeUtil;
  * 
  * @param <T>
  */
-public class FileTraceNode<T> extends TraceNode<T> {
+public class FileTraceNode extends TraceNode<TraceTreeEnum> {
 	private File nodeFile;
 
-	public FileTraceNode(T type, File nodeFile){
+	public FileTraceNode(TraceTreeEnum type, File nodeFile){
 		super(type, nodeFile.getName());
 		this.nodeFile = nodeFile;
 	}

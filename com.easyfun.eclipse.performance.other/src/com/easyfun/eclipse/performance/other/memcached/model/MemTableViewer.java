@@ -15,6 +15,7 @@ import org.eclipse.swt.events.MenuAdapter;
 import org.eclipse.swt.events.MenuEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
@@ -22,6 +23,8 @@ import org.eclipse.swt.widgets.MenuItem;
 
 import com.easyfun.eclipse.component.kv.MenuUtils;
 import com.easyfun.eclipse.rcp.ColumnViewerSorter;
+import com.easyfun.eclipse.rcp.RCPUtil;
+import com.easyfun.eclipse.util.IOUtil;
 
 /**
  * MemModel TableViewer
@@ -63,8 +66,21 @@ public class MemTableViewer extends TableViewer {
 				}else{
 					return element.toString();
 				}
-				
 			}
+
+			@Override
+			public Font getFont(Object element) {
+				if(element instanceof MemModel){
+					MemModel model = (MemModel)element;
+					String key = model.getKey();
+					if(key.equals("cmd_get") || key.equals("bytes") || key.equals("curr_items") || key.equals("uptime")){
+						return RCPUtil.getBoldFont();
+					}
+				}
+				return super.getFont(element);
+			}
+			
+			
 		});
 		ColumnViewerSorter cSorter = new ColumnViewerSorter(tableViewer, column) {
 			protected int doCompare(Viewer viewer, Object e1, Object e2) {
@@ -90,10 +106,28 @@ public class MemTableViewer extends TableViewer {
 		column.setLabelProvider(new ColumnLabelProvider() {
 			public String getText(Object element) {
 				if(element instanceof MemModel){
-					return ((MemModel) element).getValue();
+					MemModel model = (MemModel)element;
+					String key = model.getKey();
+					if(key.equals("bytes")){
+						long t = Long.parseLong(model.getValue());
+						return IOUtil.getDisplayFileSize(t) + " [" + model.getValue() + "]";
+					}else{
+						return model.getValue();
+					}
 				}else{
 					return element.toString();
 				}
+			}
+			
+			public Font getFont(Object element) {
+				if(element instanceof MemModel){
+					MemModel model = (MemModel)element;
+					String key = model.getKey();
+					if(key.equals("cmd_get") || key.equals("bytes") || key.equals("curr_items") || key.equals("uptime")){
+						return RCPUtil.getBoldFont();
+					}
+				}
+				return super.getFont(element);
 			}
 		});
 		

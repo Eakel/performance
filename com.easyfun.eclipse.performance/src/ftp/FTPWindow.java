@@ -7,11 +7,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.commons.net.ProtocolCommandEvent;
 import org.apache.commons.net.ProtocolCommandListener;
-import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
-import org.apache.commons.net.ftp.FTPReply;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.MenuManager;
@@ -19,6 +20,8 @@ import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.swt.SWT;
@@ -64,10 +67,12 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 import com.easyfun.eclipse.component.ftp.FTPBean;
+import com.easyfun.eclipse.component.ftp.FTPDialog;
+import com.easyfun.eclipse.component.ftp.FTPHelper;
 import com.easyfun.eclipse.performance.navigator.console.LogHelper;
 import com.easyfun.eclipse.rcp.RCPUtil;
 
-public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableViewer.ILocalTableListener, RemoteDirectoryBrowser.IRemoteTableListener{
+public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableViewer.ILocalTableListener{
 	/** 左侧目录表格 */
 	private LocalDirectoryTableViewer localDirTableViewer;
 
@@ -80,7 +85,9 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 
 	private StyledText logStyledText;
 
-	private FTPConnectionDialog connectionDialog;
+//	private FTPConnectionDialog connectionDialog;
+	
+	private FTPDialog connectionDialog;
 
 	/** 左侧表格Action(UPDir) */
 	private Action localUpDirAction;
@@ -99,9 +106,11 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 
 	private Action exitAction;
 
-	private FTPClient ftpClient;
+	private FTPHelper ftpHelper;
 
 	private FTPBean ftpBean;
+	
+	private static Log log = LogFactory.getLog(FTPWindow.class);
 
 	public FTPWindow(Shell parentShell) {
 		super(parentShell);
@@ -111,18 +120,6 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 		addStatusLine();
 		addToolBar(SWT.FLAT);
 		addMenuBar();
-
-		ftpClient = new FTPClient();
-		ftpClient.addProtocolCommandListener(new ProtocolCommandListener() {
-			public void protocolCommandSent(ProtocolCommandEvent e) {
-				logMessage("> " + e.getCommand(), false);
-			}
-
-			public void protocolReplyReceived(ProtocolCommandEvent e) {
-				logMessage("< " + e.getMessage(), false);
-			}
-		});
-
 	}
 
 	private void createActions() {
@@ -164,41 +161,45 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 		connectAction = new Action() {
 			public void run() {
 				if (connectionDialog == null) {
-					connectionDialog = new FTPConnectionDialog(FTPWindow.this);
+					connectionDialog = new FTPDialog(getShell());
 				}
 				if (connectionDialog.open() == Dialog.OK) {
 					ftpBean = connectionDialog.getFTPBean();
+					
 					if (ftpBean == null) {
 						logError("Failed to get connection information.");
 					} else {
-						// connects to remote host.
 						logMessage("Connecting to " + ftpBean.getHost(), true);
 						try {
-							ftpClient.connect(ftpBean.getHost(), ftpBean.getPort());
-							if (!FTPReply.isPositiveCompletion(ftpClient.getReplyCode())) {
-								throw new RuntimeException("FTP server refused connection.");
-							}
-							logMessage("Connected to " + ftpBean.getHost(), true);
+							ftpHelper = new FTPHelper(ftpBean);
+							ftpHelper.connect();
+							ftpHelper.getFTPClient().addProtocolCommandListener(new ProtocolCommandListener() {
+								public void protocolCommandSent(ProtocolCommandEvent e) {
+									logMessage("> " + e.getCommand(), false);
+								}
+
+								public void protocolReplyReceived(ProtocolCommandEvent e) {
+									logMessage("< " + e.getMessage(), false);
+								}
+							});
 						} catch (Exception e) {
 							logError(e.toString());
 							return;
 						}
 						try {
-							// logins in.
-							if (ftpClient.login(ftpBean.getUserName(), ftpBean.getPasswd())) {
-								logMessage("Logged in as user: " + ftpBean.getUserName(), true);
-							}
 							// gets current working directory.
-							remotePathText.setText(ftpClient.printWorkingDirectory());
+							String workingDir = ftpHelper.getWorkingDirectory();
+							remotePathText.setText(workingDir);
 
 							// Lists files.
-							FTPFile[] files = ftpClient.listFiles();
+							FTPFile[] files = ftpHelper.listFiles();
 							remoteDirTableViewer.setInput(files);
-						} catch (IOException e1) {
+							remoteDirTableViewer.setWorkingDirectory(workingDir);
+						} catch (Exception e1) {
 							logError(e1.getMessage());
 							try {
-								ftpClient.disconnect();
-							} catch (IOException e2) {
+								ftpHelper.disconnect();
+							} catch (Exception e2) {
 							}
 						}
 					}
@@ -213,8 +214,7 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 		disconnectAction = new Action() {
 			public void run() {
 				try {
-					ftpClient.logout();
-					ftpClient.disconnect();
+					ftpHelper.disconnect();
 				} catch (Exception e) {
 					logError(e.toString());
 				}
@@ -228,9 +228,9 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 		remoteUpDirAction = new Action() {
 			public void run() {
 				try {
-					if (ftpClient.changeToParentDirectory()) {
-						remotePathText.setText(ftpClient.printWorkingDirectory());
-						FTPFile[] files = ftpClient.listFiles();
+					if (ftpHelper.changeToParentDirectory()) {
+						remotePathText.setText(ftpHelper.getWorkingDirectory());
+						FTPFile[] files = ftpHelper.listFiles();
 						remoteDirTableViewer.setInput(files);
 					}
 				} catch (Exception e) {
@@ -257,7 +257,7 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 				if (!RCPUtil.showConfirm(getShell(), "Are you sure you want to exit?"))
 					return;
 				try {
-					ftpClient.disconnect();
+					ftpHelper.disconnect();
 				} catch (Exception e) {
 				}
 				close();
@@ -342,16 +342,19 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 
 					try {
 						FileOutputStream stream = new FileOutputStream(target);
-						if (ftpClient.retrieveFile(text, stream)) {
-							logMessage("File retrieved successfully.", true);
-							// refreshes the file list.
-							localDirTableViewer.refresh();
-						} else {
-							logError("Failed to retrieve file: " + text);
+						try {
+							ftpHelper.download(text, stream);
+						} catch (Exception e) {
+							LogHelper.error(log, "Failed to retrieve file: ", e);
 						}
-
+//						if (ftpClient.getFTPClient().retrieveFile(text, stream)) {
+//							logMessage("File retrieved successfully.", true);
+//							localDirTableViewer.refresh();
+//						} else {
+//							logError("Failed to retrieve file: " + text);
+//						}
 						stream.close();
-					} catch (IOException e) {
+					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				}
@@ -508,10 +511,10 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 				try {
 					InputStream in = new FileInputStream(file);
 					//上传文件  
-					ftpClient.storeFile(file.getName(),in);  
+					ftpHelper.upload(file.getName(), in);
 					in.close();
 					
-					remoteDirTableViewer.refresh();	//TODO:刷新
+					refreshRemoteTable();
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				} 
@@ -579,8 +582,23 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 				remoteUpDirAction.run();
 			}
 		});
-		remoteDirTableViewer = new RemoteDirectoryBrowser(compositeRemoteDir);
-		remoteDirTableViewer.addRemoteTableListener(this);
+		remoteDirTableViewer = new RemoteDirectoryBrowser(compositeRemoteDir);	
+		remoteDirTableViewer.addDoubleClickListener(new IDoubleClickListener(){
+			public void doubleClick(DoubleClickEvent event) {
+				IStructuredSelection selection = (IStructuredSelection) event.getSelection();
+				FTPFile file = (FTPFile) selection.getFirstElement();
+				
+				try {
+					String workingDir = file.getName();
+					ftpHelper.changeWorkingDirectory(workingDir);
+					remoteDirTableViewer.setWorkingDirectory(workingDir);					
+					remotePathText.setText(ftpHelper.getWorkingDirectory());
+					remoteDirTableViewer.setInput(ftpHelper.listFiles());
+				} catch (Exception e) {
+					logError(e.toString());
+				}
+			}
+		});
 		
 		Menu remoteParenMenu = new Menu(localDirTableViewer.getTable());
 		MenuItem remoteMenuItem = new MenuItem(remoteParenMenu, SWT.CASCADE);
@@ -593,12 +611,13 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 					String toFileName = FilenameUtils.concat(((File)localDirTableViewer.getInput()).getPath(), ftpFile.getName());
 					OutputStream out = new FileOutputStream(toFileName);
 					//下载文件  
-					ftpClient.retrieveFile(ftpFile.getName(),out);  
+					ftpHelper.download(ftpFile.getName(), out);
 					out.close();
 					
-					localDirTableViewer.refresh();	//TODO:刷新
-				} catch (Exception e1) {
-					e1.printStackTrace();
+					localDirTableViewer.refresh();
+				} catch (Exception ex) {
+					ex.printStackTrace();
+					LogHelper.error(log, "Failed to retrieve file: ", ex);
 				} 
 			}
 		});
@@ -607,7 +626,7 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 		remoteMenuItem.setText("刷新");
 		remoteMenuItem.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {	
-				localDirTableViewer.refresh();
+				refreshRemoteTable();
 			}
 		});
 		
@@ -679,13 +698,27 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 	
 	private void initRemoteTable(String path){
 		try {
-			if (ftpClient.changeWorkingDirectory(path)) {
-				remotePathText.setText(ftpClient.printWorkingDirectory());
-				FTPFile[] files = ftpClient.listFiles();
+			if (ftpHelper.changeWorkingDirectory(path)) {
+				remotePathText.setText(ftpHelper.getWorkingDirectory());
+				remoteDirTableViewer.setWorkingDirectory(path);
+				FTPFile[] files = ftpHelper.listFiles();
 				remoteDirTableViewer.setInput(files);
 			}
 		} catch (Exception e) {
 			logError("FTP操作出错，出错信息为：" + e.getMessage(), e);
+		}
+	}
+	
+	private void refreshRemoteTable(){
+		String workingDir = remoteDirTableViewer.getWorkingDirectory();
+		if(StringUtils.isNotEmpty(workingDir)){
+			try {
+				ftpHelper.changeWorkingDirectory(workingDir);
+				remotePathText.setText(ftpHelper.getWorkingDirectory());
+				remoteDirTableViewer.setInput(ftpHelper.listFiles());
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
 		}
 	}
 
@@ -737,10 +770,10 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 
 	public void remotePathChange(String path) {
 		try {
-			ftpClient.changeWorkingDirectory(path);
-			remotePathText.setText(ftpClient.printWorkingDirectory());
-			remoteDirTableViewer.setInput(ftpClient.listFiles());
-		} catch (IOException e) {
+			ftpHelper.changeWorkingDirectory(path);
+			remotePathText.setText(ftpHelper.getWorkingDirectory());
+			remoteDirTableViewer.setInput(ftpHelper.listFiles());
+		} catch (Exception e) {
 			logError(e.toString());
 		}
 	}

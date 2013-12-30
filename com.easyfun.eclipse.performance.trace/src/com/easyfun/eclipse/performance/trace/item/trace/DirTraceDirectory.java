@@ -2,6 +2,7 @@ package com.easyfun.eclipse.performance.trace.item.trace;
 
 import java.io.File;
 
+import com.easyfun.eclipse.performance.trace.item.TraceTreeEnum;
 import com.easyfun.eclipse.util.StringUtil;
 
 /**
@@ -13,11 +14,11 @@ import com.easyfun.eclipse.util.StringUtil;
  * 
  * @param <T>
  */
-public class DirTraceDirectory<T> extends TraceDirectory<T> {
+public class DirTraceDirectory extends TraceDirectory<TraceTreeEnum> {
 
 	private File dirFile = null;
 
-	public DirTraceDirectory(T type) {
+	public DirTraceDirectory(TraceTreeEnum type) {
 		super(type);
 	}
 

@@ -43,7 +43,7 @@ import com.easyfun.eclipse.component.file.DirectoryFieldComposite;
 import com.easyfun.eclipse.component.file.FileFieldComposite;
 import com.easyfun.eclipse.component.ftp.FTPBean;
 import com.easyfun.eclipse.component.ftp.FTPFieldComposite;
-import com.easyfun.eclipse.component.ftp.FtpClient;
+import com.easyfun.eclipse.component.ftp.FTPHelper;
 import com.easyfun.eclipse.performance.navigator.console.LogHelper;
 import com.easyfun.eclipse.performance.trace.SFtpClient;
 import com.easyfun.eclipse.performance.trace.builder.TraceBuilder;
@@ -384,7 +384,7 @@ public class TraceView extends ViewPart {
 		Object obj = selection.getFirstElement();
 		Menu menu = new Menu(treeViewer.getTree());
 		if(obj instanceof TraceDirectory){
-			TraceDirectory dir = (TraceDirectory) obj;
+			TraceDirectory<TraceTreeEnum> dir = (TraceDirectory<TraceTreeEnum>) obj;
 			if (dir.getType().equals(TraceTreeEnum.DIR_FILE)) {
 				MenuItem menuItem = new MenuItem(menu, SWT.PUSH);
 				menuItem.setText("文件...");
@@ -392,7 +392,7 @@ public class TraceView extends ViewPart {
 					public void widgetSelected(SelectionEvent e) {
 						Object ele = ((IStructuredSelection) treeViewer.getSelection()).getFirstElement();
 						if (ele instanceof TraceDirectory) {
-							TraceDirectory dir = (TraceDirectory) ele;
+							TraceDirectory<TraceTreeEnum> dir = (TraceDirectory<TraceTreeEnum>) ele;
 							if (dir.getType().equals(TraceTreeEnum.DIR_FILE)) {
 								fileComposite.openFileDialog();
 							} else {
@@ -409,7 +409,7 @@ public class TraceView extends ViewPart {
 						try {
 							Object ele = ((IStructuredSelection) treeViewer.getSelection()).getFirstElement();
 							if (ele instanceof TraceDirectory) {
-								TraceDirectory dir = (TraceDirectory) ele;
+								TraceDirectory<TraceTreeEnum> dir = (TraceDirectory<TraceTreeEnum>) ele;
 								if (dir.getType().equals(TraceTreeEnum.DIR_DIR)) {
 									dirComposite.openDirDialog();
 								} else {
@@ -428,7 +428,7 @@ public class TraceView extends ViewPart {
 					public void widgetSelected(SelectionEvent e) {
 						Object ele = ((IStructuredSelection) treeViewer.getSelection()).getFirstElement();
 						if (ele instanceof TraceDirectory) {
-							TraceDirectory dir = (TraceDirectory) ele;
+							TraceDirectory<TraceTreeEnum> dir = (TraceDirectory<TraceTreeEnum>) ele;
 							if (dir.getType().equals(TraceTreeEnum.DIR_FTP)) {
 								ftpComposite.openFTPDialog();
 							} else {
@@ -444,7 +444,7 @@ public class TraceView extends ViewPart {
 					public void widgetSelected(SelectionEvent e) {
 						Object ele = ((IStructuredSelection) treeViewer.getSelection()).getFirstElement();
 						if (ele instanceof TraceDirectory) {
-							TraceDirectory dir = (TraceDirectory) ele;
+							TraceDirectory<TraceTreeEnum> dir = (TraceDirectory<TraceTreeEnum>) ele;
 							if (dir.getType().equals(TraceTreeEnum.DIR_FTP)) {
 								ftpComposite.openFTPDialog();
 							} else {
@@ -487,7 +487,7 @@ public class TraceView extends ViewPart {
 				public void widgetSelected(SelectionEvent e) {
 					Object ele = ((IStructuredSelection) treeViewer.getSelection()).getFirstElement();
 					if(ele instanceof TraceDirectory){
-						TraceDirectory dir = (TraceDirectory)ele;
+						TraceDirectory<TraceTreeEnum> dir = (TraceDirectory<TraceTreeEnum>)ele;
 						dir.sortTrace(TraceDirectory.SORT_TRACETIME);
 						traceFileTreeViewer.refresh(dir);
 						traceFileTreeViewer.expandToLevel(dir, TreeViewer.ALL_LEVELS);
@@ -501,7 +501,7 @@ public class TraceView extends ViewPart {
 				public void widgetSelected(SelectionEvent e) {
 					Object ele = ((IStructuredSelection) treeViewer.getSelection()).getFirstElement();
 					if(ele instanceof TraceDirectory){
-						TraceDirectory dir = (TraceDirectory)ele;
+						TraceDirectory<TraceTreeEnum> dir = (TraceDirectory<TraceTreeEnum>)ele;
 						dir.sortTrace(TraceDirectory.SORT_FILESIZE);
 						traceFileTreeViewer.refresh(dir);
 						traceFileTreeViewer.expandToLevel(dir, TreeViewer.ALL_LEVELS);
@@ -515,7 +515,7 @@ public class TraceView extends ViewPart {
 				public void widgetSelected(SelectionEvent e) {
 					Object ele = ((IStructuredSelection) treeViewer.getSelection()).getFirstElement();
 					if(ele instanceof TraceDirectory){
-						TraceDirectory dir = (TraceDirectory)ele;
+						TraceDirectory<TraceTreeEnum> dir = (TraceDirectory<TraceTreeEnum>)ele;
 						dir.sortTrace(TraceDirectory.SORT_FILETIME);
 						traceFileTreeViewer.refresh(dir);
 						traceFileTreeViewer.expandToLevel(dir, TreeViewer.ALL_LEVELS);
@@ -631,7 +631,7 @@ public class TraceView extends ViewPart {
 					public void widgetSelected(SelectionEvent e) {
 						Object ele = ((IStructuredSelection) treeViewer.getSelection()).getFirstElement();
 						if (ele instanceof FileTraceNode) {
-							((FileTraceNode<TraceTreeEnum>) ele).removeFileChild();
+							((FileTraceNode) ele).removeFileChild();
 							treeViewer.setInput(TraceTreeMem.getTraceFileInput()); // 刷新
 							try {
 								updateUIByAppTrace(null);
@@ -716,14 +716,15 @@ public class TraceView extends ViewPart {
 	private void updateByFTP(FTPBean bean) {
 		try {
 			if(bean.getFtpType() == FTPBean.TYPE_FTP){
-				FtpClient ftpUtil = new FtpClient(bean);
-				String [] strs = ftpUtil.list();
+				FTPHelper ftpClient = new FTPHelper(bean);
+				ftpClient.connect();
+				String [] strs = ftpClient.list();
 				System.out.println(Arrays.asList(strs));
 			}else if(bean.getFtpType() == FTPBean.TYPE_SFTP){
 				SFtpClient sftpClient = new SFtpClient(bean);
-				List<SFTPv3DirectoryEntry> list = sftpClient.list(bean.getFilePath());
+				List<SFTPv3DirectoryEntry> list = sftpClient.list(bean.getRemotePath());
 				
-				TraceDirectory dir = TraceTreeMem.getFTPirectory();
+				TraceDirectory<TraceTreeEnum> dir = TraceTreeMem.getFTPirectory();
 				
 				if (dir != null) {
 					dir.getChildren().clear();
@@ -775,8 +776,8 @@ public class TraceView extends ViewPart {
 	private void handleSearch(){
 		try {
 			String s = searchText.getText().trim();
-			List<TraceDirectory> dirs = TraceTreeMem.getTraceFileInput();
-			for (TraceDirectory dir : dirs) {
+			List<TraceDirectory<TraceTreeEnum>> dirs = TraceTreeMem.getTraceFileInput();
+			for (TraceDirectory<TraceTreeEnum> dir : dirs) {
 				List<TraceNode> children = dir.getRealChildren();
 				
 				if(dir.getType().equals(TraceTreeEnum.DIR_FTP)){
@@ -814,7 +815,7 @@ public class TraceView extends ViewPart {
 	}
 	
 	/** 若Trace文件未初始化先初始化所有Trace文件*/
-	public static boolean initFTPTrace(TraceDirectory dir, Shell shell) throws Exception{
+	public static boolean initFTPTrace(TraceDirectory<TraceTreeEnum> dir, Shell shell) throws Exception{
 		if(dir.getType().equals(TraceTreeEnum.DIR_FTP) == false){
 			return false;
 		}
@@ -842,7 +843,6 @@ public class TraceView extends ViewPart {
 	
 	@Override
 	public void setFocus() {
-		// TODO Auto-generated method stub
 		
 	}
 

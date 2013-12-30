@@ -24,4 +24,8 @@ public class ImageConstants {
 	
 	/** Error Log ”Õº*/
 	public static final String ERRORLOG_ICONS = "icons/eclipse/error_log.gif";
+	
+	public static final String EXPLANDALL_ICONS = "icons/eclipse/expand.gif";
+	
+	public static final String COLAPSEALL_ICONS = "icons/eclipse/collapse.gif";
 }

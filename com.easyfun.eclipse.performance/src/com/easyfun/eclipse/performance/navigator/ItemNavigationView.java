@@ -10,12 +10,18 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.part.ViewPart;
 
+import com.easyfun.eclipse.performance.ImageConstants;
+import com.easyfun.eclipse.performance.PerformanceActivator;
 import com.easyfun.eclipse.performance.navigator.cfg.model.Folder;
 import com.easyfun.eclipse.performance.navigator.cfg.model.Item;
 import com.easyfun.eclipse.performance.navigator.cfg.model.ItemWrapper;
@@ -76,7 +82,26 @@ public class ItemNavigationView extends ViewPart {
 	        }
 		});
 		
+		Menu parenMenu = new Menu(viewer.getTree());
+		MenuItem item = new MenuItem(parenMenu, SWT.DROP_DOWN);
+		item.setText("Expland All");
+		item.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.EXPLANDALL_ICONS).createImage());
+		item.addSelectionListener(new SelectionAdapter(){
+			public void widgetSelected(SelectionEvent e) {
+				viewer.expandAll();
+			}
+		});
 		
+		item = new MenuItem(parenMenu, SWT.DROP_DOWN);
+		item.setText("Collapse All");
+		item.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.COLAPSEALL_ICONS).createImage());
+		item.addSelectionListener(new SelectionAdapter(){
+			public void widgetSelected(SelectionEvent e) {
+				viewer.collapseAll();
+			}
+		});
+		
+		viewer.getTree().setMenu(parenMenu);
 		
 		initializeToolBar();
 	}

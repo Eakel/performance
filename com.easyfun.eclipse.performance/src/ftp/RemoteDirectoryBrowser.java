@@ -1,13 +1,10 @@
 package ftp;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
@@ -16,8 +13,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Table;
 
 import com.easyfun.eclipse.util.TimeUtil;
@@ -32,7 +27,7 @@ import com.easyfun.eclipse.util.TimeUtil;
  */
 public class RemoteDirectoryBrowser extends TableViewer {
 	
-	private List<IRemoteTableListener> listeners = new ArrayList<IRemoteTableListener>();
+	private String workingDir = "";
 	
 	public RemoteDirectoryBrowser(Composite parent){
 		super(parent, SWT.FULL_SELECTION|SWT.BORDER);
@@ -63,18 +58,16 @@ public class RemoteDirectoryBrowser extends TableViewer {
 		
 		setContentProvider(new RemoteContentProvider());
 		setLabelProvider(new RemoteTableLabelProvider());
-		
-		this.getTable().addListener(SWT.MouseDoubleClick, new Listener() {
-			public void handleEvent(Event event) {
-				IStructuredSelection selection = (IStructuredSelection) RemoteDirectoryBrowser.this.getSelection();
-				FTPFile file = (FTPFile) selection.getFirstElement();
-				if (file != null && file.isDirectory()) {
-					for (IRemoteTableListener l : listeners) {
-						l.remotePathChange(file.getName());
-					}
-				}
-			}
-		});
+	}
+
+	/** 设置FTP当前工作目录*/
+	public void setWorkingDirectory(String workingDir){
+		this.workingDir = workingDir;
+	}
+	
+	/** 获取FTP当前工作目录*/
+	public String getWorkingDirectory(){
+		return this.workingDir;
 	}
 	
 	private static class RemoteTableLabelProvider implements ITableLabelProvider{
@@ -145,17 +138,6 @@ public class RemoteDirectoryBrowser extends TableViewer {
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		}
 	}
-	
-	public void addRemoteTableListener(IRemoteTableListener listener){
-		listeners.add(listener);
-	}
-	
-	public void removeRemoteTableListener(IRemoteTableListener listener){
-		listeners.remove(listener);
-	}
-	
-	public static interface IRemoteTableListener{
-		public void remotePathChange(String path);
-	}
 
+	
 }

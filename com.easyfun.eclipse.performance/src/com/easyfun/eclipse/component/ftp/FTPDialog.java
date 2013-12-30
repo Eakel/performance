@@ -37,6 +37,11 @@ public class FTPDialog extends Dialog {
 	private FTPBean ftpBean;
 	private Combo ftpTypeCombo;
 	
+	public FTPDialog(Shell parentShell) {
+		super(parentShell);
+		this.ftpBean = new FTPBean();
+	}
+	
 	public FTPDialog(Shell parentShell, FTPBean ftpBean) {
 		super(parentShell);
 		this.ftpBean = ftpBean;
@@ -55,7 +60,7 @@ public class FTPDialog extends Dialog {
 		hostText = new Text(container, SWT.BORDER);
 		gridData = new GridData(SWT.RIGHT, SWT.CENTER, false, false);
 		hostText.setLayoutData(gridData);
-		hostText.setText("localhost");
+		hostText.setText("");
 		hostText.addModifyListener(new ModifyListener() {
 			public void modifyText(final ModifyEvent e) {
 //				updateUI();
@@ -109,7 +114,7 @@ public class FTPDialog extends Dialog {
 //				updateUI();
 			}
 		});
-		userNameText.setText("linzm");
+		userNameText.setText("");
 
 		label = new Label(container, SWT.NONE);
 		label.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false));
@@ -124,7 +129,7 @@ public class FTPDialog extends Dialog {
 //				updateUI();
 			}
 		});
-		passwdText.setText("aaa");
+		passwdText.setText("");
 		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
 		gridData.horizontalSpan =3;
 		passwdText.setLayoutData(gridData);
@@ -136,7 +141,7 @@ public class FTPDialog extends Dialog {
 		label.setText("ÎÄ¼þÂ·¾¶£º");
 
 		filePathText = new Text(container, SWT.BORDER);
-		filePathText.setText("jvm.log");
+		filePathText.setText("");
 		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
 		gridData.horizontalSpan =3;
 		filePathText.setLayoutData(gridData);
@@ -161,12 +166,16 @@ public class FTPDialog extends Dialog {
 	}
 	
 	private void initialize(){
-		userNameText.setText(ftpBean.getUserName());
-		passwdText.setText(ftpBean.getPasswd());
-		hostText.setText(ftpBean.getHost());
-		filePathText.setText(ftpBean.getFilePath());
-		portText.setText(String.valueOf(ftpBean.getPort()));
-		ftpTypeCombo.select(ftpBean.getFtpType());
+		if(ftpBean != null){
+			userNameText.setText(ftpBean.getUserName());
+			passwdText.setText(ftpBean.getPasswd());
+			hostText.setText(ftpBean.getHost());
+			filePathText.setText(ftpBean.getRemotePath());
+			portText.setText(String.valueOf(ftpBean.getPort()));
+			ftpTypeCombo.select(ftpBean.getFtpType());
+		}else{
+			ftpBean = new FTPBean();
+		}
 	}
 	
 	private boolean checkUI(){
@@ -206,19 +215,24 @@ public class FTPDialog extends Dialog {
 		return true;
 	}
 	
-	protected void buttonPressed(int buttonId) {
-		if (buttonId == IDialogConstants.OK_ID) {
-			if(checkUI() == false){
-				return;
-			}
+	protected void okPressed() {
+		if (checkUI() == false) {
+			return;
 		}
+		
+		if(ftpBean == null){
+			ftpBean = new FTPBean();
+		}
+		
 		ftpBean.setHost(hostText.getText().trim());
 		ftpBean.setPort(Integer.parseInt(portText.getText().trim()));
 		ftpBean.setUserName(userNameText.getText().trim());
 		ftpBean.setPasswd(passwdText.getText().trim());
-		ftpBean.setFilePath(filePathText.getText().trim());
+		
+		ftpBean.setRemotePath(filePathText.getText().trim());
 		ftpBean.setFtpType(ftpTypeCombo.getSelectionIndex());
-		super.buttonPressed(buttonId);
+		
+		super.okPressed();
 	}
 	
 	public FTPBean getFTPBean() {

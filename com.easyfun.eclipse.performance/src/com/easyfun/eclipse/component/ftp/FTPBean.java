@@ -9,22 +9,30 @@ package com.easyfun.eclipse.component.ftp;
  */
 public class FTPBean {
 	
+	/** 类型[FTP] */
 	public static final int TYPE_FTP = 0;
+	/** 类型[SFTP] */
 	public static final int TYPE_SFTP = 1;
-	
-	private String filePath = "";
+
+	private int ftpType = TYPE_FTP;
+
+	private String host = "";
+	private int port = 21;
+
 	private String passwd = "";
 	private String userName = "";
-	private int port = 21;
-	private String host = "";
+
+	/** FTP服务器远程路径 */
+	private String remotePath = "";
 	
-	private int ftpType = TYPE_FTP;
-	
-	public String getFilePath() {
-		return filePath;
+	/** FTP服务器远程路径*/
+	public String getRemotePath() {
+		return remotePath;
 	}
-	public void setFilePath(String filePath) {
-		this.filePath = filePath;
+	
+	/** FTP服务器远程路径*/
+	public void setRemotePath(String remotePath) {
+		this.remotePath = remotePath;
 	}
 	public String getPasswd() {
 		return passwd;
@@ -64,7 +72,7 @@ public class FTPBean {
 		desc.append("ftpType:").append(getFtpType()).append("\t");
 		desc.append("username:").append(getUserName()).append("\t");
 		desc.append("password:").append(getPasswd()).append("\t");
-		desc.append("file:").append(getFilePath());
+		desc.append("file:").append(getRemotePath());
 		return desc.toString();
 	}
 	

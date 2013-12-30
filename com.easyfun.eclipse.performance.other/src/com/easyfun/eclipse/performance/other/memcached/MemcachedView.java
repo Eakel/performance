@@ -12,6 +12,7 @@ import org.apache.velocity.util.StringUtils;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -20,6 +21,7 @@ import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -31,6 +33,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
 
 import com.easyfun.eclipse.performance.navigator.console.LogHelper;
+import com.easyfun.eclipse.performance.other.OtherActivator;
 import com.easyfun.eclipse.performance.other.memcached.model.MemModel;
 import com.easyfun.eclipse.performance.other.memcached.model.MemTableViewer;
 import com.easyfun.eclipse.performance.other.memcached.prefs.OtherPrefUtil;
@@ -63,8 +66,6 @@ public class MemcachedView extends ViewPart {
 		label.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_END));
 		
 		addrText = new Text(comp, SWT.SINGLE | SWT.BORDER);
-		OtherPrefUtil.getPreferenceStore().getBoolean("");
-//		addrText.setText("localhost:11211");
 		addrText.setText(OtherPrefUtil.getMemcachedUrl());
 		addrText.setToolTipText("输入格式为：ip1:port1,ip2:port2");
 		GridData gridData1 = new GridData(SWT.LEFT, SWT.TOP, false, false);
@@ -106,6 +107,12 @@ public class MemcachedView extends ViewPart {
 				tableViewer.setInput(list);
 			}
 		});
+		listViewer.setLabelProvider(new LabelProvider(){
+			public Image getImage(Object element) {
+				return OtherActivator.getImageDescriptor(ImageConstants.MEMCACHED_COMPUSTER_ICONS).createImage();
+			}
+		});
+		
 		
 		Menu menu = new Menu(listViewer.getList());
 		listViewer.getList().setMenu(menu);

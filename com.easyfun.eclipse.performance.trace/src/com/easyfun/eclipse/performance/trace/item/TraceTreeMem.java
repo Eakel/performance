@@ -18,9 +18,9 @@ import com.easyfun.eclipse.performance.trace.item.trace.TraceDirectory;
  *
  */
 public class TraceTreeMem {
-	private static List<TraceDirectory> list = null;
+	private static List<TraceDirectory<TraceTreeEnum>> list = null;
 
-	public static List<TraceDirectory> getTraceFileInput(){
+	public static List<TraceDirectory<TraceTreeEnum>> getTraceFileInput(){
 		if(list == null){
 			init();
 		}
@@ -29,12 +29,12 @@ public class TraceTreeMem {
 	}
 	
 	private static void init(){
-		list = new ArrayList<TraceDirectory>();
+		list = new ArrayList<TraceDirectory<TraceTreeEnum>>();
 		
-		TraceDirectory fileDir = new FileTraceDirectory(TraceTreeEnum.DIR_FILE);	//文件
+		TraceDirectory<TraceTreeEnum> fileDir = new FileTraceDirectory(TraceTreeEnum.DIR_FILE);	//文件
 		list.add(fileDir);
 		
-		TraceDirectory dirDir = new DirTraceDirectory(TraceTreeEnum.DIR_DIR);	//目录
+		TraceDirectory<TraceTreeEnum> dirDir = new DirTraceDirectory(TraceTreeEnum.DIR_DIR);	//目录
 		list.add(dirDir);
 		
 		TraceDirectory ftpDir = new SFtpTraceDirectory(TraceTreeEnum.DIR_FTP);	//FTP
@@ -42,7 +42,7 @@ public class TraceTreeMem {
 	}
 	
 	/** 获取[文件]目录*/
-	public static FileTraceDirectory<TraceTreeEnum> getFileDirectory(){
+	public static FileTraceDirectory getFileDirectory(){
 		if(list == null){
 			init();
 		}
@@ -51,7 +51,7 @@ public class TraceTreeMem {
 	}
 	
 	/** 获取[目录]目录*/
-	public static DirTraceDirectory<TraceTreeEnum> getDirDirectory(){
+	public static DirTraceDirectory getDirDirectory(){
 		if(list == null){
 			init();
 		}
@@ -60,7 +60,7 @@ public class TraceTreeMem {
 	}
 	
 	/** 获取[FTP]目录*/
-	public static SFtpTraceDirectory<TraceTreeEnum> getFTPirectory(){
+	public static SFtpTraceDirectory getFTPirectory(){
 		if(list == null){
 			init();
 		}

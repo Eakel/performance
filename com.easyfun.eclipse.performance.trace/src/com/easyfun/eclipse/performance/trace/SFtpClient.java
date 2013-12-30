@@ -25,7 +25,7 @@ public class SFtpClient {
 	private static final Log log = LogFactory.getLog(SFtpClient.class);
 	
 	public SFtpClient(FTPBean bean) throws Exception {
-		this(bean.getFtpType(), bean.getHost(), bean.getPort(), bean.getUserName(), bean.getPasswd(), bean.getFilePath());
+		this(bean.getFtpType(), bean.getHost(), bean.getPort(), bean.getUserName(), bean.getPasswd(), bean.getRemotePath());
 	}
 
 	public SFtpClient(int ftpType,String ip, int port, String userName, String password, String remotePath) throws Exception {
