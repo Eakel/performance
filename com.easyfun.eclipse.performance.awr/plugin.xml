@@ -2,21 +2,6 @@
 <?eclipse version="3.2"?>
 <plugin>
    <extension
-         point="org.eclipse.core.runtime.preferences">
-      <initializer
-            class="com.easyfun.eclipse.performance.awr.preferences.AwrPrefInitializer">
-      </initializer>
-   </extension>
-   <extension
-         point="org.eclipse.ui.preferencePages">
-      <page
-            category="com.easyfun.eclipse.performance.preferencePages.Oracle"
-            class="com.easyfun.eclipse.performance.awr.preferences.AwrJDBCPreferencePage"
-            id="com.easyfun.eclipse.performance.awr.preferencePages.AwrJDBC"
-            name="JDBC(AWR)">
-      </page>      
-   </extension>
-   <extension
          point="com.easyfun.eclipse.performance.EasyFunNavigatorFolder">
       <folder
             id="com.easyfun.eclipse.performance.oracleFolder"

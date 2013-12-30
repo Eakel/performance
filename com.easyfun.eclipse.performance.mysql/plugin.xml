@@ -36,12 +36,6 @@
       </page>
       <page
             category="com.easyfun.eclipse.performance.mysql.preferencePages.MySQL"
-            class="com.easyfun.eclipse.performance.mysql.analyze.pref.MySQLJDBCPreferencePage"
-            id="com.easyfun.eclipse.performance.mysql.preferences.MySQLJDBC"
-            name="MySQL表统计">
-      </page>
-      <page
-            category="com.easyfun.eclipse.performance.mysql.preferencePages.MySQL"
             class="com.easyfun.eclipse.performance.mysql.analyze.pref.MySQLTableFilterPreferencePage"
             id="com.easyfun.eclipse.performance.mysql.preferences.MySQLTableFilter"
             name="MySQL表名过滤器">

@@ -39,12 +39,13 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.ui.part.ViewPart;
 
 import com.easyfun.eclipse.component.db.ConnectionModel;
+import com.easyfun.eclipse.component.db.DBUtil;
 import com.easyfun.eclipse.component.kv.KeyValue;
 import com.easyfun.eclipse.component.kv.KeyValueTableViewer;
 import com.easyfun.eclipse.performance.navigator.console.LogHelper;
-import com.easyfun.eclipse.performance.oracle.preferences.OracleJDBCPreferencePage;
 import com.easyfun.eclipse.performance.oracle.preferences.OraclePrefUtil;
 import com.easyfun.eclipse.performance.oracle.preferences.OracleTableFilterPreferencePage;
+import com.easyfun.eclipse.performance.preferences.DBUrlPreferencePage;
 import com.easyfun.eclipse.rcp.RCPUtil;
 import com.easyfun.eclipse.util.StringUtil;
 import com.easyfun.eclipse.util.TimeUtil;
@@ -58,7 +59,7 @@ import com.easyfun.eclipse.util.TimeUtil;
 public class OracleTableView extends ViewPart {
 	private static final String SCHEMES = "schemes";
 	
-	private ConnectionModel connectionModel;
+//	private ConnectionModel connectionModel;
 	/** 当前过滤设定属性*/
 //	private String prop;
 	
@@ -82,7 +83,7 @@ public class OracleTableView extends ViewPart {
 		dbButton.setText("数据库设定");
 		dbButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(final SelectionEvent e) {
-				RCPUtil.showPreferencPage(getSite().getShell(), OracleJDBCPreferencePage.PREF_ID);
+				RCPUtil.showPreferencPage(getSite().getShell(), DBUrlPreferencePage.PREF_ID);
 			}
 		});
 
@@ -110,10 +111,11 @@ public class OracleTableView extends ViewPart {
 			public void widgetSelected(final SelectionEvent e) {
 					anaButton.getDisplay().asyncExec(new Runnable() {
 						public void run() {
+							ConnectionModel connectionModel = null;
 							try {
 								anaButton.setEnabled(false);
-								connectionModel = OraclePrefUtil.getConnectionModel();
-								Connection conn = connectionModel.getRefreshConnection();
+								connectionModel = DBUtil.getConnectionModel();
+								Connection conn = connectionModel.getConnection();
 								DatabaseMetaData metaData = conn.getMetaData();
 								LogHelper.debug(log, "使用的用户名为:" + metaData.getUserName());
 								initByConnection(conn);
@@ -123,6 +125,9 @@ public class OracleTableView extends ViewPart {
 								RCPUtil.showError(getShell(), "获取表格信息失败\n" + ex.getMessage());
 							}finally{
 								anaButton.setEnabled(true);
+								if(connectionModel != null){
+									connectionModel.close();
+								}
 							}
 						}
 
@@ -224,7 +229,7 @@ public class OracleTableView extends ViewPart {
 			}
 			CountDownLatch latch = new CountDownLatch(mode);
 			for (int i = 0; i < mode; i++) {
-				TableWorker worker = new TableWorker(connectionModel, ownerName, tableList, mode, i, latch);
+				TableWorker worker = new TableWorker(ownerName, tableList, mode, i, latch);
 				worker.start();
 			}
 			latch.await();
@@ -248,15 +253,12 @@ public class OracleTableView extends ViewPart {
 		
 		private String ownerName;
 		
-		private Connection conn;
-		
 		private int mode;
 		private int value;
 		
 		private CountDownLatch latch;
 		
-		public TableWorker(ConnectionModel connectionModel, String ownerName, List<TableModel> tableList, int mode, int value, CountDownLatch latch) throws Exception{			
-			this.conn = connectionModel.getNewConnection();
+		public TableWorker(String ownerName, List<TableModel> tableList, int mode, int value, CountDownLatch latch) throws Exception{			
 			this.ownerName = ownerName;
 			this.tableList = tableList;
 			this.mode= mode;
@@ -274,10 +276,13 @@ public class OracleTableView extends ViewPart {
 					}
 					TableModel tableModel = tableList.get(i);
 					if (tableModel.getTableName().indexOf("BIN$") != 0) {
+						ConnectionModel connectionModel = null;
 						String countSql = "select count(*) from " + ownerName + "." + tableModel.getTableName();
 						PreparedStatement stmt = null;
 						ResultSet rs = null;
 						try {
+							connectionModel = DBUtil.getConnectionModel();
+							Connection conn = connectionModel.getConnection();
 							stmt = conn.prepareStatement(countSql);
 							rs = stmt.executeQuery(countSql);
 							while (rs.next()) {
@@ -295,6 +300,10 @@ public class OracleTableView extends ViewPart {
 							if (stmt != null) {
 								stmt.close();
 							}
+
+							if (connectionModel != null) {
+								connectionModel.close();
+							}
 						}
 					}
 				}
@@ -302,13 +311,6 @@ public class OracleTableView extends ViewPart {
 				e.printStackTrace();
 			}finally{
 				latch.countDown();
-				try {
-					if(conn != null){
-						conn.close();
-					}
-				} catch (SQLException e) {
-					LogHelper.error(log, e);
-				}
 			}
 			LogHelper.info(log, "线程" + getName() + "处理的时间：" + (System.currentTimeMillis() - t1) + " ms");
 		}

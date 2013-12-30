@@ -15,12 +15,6 @@ public class MySQLPrefInitializer extends AbstractPreferenceInitializer {
 
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = MySQLPrefUtil.getPreferenceStore();
-		//Oracle
-		store.setDefault(MySQLPrefConstants.MYSQL_JDBC_URL, "jdbc:mysql://127.0.0.1:3306/information_schema");
-		store.setDefault(MySQLPrefConstants.MYSQL_JDBC_DRIVER, "com.mysql.jdbc.Driver");
-		store.setDefault(MySQLPrefConstants.MYSQL_JDBC_USER, "base");
-		store.setDefault(MySQLPrefConstants.MYSQL_JDBC_PASSWORD, "base");
-		
 		//Table
 		StringBuffer sb = new StringBuffer();
 		sb.append("#用户名列表，多个用分号隔开").append("\n");

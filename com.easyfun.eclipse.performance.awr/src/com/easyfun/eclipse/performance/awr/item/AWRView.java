@@ -26,12 +26,12 @@ import org.eclipse.ui.internal.dialogs.WorkbenchPreferenceDialog;
 import org.eclipse.ui.part.ViewPart;
 
 import com.easyfun.eclipse.component.db.ConnectionModel;
+import com.easyfun.eclipse.component.db.DBUtil;
 import com.easyfun.eclipse.performance.awr.AWRUtil;
 import com.easyfun.eclipse.performance.awr.model.AWRTableViewer;
 import com.easyfun.eclipse.performance.awr.model.SnapShot;
-import com.easyfun.eclipse.performance.awr.preferences.AwrJDBCPreferencePage;
-import com.easyfun.eclipse.performance.awr.preferences.AwrPrefUtil;
 import com.easyfun.eclipse.performance.navigator.console.LogHelper;
+import com.easyfun.eclipse.performance.preferences.DBUrlPreferencePage;
 import com.easyfun.eclipse.rcp.RCPUtil;
 import com.easyfun.eclipse.util.IOUtil;
 
@@ -42,7 +42,6 @@ import com.easyfun.eclipse.util.IOUtil;
  *
  */
 public class AWRView extends ViewPart {
-	private ConnectionModel connectionModel;
 	private TabFolder tabFolder;
 	private AWRTableViewer awrTableViewer;
 	
@@ -76,8 +75,8 @@ public class AWRView extends ViewPart {
 		final Button dbButton = new Button(topComposite, SWT.NONE);
 		dbButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(final SelectionEvent e) {
-				WorkbenchPreferenceDialog dialog = WorkbenchPreferenceDialog.createDialogOn(getShell(), AwrJDBCPreferencePage.PREF_ID);
-			    dialog.showOnly(new String[] { AwrJDBCPreferencePage.PREF_ID });
+				WorkbenchPreferenceDialog dialog = WorkbenchPreferenceDialog.createDialogOn(getShell(), DBUrlPreferencePage.PREF_ID);
+			    dialog.showOnly(new String[] { DBUrlPreferencePage.PREF_ID });
 			    dialog.open();
 			}
 		});
@@ -86,9 +85,10 @@ public class AWRView extends ViewPart {
 		final Button anaButton = new Button(topComposite, SWT.NONE);
 		anaButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(final SelectionEvent e) {
-				connectionModel = AwrPrefUtil.getConnectionModel();
+				ConnectionModel connectionModel = null;
 				try {
-					Connection conn = connectionModel.getRefreshConnection();
+					connectionModel = DBUtil.getConnectionModel();
+					Connection conn = connectionModel.getConnection();
 					DatabaseMetaData metaData = conn.getMetaData();
 					LogHelper.debug(log, "使用的用户名为:" + metaData.getUserName());
 					initByConnection(conn);
@@ -101,6 +101,10 @@ public class AWRView extends ViewPart {
 					exportButton.setEnabled(false);
 					genHTMLButton.setEnabled(false);
 					genTextButton.setEnabled(false);
+				} finally {
+					if (connectionModel != null) {
+						connectionModel.close();
+					}
 				}
 			}
 		});
@@ -110,6 +114,7 @@ public class AWRView extends ViewPart {
 		genHTMLButton.addSelectionListener(new SelectionAdapter() {
 
 			public void widgetSelected(SelectionEvent e) {
+				ConnectionModel connectionModel = null;
 				try {
 					String tabTitle = AWR_HTML_TITLE;
 					Iterator<IStructuredSelection> iter = ((IStructuredSelection)awrTableViewer.getSelection()).iterator();
@@ -123,8 +128,8 @@ public class AWRView extends ViewPart {
 						RCPUtil.showMessage(getShell(), "需要选择至少两条记录");
 						return;
 					}
-					
-					Connection conn = connectionModel.getRefreshConnection();
+					connectionModel = DBUtil.getConnectionModel();
+					Connection conn = connectionModel.getConnection();
 					
 					//找出最小和最大的编号
 					long min = ((SnapShot)selectedSnaps.get(0)).getSnapId();
@@ -165,6 +170,10 @@ public class AWRView extends ViewPart {
 					e1.printStackTrace();
 					exportButton.setEnabled(false);
 					RCPUtil.showError(getShell(), e1.getMessage());
+				}finally{
+					if(connectionModel != null){
+						connectionModel.close();
+					}
 				}
 			}
 		});
@@ -174,6 +183,7 @@ public class AWRView extends ViewPart {
 		genTextButton.addSelectionListener(new SelectionAdapter() {
 
 			public void widgetSelected(SelectionEvent e) {
+				ConnectionModel connectionModel = null;
 				try {
 					String tabTitle = AWR_TEXT_TITLE;
 					Iterator<IStructuredSelection> iter = ((IStructuredSelection)awrTableViewer.getSelection()).iterator();
@@ -188,7 +198,8 @@ public class AWRView extends ViewPart {
 						return;
 					}
 					
-					Connection conn = connectionModel.getRefreshConnection();
+					connectionModel = DBUtil.getConnectionModel();
+					Connection conn = connectionModel.getConnection();
 					
 					//找出最小和最大的编号
 					long min = ((SnapShot)selectedSnaps.get(0)).getSnapId();
@@ -229,6 +240,10 @@ public class AWRView extends ViewPart {
 					e1.printStackTrace();
 					exportButton.setEnabled(false);
 					RCPUtil.showError(getShell(), e1.getMessage());
+				}finally{
+					if(connectionModel != null){
+						connectionModel.close();
+					}
 				}
 			}
 		});

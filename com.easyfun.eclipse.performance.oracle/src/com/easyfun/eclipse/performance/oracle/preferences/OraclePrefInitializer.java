@@ -15,12 +15,7 @@ public class OraclePrefInitializer extends AbstractPreferenceInitializer {
 
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = OraclePrefUtil.getPreferenceStore();
-		//Oracle
-		store.setDefault(OraclePrefConstants.ORACLE_JDBC_URL, "jdbc:oracle:thin:@127.0.0.1:1521:orcl");
-		store.setDefault(OraclePrefConstants.ORACLE_JDBC_DRIVER, "oracle.jdbc.driver.OracleDriver");
-		store.setDefault(OraclePrefConstants.ORACLE_JDBC_USER, "scott");
-		store.setDefault(OraclePrefConstants.ORACLE_JDBC_PASSWORD, "tiger");
-		
+	
 		
 		//Table
 		StringBuffer sb = new StringBuffer();
