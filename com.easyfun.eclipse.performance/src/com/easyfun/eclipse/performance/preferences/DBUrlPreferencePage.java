@@ -1,6 +1,5 @@
 package com.easyfun.eclipse.performance.preferences;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.jface.preference.PreferencePage;
@@ -21,14 +20,17 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
-import com.easyfun.eclipse.component.db.DBTypeEnum;
 import com.easyfun.eclipse.component.db.DBUrlBean;
 import com.easyfun.eclipse.component.db.DBUrlDialog;
+import com.easyfun.eclipse.component.db.DBUtil;
 
 /**
  * 
@@ -45,6 +47,8 @@ public class DBUrlPreferencePage extends PreferencePage implements IWorkbenchPre
 
 	private Table jdbcTable;
 	private TableViewer tableViewer;
+	
+	public static final String PREF_ID = "com.easyfun.eclipse.performance.preferencePages.DBUrl";
 
 	public void init(IWorkbench workbench) {
 		
@@ -54,7 +58,7 @@ public class DBUrlPreferencePage extends PreferencePage implements IWorkbenchPre
 	protected Control createContents(Composite parent) {
 		parent.setLayout(new GridLayout(2, false));
 		
-		jdbcTable = new Table(parent, SWT.BORDER|SWT.FULL_SELECTION);
+		jdbcTable = new Table(parent, SWT.BORDER|SWT.FULL_SELECTION|SWT.CHECK);
 		jdbcTable.setLayoutData(new GridData(GridData.FILL_BOTH));
 		jdbcTable.setLinesVisible(true);
 		jdbcTable.setHeaderVisible(true);
@@ -67,6 +71,21 @@ public class DBUrlPreferencePage extends PreferencePage implements IWorkbenchPre
 			public void doubleClick(DoubleClickEvent event) {
 				editSelect();
 			}
+		});
+		
+		tableViewer.getTable().addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				if (event.detail == SWT.CHECK) {
+					//Uncheck others
+					TableItem[] items = tableViewer.getTable().getItems();
+					for (TableItem item : items) {
+						if(!item.equals(event.item)){
+							item.setChecked(false);
+						}
+					}
+				}
+			}
+
 		});
 		
 		TableColumn col = new TableColumn(jdbcTable, SWT.NULL);
@@ -157,7 +176,7 @@ public class DBUrlPreferencePage extends PreferencePage implements IWorkbenchPre
 			}
 		});
 		
-		fillData();
+		initData();
 		
 		return null;
 	}
@@ -176,13 +195,22 @@ public class DBUrlPreferencePage extends PreferencePage implements IWorkbenchPre
 		}
 	}
 	
-	private void fillData(){
-		List<DBUrlBean> list = new ArrayList<DBUrlBean>();
-		//TODO: Ó²±àÂë
-		DBUrlBean bean = new DBUrlBean(DBTypeEnum.Oracle, "jdbc:oracle:thin:@127.0.0.1:1521:orcl", "oracle.jdbc.driver.OracleDriver", "scotttt", "tiger");
-		bean.setName("linzm");
-		list.add(bean);
+	private void initData(){
+		List<DBUrlBean> list = DBUtil.getDBUrlBeans();
 		tableViewer.setInput(list);
+		
+		DBUrlBean selectBean = DBUtil.getSelectBean();
+		
+		if(selectBean != null){
+			tableViewer.setSelection(new StructuredSelection(selectBean));
+			TableItem[] items = tableViewer.getTable().getItems();
+			for (TableItem item : items) {
+				if(item.getData().equals(selectBean)){
+					item.setChecked(true);
+					break;
+				}
+			}
+		}
 	}
 	
 	public static class DBUrlTableProvider extends LabelProvider implements ITableLabelProvider{
@@ -199,7 +227,14 @@ public class DBUrlPreferencePage extends PreferencePage implements IWorkbenchPre
 				case 1:
 					return model.getUrl();
 				case 2:
-					return model.getDBType().toString();
+					switch (model.getDbType()) {
+						case DBUrlBean.ORACLE_TYPE:
+							return "Oracle";
+						case DBUrlBean.MYSQL_TYPE:
+							return "MySQL";
+						default:
+							return "Unknown";
+						}
 				case 3:
 					return model.getUsername().toString();
 				case 4:
@@ -211,6 +246,31 @@ public class DBUrlPreferencePage extends PreferencePage implements IWorkbenchPre
 				return element.toString();
 			}
 		}
+	}
+	
+	public boolean performOk() {
+		List<DBUrlBean> list = (List<DBUrlBean>)tableViewer.getInput();
+		
+		try {
+			DBUtil.saveDBUrlBeans(list);
+			
+			TableItem selectItem = null;			
+			TableItem[] items = tableViewer.getTable().getItems();
+			for (TableItem item : items) {
+				if(item.getChecked()){
+					selectItem = item;
+					break;
+				}
+			}
+			
+			if(selectItem != null){
+				DBUrlBean bean = (DBUrlBean)selectItem.getData();	
+				DBUtil.saveSelectUrlBean(bean.getName());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return super.performOk();
 	}
 	
 }

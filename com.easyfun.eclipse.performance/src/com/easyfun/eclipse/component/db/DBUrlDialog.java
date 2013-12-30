@@ -30,12 +30,16 @@ public class DBUrlDialog extends TitleAreaDialog {
 	private Text usernameText;
 	private Text passwordText;
 	
+	/** Oracle的默认URL*/
 	private static final String ORACLE_DEFAULT_URL = "jdbc:oracle:thin:@127.0.0.1:1521:orcl";
 	
+	/** MySQL的默认URL*/
 	private static final String MYSQL_DEFAULT_URL = "jdbc:mysql://127.0.0.1:3306/information_schema";
 	
+	/** Oracle的Driver*/
 	private static final String ORACLE_DEFAUT_DRIVER = "oracle.jdbc.driver.OracleDriver";
 	
+	/** MySQL的Driver*/
 	private static final String MYSQL_DEFAUT_DRIVER = "com.mysql.jdbc.Driver";
 	
 	/** 新增 */
@@ -56,7 +60,6 @@ public class DBUrlDialog extends TitleAreaDialog {
 
 	protected Control createDialogArea(Composite parent) {
 		Composite composite = (Composite)super.createDialogArea(parent);
-		
 		createSetttingArea(composite);
 		
 		setTitle("数据库URL设置");		
@@ -73,16 +76,20 @@ public class DBUrlDialog extends TitleAreaDialog {
 		}else{
 			if(type == TYPE_ADD){
 				if(dbTypeCombo.getSelectionIndex() ==0){
-					urlBean = new DBUrlBean(DBTypeEnum.Oracle);
+					urlBean = new DBUrlBean();
+					urlBean.setDbType(DBUrlBean.ORACLE_TYPE);
 				}else if(dbTypeCombo.getSelectionIndex() == 1){
-					urlBean = new DBUrlBean(DBTypeEnum.MySQL);
+					urlBean = new DBUrlBean();
+					urlBean.setDbType(DBUrlBean.MYSQL_TYPE);
 				}
 				
+				urlBean.setName(nameText.getText().trim());
 				urlBean.setDriverClass(driverClassText.getText().trim());
 				urlBean.setUrl(urlText.getText().trim());
 				urlBean.setUsername(usernameText.getText().trim());
 				urlBean.setPassword(passwordText.getText().trim());
 			} else if (type == TYPE_EDIT) {
+				urlBean.setName(nameText.getText().trim());
 				urlBean.setUrl(urlText.getText().trim());
 				urlBean.setUsername(usernameText.getText().trim());
 				urlBean.setPassword(passwordText.getText().trim());
@@ -199,9 +206,9 @@ public class DBUrlDialog extends TitleAreaDialog {
 			dbTypeCombo.setEnabled(false);
 			if(urlBean != null){
 				driverClassText.setText(urlBean.getDriverClass());				
-				if(urlBean.getDBType() == DBTypeEnum.Oracle){
+				if(urlBean.getDbType() == DBUrlBean.ORACLE_TYPE){
 					dbTypeCombo.select(0);
-				}else if(urlBean.getDBType() == DBTypeEnum.MySQL){
+				}else if(urlBean.getDbType() == DBUrlBean.MYSQL_TYPE){
 					dbTypeCombo.select(1);
 				}
 				urlText.setText(urlBean.getUrl());
@@ -261,10 +268,6 @@ public class DBUrlDialog extends TitleAreaDialog {
 	 * 初始化对话框数据
 	 */
 	private void initial(){
-//		ConnectionModel model = ConnectionFactory.getConnectionModel();
-//		nameText.setText(model.getName());
-//		driverText.setText(model.getDriver());
-//		passText.setText(model.getPassword());
-//		urlText.setText(model.getUrl());
+
 	}
 }

@@ -44,7 +44,8 @@ Bundle-ClassPath: lib/commons-beanutils-1.8.0.jar,
  lib/joda-time-1.5.2.jar,
  lib/trilead-ssh2-build213.jar,
  lib/ojdbc14_10_2_0_4.jar,
- lib/mysql-connector-java-5.1.17.jar
+ lib/mysql-connector-java-5.1.17.jar,
+ lib/jackson-all-1.9.5.jar
 Export-Package: com.easyfun.eclipse.component.db,
  com.easyfun.eclipse.component.file,
  com.easyfun.eclipse.component.ftp,

@@ -25,5 +25,6 @@
 	<classpathentry kind="lib" path="lib/joda-time-1.5.2.jar"/>
 	<classpathentry kind="lib" path="lib/trilead-ssh2-build213.jar" sourcepath="lib_source/trilead-ssh2-6401.zip"/>
 	<classpathentry kind="lib" path="lib/ojdbc14_10_2_0_4.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-all-1.9.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

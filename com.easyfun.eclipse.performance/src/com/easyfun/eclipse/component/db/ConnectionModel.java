@@ -2,6 +2,7 @@ package com.easyfun.eclipse.component.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**数据库连接模型
  * 
@@ -9,14 +10,10 @@ import java.sql.DriverManager;
  * Create Date: 2010-11-27
  */
 public class ConnectionModel {
-//	private String url = "jdbc:mysql://127.0.0.1:3306/base";
-//	private String driver = "com.mysql.jdbc.Driver";
-//	private String name = "base";
-//	private String password ="base" ;
-	
+
 	private String url = "";
-	private String driver = "";
-	private String name = "";
+	private String driverClass = "";
+	private String username = "";
 	private String password ="" ;
 	
 	private Connection connection;
@@ -26,15 +23,15 @@ public class ConnectionModel {
 	}
 
 	/**
-	 * @param driver
-	 * @param name
+	 * @param driverClass
+	 * @param username
 	 * @param password
 	 * @param url
 	 */
-	public ConnectionModel(String driver, String name, String password, String url) {
+	public ConnectionModel(String driverClass, String username, String password, String url) {
 		super();
-		this.driver = driver;
-		this.name = name;
+		this.driverClass = driverClass;
+		this.username = username;
 		this.password = password;
 		this.url = url;
 	}
@@ -47,20 +44,20 @@ public class ConnectionModel {
 		this.url = url;
 	}
 
-	public String getDriver() {
-		return driver;
+	public String getDriverClass() {
+		return driverClass;
 	}
 
-	public void setDriver(String driver) {
-		this.driver = driver;
+	public void setDriverClass(String driverClass) {
+		this.driverClass = driverClass;
 	}
 
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -72,40 +69,36 @@ public class ConnectionModel {
 	}
 		
 	private void initConnection() throws Exception{
-		Class.forName(driver);
-		connection = DriverManager.getConnection(url, name, password);
+		Class.forName(driverClass);
 	}
 	
-	/**
-	 * 重新获取数据库连接
-	 */
-	public Connection getRefreshConnection() throws Exception{
-		initConnection();
-		return connection;
-	}
-	
-	/** 生成一个数据库新连接*/
-	public Connection getNewConnection() throws Exception{
-		if(initial == false){
-			initConnection();
-			initial = true;
-		}
-		return DriverManager.getConnection(url, name, password);
-	}
-	
-	/**
-	 * 获取数据库连接
-	 * @return
-	 */
+	/** 获取一个数据库连接*/
 	public Connection getConnection() throws Exception{
 		if(initial == false){
 			initConnection();
 			initial = true;
 		}
+		
+		if(connection != null && !connection.isClosed()){
+			connection.close();
+		}
+		
+		connection = DriverManager.getConnection(url, username, password);
 		return connection;
 	}
 	
+	/** 关闭连接*/
+	public void close(){
+		try {
+			if(connection != null && !connection.isClosed()){
+				connection.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public String toString() {
-		return "URL:" + url + ", Name=" + name + ", Pasword=" + password; 
+		return "URL:" + url + ", Name=" + username + ", Pasword=" + password; 
 	}
 }

@@ -15,13 +15,17 @@ public class DBUrlBean {
 	private String username;
 	private String password;
 
-	private DBTypeEnum dbType;
+	private int dbType;
+	
+	public static final int ORACLE_TYPE = 0; 
+	
+	public static final int MYSQL_TYPE = 1; 
 
-	public DBUrlBean(DBTypeEnum dbType) {
-		this.dbType = dbType;
+	public DBUrlBean() {
+//		this.dbType = dbType;
 	}
 
-	public DBUrlBean(DBTypeEnum dbType, String url, String driverClass, String username, String password) {
+	public DBUrlBean(int dbType, String url, String driverClass, String username, String password) {
 		this.dbType = dbType;
 		this.url = url;
 		this.driverClass = driverClass;
@@ -61,8 +65,12 @@ public class DBUrlBean {
 		this.password = password;
 	}
 
-	public DBTypeEnum getDBType() {
+	public int getDbType() {
 		return dbType;
+	}
+	
+	public void setDbType(int dbType) {
+		this.dbType = dbType;
 	}
 	
 	public String getName() {
@@ -72,15 +80,33 @@ public class DBUrlBean {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	
+	public boolean equals(Object obj) {
+		if (obj instanceof DBUrlBean) {
+			DBUrlBean bean = (DBUrlBean) obj;
+			return bean.getName().equals(name) && bean.getDbType() == dbType
+					&& bean.getDriverClass().equals(driverClass)
+					&& bean.getPassword().equals(password)
+					&& bean.getUsername().equals(username);
+		} else {
+			return false;
+		}
+	}
 
 	public DBUrlBean copy(){
-		DBUrlBean bean = new DBUrlBean(dbType);
+		DBUrlBean bean = new DBUrlBean();
+		bean.setDbType(dbType);
 		bean.setName("CopyOf" + name);
 		bean.setDriverClass(driverClass);
 		bean.setUrl(url);
 		bean.setUsername(username);
 		bean.setPassword(password);
 		return bean;
+	}
+	
+	public static void main(String[] args) {
+		
 	}
 
 }
