@@ -61,7 +61,6 @@ public class FTPHelper {
 	
 	/** 连接到FTP服务器*/
 	public void connect() throws Exception {
-		LogHelper.info(log, "准备连接");
 		if (ftpType == FTPHostBean.TYPE_SFTP) {
 			this.client = new FTPSClient(true);
 			LogHelper.debug(log, "[SFTP]类型");
@@ -87,6 +86,7 @@ public class FTPHelper {
 			ip = StringUtils.substringAfter(ip, "{LOCAL_PASV}");
 		}
 		
+		LogHelper.info(log, "Trying to connect [" + ip + ":" + port + "]");
 		this.client.connect(ip, port);
 		this.client.setRemoteVerificationEnabled(remoteVerificationEnabled);
 		this.client.login(userName, this.passwd);

@@ -3,6 +3,7 @@ package com.easyfun.eclipse.performance.trace.ui;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
+import com.easyfun.eclipse.performance.trace.ImageConstants;
 import com.easyfun.eclipse.performance.trace.model.AppTrace;
 import com.easyfun.eclipse.performance.trace.model.ITrace;
 import com.easyfun.eclipse.performance.trace.model.TraceTypeEnum;
@@ -61,31 +62,31 @@ public class TraceUIFactory {
 	/** 根据Trace类型，创建不同的Composite */
 	public static String getImageByType(ITrace trace) {
 		if (trace.getType().equals(TraceTypeEnum.TYPE_APP)) {
-			return "icons/trace/book.gif";
+			return ImageConstants.TRACE_APP_ICON;
 		} else if (trace.getType().equals(TraceTypeEnum.TYPE_CAU)) {
-			return "icons/trace/book.gif";
+			return ImageConstants.TRACE_CAU_ICON;
 		} else if (trace.getType().equals(TraceTypeEnum.TYPE_DAO)) {
-			return "icons/trace/collection.gif";
+			return ImageConstants.TRACE_DAO_ICON;
 		} else if (trace.getType().equals(TraceTypeEnum.TYPE_HTTP)) {
-			return "icons/trace/book.gif";
+			return ImageConstants.TRACE_HTTP_ICON;
 		} else if (trace.getType().equals(TraceTypeEnum.TYPE_JDBC)) {
-			return "icons/trace/book.gif";
+			return ImageConstants.TRACE_JDBC_ICON;
 		} else if (trace.getType().equals(TraceTypeEnum.TYPE_MDB)) {
-			return "icons/trace/book.gif";
+			return ImageConstants.TRACE_MDB_ICON;
 		} else if (trace.getType().equals(TraceTypeEnum.TYPE_MEM)) {
-			return "icons/trace/book.gif";
+			return ImageConstants.TRACE_MEM_ICON;
 		} else if (trace.getType().equals(TraceTypeEnum.TYPE_SECMEM)) {
-			return "icons/trace/book.gif";
+			return ImageConstants.TRACE_SECMEM_ICON;
 		} else if (trace.getType().equals(TraceTypeEnum.TYPE_SVR)) {
-			return "icons/trace/property.gif";
+			return ImageConstants.TRACE_SVR_ICON;
 		} else if (trace.getType().equals(TraceTypeEnum.TYPE_WEB)) {
-			return "icons/trace/book.gif";
+			return ImageConstants.TRACE_WEB_ICON;
 		} else if (trace.getType().equals(TraceTypeEnum.TYPE_WS)) {
-			return "icons/trace/book.gif";
+			return ImageConstants.TRACE_WS_ICON;
 		} else if (trace.getType().equals(TraceTypeEnum.TYPE_BCC)) {
-			return "icons/trace/book.gif";
+			return ImageConstants.TRACE_BCC_ICON;
 		}else {
-			return "icons/trace/book.gif";
+			return ImageConstants.TRACE_DEFAULT_ICON;
 		}
 	}
 }

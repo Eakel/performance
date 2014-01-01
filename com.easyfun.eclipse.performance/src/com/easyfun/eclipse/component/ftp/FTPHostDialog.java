@@ -119,6 +119,11 @@ public class FTPHostDialog extends TitleAreaDialog {
 			public void modifyText(final ModifyEvent e) {
 			}
 		});
+		hostText.addFocusListener(new FocusAdapter(){
+			public void focusGained(FocusEvent e) {
+				hostText.selectAll();
+			}
+		});
 		
 		label = new Label(container, SWT.NONE);
 		label.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false));
@@ -127,6 +132,11 @@ public class FTPHostDialog extends TitleAreaDialog {
 		portText = new Text(container, SWT.BORDER);
 		portText.addModifyListener(new ModifyListener() {
 			public void modifyText(final ModifyEvent e) {
+			}
+		});
+		portText.addFocusListener(new FocusAdapter(){
+			public void focusGained(FocusEvent e) {
+				portText.selectAll();
 			}
 		});
 
@@ -143,26 +153,29 @@ public class FTPHostDialog extends TitleAreaDialog {
 			public void modifyText(final ModifyEvent e) {
 			}
 		});
-		usernameText.setText("");
+		usernameText.addFocusListener(new FocusAdapter(){
+			public void focusGained(FocusEvent e) {
+				usernameText.selectAll();
+			}
+		});
 
 		label = new Label(container, SWT.NONE);
 		label.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false));
 		label.setText("√‹¬Î£∫");
 
 		passwordText = new Text(container, SWT.PASSWORD);
-		gridData = new GridData(SWT.RIGHT, SWT.CENTER, false, false);
+		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
 		gridData.horizontalSpan =3;
 		passwordText.setLayoutData(gridData);
 		passwordText.addModifyListener(new ModifyListener() {
 			public void modifyText(final ModifyEvent e) {
 			}
 		});
-		passwordText.setText("");
-		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
-		gridData.horizontalSpan =3;
-		passwordText.setLayoutData(gridData);
-
-		
+		passwordText.addFocusListener(new FocusAdapter(){
+			public void focusGained(FocusEvent e) {
+				passwordText.selectAll();
+			}
+		});
 
 		label = new Label(container, SWT.NONE);
 		label.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false));
@@ -173,6 +186,11 @@ public class FTPHostDialog extends TitleAreaDialog {
 		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
 		gridData.horizontalSpan =3;
 		remotePathText.setLayoutData(gridData);
+		remotePathText.addFocusListener(new FocusAdapter(){
+			public void focusGained(FocusEvent e) {
+				remotePathText.selectAll();
+			}
+		});
 		
 		initialize();
 		

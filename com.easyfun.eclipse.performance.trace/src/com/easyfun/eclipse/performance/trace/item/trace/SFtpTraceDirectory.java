@@ -61,13 +61,5 @@ public class SFtpTraceDirectory extends TraceDirectory<TraceTreeEnum>{
 			super.sortTrace(type);
 		}
 	}
-
-	public FTPHostBean getFtpBean() {
-		return ftpBean;
-	}
-
-	public void setFtpBean(FTPHostBean ftpBean) {
-		this.ftpBean = ftpBean;
-	}
 	
 }

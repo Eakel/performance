@@ -44,8 +44,11 @@ import com.easyfun.eclipse.component.file.FileFieldComposite;
 import com.easyfun.eclipse.component.ftp.FTPHostBean;
 import com.easyfun.eclipse.component.ftp.FTPFieldComposite;
 import com.easyfun.eclipse.component.ftp.FTPHelper;
+import com.easyfun.eclipse.component.ftp.FTPUtil;
 import com.easyfun.eclipse.performance.navigator.console.LogHelper;
+import com.easyfun.eclipse.performance.trace.ImageConstants;
 import com.easyfun.eclipse.performance.trace.SFtpClient;
+import com.easyfun.eclipse.performance.trace.TraceActivator;
 import com.easyfun.eclipse.performance.trace.builder.TraceBuilder;
 import com.easyfun.eclipse.performance.trace.item.trace.DirTraceDirectory;
 import com.easyfun.eclipse.performance.trace.item.trace.FileTraceNode;
@@ -217,15 +220,14 @@ public class TraceView extends ViewPart {
 
 		ftpComposite = new FTPFieldComposite(parent, SWT.NONE, false);
 		ftpComposite.setLayoutData(new GridData());
-		ftpComposite.addFTPChangListener(new FTPFieldComposite.IFTPchangeListener(){
-			public void onFTPChange(FTPHostBean ftpBean) {
-				if(ftpBean != null){
-					updateByFTP(ftpBean);
-					TraceTreeMem.getFTPirectory().setFtpBean(ftpBean);
-					traceFileTreeViewer.refresh(TraceTreeMem.getFTPirectory());
-				}
-			}
-		});
+//		ftpComposite.addFTPChangListener(new FTPFieldComposite.IFTPchangeListener(){
+//			public void onFTPChange(FTPHostBean ftpBean) {
+//				if(ftpBean != null){
+//					updateByFTP(ftpBean);
+//					traceFileTreeViewer.refresh(TraceTreeMem.getFTPirectory());
+//				}
+//			}
+//		});
 		
 		Composite c1 = new Composite(parent, SWT.NULL);
 		GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
@@ -236,6 +238,7 @@ public class TraceView extends ViewPart {
 		Button searchButton = new Button(c1, SWT.NULL);
 		searchButton.setLayoutData(new GridData(SWT.RIGHT, SWT.TOP, false, false));
 		searchButton.setText("查 找");
+		searchButton.setImage(TraceActivator.getImageDescriptor(ImageConstants.TRACE_FIND_ICON).createImage());
 		searchButton.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
 				handleSearch();
@@ -423,14 +426,20 @@ public class TraceView extends ViewPart {
 				});
 			} else if (dir.getType() == TraceTreeEnum.DIR_FTP) {
 				MenuItem menuItem = new MenuItem(menu, SWT.PUSH);
-				menuItem.setText("FTP...");
+				menuItem.setText("获取FTP文件");
 				menuItem.addSelectionListener(new SelectionAdapter() {
 					public void widgetSelected(SelectionEvent e) {
 						Object ele = ((IStructuredSelection) treeViewer.getSelection()).getFirstElement();
 						if (ele instanceof TraceDirectory) {
 							TraceDirectory<TraceTreeEnum> dir = (TraceDirectory<TraceTreeEnum>) ele;
 							if (dir.getType().equals(TraceTreeEnum.DIR_FTP)) {
-								ftpComposite.openFTPDialog();
+//								ftpComposite.openFTPDialog();
+								FTPHostBean ftpBean = FTPUtil.getSelectBean();
+								if(ftpBean != null){
+									updateByFTP(ftpBean);
+//									TraceTreeMem.getFTPirectory().setFtpBean(ftpBean);
+									traceFileTreeViewer.refresh(TraceTreeMem.getFTPirectory());
+								}
 							} else {
 								RCPUtil.showMessage(getShell(), "不支持非目录格式");
 							}
@@ -446,7 +455,11 @@ public class TraceView extends ViewPart {
 						if (ele instanceof TraceDirectory) {
 							TraceDirectory<TraceTreeEnum> dir = (TraceDirectory<TraceTreeEnum>) ele;
 							if (dir.getType().equals(TraceTreeEnum.DIR_FTP)) {
-								ftpComposite.openFTPDialog();
+//								ftpComposite.openFTPDialog();
+								FTPHostBean ftpBean = FTPUtil.getSelectBean();
+								if(ftpBean != null){
+//									ftpBean.
+								}
 							} else {
 								RCPUtil.showMessage(getShell(), "不支持非目录格式");
 							}
@@ -716,9 +729,9 @@ public class TraceView extends ViewPart {
 	private void updateByFTP(FTPHostBean bean) {
 		try {
 			if(bean.getFtpType() == FTPHostBean.TYPE_FTP){
-				FTPHelper ftpClient = new FTPHelper(bean);
-				ftpClient.connect();
-				String [] strs = ftpClient.list();
+				FTPHelper ftpHelper = new FTPHelper(bean);
+				ftpHelper.connect();
+				String [] strs = ftpHelper.list();
 				System.out.println(Arrays.asList(strs));
 			}else if(bean.getFtpType() == FTPHostBean.TYPE_SFTP){
 				SFtpClient sftpClient = new SFtpClient(bean);
