@@ -25,6 +25,8 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 
+import com.easyfun.eclipse.performance.ImageConstants;
+import com.easyfun.eclipse.performance.PerformanceActivator;
 import com.easyfun.eclipse.performance.http.model.interfaces.IHttpMethod;
 
 /**
@@ -62,6 +64,7 @@ public class RequestHeaderTable extends HttpHeaderTable {
 		
 		this.buttonAdd = new Button(composite, SWT.NONE);
 		buttonAdd.setText("Add");
+		buttonAdd.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_ADD_PATH).createImage());
 //		buttonAdd.setEnabled(false);
 		GridData gridData = new GridData(GridData.CENTER,GridData.CENTER,false, false);
 		gridData.widthHint = 80;
@@ -74,6 +77,7 @@ public class RequestHeaderTable extends HttpHeaderTable {
 		buttonRemove = new Button(composite, SWT.NONE);
 		buttonRemove.setText("Remove");
 		buttonRemove.setEnabled(false);
+		buttonRemove.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_DELETE_PATH).createImage());
 		gridData = new GridData(GridData.CENTER, GridData.CENTER, false, false);
 		gridData.widthHint = 80;
 		buttonRemove.setLayoutData(gridData);

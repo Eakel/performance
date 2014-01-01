@@ -26,7 +26,7 @@ public class CloseAllAction  extends Action implements IWorkbenchAction{
 	public CloseAllAction(){
 		super("Close All");
 		setId("com.easyfun.eclipse.common.action.closeAll");
-		setImageDescriptor(PerformanceActivator.getImageDescriptor(ImageConstants.CLOSEALL_ICONS));
+		setImageDescriptor(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_CLOSEALL_PATH));
 	}
 	
 	public void run() {

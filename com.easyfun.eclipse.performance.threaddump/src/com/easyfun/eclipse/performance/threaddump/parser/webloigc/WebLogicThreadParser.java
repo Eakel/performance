@@ -6,7 +6,7 @@ import java.util.List;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.graphics.Image;
 
-import com.easyfun.eclipse.performance.threaddump.ImageConstants;
+import com.easyfun.eclipse.performance.threaddump.ThreadDumpImageConstants;
 import com.easyfun.eclipse.performance.threaddump.ThreadDumpActivator;
 import com.easyfun.eclipse.performance.threaddump.parser.AbstractThreadParser;
 import com.easyfun.eclipse.performance.threaddump.parser.FilterWrapper;
@@ -83,13 +83,13 @@ public class WebLogicThreadParser extends AbstractThreadParser{
 		HashMap<String, FilterWrapper> map = new HashMap<String, FilterWrapper>();
 		map.put("All", new FilterWrapper(new ViewerFilter[] { new WeblogicThreadFilters.AllFilter() }, null));
 		map.put("&Runnable", new FilterWrapper(new ViewerFilter[] { new WeblogicThreadFilters.RunnableFilter() }, ThreadDumpActivator.getImageDescriptor(
-				ImageConstants.ICON_THREAD_RUNNABLE).createImage()));
+				ThreadDumpImageConstants.ICON_THREAD_RUNNABLE_PATH).createImage()));
 		map.put("&Default", new FilterWrapper(new ViewerFilter[] { new WeblogicThreadFilters.DefaultFilter() }, ThreadDumpActivator.getImageDescriptor(
-				ImageConstants.ICON_THREAD_DEFAULT).createImage()));
+				ThreadDumpImageConstants.ICON_THREAD_DEFAULT_PATH).createImage()));
 		map.put("ObjectWait", new FilterWrapper(new ViewerFilter[] { new WeblogicThreadFilters.ObjectWaitFilter() }, ThreadDumpActivator.getImageDescriptor(
-				ImageConstants.ICON_THREAD_WAITING).createImage()));
+				ThreadDumpImageConstants.ICON_THREAD_WAITING_PATH).createImage()));
 		map.put("WaitingOnConidtion", new FilterWrapper(new ViewerFilter[] { new WeblogicThreadFilters.WaitingOnConidtionFilter() }, ThreadDumpActivator
-				.getImageDescriptor(ImageConstants.ICON_THREAD_WAIT_ON_CONDITION).createImage()));
+				.getImageDescriptor(ThreadDumpImageConstants.ICON_THREAD_WAIT_ON_CONDITION_PATH).createImage()));
 		return map;
 	}
 }

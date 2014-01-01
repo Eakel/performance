@@ -85,7 +85,7 @@ public class ItemNavigationView extends ViewPart {
 		Menu parenMenu = new Menu(viewer.getTree());
 		MenuItem item = new MenuItem(parenMenu, SWT.DROP_DOWN);
 		item.setText("Expland All");
-		item.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.EXPLANDALL_ICONS).createImage());
+		item.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_EXPLANDALL_PATH).createImage());
 		item.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
 				viewer.expandAll();
@@ -94,7 +94,7 @@ public class ItemNavigationView extends ViewPart {
 		
 		item = new MenuItem(parenMenu, SWT.DROP_DOWN);
 		item.setText("Collapse All");
-		item.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.COLAPSEALL_ICONS).createImage());
+		item.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_COLAPSEALL_PATH).createImage());
 		item.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
 				viewer.collapseAll();

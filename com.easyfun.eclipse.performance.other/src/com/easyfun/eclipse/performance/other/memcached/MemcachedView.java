@@ -34,6 +34,7 @@ import org.eclipse.ui.part.ViewPart;
 
 import com.easyfun.eclipse.performance.navigator.console.LogHelper;
 import com.easyfun.eclipse.performance.other.OtherActivator;
+import com.easyfun.eclipse.performance.other.OtherImageConstants;
 import com.easyfun.eclipse.performance.other.memcached.model.MemModel;
 import com.easyfun.eclipse.performance.other.memcached.model.MemTableViewer;
 import com.easyfun.eclipse.performance.other.memcached.prefs.OtherPrefUtil;
@@ -83,6 +84,7 @@ public class MemcachedView extends ViewPart {
 		Button button = new Button(comp, SWT.PUSH);
 		button.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, false, false));
 		button.setText("Invoke");
+		button.setImage(OtherActivator.getImageDescriptor(OtherImageConstants.ICON_RUN_PATH).createImage());
 		button.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
 				invoke(addrText.getText().trim());
@@ -109,7 +111,7 @@ public class MemcachedView extends ViewPart {
 		});
 		listViewer.setLabelProvider(new LabelProvider(){
 			public Image getImage(Object element) {
-				return OtherActivator.getImageDescriptor(ImageConstants.MEMCACHED_COMPUSTER_ICONS).createImage();
+				return OtherActivator.getImageDescriptor(OtherImageConstants.ICON_MEMCACHED_COMPUSTER_PATH).createImage();
 			}
 		});
 		

@@ -27,6 +27,8 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.TableColumn;
 
+import com.easyfun.eclipse.performance.ImageConstants;
+import com.easyfun.eclipse.performance.PerformanceActivator;
 import com.easyfun.eclipse.rcp.RCPUtil;
 import com.easyfun.eclipse.util.TimeUtil;
 import com.lowagie.text.Cell;
@@ -41,6 +43,7 @@ public class MenuUtils {
 	public static void addExportTxt(final TableViewer tableViewer, Menu menu){
 		MenuItem menuItem = new MenuItem(menu, SWT.PUSH);
 		menuItem.setText("导出为文本...");
+		menuItem.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_FILE_PATH).createImage());
 		menuItem.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
 				String fileName = "导出文件" + TimeUtil.getYYYYMMDDHHMMSS(new Date()) + ".txt";
@@ -76,9 +79,10 @@ public class MenuUtils {
 	public static void addExportHtml(final TableViewer tableViewer, Menu menu){
 		MenuItem menuItem = new MenuItem(menu, SWT.PUSH);
 		menuItem.setText("导出为Html...");
+		menuItem.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_HTML_PATH).createImage());
 		menuItem.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
-				String fileName = "导出文件" + TimeUtil.getYYYYMMDDHHMMSS(new Date()) + ".html";
+				String fileName = "文件" + TimeUtil.getYYYYMMDDHHMMSS(new Date()) + ".html";
 				File file = RCPUtil.openSaveDialog(tableViewer.getTable().getShell(), new String[]{"*.html", "*.*"}, fileName);
 				if(file == null){
 					return;
@@ -117,6 +121,7 @@ public class MenuUtils {
 	public static void addExportPDF(final TableViewer tableViewer, Menu menu){
 		MenuItem menuItem = new MenuItem(menu, SWT.PUSH);
 		menuItem.setText("导出为PDF...");
+		menuItem.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_PDF_PATH).createImage());
 		menuItem.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
 				String fileName = "导出文件" + TimeUtil.getYYYYMMDDHHMMSS(new Date()) + ".pdf";
@@ -167,6 +172,7 @@ public class MenuUtils {
 	public static void addExportExcel(final TableViewer tableViewer, Menu menu){
 		MenuItem menuItem = new MenuItem(menu, SWT.PUSH);
 		menuItem.setText("导出为Excel...");
+		menuItem.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_EXEL_PATH).createImage());
 		menuItem.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
 				String fileName = "导出文件" + TimeUtil.getYYYYMMDDHHMMSS(new Date()) + ".xls";

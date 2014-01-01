@@ -2,7 +2,7 @@ package com.easyfun.eclipse.performance.threaddump.parser.mon;
 
 import org.eclipse.swt.graphics.Image;
 
-import com.easyfun.eclipse.performance.threaddump.ImageConstants;
+import com.easyfun.eclipse.performance.threaddump.ThreadDumpImageConstants;
 import com.easyfun.eclipse.performance.threaddump.ThreadDumpActivator;
 import com.easyfun.eclipse.performance.threaddump.parser.IThreadState;
 
@@ -18,10 +18,10 @@ public class MonThreadState implements IThreadState{
 	public String text;
 	private Image image;
 	
-	private static Image unkwnownImage = ThreadDumpActivator.getImageDescriptor(ImageConstants.ICON_THREAD_DEFAULT).createImage();
-	private static Image objectWaitImage = ThreadDumpActivator.getImageDescriptor(ImageConstants.ICON_THREAD_WAITING).createImage();	
-	private static Image waitingImage = ThreadDumpActivator.getImageDescriptor(ImageConstants.ICON_THREAD_WAIT_ON_CONDITION).createImage();
-	private static Image runnableImage = ThreadDumpActivator.getImageDescriptor(ImageConstants.ICON_THREAD_RUNNABLE).createImage();
+	private static Image unkwnownImage = ThreadDumpActivator.getImageDescriptor(ThreadDumpImageConstants.ICON_THREAD_DEFAULT_PATH).createImage();
+	private static Image objectWaitImage = ThreadDumpActivator.getImageDescriptor(ThreadDumpImageConstants.ICON_THREAD_WAITING_PATH).createImage();	
+	private static Image waitingImage = ThreadDumpActivator.getImageDescriptor(ThreadDumpImageConstants.ICON_THREAD_WAIT_ON_CONDITION_PATH).createImage();
+	private static Image runnableImage = ThreadDumpActivator.getImageDescriptor(ThreadDumpImageConstants.ICON_THREAD_RUNNABLE_PATH).createImage();
 	
 	public static MonThreadState STATE_RUNNABLE = new MonThreadState("RUNNABLE", runnableImage);	
 	public static MonThreadState STATE_WAITING_ON_CONDITION = new MonThreadState("TIMED_WAITING", objectWaitImage);

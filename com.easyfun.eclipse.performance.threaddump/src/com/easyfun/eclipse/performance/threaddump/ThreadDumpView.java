@@ -77,6 +77,8 @@ import com.easyfun.eclipse.component.kv.KeyValueTableViewer;
 import com.easyfun.eclipse.component.tree.TreeContentProvider;
 import com.easyfun.eclipse.component.tree.TreeLabelProvider;
 import com.easyfun.eclipse.component.tree.model.Directory;
+import com.easyfun.eclipse.performance.ImageConstants;
+import com.easyfun.eclipse.performance.PerformanceActivator;
 import com.easyfun.eclipse.performance.threaddump.parser.FilterWrapper;
 import com.easyfun.eclipse.performance.threaddump.parser.IThreadParser;
 import com.easyfun.eclipse.performance.threaddump.parser.ParserType;
@@ -147,14 +149,17 @@ public class ThreadDumpView extends ViewPart {
 
 		TabItem obdCallTabItem = new TabItem(threadTabFolder, SWT.NONE);
 		obdCallTabItem.setText("前后台调用");
+		obdCallTabItem.setImage(ThreadDumpActivator.getImageDescriptor(ThreadDumpImageConstants.ICON_CALL_PATH).createImage());
 		obdCallTabItem.setControl(createOBDComposite(threadTabFolder));
 		
 		TabItem threadItem = new TabItem(threadTabFolder, SWT.NONE);
 		threadItem.setText("线程概况");
+		threadItem.setImage(ThreadDumpActivator.getImageDescriptor(ThreadDumpImageConstants.ICON_THREAD_PATH).createImage());
 		threadItem.setControl(createThreadInfoComposite(threadTabFolder));
 
 		TabItem contentItem = new TabItem(threadTabFolder, SWT.NONE);
 		contentItem.setText("ThreadDump");
+		contentItem.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_TXT_PATH).createImage());
 		contentItem.setControl(createAllContentComposite(threadTabFolder));
 	}
 	
@@ -478,6 +483,7 @@ public class ThreadDumpView extends ViewPart {
 		    
 		Button button = new Button(parent, SWT.PUSH);
 		button.setText("Search");
+		button.setImage(ThreadDumpActivator.getImageDescriptor(ThreadDumpImageConstants.ICON_SEARCH_PATH).createImage());
 		button.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 				startSearch(keywordText.getText());
@@ -501,6 +507,7 @@ public class ThreadDumpView extends ViewPart {
 		Menu menu = new Menu(pureThreadDump.getTextWidget());
 		MenuItem menuItem = new MenuItem(menu, SWT.PUSH);
 		menuItem.setText("导出为文件...");
+		menuItem.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_FILE_PATH).createImage());
 		menuItem.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 				File file = RCPUtil.openSaveDialog(getShell(), new String[]{"*.txt", "*.*"}, "threadDump.txt");

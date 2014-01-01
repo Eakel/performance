@@ -39,6 +39,8 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
 
 import com.easyfun.eclipse.component.tree.TreeViewerFactory;
+import com.easyfun.eclipse.performance.ImageConstants;
+import com.easyfun.eclipse.performance.PerformanceActivator;
 import com.easyfun.eclipse.performance.jmx.model.DomainModel;
 import com.easyfun.eclipse.performance.jmx.model.MBeanModel;
 import com.easyfun.eclipse.performance.jmx.util.JBOSSUtils;
@@ -86,6 +88,7 @@ public class JMXView extends ViewPart {
 		final Button connButton = new Button(top, SWT.NULL);
 		connButton.setLayoutData(new GridData());
 		connButton.setText("Connect");
+		connButton.setImage(JmxActivator.getImageDescriptor(JMXImageConstants.ICON_RUN_PATH).createImage());
 		connButton.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
 				processConnect();
@@ -135,10 +138,12 @@ public class JMXView extends ViewPart {
 
 		TabItem obdCallTabItem = new TabItem(tabFolder, SWT.NONE);
 		obdCallTabItem.setText("MBean基本属性");
+		obdCallTabItem.setImage(JmxActivator.getImageDescriptor(JMXImageConstants.ICON_PROPERTY_PATH).createImage());
 		obdCallTabItem.setControl(createJMXBasicControl(tabFolder));
 		
 		TabItem threadItem = new TabItem(tabFolder, SWT.NONE);
 		threadItem.setText("MBean方法");
+		threadItem.setImage(JmxActivator.getImageDescriptor(JMXImageConstants.ICON_METHOD_PATH).createImage());
 		threadItem.setControl(createOpersControl(tabFolder));
 	}
 
@@ -153,6 +158,7 @@ public class JMXView extends ViewPart {
 		final Button filterButton = new Button(filterComp, SWT.NULL);
 		filterButton.setLayoutData(new GridData());
 		filterButton.setText("Filter");
+		filterButton.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_FILTER_PATH).createImage());
 		filterButton.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
 				//处理过滤

@@ -74,11 +74,11 @@ public class RemoteDirectoryBrowser extends TableViewer {
 			FTPFile ftpFile = ((FTPFile) element);
 			 if (columnIndex == 0){
 				 if(ftpFile.isDirectory()){
-					 return ImageDescriptor.createFromFile(null, ImageConstants.ICON_DIRECTORY).createImage();
+					 return ImageDescriptor.createFromFile(null, FTPImageConstants.ICON_DIRECTORY).createImage();
 				 }else if(ftpFile.isFile()){
 					 return DirectoryUtils.getImageByFile(ftpFile);
 				 }else{
-					 return ImageDescriptor.createFromFile(null, ImageConstants.ICON_FILE).createImage();
+					 return ImageDescriptor.createFromFile(null, FTPImageConstants.ICON_FILE).createImage();
 				 }
 			 }
 			return null;

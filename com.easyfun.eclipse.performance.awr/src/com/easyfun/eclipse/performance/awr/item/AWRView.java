@@ -26,7 +26,11 @@ import org.eclipse.ui.part.ViewPart;
 
 import com.easyfun.eclipse.component.db.ConnectionModel;
 import com.easyfun.eclipse.component.db.DBUtil;
+import com.easyfun.eclipse.performance.ImageConstants;
+import com.easyfun.eclipse.performance.PerformanceActivator;
 import com.easyfun.eclipse.performance.awr.AWRUtil;
+import com.easyfun.eclipse.performance.awr.AwrActivator;
+import com.easyfun.eclipse.performance.awr.AWRImageConstants;
 import com.easyfun.eclipse.performance.awr.model.AWRTableViewer;
 import com.easyfun.eclipse.performance.awr.model.SnapShot;
 import com.easyfun.eclipse.performance.navigator.console.LogHelper;
@@ -78,8 +82,11 @@ public class AWRView extends ViewPart {
 			}
 		});
 		dbButton.setText("数据库设定");
+		dbButton.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_DATABASE_PATH).createImage());
 
 		final Button anaButton = new Button(topComposite, SWT.NONE);
+		anaButton.setText("获取AWR日志");
+		anaButton.setImage(AwrActivator.getImageDescriptor(AWRImageConstants.ICON_RUN_PATH).createImage());
 		anaButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(final SelectionEvent e) {
 				ConnectionModel connectionModel = null;
@@ -105,11 +112,11 @@ public class AWRView extends ViewPart {
 				}
 			}
 		});
-		anaButton.setText("获取AWR日志");
 		
 		genHTMLButton = new Button(topComposite, SWT.NONE);
+		genHTMLButton.setText("生成AWR(HTML)");
+		genHTMLButton.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_HTML_PATH).createImage());
 		genHTMLButton.addSelectionListener(new SelectionAdapter() {
-
 			public void widgetSelected(SelectionEvent e) {
 				ConnectionModel connectionModel = null;
 				try {
@@ -173,12 +180,12 @@ public class AWRView extends ViewPart {
 					}
 				}
 			}
-		});
-		genHTMLButton.setText("生成AWR(HTML)");
+		});		
 		
 		genTextButton = new Button(topComposite, SWT.NONE);
+		genTextButton.setText("生成AWR(TEXT)");
+		genTextButton.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_TXT_PATH).createImage());
 		genTextButton.addSelectionListener(new SelectionAdapter() {
-
 			public void widgetSelected(SelectionEvent e) {
 				ConnectionModel connectionModel = null;
 				try {
@@ -243,10 +250,11 @@ public class AWRView extends ViewPart {
 					}
 				}
 			}
-		});
-		genTextButton.setText("生成AWR(TEXT)");
+		});		
 		
 		exportButton = new Button(topComposite, SWT.NONE);
+		exportButton.setText("导出...");
+		exportButton.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_EXPORT_PATH).createImage());
 		exportButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 				try {
@@ -256,7 +264,6 @@ public class AWRView extends ViewPart {
 				}
 			}
 		});
-		exportButton.setText("导出...");
 		
 
 		final Composite mainComposite = new Composite(parent, SWT.NONE);
@@ -349,7 +356,12 @@ public class AWRView extends ViewPart {
 	private void init(){
 		List list = new ArrayList();
 		String[] titles = new String[]{"SNAP_ID", "BIGIN_DATE", "END_DATE", "DBID", "INSTANCE_NUMBER", "INSTANCE_NAME", "VERSION", "GET_HOST_NAME"};
-		AWRTableViewer tableViewer = createNewTab(tabFolder, "AWR报告", titles);
+		final TabItem tabItem = new TabItem(tabFolder, SWT.NONE);
+		tabItem.setText("AWR报告");
+		tabItem.setImage(AwrActivator.getImageDescriptor(AWRImageConstants.ICON_AWR_PATH).createImage());
+
+		AWRTableViewer tableViewer = new AWRTableViewer(tabFolder, titles);
+		tabItem.setControl(tableViewer.getTable());
 		tableViewer.setInput(list);
 		
 		exportButton.setEnabled(false);

@@ -14,6 +14,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Text;
 
+import com.easyfun.eclipse.performance.ImageConstants;
+import com.easyfun.eclipse.performance.PerformanceActivator;
 import com.easyfun.eclipse.performance.preferences.PreferenceConstants;
 import com.easyfun.eclipse.performance.preferences.EasyFunPrefUtil;
 import com.easyfun.eclipse.rcp.RCPUtil;
@@ -51,9 +53,10 @@ public class DirectoryFieldComposite extends Composite{
 
 		final Button button = new Button(p, SWT.NONE);
 		GridData gridData = new GridData(SWT.LEFT, SWT.TOP, false, false);
-		gridData.widthHint = 60;
+		gridData.widthHint = 70;
 		button.setLayoutData(gridData);
-		button.setText("Ŀ¼...");
+		button.setText("Ŀ ¼...");
+		button.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_FOLDER_PATH).createImage());
 		
 		button.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(final SelectionEvent e) {

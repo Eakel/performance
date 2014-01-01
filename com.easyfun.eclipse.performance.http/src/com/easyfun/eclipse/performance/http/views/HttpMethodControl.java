@@ -23,6 +23,8 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 
+import com.easyfun.eclipse.performance.http.HttpActivator;
+import com.easyfun.eclipse.performance.http.HttpImageConstants;
 import com.easyfun.eclipse.performance.http.model.HttpMethodEnum;
 import com.easyfun.eclipse.performance.http.model.MethodFactory;
 import com.easyfun.eclipse.performance.http.model.interfaces.IHttpMethod;
@@ -83,6 +85,7 @@ public class HttpMethodControl extends Composite implements PropertyChangeListen
 		
 		Button executeButton = new Button(group, SWT.NONE);
 		executeButton.setText("Invoke");
+		executeButton.setImage(HttpActivator.getImageDescriptor(HttpImageConstants.ICON_RUN_PATH).createImage());
 		executeButton.setLayoutData(new GridData(GridData.FILL,GridData.CENTER, false, false));
 		executeButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {

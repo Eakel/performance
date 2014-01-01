@@ -13,6 +13,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Text;
 
+import com.easyfun.eclipse.performance.ImageConstants;
+import com.easyfun.eclipse.performance.PerformanceActivator;
 import com.easyfun.eclipse.rcp.RCPUtil;
 
 /**
@@ -41,9 +43,10 @@ public class FileFieldComposite extends Composite{
 
 		final Button button = new Button(p, SWT.NONE);
 		GridData gridData = new GridData(SWT.LEFT, SWT.TOP, false, false);
-		gridData.widthHint = 60;
+		gridData.widthHint = 70;
 		button.setLayoutData(gridData);
 		button.setText("нд╪Ч...");
+		button.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_FILE_PATH).createImage());
 		
 		button.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(final SelectionEvent e) {

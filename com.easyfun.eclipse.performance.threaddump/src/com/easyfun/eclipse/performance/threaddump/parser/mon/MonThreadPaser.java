@@ -7,7 +7,7 @@ import org.apache.commons.lang.math.NumberUtils;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.graphics.Image;
 
-import com.easyfun.eclipse.performance.threaddump.ImageConstants;
+import com.easyfun.eclipse.performance.threaddump.ThreadDumpImageConstants;
 import com.easyfun.eclipse.performance.threaddump.ThreadDumpActivator;
 import com.easyfun.eclipse.performance.threaddump.parser.AbstractThreadParser;
 import com.easyfun.eclipse.performance.threaddump.parser.FilterWrapper;
@@ -111,11 +111,11 @@ public class MonThreadPaser extends AbstractThreadParser{
 		map.put("ALL", new FilterWrapper(new ViewerFilter[] { new MonThreadFilters.AllFilter() }, null));
 		map.put("WAITING", new FilterWrapper(new ViewerFilter[] { new MonThreadFilters.WaitingFilter() }, null));
 		map.put("&TIME_WAITING", new FilterWrapper(new ViewerFilter[] { new MonThreadFilters.TimedWaitingFilter() }, ThreadDumpActivator.getImageDescriptor(
-				ImageConstants.ICON_THREAD_WAIT_ON_CONDITION).createImage()));
+				ThreadDumpImageConstants.ICON_THREAD_WAIT_ON_CONDITION_PATH).createImage()));
 		map.put("&RUNNABLE", new FilterWrapper(new ViewerFilter[] { new MonThreadFilters.RunnableFilter() }, ThreadDumpActivator.getImageDescriptor(
-				ImageConstants.ICON_THREAD_DEFAULT).createImage()));
+				ThreadDumpImageConstants.ICON_THREAD_DEFAULT_PATH).createImage()));
 		map.put("BLOCKED", new FilterWrapper(new ViewerFilter[] { new MonThreadFilters.BlockedFilter() }, ThreadDumpActivator.getImageDescriptor(
-				ImageConstants.ICON_THREAD_WAITING).createImage())); //TODO:
+				ThreadDumpImageConstants.ICON_THREAD_WAITING_PATH).createImage())); //TODO:
 		return map;
 	}
 }

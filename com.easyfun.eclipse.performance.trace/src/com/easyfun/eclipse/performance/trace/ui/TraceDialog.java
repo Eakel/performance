@@ -24,6 +24,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
 import com.easyfun.eclipse.component.tree.TreeContentProvider;
+import com.easyfun.eclipse.performance.ImageConstants;
+import com.easyfun.eclipse.performance.PerformanceActivator;
 import com.easyfun.eclipse.performance.trace.model.AppTrace;
 import com.easyfun.eclipse.performance.trace.model.ITrace;
 import com.easyfun.eclipse.rcp.RCPUtil;
@@ -75,10 +77,12 @@ public class TraceDialog extends TrayDialog {
 	    Button expandAllButton = new Button(leftComp, SWT.NULL);
 	    expandAllButton.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, false, false));
 	    expandAllButton.setText("全部展开");
+	    expandAllButton.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_EXPLANDALL_PATH).createImage());
 	    
 	    Button collapseAllButton = new Button(leftComp, SWT.NULL);
 	    collapseAllButton.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, false, false));
 	    collapseAllButton.setText("全部关闭");
+	    collapseAllButton.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_COLAPSEALL_PATH).createImage());
 	    
 	    Button statButton = new Button(leftComp, SWT.NULL);
 		statButton.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, false, false));

@@ -11,6 +11,8 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 
+import com.easyfun.eclipse.performance.ImageConstants;
+import com.easyfun.eclipse.performance.PerformanceActivator;
 import com.easyfun.eclipse.performance.preferences.FTPPreferencePage;
 import com.easyfun.eclipse.rcp.RCPUtil;
 
@@ -39,9 +41,10 @@ public class FTPFieldComposite extends Composite{
 
 		final Button ftpButton = new Button(ftpComposite, SWT.NONE);
 		GridData gridData = new GridData(SWT.LEFT, SWT.TOP, false, false);
-		gridData.widthHint = 60;
+		gridData.widthHint = 70;
 		ftpButton.setLayoutData(gridData);
 		ftpButton.setText("FTP...");
+		ftpButton.setImage(PerformanceActivator.getImageDescriptor(com.easyfun.eclipse.component.ftp.ui.FTPImageConstants.ICON_FTP).createImage());
 		
 		ftpButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(final SelectionEvent e) {

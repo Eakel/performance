@@ -14,7 +14,7 @@
          point="org.eclipse.ui.views">
       <view
             class="com.easyfun.eclipse.performance.appframe.views.WebToolsView"
-            icon="icons/appframe.png"
+            icon="icons/appframe.ico"
             id="com.easyfun.eclipse.performance.appframe.view.WebToolView"
             name="WebTool">
       </view>
@@ -23,7 +23,7 @@
          point="com.easyfun.eclipse.performance.EasyFunNavigatorElement">
       <page
             folder="com.easyfun.eclipse.performance.appframeFolder"
-            icon="icons/appframe.png"
+            icon="icons/appframe.ico"
             id="com.easyfun.eclipse.performance.appframe.items.WebToolView"
             title="WebTool"
             type="AppFrame"

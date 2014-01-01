@@ -22,6 +22,8 @@ import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
 
+import com.easyfun.eclipse.performance.appframe.AppFrameActivator;
+import com.easyfun.eclipse.performance.appframe.AppFrameImageConstants;
 import com.easyfun.eclipse.performance.appframe.util.appf.AppFEncrypt;
 import com.easyfun.eclipse.performance.appframe.util.appf.K;
 import com.easyfun.eclipse.performance.appframe.util.appf.MD5;
@@ -74,22 +76,27 @@ public class WebToolsView extends ViewPart {
 
 		TabItem colorItem = new TabItem(tabFolder, SWT.NULL);
 		colorItem.setText("ÑÕÉ«");
+		colorItem.setImage(AppFrameActivator.getImageDescriptor(AppFrameImageConstants.ICON_COLOR_PATH).createImage());
 		colorItem.setControl(colorComposite);
 		
 		TabItem timeItem = new TabItem(tabFolder, SWT.NULL);
 		timeItem.setText("Ê±¼ä");
+		timeItem.setImage(AppFrameActivator.getImageDescriptor(AppFrameImageConstants.ICON_DATE_PATH).createImage());
 		timeItem.setControl(timeComposite);
 		
 		TabItem appfItem = new TabItem(tabFolder, SWT.NULL);
 		appfItem.setText("AppFrame");
 		appfItem.setControl(appfComposite);
+		appfItem.setImage(AppFrameActivator.getImageDescriptor(AppFrameImageConstants.ICON_APPFRAME_PATH).createImage());
 		
 		TabItem base64Item = new TabItem(tabFolder, SWT.NULL);
 		base64Item.setText("Base64");
+		base64Item.setImage(AppFrameActivator.getImageDescriptor(AppFrameImageConstants.ICON_ENCRYPT_PATH).createImage());
 		base64Item.setControl(base64Composite);
 		
 		TabItem sshRC2Item = new TabItem(tabFolder, SWT.NULL);
 		sshRC2Item.setText("RC2(SSH)");
+		sshRC2Item.setImage(AppFrameActivator.getImageDescriptor(AppFrameImageConstants.ICON_ENCRYPT_PATH).createImage());
 		sshRC2Item.setControl(sshRC2Composite);
 	}
 

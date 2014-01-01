@@ -3,7 +3,7 @@ package com.easyfun.eclipse.performance.trace.ui;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
-import com.easyfun.eclipse.performance.trace.ImageConstants;
+import com.easyfun.eclipse.performance.trace.TraceImageConstants;
 import com.easyfun.eclipse.performance.trace.model.AppTrace;
 import com.easyfun.eclipse.performance.trace.model.ITrace;
 import com.easyfun.eclipse.performance.trace.model.TraceTypeEnum;
@@ -62,31 +62,31 @@ public class TraceUIFactory {
 	/** 根据Trace类型，创建不同的Composite */
 	public static String getImageByType(ITrace trace) {
 		if (trace.getType().equals(TraceTypeEnum.TYPE_APP)) {
-			return ImageConstants.TRACE_APP_ICON;
+			return TraceImageConstants.ICON_TRACE_APP_PATH;
 		} else if (trace.getType().equals(TraceTypeEnum.TYPE_CAU)) {
-			return ImageConstants.TRACE_CAU_ICON;
+			return TraceImageConstants.ICON_TRACE_CAU_PATH;
 		} else if (trace.getType().equals(TraceTypeEnum.TYPE_DAO)) {
-			return ImageConstants.TRACE_DAO_ICON;
+			return TraceImageConstants.ICON_TRACE_DAO_PATH;
 		} else if (trace.getType().equals(TraceTypeEnum.TYPE_HTTP)) {
-			return ImageConstants.TRACE_HTTP_ICON;
+			return TraceImageConstants.ICON_TRACE_HTTP_PATH;
 		} else if (trace.getType().equals(TraceTypeEnum.TYPE_JDBC)) {
-			return ImageConstants.TRACE_JDBC_ICON;
+			return TraceImageConstants.ICON_TRACE_JDBC_PATH;
 		} else if (trace.getType().equals(TraceTypeEnum.TYPE_MDB)) {
-			return ImageConstants.TRACE_MDB_ICON;
+			return TraceImageConstants.ICON_TRACE_MDB_PATH;
 		} else if (trace.getType().equals(TraceTypeEnum.TYPE_MEM)) {
-			return ImageConstants.TRACE_MEM_ICON;
+			return TraceImageConstants.ICON_TRACE_MEM_PATH;
 		} else if (trace.getType().equals(TraceTypeEnum.TYPE_SECMEM)) {
-			return ImageConstants.TRACE_SECMEM_ICON;
+			return TraceImageConstants.ICON_TRACE_SECMEM_PATH;
 		} else if (trace.getType().equals(TraceTypeEnum.TYPE_SVR)) {
-			return ImageConstants.TRACE_SVR_ICON;
+			return TraceImageConstants.ICON_TRACE_SVR_PATH;
 		} else if (trace.getType().equals(TraceTypeEnum.TYPE_WEB)) {
-			return ImageConstants.TRACE_WEB_ICON;
+			return TraceImageConstants.ICON_TRACE_WEB_PATH;
 		} else if (trace.getType().equals(TraceTypeEnum.TYPE_WS)) {
-			return ImageConstants.TRACE_WS_ICON;
+			return TraceImageConstants.ICON_TRACE_WS_PATH;
 		} else if (trace.getType().equals(TraceTypeEnum.TYPE_BCC)) {
-			return ImageConstants.TRACE_BCC_ICON;
+			return TraceImageConstants.ICON_TRACE_BCC_PATH;
 		}else {
-			return ImageConstants.TRACE_DEFAULT_ICON;
+			return TraceImageConstants.ICON_TRACE_DEFAULT_PATH;
 		}
 	}
 }

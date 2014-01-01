@@ -31,6 +31,8 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
 import com.easyfun.eclipse.component.db.DBUrlBean;
 import com.easyfun.eclipse.component.db.DBUrlDialog;
 import com.easyfun.eclipse.component.db.DBUtil;
+import com.easyfun.eclipse.performance.ImageConstants;
+import com.easyfun.eclipse.performance.PerformanceActivator;
 
 /**
  * 
@@ -113,6 +115,7 @@ public class DBUrlPreferencePage extends PreferencePage implements IWorkbenchPre
 		Button b1 = new Button(c1, SWT.PUSH);
 		b1.setText("&Add...");
 		b1.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		b1.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_ADD_PATH).createImage());
 		b1.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
 				DBUrlDialog dialog = new DBUrlDialog(getShell(), DBUrlDialog.TYPE_ADD, null);
@@ -138,6 +141,7 @@ public class DBUrlPreferencePage extends PreferencePage implements IWorkbenchPre
 		b1 = new Button(c1, SWT.PUSH);
 		b1.setText("&Edit...");
 		b1.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		b1.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_EDIT_PATH).createImage());
 		b1.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
 				editSelect();
@@ -147,6 +151,7 @@ public class DBUrlPreferencePage extends PreferencePage implements IWorkbenchPre
 		b1 = new Button(c1, SWT.PUSH);
 		b1.setText("&Remove");
 		b1.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		b1.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_DELETE_PATH).createImage());
 		b1.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
 				Object select = ((IStructuredSelection)tableViewer.getSelection()).getFirstElement();
@@ -163,6 +168,7 @@ public class DBUrlPreferencePage extends PreferencePage implements IWorkbenchPre
 		
 		b1 = new Button(c1, SWT.PUSH);
 		b1.setText("&Copy");
+		b1.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_COPY_PATH).createImage());
 		b1.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		b1.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		b1.addSelectionListener(new SelectionAdapter(){

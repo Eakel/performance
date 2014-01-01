@@ -30,7 +30,7 @@ public class JMXFormEditor extends FormEditor {
 		} catch (PartInitException e) {
 			e.printStackTrace();
 		}
-		setTitleImage(JmxActivator.getImageDescriptor(ImageConstants.TASK_ICON).createImage());
+		setTitleImage(JmxActivator.getImageDescriptor(JMXImageConstants.ICON_TASK_PATH).createImage());
 	}
 
 	public void doSave(IProgressMonitor monitor) {

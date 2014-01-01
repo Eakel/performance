@@ -69,6 +69,8 @@ import org.eclipse.swt.widgets.Text;
 import com.easyfun.eclipse.component.ftp.FTPHostBean;
 import com.easyfun.eclipse.component.ftp.FTPHostDialog;
 import com.easyfun.eclipse.component.ftp.FTPHelper;
+import com.easyfun.eclipse.performance.ImageConstants;
+import com.easyfun.eclipse.performance.PerformanceActivator;
 import com.easyfun.eclipse.performance.navigator.console.LogHelper;
 import com.easyfun.eclipse.rcp.RCPUtil;
 
@@ -137,7 +139,7 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 		};
 		localUpDirAction.setText("Up(Local)");
 		localUpDirAction.setToolTipText("Up one level - local dir");
-		localUpDirAction.setImageDescriptor(ImageDescriptor.createFromFile(null, ImageConstants.ICON_FTP_LOCAL_UP));
+		localUpDirAction.setImageDescriptor(ImageDescriptor.createFromFile(null, FTPImageConstants.ICON_FTP_LOCAL_UP));
 
 		// "Browse..." Button
 		localBrowseDirAction = new Action() {
@@ -154,7 +156,7 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 		};
 		localBrowseDirAction.setText("Browse...");
 		localBrowseDirAction.setToolTipText("Browse local directory");
-		localBrowseDirAction.setImageDescriptor(ImageDescriptor.createFromFile(null, ImageConstants.ICON_FTP_BROWSE));
+		localBrowseDirAction.setImageDescriptor(ImageDescriptor.createFromFile(null, FTPImageConstants.ICON_FTP_BROWSE));
 
 		// "Connect" Button
 		connectAction = new Action() {
@@ -207,7 +209,7 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 		};
 		connectAction.setText("Connect");
 		connectAction.setToolTipText("Connect to remote host");
-		connectAction.setImageDescriptor(ImageDescriptor.createFromFile(null, ImageConstants.ICON_FTP_CONNECT));
+		connectAction.setImageDescriptor(ImageDescriptor.createFromFile(null, FTPImageConstants.ICON_FTP_CONNECT));
 
 		// "Disconnect" Button
 		disconnectAction = new Action() {
@@ -221,7 +223,7 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 		};
 		disconnectAction.setText("Disconnect");
 		disconnectAction.setToolTipText("Disconnect from remote host");
-		disconnectAction.setImageDescriptor(ImageDescriptor.createFromFile(null, ImageConstants.ICON_FTP_DISCONNECT));
+		disconnectAction.setImageDescriptor(ImageDescriptor.createFromFile(null, FTPImageConstants.ICON_FTP_DISCONNECT));
 
 		// "up(Remote)" Button
 		remoteUpDirAction = new Action() {
@@ -239,7 +241,7 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 		};
 		remoteUpDirAction.setText("Up(Remote)");
 		remoteUpDirAction.setToolTipText("Up one level - remote dir");
-		remoteUpDirAction.setImageDescriptor(ImageDescriptor.createFromFile(null, ImageConstants.ICON_FTP_SERVER_UP));
+		remoteUpDirAction.setImageDescriptor(ImageDescriptor.createFromFile(null, FTPImageConstants.ICON_FTP_SERVER_UP));
 
 		//"About" Button
 		abboutAction = new Action() {
@@ -248,7 +250,7 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 			}
 		};
 		abboutAction.setText("About");
-		abboutAction.setImageDescriptor(ImageDescriptor.createFromFile(null, ImageConstants.ICON_FTP_ABOUT));
+		abboutAction.setImageDescriptor(ImageDescriptor.createFromFile(null, FTPImageConstants.ICON_FTP_ABOUT));
 
 		//"Exit" Button
 		exitAction = new Action() {
@@ -263,7 +265,7 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 			}
 		};
 		exitAction.setText("Exit");
-		exitAction.setImageDescriptor(ImageDescriptor.createFromFile(null, ImageConstants.ICON_FTP_CLOSE));
+		exitAction.setImageDescriptor(ImageDescriptor.createFromFile(null, FTPImageConstants.ICON_FTP_CLOSE));
 	}
 
 	private void dragNDropSupport() {
@@ -647,6 +649,7 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 			}
 		});
 		copyItem.setText("复制到剪切板");
+		copyItem.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_COPY_PATH).createImage());
 		
 		MenuItem clearItem = new MenuItem(popMenu, SWT.PUSH);
 		clearItem.setText("全部清除");
@@ -666,7 +669,7 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 
 		getToolBarControl().setBackground(new Color(getShell().getDisplay(), 230, 230, 230));
 
-		getShell().setImage(new Image(getShell().getDisplay(), ImageConstants.ICON_FTP));
+		getShell().setImage(new Image(getShell().getDisplay(), FTPImageConstants.ICON_FTP));
 		getShell().setText("FTP Client v1.0");
 		
 		File rootFile = File.listRoots()[1];

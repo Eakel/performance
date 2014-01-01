@@ -21,6 +21,8 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 
 import com.easyfun.eclipse.component.kv.MenuUtils;
+import com.easyfun.eclipse.performance.ImageConstants;
+import com.easyfun.eclipse.performance.PerformanceActivator;
 import com.easyfun.eclipse.rcp.ColumnViewerSorter;
 
 /**
@@ -253,6 +255,7 @@ public class AWRTableViewer extends TableViewer {
 		MenuItem filterMenuItem = new MenuItem(parenMenu, SWT.CASCADE);
 		filterMenuItem.setMenu(menu);
 		filterMenuItem.setText("&µ¼³ö");
+		filterMenuItem.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_EXPORT_PATH).createImage());
 		
 		MenuUtils.addExportTxt(tableViewer, menu);
 		MenuUtils.addExportExcel(tableViewer, menu);
@@ -263,6 +266,7 @@ public class AWRTableViewer extends TableViewer {
 		MenuItem copyMenuItem = new MenuItem(parenMenu, SWT.CASCADE);
 		copyMenuItem.setMenu(copyMenu);
 		copyMenuItem.setText("&Copy");	
+		copyMenuItem.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_COPY_PATH).createImage());
 		
 		parenMenu.addMenuListener(new MenuAdapter(){
 			public void menuShown(MenuEvent e) {

@@ -22,6 +22,8 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 
 import com.easyfun.eclipse.component.kv.MenuUtils;
+import com.easyfun.eclipse.performance.ImageConstants;
+import com.easyfun.eclipse.performance.PerformanceActivator;
 import com.easyfun.eclipse.rcp.ColumnViewerSorter;
 import com.easyfun.eclipse.rcp.RCPUtil;
 import com.easyfun.eclipse.util.IOUtil;
@@ -163,6 +165,7 @@ public class MemTableViewer extends TableViewer {
 		MenuItem filterMenuItem = new MenuItem(parenMenu, SWT.CASCADE);
 		filterMenuItem.setMenu(menu);
 		filterMenuItem.setText("&µ¼³ö");
+		filterMenuItem.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_EXPORT_PATH).createImage());
 		
 		MenuUtils.addExportTxt(tableViewer, menu);
 		MenuUtils.addExportExcel(tableViewer, menu);

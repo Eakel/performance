@@ -13,7 +13,7 @@ import org.apache.commons.net.ftp.FTPFile;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 
-import com.easyfun.eclipse.component.ftp.ui.ImageConstants;
+import com.easyfun.eclipse.component.ftp.ui.FTPImageConstants;
 
 public class DirectoryUtils {
 	/** 文件类型与图片路径对应关系*/
@@ -60,7 +60,7 @@ public class DirectoryUtils {
 		if(StringUtils.isNotEmpty(filePath)){
 			return ImageDescriptor.createFromFile(null, filePath).createImage();
 		}else{
-			return ImageDescriptor.createFromFile(null, ImageConstants.ICON_FILE).createImage();
+			return ImageDescriptor.createFromFile(null, FTPImageConstants.ICON_FILE).createImage();
 		}
 	}
 	
@@ -71,7 +71,7 @@ public class DirectoryUtils {
 		if(StringUtils.isNotEmpty(filePath)){
 			return ImageDescriptor.createFromFile(null, filePath).createImage();
 		}else{
-			return ImageDescriptor.createFromFile(null, ImageConstants.ICON_FILE).createImage();
+			return ImageDescriptor.createFromFile(null, FTPImageConstants.ICON_FILE).createImage();
 		}
 	}
 	

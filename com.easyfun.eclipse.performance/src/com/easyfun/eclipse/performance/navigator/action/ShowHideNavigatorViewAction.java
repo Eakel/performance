@@ -25,7 +25,7 @@ public class ShowHideNavigatorViewAction extends Action implements IWorkbenchAct
 		setText("Navigator");
 		setToolTipText("Show/Hide Navigator");
 		setId(getText());
-		setImageDescriptor(PerformanceActivator.getImageDescriptor(ImageConstants.EASYFUN_ICONS));
+		setImageDescriptor(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_EASYFUN_PATH));
 	}
 
 	public void dispose() {

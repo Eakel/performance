@@ -14,7 +14,7 @@
          point="com.easyfun.eclipse.performance.EasyFunNavigatorElement">
       <page
             folder="com.easyfun.eclipse.performance.threaddumpFolder"
-            icon="icons/threaddump.gif"
+            icon="icons/thread.png"
             id="com.easyfun.eclipse.component.threaddump.threadDump"
             title="ThreadDump"
             type="ThreadDump"
@@ -27,7 +27,7 @@
       <view
             category="com.easyfun.eclipse.utils.views.category"
             class="com.easyfun.eclipse.performance.threaddump.ThreadDumpView"
-            icon="icons/threaddump.gif"
+            icon="icons/thread.png"
             id="com.easyfun.eclipse.performance.threaddump.view.ThreadDumpView"
             name="ThreadDump"
             restorable="true">

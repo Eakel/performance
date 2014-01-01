@@ -145,11 +145,11 @@ public class LocalDirectoryTableViewer extends TableViewer {
 					File file = (File)element;
 					if(file.exists()){
 						if(file.isDirectory()){
-							return ImageDescriptor.createFromFile(null, ImageConstants.ICON_DIRECTORY).createImage();
+							return ImageDescriptor.createFromFile(null, FTPImageConstants.ICON_DIRECTORY).createImage();
 						}else if(file.isFile()){
 							return DirectoryUtils.getImageByFile(file);
 						}else{
-							return ImageDescriptor.createFromFile(null, ImageConstants.ICON_FILE).createImage();
+							return ImageDescriptor.createFromFile(null, FTPImageConstants.ICON_FILE).createImage();
 						}
 					}
 				}

@@ -73,12 +73,12 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 		
 		openConsoleAction = new OpenViewAction(window, "Console", IConstants.CMD_OPEN_CONSOLE, IConstants.CONSOLE_VIEW_ID, false);
 		openConsoleAction.setText("Console");
-		openConsoleAction.setViewImageDescriptor(ImageConstants.CONSOLE_ICONS);
+		openConsoleAction.setViewImageDescriptor(ImageConstants.ICON_CONSOLE_PATH);
 		register(openConsoleAction);
 		
 		openErrorLogViewAction = new OpenViewAction(window, "Error Log", IConstants.CMD_OPEN_ERRORLOG, IConstants.ERROR_LOG_VIEW_ID, false);
 		openErrorLogViewAction.setText("Error Log");
-		openErrorLogViewAction.setViewImageDescriptor(ImageConstants.ERRORLOG_ICONS);
+		openErrorLogViewAction.setViewImageDescriptor(ImageConstants.ICON_ERRORLOG_PATH);
 		register(openErrorLogViewAction);
 		
 		preferencesAction = ActionFactory.PREFERENCES.create(window);

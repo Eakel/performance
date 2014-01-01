@@ -46,7 +46,7 @@ import com.easyfun.eclipse.component.ftp.FTPFieldComposite;
 import com.easyfun.eclipse.component.ftp.FTPHelper;
 import com.easyfun.eclipse.component.ftp.FTPUtil;
 import com.easyfun.eclipse.performance.navigator.console.LogHelper;
-import com.easyfun.eclipse.performance.trace.ImageConstants;
+import com.easyfun.eclipse.performance.trace.TraceImageConstants;
 import com.easyfun.eclipse.performance.trace.SFtpClient;
 import com.easyfun.eclipse.performance.trace.TraceActivator;
 import com.easyfun.eclipse.performance.trace.builder.TraceBuilder;
@@ -238,7 +238,7 @@ public class TraceView extends ViewPart {
 		Button searchButton = new Button(c1, SWT.NULL);
 		searchButton.setLayoutData(new GridData(SWT.RIGHT, SWT.TOP, false, false));
 		searchButton.setText("╡И ур");
-		searchButton.setImage(TraceActivator.getImageDescriptor(ImageConstants.TRACE_FIND_ICON).createImage());
+		searchButton.setImage(TraceActivator.getImageDescriptor(TraceImageConstants.ICON_TRACE_FIND_PATH).createImage());
 		searchButton.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
 				handleSearch();

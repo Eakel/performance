@@ -26,7 +26,7 @@ public class JMXFormEditorInput implements IEditorInput {
 	}
 
 	public ImageDescriptor getImageDescriptor() {
-		return JmxActivator.getImageDescriptor(ImageConstants.TASK_ICON);
+		return JmxActivator.getImageDescriptor(JMXImageConstants.ICON_TASK_PATH);
 	}
 
 	public String getName() {

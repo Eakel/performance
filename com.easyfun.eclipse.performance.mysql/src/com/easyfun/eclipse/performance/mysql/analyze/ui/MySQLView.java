@@ -41,6 +41,10 @@ import com.easyfun.eclipse.component.db.ConnectionModel;
 import com.easyfun.eclipse.component.db.DBUtil;
 import com.easyfun.eclipse.component.kv.KeyValue;
 import com.easyfun.eclipse.component.kv.KeyValueTableViewer;
+import com.easyfun.eclipse.performance.ImageConstants;
+import com.easyfun.eclipse.performance.PerformanceActivator;
+import com.easyfun.eclipse.performance.mysql.MySQLActivator;
+import com.easyfun.eclipse.performance.mysql.MySQLImageConstants;
 import com.easyfun.eclipse.performance.mysql.analyze.model.TableModel;
 import com.easyfun.eclipse.performance.navigator.console.LogHelper;
 import com.easyfun.eclipse.performance.preferences.DBUrlPreferencePage;
@@ -74,6 +78,7 @@ public class MySQLView extends ViewPart {
 
 		final Button dbButton = new Button(topComposite, SWT.NONE);
 		dbButton.setText("数据库设定");
+		dbButton.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_DATABASE_PATH).createImage());
 		dbButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(final SelectionEvent e) {
 //				RCPUtil.showPreferencPage(getViewSite().getShell(), MySQLJDBCPreferencePage.PREF_ID);
@@ -83,6 +88,7 @@ public class MySQLView extends ViewPart {
 
 		final Button filterSetttingButton = new Button(topComposite, SWT.NONE);
 		filterSetttingButton.setText("过滤设定");
+		filterSetttingButton.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_FILTER_PATH).createImage());
 		filterSetttingButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(final SelectionEvent e) {
 			    RCPUtil.showPreferencPage(getViewSite().getShell(), TableFilterPreferencePage.PREF_ID);
@@ -101,6 +107,7 @@ public class MySQLView extends ViewPart {
 
 		final Button anaButton = new Button(topComposite, SWT.NONE);
 		anaButton.setText("开始分析");
+		anaButton.setImage(MySQLActivator.getImageDescriptor(MySQLImageConstants.ICON_RUN_PATH).createImage());
 		anaButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(final SelectionEvent e) {
 				anaButton.getDisplay().asyncExec(new Runnable() {
@@ -131,6 +138,7 @@ public class MySQLView extends ViewPart {
 		
 		final Button exportButton = new Button(topComposite, SWT.NONE);
 		exportButton.setText("导出为Excel");
+		exportButton.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_EXEL_PATH).createImage());
 		exportButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 				try {
@@ -158,16 +166,6 @@ public class MySQLView extends ViewPart {
 	}
 
 	public void setFocus() {
-	}
-	
-	
-	private KeyValueTableViewer createNewTab(TabFolder tabFolder, String tabName, String[] titles, int[] widths){
-		final TabItem tabItem = new TabItem(tabFolder, SWT.NONE);
-		tabItem.setText(tabName);
-
-		KeyValueTableViewer tableViewer = new KeyValueTableViewer(tabFolder, titles, widths);
-		tabItem.setControl(tableViewer.getTable());
-		return tableViewer;
 	}
 	
 	private void initByConnection(Connection conn) throws Exception{
@@ -430,10 +428,22 @@ public class MySQLView extends ViewPart {
 			tabItems[i].dispose();
 		}
 		if (tabItems.length == 1) {
-			KeyValueTableViewer tableViewer = createNewTab(tabFolder, "过滤设定", new String[] { "配置项", "值" }, new int[] { 150, 450 });
+			TabItem tabItem = new TabItem(tabFolder, SWT.NONE);
+			tabItem.setText("过滤设定");
+			tabItem.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_FILTER_PATH).createImage());
+
+			KeyValueTableViewer tableViewer = new KeyValueTableViewer(tabFolder, new String[] { "配置项", "值" }, new int[] { 150, 450 });
+			tabItem.setControl(tableViewer.getTable());
+			
 			tableViewer.setInput(list);
 		} else {
-			KeyValueTableViewer tableViewer = createNewTab(tabFolder, "过滤设定", new String[] { "配置项", "值" }, new int[] { 150, 450 });
+			TabItem tabItem = new TabItem(tabFolder, SWT.NONE);
+			tabItem.setText("过滤设定");
+			tabItem.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_FILTER_PATH).createImage());
+
+			KeyValueTableViewer tableViewer = new KeyValueTableViewer(tabFolder, new String[] { "配置项", "值" }, new int[] { 150, 450 });
+			tabItem.setControl(tableViewer.getTable());
+			
 			tableViewer.setInput(list);
 		}
 	}

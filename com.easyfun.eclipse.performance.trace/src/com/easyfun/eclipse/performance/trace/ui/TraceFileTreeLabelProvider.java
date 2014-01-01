@@ -6,7 +6,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.internal.Workbench;
 
 import com.easyfun.eclipse.component.tree.model.ITreeModel;
-import com.easyfun.eclipse.performance.trace.ImageConstants;
+import com.easyfun.eclipse.performance.trace.TraceImageConstants;
 import com.easyfun.eclipse.performance.trace.TraceActivator;
 import com.easyfun.eclipse.performance.trace.item.trace.TraceNode;
 
@@ -29,9 +29,9 @@ public class TraceFileTreeLabelProvider extends LabelProvider {
 					return PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJ_FOLDER);
 				}else{
 					if(model instanceof TraceNode && ((TraceNode)model).getAppTrace() != null){
-						return TraceActivator.getImageDescriptor(ImageConstants.TRACE_NODE_ICON).createImage();
+						return TraceActivator.getImageDescriptor(TraceImageConstants.ICON_TRACE_NODE_PATH).createImage();
 					} else {
-						return TraceActivator.getImageDescriptor(ImageConstants.TRACE_OTHER_ICON).createImage();
+						return TraceActivator.getImageDescriptor(TraceImageConstants.ICON_TRACE_OTHER_PATH).createImage();
 					}
 				}
 			}

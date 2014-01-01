@@ -19,6 +19,8 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 
 import com.easyfun.eclipse.component.xml.XmlEditor;
+import com.easyfun.eclipse.performance.trace.TraceActivator;
+import com.easyfun.eclipse.performance.trace.TraceImageConstants;
 import com.easyfun.eclipse.performance.trace.model.AppTrace;
 import com.easyfun.eclipse.rcp.RCPUtil;
 
@@ -72,6 +74,7 @@ public class TraceXmlDialog extends TrayDialog {
 		final Button b3 = new Button(c, SWT.PUSH);
 		b3.setLayoutData(new GridData());
 		b3.setText("Áí´æÎª...");
+		b3.setImage(TraceActivator.getImageDescriptor(TraceImageConstants.ICON_TRACE_SAVE_PATH).createImage());
 		b3.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
 				String content = rootTrace.getTraceContent(false);
