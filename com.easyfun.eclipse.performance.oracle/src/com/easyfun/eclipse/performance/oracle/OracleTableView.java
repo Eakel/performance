@@ -39,6 +39,7 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.ui.part.ViewPart;
 
 import com.easyfun.eclipse.component.db.ConnectionModel;
+import com.easyfun.eclipse.component.db.DBUrlBean;
 import com.easyfun.eclipse.component.db.DBUtil;
 import com.easyfun.eclipse.component.kv.KeyValue;
 import com.easyfun.eclipse.component.kv.KeyValueTableViewer;
@@ -60,10 +61,6 @@ import com.easyfun.eclipse.util.TimeUtil;
  */
 public class OracleTableView extends ViewPart {
 	private static final String SCHEMES = "schemes";
-	
-//	private ConnectionModel connectionModel;
-	/** 当前过滤设定属性*/
-//	private String prop;
 	
 	private Properties tablePrefixProp;
 	
@@ -116,6 +113,11 @@ public class OracleTableView extends ViewPart {
 			public void widgetSelected(final SelectionEvent e) {
 					anaButton.getDisplay().asyncExec(new Runnable() {
 						public void run() {
+							DBUrlBean urlBean = DBUtil.getSelectBean();
+							if(urlBean == null || urlBean.getDbType() != DBUrlBean.ORACLE_TYPE){
+								RCPUtil.showError(getSite().getShell(), "当前选择数据库类型不是Oracle");
+								return;
+							}
 							ConnectionModel connectionModel = null;
 							try {
 								anaButton.setEnabled(false);
@@ -447,7 +449,6 @@ public class OracleTableView extends ViewPart {
 	
 	@Override
 	public void setFocus() {
-		// TODO Auto-generated method stub
 		
 	}
 

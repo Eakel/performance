@@ -25,6 +25,7 @@ import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.ui.part.ViewPart;
 
 import com.easyfun.eclipse.component.db.ConnectionModel;
+import com.easyfun.eclipse.component.db.DBUrlBean;
 import com.easyfun.eclipse.component.db.DBUtil;
 import com.easyfun.eclipse.performance.ImageConstants;
 import com.easyfun.eclipse.performance.PerformanceActivator;
@@ -89,6 +90,11 @@ public class AWRView extends ViewPart {
 		anaButton.setImage(AwrActivator.getImageDescriptor(AWRImageConstants.ICON_RUN_PATH).createImage());
 		anaButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(final SelectionEvent e) {
+				DBUrlBean urlBean = DBUtil.getSelectBean();
+				if(urlBean == null || urlBean.getDbType() != DBUrlBean.ORACLE_TYPE){
+					RCPUtil.showError(getSite().getShell(), "当前选择数据库类型不是Oracle");
+					return;
+				}
 				ConnectionModel connectionModel = null;
 				try {
 					connectionModel = DBUtil.getConnectionModel();

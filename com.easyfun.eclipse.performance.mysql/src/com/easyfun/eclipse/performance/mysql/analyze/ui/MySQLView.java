@@ -38,6 +38,7 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.ui.part.ViewPart;
 
 import com.easyfun.eclipse.component.db.ConnectionModel;
+import com.easyfun.eclipse.component.db.DBUrlBean;
 import com.easyfun.eclipse.component.db.DBUtil;
 import com.easyfun.eclipse.component.kv.KeyValue;
 import com.easyfun.eclipse.component.kv.KeyValueTableViewer;
@@ -81,7 +82,6 @@ public class MySQLView extends ViewPart {
 		dbButton.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_DATABASE_PATH).createImage());
 		dbButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(final SelectionEvent e) {
-//				RCPUtil.showPreferencPage(getViewSite().getShell(), MySQLJDBCPreferencePage.PREF_ID);
 				RCPUtil.showPreferencPage(getViewSite().getShell(), DBUrlPreferencePage.PREF_ID);
 			}
 		});
@@ -112,6 +112,11 @@ public class MySQLView extends ViewPart {
 			public void widgetSelected(final SelectionEvent e) {
 				anaButton.getDisplay().asyncExec(new Runnable() {
 					public void run() {
+						DBUrlBean urlBean = DBUtil.getSelectBean();
+						if(urlBean == null || urlBean.getDbType() != DBUrlBean.MYSQL_TYPE){
+							RCPUtil.showError(getSite().getShell(), "当前选择数据库类型不是MySQL");
+							return;
+						}
 						ConnectionModel connectionModel = null;
 						try {
 							anaButton.setEnabled(false);
@@ -249,8 +254,6 @@ public class MySQLView extends ViewPart {
 		private List<TableModel> tableList;
 		
 		private String ownerName;
-		
-//		private Connection conn;
 		
 		private int mode;
 		private int value;
