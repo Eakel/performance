@@ -69,9 +69,9 @@ import org.eclipse.swt.widgets.ToolTip;
 import org.eclipse.ui.part.ViewPart;
 
 import com.easyfun.eclipse.component.file.FileFieldComposite;
-import com.easyfun.eclipse.component.ftp.FTPBean;
 import com.easyfun.eclipse.component.ftp.FTPFieldComposite;
-import com.easyfun.eclipse.component.ftp.FTPUtil;
+import com.easyfun.eclipse.component.ftp.FTPHelper;
+import com.easyfun.eclipse.component.ftp.FTPHostBean;
 import com.easyfun.eclipse.component.kv.KeyValue;
 import com.easyfun.eclipse.component.kv.KeyValueTableViewer;
 import com.easyfun.eclipse.component.tree.TreeContentProvider;
@@ -93,26 +93,26 @@ import com.easyfun.eclipse.util.IOUtil;
  *
  */
 public class ThreadDumpView extends ViewPart {
-	/** ThreadDump内容*/
+	/** ThreadDump内容 */
 	private SourceViewer pureThreadDump;
-	/** ODB前后台调用Table*/
+	/** ODB前后台调用Table */
 	private TableViewer obdCallTableViewer;
-	/** 线程信息Table*/
+	/** 线程信息Table */
 	private TableViewer threadInfoTableViewer;
-	/** ThreadDump SyledText*/
+	/** ThreadDump SyledText */
 	private StyledText threadText;
-	/** 总体概况 StyledText*/
+	/** 总体概况 StyledText */
 	private StyledText overViewText;
-	
+
 	private String keyword;
-	
-	/** 打开的ThreadDump文件或者FTP*/
+
+	/** 打开的ThreadDump文件或者FTP */
 	private TreeViewer threadFileTreeViewer;
 	private FileFieldComposite fileComposite;
-	
-	/** ThreadDump概括*/
+
+	/** ThreadDump概括 */
 	private Label threadDesc;
-	
+
 	private TabFolder threadTabFolder;
 	private Combo parserCombo;
 
@@ -180,10 +180,10 @@ public class ThreadDumpView extends ViewPart {
 		final FTPFieldComposite ftpComposite = new FTPFieldComposite(parent, SWT.NONE, false);
 		ftpComposite.setLayoutData(new GridData());
 		ftpComposite.addFTPChangListener(new FTPFieldComposite.IFTPchangeListener(){
-			public void onFTPChange(FTPBean ftpBean) {
+			public void onFTPChange(FTPHostBean ftpBean) {
 				InputStream is = null;
 				try {
-					is = FTPUtil.getInputStream(ftpBean);
+					is = FTPHelper.getInputStream(ftpBean);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -247,7 +247,6 @@ public class ThreadDumpView extends ViewPart {
 		threadInfoTableViewer.getTable().setHeaderVisible(true);
 		threadInfoTableViewer.getTable().setLinesVisible(true);
 		threadInfoTableViewer.setContentProvider(new ArrayContentProvider());
-//		threadInfoTableViewer.setLabelProvider(new ThreadInfoLabelProvider());
 		threadInfoTableViewer.addSelectionChangedListener(new ISelectionChangedListener(){
 			public void selectionChanged(SelectionChangedEvent event) {
 				Object obj = ((IStructuredSelection)event.getSelection()).getFirstElement();

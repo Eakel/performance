@@ -66,8 +66,8 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-import com.easyfun.eclipse.component.ftp.FTPBean;
-import com.easyfun.eclipse.component.ftp.FTPDialog;
+import com.easyfun.eclipse.component.ftp.FTPHostBean;
+import com.easyfun.eclipse.component.ftp.FTPHostDialog;
 import com.easyfun.eclipse.component.ftp.FTPHelper;
 import com.easyfun.eclipse.performance.navigator.console.LogHelper;
 import com.easyfun.eclipse.rcp.RCPUtil;
@@ -86,9 +86,7 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 
 	private StyledText logStyledText;
 
-//	private FTPConnectionDialog connectionDialog;
-	
-	private FTPDialog connectionDialog;
+	private FTPHostDialog connectionDialog;
 
 	/** ×ó²à±í¸ñAction(UPDir) */
 	private Action localUpDirAction;
@@ -109,7 +107,7 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 
 	private FTPHelper ftpHelper;
 
-	private FTPBean ftpBean;
+	private FTPHostBean ftpBean;
 	
 	private static Log log = LogFactory.getLog(FTPWindow.class);
 
@@ -162,7 +160,7 @@ public class FTPWindow extends ApplicationWindow implements LocalDirectoryTableV
 		connectAction = new Action() {
 			public void run() {
 				if (connectionDialog == null) {
-					connectionDialog = new FTPDialog(getShell(), FTPDialog.TYPE_ADD);
+					connectionDialog = new FTPHostDialog(getShell(), FTPHostDialog.TYPE_ADD);
 				}
 				if (connectionDialog.open() == Dialog.OK) {
 					ftpBean = connectionDialog.getFTPBean();

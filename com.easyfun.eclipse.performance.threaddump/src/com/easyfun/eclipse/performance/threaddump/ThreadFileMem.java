@@ -16,7 +16,7 @@ import com.easyfun.eclipse.component.tree.model.Directory;
 public class ThreadFileMem {
 	private static List<Directory> list = null;
 
-	public static List getThreadFileInput(){
+	public static List<Directory> getThreadFileInput(){
 		if(list != null){
 			return list;
 		}
@@ -86,7 +86,7 @@ public class ThreadFileMem {
 		case FILE:
 			for (Directory<ThreadFileItem> ele : list) {
 				if (ele.getType().getType() == ThreadFileEnum.FILE){
-					boolean removed = false;	//文件是否已经存在
+					boolean removed = false;		//文件是否已经存在
 					for (Object obj : ele.getChildren()) {
 						FileNode<ThreadFileEnum> element = (FileNode<ThreadFileEnum>)obj;
 						if(element.equals(node)){	

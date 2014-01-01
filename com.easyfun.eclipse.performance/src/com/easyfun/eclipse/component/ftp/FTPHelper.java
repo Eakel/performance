@@ -45,8 +45,8 @@ public class FTPHelper {
 	private String remotePath;
 	private String localPath;
 	
-	public FTPHelper(FTPBean bean){
-		this(bean.getFtpType(), bean.getHost(), bean.getPort(), bean.getUserName(), bean.getPasswd(), bean.getRemotePath(), "");
+	public FTPHelper(FTPHostBean bean){
+		this(bean.getFtpType(), bean.getHost(), bean.getPort(), bean.getUsername(), bean.getPassword(), bean.getRemotePath(), "");
 	}
 
 	public FTPHelper(int ftpType, String ip, int port, String userName, String password, String remotePath, String localPath){
@@ -62,10 +62,10 @@ public class FTPHelper {
 	/** 连接到FTP服务器*/
 	public void connect() throws Exception {
 		LogHelper.info(log, "准备连接");
-		if (ftpType == FTPBean.TYPE_SFTP) {
+		if (ftpType == FTPHostBean.TYPE_SFTP) {
 			this.client = new FTPSClient(true);
 			LogHelper.debug(log, "[SFTP]类型");
-		} else if (ftpType == FTPBean.TYPE_FTP) {
+		} else if (ftpType == FTPHostBean.TYPE_FTP) {
 			this.client = new FTPClient();
 			LogHelper.debug(log, "[FTP]类型");
 		} else {
@@ -470,6 +470,19 @@ public class FTPHelper {
 	
 	public boolean changeToParentDirectory() throws IOException{
 		return client.changeToParentDirectory();
+	}
+	
+	/** *
+	 * @deprecated 不应该区分对待
+	 */
+	public static InputStream getInputStream(FTPHostBean ftpBean) throws Exception{
+		FTPClient client = new FTPClient();
+		client.setConnectTimeout(1000);
+		client.connect(ftpBean.getHost(), ftpBean.getPort());
+		client.login(ftpBean.getUsername(), ftpBean.getPassword());
+		client.setFileType(FTP.ASCII_FILE_TYPE);
+		InputStream is = client.retrieveFileStream(ftpBean.getRemotePath());
+		return is;
 	}
 
 }

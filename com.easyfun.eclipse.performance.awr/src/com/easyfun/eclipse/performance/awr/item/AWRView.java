@@ -22,7 +22,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
-import org.eclipse.ui.internal.dialogs.WorkbenchPreferenceDialog;
 import org.eclipse.ui.part.ViewPart;
 
 import com.easyfun.eclipse.component.db.ConnectionModel;
@@ -75,9 +74,7 @@ public class AWRView extends ViewPart {
 		final Button dbButton = new Button(topComposite, SWT.NONE);
 		dbButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(final SelectionEvent e) {
-				WorkbenchPreferenceDialog dialog = WorkbenchPreferenceDialog.createDialogOn(getShell(), DBUrlPreferencePage.PREF_ID);
-			    dialog.showOnly(new String[] { DBUrlPreferencePage.PREF_ID });
-			    dialog.open();
+			    RCPUtil.showPreferencPage(getShell(), DBUrlPreferencePage.PREF_ID);
 			}
 		});
 		dbButton.setText("数据库设定");
@@ -118,7 +115,7 @@ public class AWRView extends ViewPart {
 				try {
 					String tabTitle = AWR_HTML_TITLE;
 					Iterator<IStructuredSelection> iter = ((IStructuredSelection)awrTableViewer.getSelection()).iterator();
-					selectedSnaps = new ArrayList();
+					selectedSnaps = new ArrayList<SnapShot>();
 					while(iter.hasNext()){
 						SnapShot snap = (SnapShot)iter.next();
 						selectedSnaps.add(snap);
@@ -362,7 +359,6 @@ public class AWRView extends ViewPart {
 	
 	@Override
 	public void setFocus() {
-		// TODO Auto-generated method stub
 		
 	}
 

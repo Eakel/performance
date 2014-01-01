@@ -95,7 +95,7 @@ public class JMXView extends ViewPart {
 		ComboViewer com = new ComboViewer(top);
 		com.getCombo().setLayoutData(new GridData());
 		com.setContentProvider(new ArrayContentProvider());
-		List list = new ArrayList();
+		List<String> list = new ArrayList<String>();
 		list.add("JBOSS");
 		com.setInput(list);
 		com.getCombo().select(0);
@@ -357,8 +357,8 @@ public class JMXView extends ViewPart {
 		//Get MBean Java Class Name
 		MBeanServerConnection conn = mbeanModel.getConnection();		
 		try {
-			Set set = conn.queryMBeans(mbeanModel.getObjectName(), null);
-			Iterator iter = set.iterator();
+			Set<ObjectInstance> set = conn.queryMBeans(mbeanModel.getObjectName(), null);
+			Iterator<ObjectInstance> iter = set.iterator();
 			ObjectInstance instance = null;
 			while (iter.hasNext()) {
 				instance = (ObjectInstance) iter.next();

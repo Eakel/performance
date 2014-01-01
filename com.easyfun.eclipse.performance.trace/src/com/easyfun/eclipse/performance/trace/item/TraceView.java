@@ -41,7 +41,7 @@ import org.eclipse.ui.part.ViewPart;
 
 import com.easyfun.eclipse.component.file.DirectoryFieldComposite;
 import com.easyfun.eclipse.component.file.FileFieldComposite;
-import com.easyfun.eclipse.component.ftp.FTPBean;
+import com.easyfun.eclipse.component.ftp.FTPHostBean;
 import com.easyfun.eclipse.component.ftp.FTPFieldComposite;
 import com.easyfun.eclipse.component.ftp.FTPHelper;
 import com.easyfun.eclipse.performance.navigator.console.LogHelper;
@@ -218,7 +218,7 @@ public class TraceView extends ViewPart {
 		ftpComposite = new FTPFieldComposite(parent, SWT.NONE, false);
 		ftpComposite.setLayoutData(new GridData());
 		ftpComposite.addFTPChangListener(new FTPFieldComposite.IFTPchangeListener(){
-			public void onFTPChange(FTPBean ftpBean) {
+			public void onFTPChange(FTPHostBean ftpBean) {
 				if(ftpBean != null){
 					updateByFTP(ftpBean);
 					TraceTreeMem.getFTPirectory().setFtpBean(ftpBean);
@@ -713,14 +713,14 @@ public class TraceView extends ViewPart {
 	}
 	
 	/** 根据选择的FTPBean(FTP)更新*/
-	private void updateByFTP(FTPBean bean) {
+	private void updateByFTP(FTPHostBean bean) {
 		try {
-			if(bean.getFtpType() == FTPBean.TYPE_FTP){
+			if(bean.getFtpType() == FTPHostBean.TYPE_FTP){
 				FTPHelper ftpClient = new FTPHelper(bean);
 				ftpClient.connect();
 				String [] strs = ftpClient.list();
 				System.out.println(Arrays.asList(strs));
-			}else if(bean.getFtpType() == FTPBean.TYPE_SFTP){
+			}else if(bean.getFtpType() == FTPHostBean.TYPE_SFTP){
 				SFtpClient sftpClient = new SFtpClient(bean);
 				List<SFTPv3DirectoryEntry> list = sftpClient.list(bean.getRemotePath());
 				

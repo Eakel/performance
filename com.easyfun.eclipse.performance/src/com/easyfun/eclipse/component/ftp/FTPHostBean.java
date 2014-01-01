@@ -1,7 +1,5 @@
 package com.easyfun.eclipse.component.ftp;
 
-import com.easyfun.eclipse.component.db.DBUrlBean;
-
 /**
  * POJO for FTP
  * @author linzhaoming
@@ -9,7 +7,7 @@ import com.easyfun.eclipse.component.db.DBUrlBean;
  * 2011-4-11
  *
  */
-public class FTPBean {
+public class FTPHostBean {
 	
 	/** 类型[FTP] */
 	public static final int TYPE_FTP = 0;
@@ -23,8 +21,8 @@ public class FTPBean {
 	private String host = "";
 	private int port = 21;
 
-	private String passwd = "";
-	private String userName = "";
+	private String password = "";
+	private String username = "";
 
 	/** FTP服务器远程路径 */
 	private String remotePath = "";
@@ -38,27 +36,34 @@ public class FTPBean {
 	public void setRemotePath(String remotePath) {
 		this.remotePath = remotePath;
 	}
-	public String getPasswd() {
-		return passwd;
+	public String getPassword() {
+		return password;
 	}
-	public void setPasswd(String passwd) {
-		this.passwd = passwd;
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
-	public String getUserName() {
-		return userName;
+
+	public String getUsername() {
+		return username;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
+
 	public int getPort() {
 		return port;
 	}
+
 	public void setPort(int port) {
 		this.port = port;
 	}
+
 	public String getHost() {
 		return host;
 	}
+
 	public void setHost(String host) {
 		this.host = host;
 	}
@@ -66,6 +71,7 @@ public class FTPBean {
 	public int getFtpType() {
 		return ftpType;
 	}
+
 	public void setFtpType(int ftpType) {
 		this.ftpType = ftpType;
 	}
@@ -79,27 +85,29 @@ public class FTPBean {
 		this.name = name;
 	}
 	
-	public FTPBean copy(){
-		FTPBean bean = new FTPBean();
+	public boolean equals(Object obj) {
+		if (obj instanceof FTPHostBean) {
+			FTPHostBean bean = (FTPHostBean) obj;
+			return bean.getName().equals(name) && bean.getFtpType() == ftpType
+					&& bean.getHost().equals(host) && bean.getPort() == port
+					&& bean.getUsername().equals(username)
+					&& bean.getPassword().equals(password)
+					&& bean.getRemotePath().equals(remotePath);
+		} else {
+			return false;
+		}
+	}
+	
+	public FTPHostBean copy(){
+		FTPHostBean bean = new FTPHostBean();
 		bean.setFtpType(ftpType);
 		bean.setHost(host);
 		bean.setName("CopyOf" + name);
-		bean.setPasswd(passwd);
+		bean.setPassword(password);
 		bean.setPort(port);
 		bean.setRemotePath(remotePath);
-		bean.setUserName(userName);
+		bean.setUsername(username);
 		return bean;
-	}
-
-	public String getFTPDesc(){
-		StringBuffer desc = new StringBuffer();
-		desc.append("host:").append(getHost()).append("\t");
-		desc.append("port:").append(getPort()).append("\t");
-		desc.append("ftpType:").append(getFtpType()).append("\t");
-		desc.append("username:").append(getUserName()).append("\t");
-		desc.append("password:").append(getPasswd()).append("\t");
-		desc.append("file:").append(getRemotePath());
-		return desc.toString();
 	}
 	
 }

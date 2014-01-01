@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import com.easyfun.eclipse.component.ftp.FTPBean;
+import com.easyfun.eclipse.component.ftp.FTPHostBean;
 import com.easyfun.eclipse.performance.trace.item.TraceTreeEnum;
 
 
@@ -20,7 +20,7 @@ import com.easyfun.eclipse.performance.trace.item.TraceTreeEnum;
  */
 public class SFtpTraceDirectory extends TraceDirectory<TraceTreeEnum>{
 	
-	private FTPBean ftpBean;
+	private FTPHostBean ftpBean;
 	
 	public SFtpTraceDirectory(TraceTreeEnum type){
 		super(type);
@@ -62,11 +62,11 @@ public class SFtpTraceDirectory extends TraceDirectory<TraceTreeEnum>{
 		}
 	}
 
-	public FTPBean getFtpBean() {
+	public FTPHostBean getFtpBean() {
 		return ftpBean;
 	}
 
-	public void setFtpBean(FTPBean ftpBean) {
+	public void setFtpBean(FTPHostBean ftpBean) {
 		this.ftpBean = ftpBean;
 	}
 	

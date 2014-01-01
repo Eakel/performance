@@ -17,10 +17,10 @@ public class PreferenceConstants {
 	public static final String EASYFUN_DIRECTORY = EASYFUN_PREFIX + "Directory";
 	
 	/** FTP…Ë÷√*/
-	public static final String EASYFUN_FTP = EASYFUN_PREFIX + "FTP";
+//	public static final String EASYFUN_FTP = EASYFUN_PREFIX + "FTP";
 	
 	/** SFTP…Ë÷√*/
-	public static final String EASYFUN_SFTP = EASYFUN_PREFIX + "SFTP";
+//	public static final String EASYFUN_SFTP = EASYFUN_PREFIX + "SFTP";
 	
 	/** Table Filter Key*/
 	public static final String TABLE_PREFIX_FILTER = EASYFUN_PREFIX + "Table_Filter";

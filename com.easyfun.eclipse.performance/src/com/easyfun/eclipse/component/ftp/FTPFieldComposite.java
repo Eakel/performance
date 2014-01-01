@@ -3,9 +3,6 @@ package com.easyfun.eclipse.component.ftp;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
-import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -14,8 +11,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 
-import com.easyfun.eclipse.performance.preferences.PreferenceConstants;
-import com.easyfun.eclipse.performance.preferences.EasyFunPrefUtil;
+import com.easyfun.eclipse.performance.preferences.FTPPreferencePage;
 import com.easyfun.eclipse.rcp.RCPUtil;
 
 /**
@@ -67,41 +63,18 @@ public class FTPFieldComposite extends Composite{
 	}
 	
 	public void openFTPDialog(){
-		FTPBean ftpBean = new FTPBean();
-		IPreferenceStore store = EasyFunPrefUtil.getPreferenceStore();
-		String ftpDesc = store.getString(PreferenceConstants.EASYFUN_FTP);
-		if (StringUtils.isNotEmpty(ftpDesc)) {
-			String[] strs = ftpDesc.split(",");
-			// "localhost,21,jvm.log,0,linzm,pass"
-			if (strs.length == 6) {
-				try {
-					ftpBean.setHost(strs[0]);
-					ftpBean.setPort(Integer.valueOf(strs[1]));
-					ftpBean.setRemotePath(strs[2]);
-					ftpBean.setFtpType(Integer.valueOf(strs[3]));
-					ftpBean.setUserName(strs[4]);
-					ftpBean.setPasswd(strs[5]);
-				} catch (Exception e) {
-					e.printStackTrace();
-					ftpBean = new FTPBean();
-				}
-			}
+		RCPUtil.showPreferencPage(getShell(), FTPPreferencePage.PREF_ID);
+		FTPHostBean ftpBean = FTPUtil.getSelectBean();
+		if(ftpBean == null){
+			return;
 		}
-		FTPDialog dialog = new FTPDialog(getShell(), FTPDialog.TYPE_ADD, ftpBean);
-		if (dialog.open() == Dialog.OK) {
-			ftpBean = dialog.getFTPBean();
-			ftpDescText.setText(ftpBean.getFTPDesc());
-			String ftpDesc2 = ftpBean.getHost() + "," + ftpBean.getPort() + "," + ftpBean.getRemotePath() + "," + ftpBean.getFtpType() + "," + ftpBean.getUserName()
-					+ "," + ftpBean.getPasswd();
-			store.setValue(PreferenceConstants.EASYFUN_FTP, ftpDesc2);
-			try {
-				for (IFTPchangeListener listener : listeners) {
-					listener.onFTPChange(ftpBean);
-				}
-			} catch (Exception ex) {
-				ex.printStackTrace();
-				RCPUtil.showError(getShell(), ex.getMessage());
+		try {
+			for (IFTPchangeListener listener : listeners) {
+				listener.onFTPChange(ftpBean);
 			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			RCPUtil.showError(getShell(), ex.getMessage());
 		}
 	}
 	
@@ -117,6 +90,6 @@ public class FTPFieldComposite extends Composite{
 	 *
 	 */
 	public static interface IFTPchangeListener{
-		public void onFTPChange(FTPBean ftpBean);
+		public void onFTPChange(FTPHostBean ftpBean);
 	}
 }

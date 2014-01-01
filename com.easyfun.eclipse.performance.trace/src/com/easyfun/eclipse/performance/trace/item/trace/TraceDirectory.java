@@ -19,7 +19,7 @@ import com.easyfun.eclipse.performance.trace.model.TraceTypeEnum;
  * @param <T>
  */
 public class TraceDirectory<T> extends AbstractTreeModel<T>{
-	protected List<TraceNode> children = new ArrayList();
+	protected List<TraceNode> children = new ArrayList<TraceNode>();
 	
 	public static final int SORT_TRACETIME = 0;
 	public static final int SORT_FILESIZE = 1;

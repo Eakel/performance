@@ -8,7 +8,7 @@ import java.util.Vector;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.easyfun.eclipse.component.ftp.FTPBean;
+import com.easyfun.eclipse.component.ftp.FTPHostBean;
 import com.easyfun.eclipse.performance.navigator.console.LogHelper;
 import com.trilead.ssh2.Connection;
 import com.trilead.ssh2.SFTPv3Client;
@@ -24,12 +24,12 @@ public class SFtpClient {
 	
 	private static final Log log = LogFactory.getLog(SFtpClient.class);
 	
-	public SFtpClient(FTPBean bean) throws Exception {
-		this(bean.getFtpType(), bean.getHost(), bean.getPort(), bean.getUserName(), bean.getPasswd(), bean.getRemotePath());
+	public SFtpClient(FTPHostBean bean) throws Exception {
+		this(bean.getFtpType(), bean.getHost(), bean.getPort(), bean.getUsername(), bean.getPassword(), bean.getRemotePath());
 	}
 
 	public SFtpClient(int ftpType,String ip, int port, String userName, String password, String remotePath) throws Exception {
-		if(ftpType == FTPBean.TYPE_SFTP){
+		if(ftpType == FTPHostBean.TYPE_SFTP){
 			conn = new Connection(ip, port);
 			long t1 = System.currentTimeMillis();
 			LogHelper.info(log, "Á¬½Ó: " + " [" + ip + ":" + port + "]");

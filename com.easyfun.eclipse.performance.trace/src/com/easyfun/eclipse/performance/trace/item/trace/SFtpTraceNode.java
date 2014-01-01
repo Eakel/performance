@@ -4,7 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.Collection;
 
-import com.easyfun.eclipse.component.ftp.FTPBean;
+import com.easyfun.eclipse.component.ftp.FTPHostBean;
 import com.easyfun.eclipse.performance.trace.SFtpClient;
 import com.easyfun.eclipse.performance.trace.TraceUtil;
 import com.easyfun.eclipse.performance.trace.builder.TraceBuilder;
@@ -27,9 +27,9 @@ import com.trilead.ssh2.SFTPv3DirectoryEntry;
 public class SFtpTraceNode extends TraceNode<TraceTreeEnum>{
 	private SFTPv3DirectoryEntry ftpEntry;
 	private SFtpClient ftpClient;
-	private FTPBean ftpBean = null;
+	private FTPHostBean ftpBean = null;
 	
-	public SFtpTraceNode(TraceTreeEnum type, SFtpClient sftpClient, SFTPv3DirectoryEntry ftpEntry, FTPBean ftpBean){
+	public SFtpTraceNode(TraceTreeEnum type, SFtpClient sftpClient, SFTPv3DirectoryEntry ftpEntry, FTPHostBean ftpBean){
 		super(type, ftpEntry.filename);
 		this.ftpClient = sftpClient;
 		this.ftpEntry = ftpEntry;
@@ -67,7 +67,7 @@ public class SFtpTraceNode extends TraceNode<TraceTreeEnum>{
 		return ftpEntry.attributes.isDirectory();
 	}
 
-	public FTPBean getFTPBean() {
+	public FTPHostBean getFTPBean() {
 		return ftpBean;
 	}
 	

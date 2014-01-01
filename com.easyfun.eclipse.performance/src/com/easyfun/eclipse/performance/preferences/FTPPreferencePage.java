@@ -28,8 +28,8 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
-import com.easyfun.eclipse.component.ftp.FTPBean;
-import com.easyfun.eclipse.component.ftp.FTPDialog;
+import com.easyfun.eclipse.component.ftp.FTPHostBean;
+import com.easyfun.eclipse.component.ftp.FTPHostDialog;
 import com.easyfun.eclipse.component.ftp.FTPUtil;
 
 /**
@@ -62,7 +62,7 @@ public class FTPPreferencePage extends PreferencePage implements IWorkbenchPrefe
 		jdbcTable.setHeaderVisible(true);
 		
 		tableViewer = new TableViewer(jdbcTable);
-		tableViewer.setLabelProvider(new DBUrlTableProvider());
+		tableViewer.setLabelProvider(new FtpTableProvider());
 		tableViewer.setContentProvider(new ArrayContentProvider());
 		
 		tableViewer.addDoubleClickListener(new IDoubleClickListener(){
@@ -91,7 +91,7 @@ public class FTPPreferencePage extends PreferencePage implements IWorkbenchPrefe
 		col.setWidth(100);
 		
 		col = new TableColumn(jdbcTable, SWT.NULL);
-		col.setText("URL");
+		col.setText("Host");
 		col.setWidth(100);
 		
 		TableColumn co2 = new TableColumn(jdbcTable, SWT.NULL);
@@ -103,7 +103,7 @@ public class FTPPreferencePage extends PreferencePage implements IWorkbenchPrefe
 		col3.setWidth(70);
 		
 		TableColumn col4 = new TableColumn(jdbcTable, SWT.NULL);
-		col4.setText("Password");
+		col4.setText("Port");
 		col4.setWidth(70);
 		
 		Composite c1 = new Composite(parent, SWT.NULL);
@@ -115,11 +115,11 @@ public class FTPPreferencePage extends PreferencePage implements IWorkbenchPrefe
 		b1.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		b1.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
-				FTPDialog dialog = new FTPDialog(getShell(), FTPDialog.TYPE_ADD, null);
+				FTPHostDialog dialog = new FTPHostDialog(getShell(), FTPHostDialog.TYPE_ADD, null);
 				int result = dialog.open();
-				if(result == FTPDialog.OK){
-					FTPBean bean = dialog.getFTPBean();
-					List<FTPBean> list = (List<FTPBean>)tableViewer.getInput();
+				if(result == FTPHostDialog.OK){
+					FTPHostBean bean = dialog.getFTPBean();
+					List<FTPHostBean> list = (List<FTPHostBean>)tableViewer.getInput();
 					list.add(bean);
 					tableViewer.setInput(list);
 					tableViewer.setSelection(new StructuredSelection(bean));
@@ -150,11 +150,11 @@ public class FTPPreferencePage extends PreferencePage implements IWorkbenchPrefe
 		b1.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
 				Object select = ((IStructuredSelection)tableViewer.getSelection()).getFirstElement();
-				if(select == null || !(select instanceof FTPBean)){
+				if(select == null || !(select instanceof FTPHostBean)){
 					return;
 				}
 				
-				List<FTPBean> list = (List<FTPBean>)tableViewer.getInput();
+				List<FTPHostBean> list = (List<FTPHostBean>)tableViewer.getInput();
 				list.remove(select);
 				tableViewer.setInput(list);
 				tableViewer.setSelection(null);
@@ -168,14 +168,14 @@ public class FTPPreferencePage extends PreferencePage implements IWorkbenchPrefe
 		b1.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
 				Object select = ((IStructuredSelection)tableViewer.getSelection()).getFirstElement();
-				if(select == null || !(select instanceof FTPBean)){
+				if(select == null || !(select instanceof FTPHostBean)){
 					return;
 				}
 				
-				FTPBean selectBean = (FTPBean)select;
-				FTPBean bean = selectBean.copy();
+				FTPHostBean selectBean = (FTPHostBean)select;
+				FTPHostBean bean = selectBean.copy();
 				
-				List<FTPBean> list = (List<FTPBean>)tableViewer.getInput();
+				List<FTPHostBean> list = (List<FTPHostBean>)tableViewer.getInput();
 				list.add(bean);
 				tableViewer.add(bean);
 				tableViewer.setSelection(new StructuredSelection(bean));
@@ -189,23 +189,23 @@ public class FTPPreferencePage extends PreferencePage implements IWorkbenchPrefe
 	
 	private void editSelect(){
 		Object select = ((IStructuredSelection)tableViewer.getSelection()).getFirstElement();
-		if(select == null || !(select instanceof FTPBean)){
+		if(select == null || !(select instanceof FTPHostBean)){
 			return;
 		}
-		FTPBean bean = (FTPBean)select;
-		FTPDialog dialog = new FTPDialog(getShell(), FTPDialog.TYPE_EDIT, bean);
+		FTPHostBean bean = (FTPHostBean)select;
+		FTPHostDialog dialog = new FTPHostDialog(getShell(), FTPHostDialog.TYPE_EDIT, bean);
 		int result = dialog.open();
-		if(result == FTPDialog.OK){
+		if(result == FTPHostDialog.OK){
 			//bean在Diaglog中自动被修改了
 			tableViewer.refresh(bean);
 		}
 	}
 	
 	private void initData(){
-		List<FTPBean> list = FTPUtil.getFTPBeans();
+		List<FTPHostBean> list = FTPUtil.getFTPBeans();
 		tableViewer.setInput(list);
 		
-		FTPBean selectBean = FTPUtil.getSelectBean();
+		FTPHostBean selectBean = FTPUtil.getSelectBean();
 		
 		if(selectBean != null){
 			tableViewer.setSelection(new StructuredSelection(selectBean));
@@ -219,33 +219,32 @@ public class FTPPreferencePage extends PreferencePage implements IWorkbenchPrefe
 		}
 	}
 	
-	public static class DBUrlTableProvider extends LabelProvider implements ITableLabelProvider{
+	public static class FtpTableProvider extends LabelProvider implements ITableLabelProvider{
 		public Image getColumnImage(Object element, int columnIndex) {
 			return null;
 		}
 		
 		public String getColumnText(Object element, int columnIndex) {
-			if (element instanceof FTPBean) {
-				FTPBean model = (FTPBean)element;
+			if (element instanceof FTPHostBean) {
+				FTPHostBean model = (FTPHostBean)element;
 				switch (columnIndex) {
 				case 0:
 					return model.getName();
 				case 1:
-					return "linzm"; 
+					return model.getHost(); 
 				case 2:
-					return "linzm";
-//					switch (model.getDbType()) {
-//						case FTPBean.ORACLE_TYPE:
-//							return "Oracle";
-//						case FTPBean.MYSQL_TYPE:
-//							return "MySQL";
-//						default:
-//							return "Unknown";
-//						}
+					switch (model.getFtpType()) {
+						case FTPHostBean.TYPE_FTP:
+							return "FTP";
+						case FTPHostBean.TYPE_SFTP:
+							return "SFTP";
+						default:
+							return "Unknown";
+						}
 				case 3:
-					return "linzm";
+					return model.getUsername();
 				case 4:
-					return "linzm";
+					return "" + model.getPort();
 				default:
 					return model.toString();
 				}
@@ -256,7 +255,7 @@ public class FTPPreferencePage extends PreferencePage implements IWorkbenchPrefe
 	}
 	
 	public boolean performOk() {
-		List<FTPBean> list = (List<FTPBean>)tableViewer.getInput();
+		List<FTPHostBean> list = (List<FTPHostBean>)tableViewer.getInput();
 		
 		try {
 			FTPUtil.saveFTPBeans(list);
@@ -271,7 +270,7 @@ public class FTPPreferencePage extends PreferencePage implements IWorkbenchPrefe
 			}
 			
 			if(selectItem != null){
-				FTPBean bean = (FTPBean)selectItem.getData();	
+				FTPHostBean bean = (FTPHostBean)selectItem.getData();	
 				FTPUtil.saveSelectUrlBean(bean.getName());
 			}
 		} catch (Exception e) {
