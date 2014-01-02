@@ -32,10 +32,10 @@ public class Perspective implements IPerspectiveFactory {
 		//处理所有扩展的ViewId，统一显示在同一个地方
 		List<Folder> folders = DefaultItemProvider.getNavigator().getFolders();
 		for (Folder folder : folders) {
-			if (("true").equalsIgnoreCase(folder.getVisible())) {
+			if (folder.isVisible()) {
 				List<Item> items = folder.getItems();
 				for (Item item : items) {
-					if (("true").equalsIgnoreCase(item.getVisible())) {
+					if (item.isVisible()) {
 						String viewId = item.getViewId();
 						if(StringUtils.isNotEmpty(viewId)){
 							topFolder.addPlaceholder(viewId);

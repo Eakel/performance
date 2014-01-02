@@ -56,16 +56,6 @@
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="compositeClass" type="string">
-            <annotation>
-               <documentation>
-                  打开的主页面板实现类(Composite)
-               </documentation>
-               <appinfo>
-                  <meta.attribute kind="java" basedOn="com.easyfun.eclipse.common.view.item.pub.ItemComposite:"/>
-               </appinfo>
-            </annotation>
-         </attribute>
          <attribute name="itemHelper" type="string">
             <annotation>
                <documentation>

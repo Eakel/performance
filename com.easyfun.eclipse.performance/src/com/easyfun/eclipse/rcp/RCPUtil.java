@@ -51,6 +51,7 @@ import org.eclipse.ui.internal.dialogs.WorkbenchPreferenceDialog;
 import org.eclipse.ui.internal.keys.WorkbenchKeyboard;
 
 import com.easyfun.eclipse.performance.PerformanceActivator;
+import com.easyfun.eclipse.util.ClassUtil;
 
 /**
  * 
@@ -428,5 +429,10 @@ public class RCPUtil {
 		WorkbenchPreferenceDialog dialog = WorkbenchPreferenceDialog.createDialogOn(shell, prefId);
 	    dialog.showOnly(new String[] { prefId });
 	    dialog.open();
+	}
+	
+	/** 加载指定插件的类*/
+	public static Class loadBundleClass(String plunginId, String className) throws Exception{
+		return ClassUtil.loadBundleClass(plunginId, className);
 	}
 }

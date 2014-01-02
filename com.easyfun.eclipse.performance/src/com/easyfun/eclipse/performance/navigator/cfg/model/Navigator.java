@@ -24,7 +24,7 @@ public class Navigator {
 		List<Folder> retList = new ArrayList<Folder>();
 		for(int i=0; i<this.list.size(); i++){
 			Folder folder = (Folder)this.list.get(i);
-			if(("true").equalsIgnoreCase(folder.getVisible())){
+			if(folder.isVisible()){
 				retList.add((Folder)this.list.get(i));
 			}
 		}

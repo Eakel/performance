@@ -68,7 +68,7 @@ public class MainContentView extends ViewPart {
 		} else {
 			if(itemWrapper.equals(this.itemWrapper) == false){	//同一个，不再刷新
 				this.itemWrapper = itemWrapper;
-				this.compositeName = itemWrapper.getComposite();
+//				this.compositeName = itemWrapper.getComposite();
 				try {
 					//类有可能来自于不同的Plugin，位于不同的Bundle，不能用直接Class.forNamt()
 					Class clazz = ClassUtil.loadBundleClass(itemWrapper.getItem().getPluginId(), compositeName); //bundle.loadClass(compositeName);

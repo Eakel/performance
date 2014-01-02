@@ -66,7 +66,7 @@ public class DefaultItemProvider{
 			}
 			
 			for (Folder folder : folders) {
-				if(("true").equalsIgnoreCase(folder.getVisible())){
+				if(folder.isVisible()){
 					navigator.addFolder(folder);
 					folder.setNavigator(navigator);
 				}
@@ -79,95 +79,87 @@ public class DefaultItemProvider{
 		}
 	}
 	
-	public static Folder[] loadContributeFolders() {
+	/** 加载所有Folder扩展点定义*/
+	private static Folder[] loadContributeFolders() {
 		IExtensionRegistry reg = Platform.getExtensionRegistry();
 		
 		//找出所有的目录
 		
 		IConfigurationElement[] folderConfigList = reg.getConfigurationElementsFor(navigatorFolderExtension);
 		
-		List<Folder> folderList = new ArrayList<Folder>();
+		List<Folder> rootFolderList = new ArrayList<Folder>();
 		Set<String> folderKeysSet = new TreeSet<String>();
 		
-		//处理目录
+		//处理所有的Folder目录扩展点
 	    for (int i = 0; i < folderConfigList.length; i++){
-	    	if(folderKeysSet.contains(folderConfigList[i].getAttribute("id"))){
-	    		//重复ID不增加
-	    		continue;
+	    	IConfigurationElement folderElement = folderConfigList[i];
+	    	if(folderKeysSet.contains(folderElement.getAttribute("id"))){
+	    		continue;	//重复ID不增加
 	    	}
-	    	folderKeysSet.add(folderConfigList[i].getAttribute("id"));
-//	    	
-//	    	ConfigurationElementHandle hanlder = (ConfigurationElementHandle)folderConfigList[i];
-//	    	hanlder.getContributor().
+	    	folderKeysSet.add(folderElement.getAttribute("id"));
 	    	
 	    	Folder folder = new Folder();
-	    	folder.setId(folderConfigList[i].getAttribute("id"));
-	    	folder.setTitle(folderConfigList[i].getAttribute("title"));
-	    	folder.setType(folderConfigList[i].getAttribute("type"));
+	    	folder.setId(folderElement.getAttribute("id"));
+	    	folder.setTitle(folderElement.getAttribute("title"));
+	    	folder.setType(folderElement.getAttribute("type"));
 	    	
-	    	if(StringUtils.isNotEmpty(folderConfigList[i].getAttribute("index"))){
-	    		folder.setIndex(Integer.parseInt(folderConfigList[i].getAttribute("index")));
+	    	if(StringUtils.isNotEmpty(folderElement.getAttribute("index"))){
+	    		folder.setIndex(Integer.parseInt(folderElement.getAttribute("index")));
 	    	}else{
 	    		folder.setIndex(-1);
 	    	}
 	    	
-	    	String visible = folderConfigList[i].getAttribute("visible");
+	    	String visible = folderElement.getAttribute("visible");
 	    	if(StringUtils.equalsIgnoreCase("false", visible)){
-	    		folder.setVisible("false");
+	    		folder.setVisible(false);
 	    	}else{
-	    		folder.setVisible("true");
+	    		folder.setVisible(true);
 	    	}
-	    	folderList.add(folder);
+	    	rootFolderList.add(folder);
 	    }
 		
 		
-		//找出所有的目录节点
+	  //处理所有的Item节点扩展点
 	    IConfigurationElement[] elementConfigList = reg.getConfigurationElementsFor(navigatorElementExtension);
 	    List<Item> itemList = new ArrayList<Item>();
 	    Set<String> itemKeysSet = new TreeSet<String>();
 	    for (int i = 0; i < elementConfigList.length; i++){
-	    	LogHelper.debug(null, elementConfigList[i].getAttribute("id"));
-	    	if(itemKeysSet.contains(elementConfigList[i].getAttribute("id"))){
-	    		//重复ID不增加
-	    		continue;
+	    	IConfigurationElement itemElement = elementConfigList[i];
+	    	LogHelper.debug(null, itemElement.getAttribute("id"));
+	    	if(itemKeysSet.contains(itemElement.getAttribute("id"))){
+	    		continue;	//重复ID不增加
 	    	}
-	    	itemKeysSet.add(elementConfigList[i].getAttribute("id"));
+	    	itemKeysSet.add(itemElement.getAttribute("id"));
 	    	
 	    	Item item = new Item();
-	    	item.setComposite(elementConfigList[i].getAttribute("compositeClass"));
-	    	item.setHelper(elementConfigList[i].getAttribute("itemHelper"));
-	    	item.setType(elementConfigList[i].getAttribute("type"));
-	    	item.setTitle(elementConfigList[i].getAttribute("title"));
+	    	item.setType(itemElement.getAttribute("type"));
+	    	item.setTitle(itemElement.getAttribute("title"));
 	    	
-	    	if(StringUtils.isNotEmpty(elementConfigList[i].getAttribute("index"))){
-	    		item.setIndex(Integer.parseInt(elementConfigList[i].getAttribute("index")));
+	    	if(StringUtils.isNotEmpty(itemElement.getAttribute("index"))){
+	    		item.setIndex(Integer.parseInt(itemElement.getAttribute("index")));
 	    	}else{
 	    		item.setIndex(-1);
 	    	}
 	    	
-	    	String visible = elementConfigList[i].getAttribute("visible");
+	    	String visible = itemElement.getAttribute("visible");
 	    	if(StringUtils.equalsIgnoreCase("false", visible)){
-	    		item.setVisible("false");
+	    		item.setVisible(false);
 	    	}else{
-	    		item.setVisible("true");
+	    		item.setVisible(true);
 	    	}
 	    	
-	    	item.setIcon(elementConfigList[i].getAttribute("icon"));
-	    	String viewId = elementConfigList[i].getAttribute("viewId");
+	    	item.setIcon(itemElement.getAttribute("icon"));
+	    	String viewId = itemElement.getAttribute("viewId");
 	    	item.setViewId(viewId);
-	    	if(StringUtils.isNotEmpty(viewId)){
-	    		item.setHelper(OpenViewItemHelper.class.getName());
-	    	}
 	    	
-	    	
-	    	String pluginId = elementConfigList[i].getDeclaringExtension().getNamespaceIdentifier();
+	    	String pluginId = itemElement.getDeclaringExtension().getNamespaceIdentifier();
 	    	item.setPluginId(pluginId);
 	    	
-	    	String folderId = elementConfigList[i].getAttribute("folder");
+	    	String folderId = itemElement.getAttribute("folder");
 	    	Folder belongFolder = null; //TODO: 加上默认，容错处理
-	    	for(int j=0; j<folderList.size(); j++){
-	    		if(StringUtils.equals(folderList.get(j).getId(), folderId)){
-	    			belongFolder = folderList.get(j);
+	    	for(int j=0; j<rootFolderList.size(); j++){
+	    		if(StringUtils.equals(rootFolderList.get(j).getId(), folderId)){
+	    			belongFolder = rootFolderList.get(j);
 	    			item.setFolder(belongFolder);
 	    			belongFolder.addItem(item);
 	    			break;
@@ -177,7 +169,7 @@ public class DefaultItemProvider{
 	    	itemList.add(item);
 	    }
 	    
-	    return folderList.toArray(new Folder[0]);
+	    return rootFolderList.toArray(new Folder[0]);
 	}
 	
 	public static ItemWrapper getNavigatorByType(Item item){
