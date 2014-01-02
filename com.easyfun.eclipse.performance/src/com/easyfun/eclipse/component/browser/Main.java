@@ -28,7 +28,7 @@ public class Main {
 			gridLayout.verticalSpacing = 0;
 			shell.setLayout(gridLayout);
 			
-			final SWTBrower window = new SWTBrower(shell);
+			final SWTBrower window = new SWTBrower(shell, "http://10.3.3.213:28888/xzngcrm@crm-237/", true);
 			final Browser currentBrowser = window.getCurrentBrowser();
 			currentBrowser.addLocationListener(new LocationAdapter(){
 				public void changing(LocationEvent e) {

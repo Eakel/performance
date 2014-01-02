@@ -54,9 +54,6 @@ public class SWTBrower extends Composite{
 	/** 当前功能浏览器*/
 	private Browser currentBrowser;
 
-	/** 浏览器首页*/
-	private String DEFAULT_HOME_URL = "http://10.3.3.213:28888/xzngcrm@crm-237/";
-
 	/** 后退按钮 */
 	private Button backButton;
 	/** 向前按钮 */
@@ -71,9 +68,15 @@ public class SWTBrower extends Composite{
 	private Label statusLabel;
 	private TabFolder tabFolder;
 	
-	public SWTBrower(Composite parent){
+	private boolean isShowStatus;
+	
+	private String defaultUrl = "";
+	
+	public SWTBrower(Composite parent, String defaultUrl, boolean isShowStatus){
 		super(parent, SWT.NULL);
 		this.setLayoutData(new GridData(GridData.FILL_BOTH));
+		this.isShowStatus = isShowStatus;
+		this.defaultUrl = defaultUrl;
 		initial(this);
 	}
 
@@ -178,7 +181,7 @@ public class SWTBrower extends Composite{
 		TabItem defaultTabItem = new TabItem(tabFolder, SWT.NONE);
 		Browser defaultBrowser = new Browser(tabFolder, SWT.NONE);
 		defaultTabItem.setControl(defaultBrowser);
-		defaultBrowser.setUrl(DEFAULT_HOME_URL);// 显示浏览器首页
+		defaultBrowser.setUrl(defaultUrl);// 显示浏览器首页
 		tabFolder.setSelection(defaultTabItem);
 	}
 
@@ -200,9 +203,11 @@ public class SWTBrower extends Composite{
 		gridData.widthHint = 525;
 		statusLabel.setLayoutData(gridData);
 		
-		statusBar = new ProgressBar(statusComposite, SWT.BORDER | SWT.SMOOTH);
-		statusBar.setLayoutData(new GridData(80, 12));
-		statusBar.setVisible(false);
+		if(isShowStatus){
+			statusBar = new ProgressBar(statusComposite, SWT.BORDER | SWT.SMOOTH);
+			statusBar.setLayoutData(new GridData(80, 12));
+			statusBar.setVisible(false);
+		}
 	}
 
 	private void refreshCurrentBrower(final Composite parent) {
@@ -287,30 +292,34 @@ public class SWTBrower extends Composite{
 			}
 		});
 
-		currentBrowser.addProgressListener(new ProgressAdapter() {
-			public void changed(ProgressEvent e) {	
-				// 本事件不断发生于页面的导入过程中
-				statusBar.setMaximum(e.total);		//e.total表示从最开始页面到最终页面的数值
-				statusBar.setSelection(e.current);
-				if (e.current != e.total) {
-					isLoadCompleted = false;
-					statusBar.setVisible(true);
-				} else {
-					isLoadCompleted = true;
-					statusBar.setVisible(false);
+		if(isShowStatus){
+			currentBrowser.addProgressListener(new ProgressAdapter() {
+				public void changed(ProgressEvent e) {
+					// 本事件不断发生于页面的导入过程中
+					statusBar.setMaximum(e.total); // e.total表示从最开始页面到最终页面的数值
+					statusBar.setSelection(e.current);
+					if (e.current != e.total) {
+						isLoadCompleted = false;
+						statusBar.setVisible(true);
+					} else {
+						isLoadCompleted = true;
+						statusBar.setVisible(false);
+					}
 				}
-			}
 
-			public void completed(ProgressEvent arg0) {
-				// 发生在一次导入页面时,
-				// 本监听器changed事件最后一次发生之前
-			}
-		});
+				public void completed(ProgressEvent arg0) {
+					// 发生在一次导入页面时,
+					// 本监听器changed事件最后一次发生之前
+				}
+			});
+		}
 
 		currentBrowser.addStatusTextListener(new StatusTextListener() {
 			public void changed(StatusTextEvent e) {
 				if (isLoadCompleted == false) {
-					statusLabel.setText(e.text);
+					if(isShowStatus){
+						statusLabel.setText(e.text);
+					}
 				} else {
 					newUrl = e.text;// 页面导入完成，捕捉页面上可能打开的链接
 				}
@@ -362,6 +371,8 @@ public class SWTBrower extends Composite{
 	}
 	
 	public void setStatusText(String msg){
-		statusLabel.setText(msg);
+		if(isShowStatus){
+			statusLabel.setText(msg);
+		}
 	}
 }

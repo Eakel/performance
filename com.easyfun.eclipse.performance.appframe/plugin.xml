@@ -18,6 +18,13 @@
             id="com.easyfun.eclipse.performance.appframe.view.WebToolView"
             name="WebTool">
       </view>
+      <view
+            class="com.easyfun.eclipse.performance.appframe.monitor.AWRBrowserlView"
+            icon="icons/monitor/browser.png"
+            id="com.easyfun.eclipse.performance.appframe.view.AWRBrowserlView"
+            name="AWR Browser"
+            restorable="true">
+      </view>
    </extension>
    <extension
          point="com.easyfun.eclipse.performance.EasyFunNavigatorElement">
@@ -29,6 +36,15 @@
             type="AppFrame"
             viewId="com.easyfun.eclipse.performance.appframe.view.WebToolView"
             visible="true"></page>
+      <page
+            folder="com.easyfun.eclipse.performance.appframeFolder"
+            icon="icons/monitor/browser.png"
+            id="com.easyfun.eclipse.performance.appframe.view.AWRBrowserlView"
+            title="AWR Browser"
+            type="AppFrame"
+            viewId="com.easyfun.eclipse.performance.appframe.view.AWRBrowserlView"
+            visible="true">
+      </page>
    </extension>
 
 </plugin>
