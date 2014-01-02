@@ -9,6 +9,12 @@
             type="AppFrame"
             visible="true">
       </folder>
+      <folder
+            folder="com.easyfun.eclipse.performance.appframeFolder"
+            id="com.easyfun.eclipse.performance.monitorFolder"
+            title="Monitor"
+            visible="true">
+      </folder>
    </extension>
    <extension
          point="org.eclipse.ui.views">

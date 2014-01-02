@@ -38,39 +38,14 @@ public class DefaultItemProvider{
 	
 	public static Navigator getNavigator(){
 		try {
-//			if(navigator == null){
-//				navigator = ConfigHelper.getNavigator();
-//			}
-//			Folder[] folders = navigator.getFolders();
-			
 			if (navigator == null) {
-				// navigator = ConfigHelper.getNavigator();
 				navigator = new Navigator();
 			} else{
 				return navigator;
 			}
 			
 			//增加扩展点的
-			Folder[] folders = loadContributeFolders(); 
-			for (Folder folder : folders) {
-				List<Item> items = null;
-				try {
-					items = folder.getItems();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				for (Item item : items) {					
-					ItemWrapper pair = new ItemWrapper(item);
-					maps.put(item, pair);
-				}
-			}
-			
-			for (Folder folder : folders) {
-				if(folder.isVisible()){
-					navigator.addFolder(folder);
-					folder.setNavigator(navigator);
-				}
-			}
+			loadContributeFolders(navigator); 
 			
 			return navigator;
 		} catch (Exception e) {
@@ -80,7 +55,7 @@ public class DefaultItemProvider{
 	}
 	
 	/** 加载所有Folder扩展点定义*/
-	private static Folder[] loadContributeFolders() {
+	private static Folder[] loadContributeFolders(Navigator navigator) {
 		IExtensionRegistry reg = Platform.getExtensionRegistry();
 		
 		//找出所有的目录
@@ -89,6 +64,8 @@ public class DefaultItemProvider{
 		
 		List<Folder> rootFolderList = new ArrayList<Folder>();
 		Set<String> folderKeysSet = new TreeSet<String>();
+		
+		List<Folder> otherFolders = new ArrayList<Folder>();
 		
 		//处理所有的Folder目录扩展点
 	    for (int i = 0; i < folderConfigList.length; i++){
@@ -102,6 +79,7 @@ public class DefaultItemProvider{
 	    	folder.setId(folderElement.getAttribute("id"));
 	    	folder.setTitle(folderElement.getAttribute("title"));
 	    	folder.setType(folderElement.getAttribute("type"));
+	    	folder.setParentFolderId(folderElement.getAttribute("folder"));
 	    	
 	    	if(StringUtils.isNotEmpty(folderElement.getAttribute("index"))){
 	    		folder.setIndex(Integer.parseInt(folderElement.getAttribute("index")));
@@ -115,9 +93,26 @@ public class DefaultItemProvider{
 	    	}else{
 	    		folder.setVisible(true);
 	    	}
-	    	rootFolderList.add(folder);
+	    	
+	    	if(StringUtils.isNotEmpty(folder.getParentFolderId())){
+	    		otherFolders.add(folder);
+	    	}else{
+	    		rootFolderList.add(folder);	  
+	    		folder.setNavigator(navigator);
+	    		navigator.addFolder(folder);
+	    	}
 	    }
-		
+	    //处理所有的非根Folder
+	    for (Folder folder : otherFolders) {
+			String parentFolderId = folder.getParentFolderId();
+			for (Folder rootFolder : rootFolderList) {
+				if(StringUtils.equals(rootFolder.getId(), parentFolderId)){
+					folder.setParentFolder(rootFolder);
+					rootFolder.addNode(folder);
+				}
+			}
+		}
+	    
 		
 	  //处理所有的Item节点扩展点
 	    IConfigurationElement[] elementConfigList = reg.getConfigurationElementsFor(navigatorElementExtension);
@@ -156,17 +151,37 @@ public class DefaultItemProvider{
 	    	item.setPluginId(pluginId);
 	    	
 	    	String folderId = itemElement.getAttribute("folder");
-	    	Folder belongFolder = null; //TODO: 加上默认，容错处理
+	    	
+	    	//从根节点开始查找
+	    	Folder belongFolder = null;
 	    	for(int j=0; j<rootFolderList.size(); j++){
 	    		if(StringUtils.equals(rootFolderList.get(j).getId(), folderId)){
 	    			belongFolder = rootFolderList.get(j);
-	    			item.setFolder(belongFolder);
-	    			belongFolder.addItem(item);
+	    			item.setParentFolder(belongFolder);
+	    			belongFolder.addNode(item);
 	    			break;
 	    		}
 	    	}
 	    	
+	    	//从非根节点开始查找
+	    	belongFolder = null;
+			if (belongFolder == null) {
+				for (int j = 0; j < otherFolders.size(); j++) {
+					if (StringUtils.equals(otherFolders.get(j).getId(), folderId)) {
+						belongFolder = otherFolders.get(j);
+						item.setParentFolder(belongFolder);
+						belongFolder.addNode(item);
+						break;
+					}
+				}
+			}
+	    	
 	    	itemList.add(item);
+	    	
+	    	ItemWrapper pair = new ItemWrapper(item);
+			maps.put(item, pair);
+			
+			navigator.addtem(item);
 	    }
 	    
 	    return rootFolderList.toArray(new Folder[0]);

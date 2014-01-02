@@ -6,46 +6,84 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * 代表导航树目录 Folder扩展点定义，包括以下属性
- * <li>title 显示在导航树上的名称
- * <li>type	类型
- * <li>visible 是否可视，为false不可视(忽略大小写)，其它都可视
- * <li>id	id
- * <li>index	排序
- * <li>folder	父节点的Folder ID
+ * 代表导航树目录 Folder扩展点定义
  * 
  * @author linzhaoming
  *
  * 2013-12-1
  *
  */
-public class Folder {
-	private List list = new ArrayList();
-
-	/** Folder扩展点属性 ["title"]*/
-	private String title;
-	/** Folder扩展点属性 ["type"]*/
-	private String type;
-	/** Folder扩展点属性 ["visible"]*/
-	private boolean visible;
-	/** Folder扩展点属性 ["id"]*/
-	private String id;
-	/** Folder扩展点属性 ["index"]*/
-	private int index;
-	/** Folder扩展点属性 ["folder"]*/
-	private String folder;
+public class Folder extends Node{
+	private List<Node> list = new ArrayList<Node>();
 	
 	private Navigator navigator;
 
-	public void addItem(Item item) {
-		this.list.add(item);
+	public void addNode(Node node) {
+		this.list.add(node);
 	}
 
-	public List<Item> getItems() {
+	/** 获取所有子节点，包括目录节点*/
+	public List<Node> getNodes() {
+		List<Node> retList = new ArrayList<Node>();
+		for(int i=0; i<this.list.size(); i++){
+			Node node = (Node)this.list.get(i);
+			if(node.isVisible()){
+				retList.add(this.list.get(i));
+			}
+		}
+		
+		//按字母排序
+		Collections.sort(retList, new Comparator<Node>(){
+			public int compare(Node node1, Node node2) {
+				if(node2.getIndex() == -1 && node1.getIndex() == -1){
+					return node1.getTitle().compareTo(node2.getTitle());
+				}else if(node2.getIndex() == -1){
+					return 1;
+				}else if(node1.getIndex() == -1){
+					return -1;
+				}else{
+					return 0;
+				}
+			}
+		});
+		
+		return retList;
+	}
+	
+	/** 获取所有目录Folder子节点*/
+	public List<Folder> getFolderNodes() {
+		List<Folder> retList = new ArrayList<Folder>();
+		for(int i=0; i<this.list.size(); i++){
+			Node node = (Node)this.list.get(i);
+			if(node.isVisible() && node.isFolder()){
+				retList.add((Folder)this.list.get(i));
+			}
+		}
+		
+		//按字母排序
+		Collections.sort(retList, new Comparator<Folder>(){
+			public int compare(Folder folder1, Folder folder2) {
+				if(folder2.getIndex() == -1 && folder1.getIndex() == -1){
+					return folder1.getTitle().compareTo(folder2.getTitle());
+				}else if(folder2.getIndex() == -1){
+					return 1;
+				}else if(folder1.getIndex() == -1){
+					return -1;
+				}else{
+					return 0;
+				}
+			}
+		});
+		
+		return retList;
+	}
+	
+	/** 获取所有Item子节点*/
+	public List<Item> getItemNodes() {
 		List<Item> retList = new ArrayList<Item>();
 		for(int i=0; i<this.list.size(); i++){
-			Item item = (Item)this.list.get(i);
-			if(item.isVisible()){
+			Item node = (Item)this.list.get(i);
+			if(node.isVisible() && !node.isFolder()){
 				retList.add((Item)this.list.get(i));
 			}
 		}
@@ -68,44 +106,6 @@ public class Folder {
 		return retList;
 	}
 
-	/** Folder扩展点属性 ["title"]*/
-	public String getTitle() {
-		return title;
-	}
-
-	/** Folder扩展点属性 ["title"]*/
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	/** Folder扩展点属性 ["type"]*/
-	public String getType() {
-		return type;
-	}
-
-	/** Folder扩展点属性 ["type"]*/
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	/** Folder扩展点属性 ["visible"]*/
-	public boolean isVisible() {
-		return visible;
-	}
-
-	/** Folder扩展点属性 ["visible"]*/
-	public void setVisible(boolean visible) {
-		this.visible = visible;
-	}
-
-	public List getList() {
-		return list;
-	}
-
-	public void setList(List list) {
-		this.list = list;
-	}
-
 	public Navigator getNavigator() {
 		return navigator;
 	}
@@ -113,37 +113,13 @@ public class Folder {
 	public void setNavigator(Navigator navigator) {
 		this.navigator = navigator;
 	}
-	
-	/** Folder扩展点属性 ["id"]*/
-	public String getId() {
-		return id;
-	}
 
-	/** Folder扩展点属性 ["id"]*/
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	/** Folder扩展点属性 ["index"]*/
-	public int getIndex() {
-		return index;
-	}
-
-	/** Folder扩展点属性 ["index"]*/
-	public void setIndex(int index) {
-		this.index = index;
-	}
-
-	public String getFolder() {
-		return folder;
-	}
-
-	public void setFolder(String folder) {
-		this.folder = folder;
+	public boolean isFolder() {
+		return true;
 	}
 
 	public String toString() {
-		return this.title;
+		return this.getTitle();
 	}
 
 }

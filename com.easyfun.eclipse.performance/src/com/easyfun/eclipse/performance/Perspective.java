@@ -11,7 +11,6 @@ import org.eclipse.ui.console.IConsoleConstants;
 import com.easyfun.eclipse.performance.helper.IConstants;
 import com.easyfun.eclipse.performance.navigator.ItemNavigationView;
 import com.easyfun.eclipse.performance.navigator.WelcomeView;
-import com.easyfun.eclipse.performance.navigator.cfg.model.Folder;
 import com.easyfun.eclipse.performance.navigator.cfg.model.Item;
 import com.easyfun.eclipse.performance.navigator.helper.DefaultItemProvider;
 
@@ -30,17 +29,12 @@ public class Perspective implements IPerspectiveFactory {
 		topFolder.addView(WelcomeView.VIEW_ID);
 		
 		//处理所有扩展的ViewId，统一显示在同一个地方
-		List<Folder> folders = DefaultItemProvider.getNavigator().getFolders();
-		for (Folder folder : folders) {
-			if (folder.isVisible()) {
-				List<Item> items = folder.getItems();
-				for (Item item : items) {
-					if (item.isVisible()) {
-						String viewId = item.getViewId();
-						if(StringUtils.isNotEmpty(viewId)){
-							topFolder.addPlaceholder(viewId);
-						}
-					}
+		List<Item> items = DefaultItemProvider.getNavigator().getAllItems();
+		for (Item item : items) {
+			if (item.isVisible()) {
+				String viewId = item.getViewId();
+				if (StringUtils.isNotEmpty(viewId)) {
+					topFolder.addPlaceholder(viewId);
 				}
 			}
 		}

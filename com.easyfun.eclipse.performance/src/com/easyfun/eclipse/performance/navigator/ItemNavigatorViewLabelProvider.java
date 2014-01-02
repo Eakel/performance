@@ -33,6 +33,9 @@ public class ItemNavigatorViewLabelProvider extends LabelProvider {
 		}else if(obj instanceof Item){
 			Item item = (Item) obj;
 			ItemWrapper itemWrapper = DefaultItemProvider.getNavigatorByType(item);
+			if(itemWrapper == null){
+				return PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJ_ELEMENT);
+			}
 			String iconPath = itemWrapper.getHelper().getIcon(item);
 			
 			String regKey = item.getPluginId() + "_" + iconPath;

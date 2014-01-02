@@ -16,8 +16,18 @@ import java.util.List;
 public class Navigator {
 	private List<Folder> list = new ArrayList<Folder>();
 	
+	private List<Item> itemList = new ArrayList<Item>();
+	
 	public void addFolder(Folder cache) {
 		this.list.add(cache);
+	}
+	
+	public List<Item> getAllItems() {
+		return itemList;
+	}
+	
+	public void addtem(Item item) {
+		itemList.add(item);
 	}
 
 	public List<Folder> getFolders() {

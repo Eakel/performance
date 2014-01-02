@@ -5,6 +5,7 @@ import org.eclipse.ui.IWorkbenchPage;
 
 import com.easyfun.eclipse.performance.navigator.WelcomeView;
 import com.easyfun.eclipse.performance.navigator.cfg.model.Item;
+import com.easyfun.eclipse.performance.navigator.cfg.model.Node;
 import com.easyfun.eclipse.rcp.RCPUtil;
 
 /**
@@ -17,8 +18,8 @@ import com.easyfun.eclipse.rcp.RCPUtil;
  */
 public class OpenViewItemHelper implements ItemHelper{
 
-	public String getIcon(Item item) {
-		return item.getIcon();
+	public String getIcon(Node node) {
+		return node.getIcon();
 	}
 
 	public void onDbClk(IWorkbenchPage page, Item item) {

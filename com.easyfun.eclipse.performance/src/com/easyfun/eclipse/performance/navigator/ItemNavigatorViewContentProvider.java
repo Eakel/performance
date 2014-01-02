@@ -29,7 +29,7 @@ public class ItemNavigatorViewContentProvider implements IStructuredContentProvi
 
 	public Object getParent(Object child) {
 		if (child instanceof Item) {
-			return ((Item) child).getFolder();
+			return ((Item) child).getParentFolder();
 		}
 		return null;
 	}
@@ -39,14 +39,14 @@ public class ItemNavigatorViewContentProvider implements IStructuredContentProvi
 			return ((Navigator)parent).getFolders().toArray();
 		}
 		if (parent instanceof Folder) {
-			return ((Folder) parent).getItems().toArray();
+			return ((Folder) parent).getNodes().toArray();
 		}
 		return new Object[0];
 	}
 
 	public boolean hasChildren(Object parent) {
 		if (parent instanceof Folder) {
-			return ((Folder) parent).getItems().size() != 0;
+			return ((Folder) parent).getNodes().size() != 0;
 		}
 		return false;
 	}

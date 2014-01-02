@@ -8,6 +8,7 @@ import org.apache.commons.digester.Digester;
 import com.easyfun.eclipse.performance.navigator.cfg.model.Folder;
 import com.easyfun.eclipse.performance.navigator.cfg.model.Item;
 import com.easyfun.eclipse.performance.navigator.cfg.model.Navigator;
+import com.easyfun.eclipse.performance.navigator.cfg.model.Node;
 import com.easyfun.eclipse.performance.navigator.console.LogHelper;
 
 
@@ -46,9 +47,11 @@ public class ConfigHelper {
 		//TODO:父子关系，可以自动解析的，有点问题，先人工设定
 		List<Folder> folders = navigator.getFolders();
 		for (Folder folder : folders) {
-			List<Item> items = folder.getItems();
-			for (Item item : items) {
-				item.setFolder(folder);
+			List<Node> noes = folder.getNodes();
+			for (Node node : noes) {
+				if(node instanceof Item){
+					node.setParentFolder(folder);
+				}
 			}
 			folder.setNavigator(navigator);
 		}
