@@ -35,6 +35,12 @@ public class Folder extends Node{
 		//°´×ÖÄ¸ÅÅÐò
 		Collections.sort(retList, new Comparator<Node>(){
 			public int compare(Node node1, Node node2) {
+				if(node1 instanceof Folder && node2 instanceof Item){
+					return -1;
+				}else if(node1 instanceof Item && node2 instanceof Folder){
+					return 1;
+				}
+				
 				if(node2.getIndex() == -1 && node1.getIndex() == -1){
 					return node1.getTitle().compareTo(node2.getTitle());
 				}else if(node2.getIndex() == -1){

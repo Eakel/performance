@@ -47,10 +47,10 @@ public class ConfigHelper {
 		//TODO:父子关系，可以自动解析的，有点问题，先人工设定
 		List<Folder> folders = navigator.getFolders();
 		for (Folder folder : folders) {
-			List<Node> noes = folder.getNodes();
-			for (Node node : noes) {
-				if(node instanceof Item){
-					node.setParentFolder(folder);
+			List<Item> noes = folder.getItemNodes();
+			for (Item item : noes) {
+				if(item instanceof Item){
+					item.setParentFolder(folder);
 				}
 			}
 			folder.setNavigator(navigator);

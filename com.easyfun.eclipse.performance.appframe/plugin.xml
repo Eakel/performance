@@ -43,7 +43,7 @@
             viewId="com.easyfun.eclipse.performance.appframe.view.WebToolView"
             visible="true"></page>
       <page
-            folder="com.easyfun.eclipse.performance.appframeFolder"
+            folder="com.easyfun.eclipse.performance.monitorFolder"
             icon="icons/monitor/browser.png"
             id="com.easyfun.eclipse.performance.appframe.view.AWRBrowserlView"
             title="AWR Browser"
