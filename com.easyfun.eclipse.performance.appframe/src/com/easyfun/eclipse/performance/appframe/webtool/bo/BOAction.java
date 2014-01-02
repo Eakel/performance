@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.performance.appframe.bo;
+package com.easyfun.eclipse.performance.appframe.webtool.bo;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -23,9 +23,7 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.ide.IDE;
 
-import com.easyfun.eclipse.performance.appframe.bo.editors.BOCommentEditor;
-import com.easyfun.eclipse.performance.appframe.bo.editors.StringEditorInput;
-import com.easyfun.eclipse.performance.appframe.bo.editors.StringStorage;
+import com.easyfun.eclipse.performance.appframe.webtool.bo.editors.BOCommentEditor;
 import com.easyfun.eclipse.performance.navigator.console.LogHelper;
 import com.easyfun.eclipse.rcp.IDEHelper;
 import com.easyfun.eclipse.rcp.RCPUtil;

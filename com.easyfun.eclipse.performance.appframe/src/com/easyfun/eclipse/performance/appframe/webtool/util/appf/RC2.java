@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.performance.appframe.util.appf;
+package com.easyfun.eclipse.performance.appframe.webtool.util.appf;
 
 import java.security.InvalidKeyException;
 

@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.performance.appframe.views;
+package com.easyfun.eclipse.performance.appframe.webtool.util.appf;
 
 import org.apache.commons.lang.StringUtils;
 

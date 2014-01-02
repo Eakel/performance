@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.performance.appframe.util.appf;
+package com.easyfun.eclipse.performance.appframe.webtool.util.appf;
 
 /**
  * 操作员加密使用MD5算法(浙江)

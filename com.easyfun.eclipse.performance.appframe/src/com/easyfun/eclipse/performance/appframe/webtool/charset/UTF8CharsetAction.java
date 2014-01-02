@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.performance.appframe.charset;
+package com.easyfun.eclipse.performance.appframe.webtool.charset;
 
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;

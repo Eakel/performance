@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.performance.appframe.views;
+package com.easyfun.eclipse.performance.appframe.webtool.views;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -24,10 +24,11 @@ import org.eclipse.ui.part.ViewPart;
 
 import com.easyfun.eclipse.performance.appframe.AppFrameActivator;
 import com.easyfun.eclipse.performance.appframe.AppFrameImageConstants;
-import com.easyfun.eclipse.performance.appframe.util.appf.AppFEncrypt;
-import com.easyfun.eclipse.performance.appframe.util.appf.K;
-import com.easyfun.eclipse.performance.appframe.util.appf.MD5;
-import com.easyfun.eclipse.performance.appframe.util.appf.RC2;
+import com.easyfun.eclipse.performance.appframe.webtool.util.appf.AppFEncrypt;
+import com.easyfun.eclipse.performance.appframe.webtool.util.appf.CharsetUtil;
+import com.easyfun.eclipse.performance.appframe.webtool.util.appf.K;
+import com.easyfun.eclipse.performance.appframe.webtool.util.appf.MD5;
+import com.easyfun.eclipse.performance.appframe.webtool.util.appf.RC2;
 import com.easyfun.eclipse.rcp.RCPUtil;
 
 /**

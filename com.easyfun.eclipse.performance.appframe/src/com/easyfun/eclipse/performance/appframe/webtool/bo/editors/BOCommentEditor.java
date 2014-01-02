@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.performance.appframe.bo.editors;
+package com.easyfun.eclipse.performance.appframe.webtool.bo.editors;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.ui.IEditorInput;

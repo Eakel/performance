@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.performance.appframe.charset;
+package com.easyfun.eclipse.performance.appframe.webtool.charset;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.easyfun.eclipse.performance.appframe.bo.editors;
+package com.easyfun.eclipse.performance.appframe.webtool.bo;
 
 import org.eclipse.core.resources.IStorage;
 import org.eclipse.core.runtime.CoreException;

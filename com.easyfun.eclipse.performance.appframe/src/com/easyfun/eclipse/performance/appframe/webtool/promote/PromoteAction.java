@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.performance.appframe.promote;
+package com.easyfun.eclipse.performance.appframe.webtool.promote;
 
 import java.util.Iterator;
 

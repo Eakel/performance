@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.performance.appframe.bo.editors;
+package com.easyfun.eclipse.performance.appframe.webtool.bo;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;

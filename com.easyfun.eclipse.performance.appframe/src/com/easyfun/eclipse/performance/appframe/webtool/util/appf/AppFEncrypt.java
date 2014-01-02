@@ -1,4 +1,4 @@
-package com.easyfun.eclipse.performance.appframe.util.appf;
+package com.easyfun.eclipse.performance.appframe.webtool.util.appf;
 
 /**
  * AppF的加解密类(V52),来源于com.ai.appf*.util.Encrypt
