@@ -13,7 +13,7 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            class="com.easyfun.eclipse.performance.appframe.views.WebToolsView"
+            class="com.easyfun.eclipse.performance.appframe.webtool.views.WebToolsView"
             icon="icons/appframe.ico"
             id="com.easyfun.eclipse.performance.appframe.view.WebToolView"
             name="WebTool">
