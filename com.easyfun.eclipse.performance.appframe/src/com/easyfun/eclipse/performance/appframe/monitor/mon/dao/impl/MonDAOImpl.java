@@ -341,8 +341,11 @@ public class MonDAOImpl implements IMonDAO {
 				i++;
 			}
 
-			if (i != 1)
+			if(i==0){
+				throw new Exception("找不到对应的记录, serverId=" + serverId);
+			}else if (i != 1) {
 				throw new Exception("查询的记录数不唯一");
+			}
 		} catch (Exception ex) {
 			throw ex;
 		} finally {

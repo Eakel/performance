@@ -20,6 +20,10 @@ import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.dnd.Clipboard;
+import org.eclipse.swt.dnd.RTFTransfer;
+import org.eclipse.swt.dnd.TextTransfer;
+import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.events.ModifyEvent;
@@ -432,7 +436,17 @@ public class RCPUtil {
 	}
 	
 	/** 加载指定插件的类*/
-	public static Class loadBundleClass(String plunginId, String className) throws Exception{
+	public static Class<?> loadBundleClass(String plunginId, String className) throws Exception{
 		return ClassUtil.loadBundleClass(plunginId, className);
+	}
+	
+	/** 将指定内容拷贝到剪切板*/
+	public static void copyToClipboard(Shell shell, String content){
+		final Clipboard cb = new Clipboard(shell.getDisplay()); 
+		String rtfData = "{\\rtf1 \\b\\i " + content + "}"; 
+		TextTransfer textTransfer = TextTransfer.getInstance(); 
+		RTFTransfer rtfTransfer = RTFTransfer.getInstance(); 
+		Transfer[] types = new Transfer[] { textTransfer, rtfTransfer }; 
+		cb.setContents(new Object[] { content,rtfData}, types); 
 	}
 }
