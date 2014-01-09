@@ -131,7 +131,8 @@ public class DBUrlPreferencePage extends PreferencePage implements IWorkbenchPre
 					for (TableItem item : items) {
 						if(item.getData().equals(bean)){
 							item.setChecked(true);
-							break;
+						}else{
+							item.setChecked(false);
 						}
 					}
 				}
