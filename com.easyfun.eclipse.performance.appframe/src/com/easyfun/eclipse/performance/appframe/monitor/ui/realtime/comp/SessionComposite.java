@@ -45,10 +45,10 @@ public class SessionComposite extends Composite implements IDataInit{
 		initControl(this);
 	}
 	
-	public void initData(long serverId) throws Exception{
+	public void initData(InvokeModel invokeModel) throws Exception{
 		AppframeSessionMonitorMBean objAppframeSessionMonitorMBean = null;
 		try {
-			objAppframeSessionMonitorMBean = (AppframeSessionMonitorMBean) ClientProxy.getObject(serverId, AppframeSessionMonitorMBean.class);
+			objAppframeSessionMonitorMBean = (AppframeSessionMonitorMBean) invokeModel.getObject(AppframeSessionMonitorMBean.class);
 
 			HashMap[] objUserInfo = objAppframeSessionMonitorMBean.fetchLogedUsers();
 			List<SessionModel> list = new ArrayList<SessionModel>();

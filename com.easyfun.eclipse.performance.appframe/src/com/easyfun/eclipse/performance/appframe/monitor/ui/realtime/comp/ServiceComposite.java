@@ -38,7 +38,7 @@ public class ServiceComposite extends Composite implements IDataInit{
 	
 	private TableViewer tableViewer;
 	
-	private long serverId = -1;
+	private InvokeModel model = null;
 
 	private Text conditionText;
 
@@ -52,8 +52,8 @@ public class ServiceComposite extends Composite implements IDataInit{
 		initControl(this);
 	}
 	
-	public void initData(long serverId) throws Exception{
-		this.serverId = serverId;
+	public void initData(InvokeModel model) throws Exception{
+		this.model = model;
 	}
 	
 	private void initControl(Composite parent){
@@ -86,7 +86,7 @@ public class ServiceComposite extends Composite implements IDataInit{
 				String condition = conditionText.getText().trim();
 				SVMethodMonitorMBean objSVMethodMonitorMBean = null;
 				try {
-					objSVMethodMonitorMBean = (SVMethodMonitorMBean) ClientProxy.getObject(serverId, SVMethodMonitorMBean.class);
+					objSVMethodMonitorMBean = (SVMethodMonitorMBean) model.getObject(SVMethodMonitorMBean.class);
 					SVMethodSummary[] objSVMethodSummary = objSVMethodMonitorMBean.fetchSVMethodSummary(condition);
 					tableViewer.setInput(objSVMethodSummary);
 				} catch (Exception ex) {
@@ -112,7 +112,7 @@ public class ServiceComposite extends Composite implements IDataInit{
 			public void widgetSelected(SelectionEvent e) {
 				SVMethodMonitorMBean objSVMethodMonitorMBean = null;
 				try {
-					objSVMethodMonitorMBean = (SVMethodMonitorMBean) ClientProxy.getObject(serverId, SVMethodMonitorMBean.class);
+					objSVMethodMonitorMBean = (SVMethodMonitorMBean) model.getObject(SVMethodMonitorMBean.class);
 
 					IControl objIControl = objSVMethodMonitorMBean;
 					statusButton.setText("¼à¿Ø×´Ì¬ " + objIControl.fetchStatus());
@@ -134,7 +134,7 @@ public class ServiceComposite extends Composite implements IDataInit{
 				long timeout = Long.parseLong(timeoutText.getText().trim());
 				SVMethodMonitorMBean objSVMethodMonitorMBean = null;
 				try {
-					objSVMethodMonitorMBean = (SVMethodMonitorMBean) ClientProxy.getObject(serverId, SVMethodMonitorMBean.class);
+					objSVMethodMonitorMBean = (SVMethodMonitorMBean) model.getObject(SVMethodMonitorMBean.class);
 					IControl objIControl = objSVMethodMonitorMBean;
 					objIControl.enable(timeout);
 					statusButton.setText("¼à¿Ø×´Ì¬£º" + objIControl.fetchStatus());
@@ -165,7 +165,7 @@ public class ServiceComposite extends Composite implements IDataInit{
 			public void widgetSelected(SelectionEvent e) {
 				SVMethodMonitorMBean objSVMethodMonitorMBean = null;
 				try {
-					objSVMethodMonitorMBean = (SVMethodMonitorMBean) ClientProxy.getObject(serverId, SVMethodMonitorMBean.class);
+					objSVMethodMonitorMBean = (SVMethodMonitorMBean) model.getObject(SVMethodMonitorMBean.class);
 					IControl objIControl = objSVMethodMonitorMBean;
 					objIControl.disable();
 

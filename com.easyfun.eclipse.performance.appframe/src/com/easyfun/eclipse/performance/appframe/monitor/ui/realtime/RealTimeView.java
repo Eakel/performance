@@ -1,4 +1,5 @@
 package com.easyfun.eclipse.performance.appframe.monitor.ui.realtime;
+import org.apache.commons.lang.StringUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -8,13 +9,16 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
+import org.eclipse.swt.widgets.Text;
 
 import com.easyfun.eclipse.performance.appframe.monitor.ui.realtime.comp.ActionComposite;
 import com.easyfun.eclipse.performance.appframe.monitor.ui.realtime.comp.BasicComposite;
 import com.easyfun.eclipse.performance.appframe.monitor.ui.realtime.comp.CacheComposite;
+import com.easyfun.eclipse.performance.appframe.monitor.ui.realtime.comp.InvokeModel;
 import com.easyfun.eclipse.performance.appframe.monitor.ui.realtime.comp.JVMComposite;
 import com.easyfun.eclipse.performance.appframe.monitor.ui.realtime.comp.SQLComposite;
 import com.easyfun.eclipse.performance.appframe.monitor.ui.realtime.comp.ServiceComposite;
@@ -39,27 +43,43 @@ public class RealTimeView extends Composite{
 	private SystemComposite systemComp;
 	private ActionComposite actionComp;
 	private SessionComposite sessionComp;
+	private Text jmxUrlText;
 
 	public RealTimeView(Composite parent){
 		super(parent, SWT.NULL);
 		this.setLayout(new GridLayout(1, false));
 		initControl(this);
-		
-		initData();
-	}
-	
-	private void initData(){
 	}
 	
 	private void initControl(Composite parent){
 		//TODO: for test
-		Button button = new Button(parent, SWT.PUSH);
+		Composite comp = new Composite(parent, SWT.NULL);
+		comp.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		comp.setLayout(new GridLayout(3, false));
+		Button button = new Button(comp, SWT.PUSH);
 		button.setText("ªÒ»°");
 		button.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_CENTER));
+		
+		Label label = new Label(comp, SWT.NULL);
+		label.setLayoutData(new GridData());
+		label.setText("JMXµÿ÷∑£∫");
+		
+		jmxUrlText = new Text(comp, SWT.BORDER);
+		GridData gridData = new GridData();
+		gridData.widthHint = 400;
+		jmxUrlText.setLayoutData(gridData);
+		jmxUrlText.setText("");
+		
 		button.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
 				//crm-web-g1-srv1=11001 crm-app-g1-c0b0-srv1=21001
 				long serverId = 21001;
+				InvokeModel model = new InvokeModel();
+				if(StringUtils.isNotEmpty(jmxUrlText.getText().trim())){
+					model.setJmxUrl(jmxUrlText.getText().trim());
+				}else{
+					model.setServerId(serverId);
+				}
 				try {
 					//WEB
 //					jvmComp.initData(serverId);
@@ -69,12 +89,12 @@ public class RealTimeView extends Composite{
 //					sessionComp.initData(serverId);
 					
 					//APP
-					jvmComp.initData(serverId);
-					basiceComp.initData(serverId);
-					serviceComp.initData(serverId);
-					sqlComp.initData(serverId);
-					cacheComp.initData(serverId);
-					systemComp.initData(serverId);
+					jvmComp.initData(model);
+					basiceComp.initData(model);
+					serviceComp.initData(model);
+					sqlComp.initData(model);
+					cacheComp.initData(model);
+					systemComp.initData(model);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -83,7 +103,7 @@ public class RealTimeView extends Composite{
 		
 		TabFolder tabFolder = new TabFolder(parent, SWT.NULL);
 		tabFolder.setLayoutData(new GridData(GridData.FILL_BOTH));
-		GridData gridData = new GridData(GridData.FILL_BOTH);
+		gridData = new GridData(GridData.FILL_BOTH);
 		
 		jvmComp = new JVMComposite(tabFolder);
 		jvmComp.setLayoutData(gridData);

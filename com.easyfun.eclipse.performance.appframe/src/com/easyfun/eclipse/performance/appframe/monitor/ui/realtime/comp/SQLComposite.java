@@ -39,7 +39,7 @@ public class SQLComposite extends Composite implements IDataInit{
 	
 	private TableViewer tableViewer;
 	
-	private long serverId = -1;
+	private InvokeModel model = null;
 
 	private Text conditionText;
 
@@ -53,8 +53,8 @@ public class SQLComposite extends Composite implements IDataInit{
 		initControl(this);
 	}
 	
-	public void initData(long serverId) throws Exception{
-		this.serverId = serverId;
+	public void initData(InvokeModel model) throws Exception{
+		this.model = model;
 	}
 	
 	private void initControl(Composite parent){
@@ -87,7 +87,7 @@ public class SQLComposite extends Composite implements IDataInit{
 				String condition = conditionText.getText().trim();
 				SQLMonitorMBean objSQLMonitorMBean = null;
 				try {
-					objSQLMonitorMBean = (SQLMonitorMBean) ClientProxy.getObject(serverId, SQLMonitorMBean.class);
+					objSQLMonitorMBean = (SQLMonitorMBean) model.getObject(SQLMonitorMBean.class);
 					SQLSummary[] objSQLSummary = objSQLMonitorMBean.fetchSQLSummary(condition);
 					tableViewer.setInput(objSQLSummary);
 				} catch (Exception ex) {
@@ -113,7 +113,7 @@ public class SQLComposite extends Composite implements IDataInit{
 			public void widgetSelected(SelectionEvent e) {
 				SQLMonitorMBean objSQLMonitorMBean = null;
 				try {
-					objSQLMonitorMBean = (SQLMonitorMBean) ClientProxy.getObject(serverId, SQLMonitorMBean.class);
+					objSQLMonitorMBean = (SQLMonitorMBean) model.getObject(SQLMonitorMBean.class);
 					IControl objIControl = objSQLMonitorMBean;
 					statusButton.setText("¼à¿Ø×´Ì¬ " + objIControl.fetchStatus());
 				} catch (Exception ex) {
@@ -134,7 +134,7 @@ public class SQLComposite extends Composite implements IDataInit{
 				long timeout = Long.parseLong(timeoutText.getText().trim());
 				SQLMonitorMBean objSQLMonitorMBean = null;
 				try {
-					objSQLMonitorMBean = (SQLMonitorMBean) ClientProxy.getObject(serverId, SQLMonitorMBean.class);
+					objSQLMonitorMBean = (SQLMonitorMBean) model.getObject(SQLMonitorMBean.class);
 					IControl objIControl = objSQLMonitorMBean;
 					objIControl.enable(timeout);
 					statusButton.setText("¼à¿Ø×´Ì¬ " + objIControl.fetchStatus());
@@ -165,7 +165,7 @@ public class SQLComposite extends Composite implements IDataInit{
 			public void widgetSelected(SelectionEvent e) {
 				SQLMonitorMBean objSQLMonitorMBean = null;
 				try {
-					objSQLMonitorMBean = (SQLMonitorMBean) ClientProxy.getObject(serverId, SQLMonitorMBean.class);
+					objSQLMonitorMBean = (SQLMonitorMBean) model.getObject(SQLMonitorMBean.class);
 					IControl objIControl = objSQLMonitorMBean;
 					objIControl.disable();
 					statusButton.setText("¼à¿Ø×´Ì¬ " + objIControl.fetchStatus());

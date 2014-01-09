@@ -20,7 +20,6 @@ import org.eclipse.swt.widgets.Text;
 
 import com.ai.appframe2.complex.mbean.standard.action.ActionMonitorMBean;
 import com.ai.appframe2.complex.mbean.standard.action.ActionSummary;
-import com.easyfun.eclipse.performance.appframe.monitor.mon.client.ClientProxy;
 import com.easyfun.eclipse.performance.appframe.monitor.mon.util.TimeUtil;
 import com.easyfun.eclipse.rcp.RCPUtil;
 
@@ -43,10 +42,10 @@ public class ActionComposite extends Composite implements IDataInit{
 		initControl(this);
 	}
 	
-	public void initData(long serverId) throws Exception{
+	public void initData(InvokeModel model) throws Exception{
 		ActionMonitorMBean objActionMonitorMBean = null;
 		try {
-			objActionMonitorMBean = (ActionMonitorMBean) ClientProxy.getObject(serverId, ActionMonitorMBean.class);
+			objActionMonitorMBean = (ActionMonitorMBean)model.getObject(ActionMonitorMBean.class);
 			ActionSummary[] objActionSummary = objActionMonitorMBean.fetchActionSummary(conditionText.getText().trim());
 			tableViewer.setInput(objActionSummary);
 		}catch (Exception ex){

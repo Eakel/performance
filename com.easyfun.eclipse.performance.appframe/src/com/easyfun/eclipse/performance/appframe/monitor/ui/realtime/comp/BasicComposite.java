@@ -39,7 +39,7 @@ public class BasicComposite extends Composite implements IDataInit{
 	
 	private static Log log = LogFactory.getLog(JVMComposite.class);
 	
-	private long serverId = -1;
+	private InvokeModel model = null;
 
 	private TableViewer tmTableViewer;
 
@@ -53,8 +53,12 @@ public class BasicComposite extends Composite implements IDataInit{
 		initControl(this);
 	}
 	
-	public void initData(long serverId) throws Exception{
-		this.serverId = serverId;
+	public void initData(InvokeModel model) throws Exception{
+		this.model = model;
+	}
+	
+	public void initData(String jmxUrl) throws Exception {
+		
 	}
 	
 	private void initControl(Composite parent){
@@ -95,7 +99,7 @@ public class BasicComposite extends Composite implements IDataInit{
 			public void widgetSelected(SelectionEvent e) {
 				TransactionMonitorMBean objTransactionMonitorMBean = null;
 				try {
-					objTransactionMonitorMBean = (TransactionMonitorMBean) ClientProxy.getObject(serverId, TransactionMonitorMBean.class);
+					objTransactionMonitorMBean = (TransactionMonitorMBean) model.getObject(TransactionMonitorMBean.class);
 
 					TmSummary objTmSummary = objTransactionMonitorMBean.fetchTmSummary();
 
@@ -275,7 +279,7 @@ public class BasicComposite extends Composite implements IDataInit{
 			public void widgetSelected(SelectionEvent e) {
 				DataSourceMonitorMBean objDataSourceMonitorMBean = null;
 				try {
-					objDataSourceMonitorMBean = (DataSourceMonitorMBean) ClientProxy.getObject(serverId, DataSourceMonitorMBean.class);
+					objDataSourceMonitorMBean = (DataSourceMonitorMBean) model.getObject(DataSourceMonitorMBean.class);
 					DataSourceSummary[] objDataSourceSummary = objDataSourceMonitorMBean.fetchAllDataSourceConfig();
 					dbConfTableViewer.setInput(objDataSourceSummary);
 				} catch (Exception ex) {
@@ -581,7 +585,7 @@ public class BasicComposite extends Composite implements IDataInit{
 			public void widgetSelected(SelectionEvent e) {
 				DataSourceMonitorMBean objDataSourceMonitorMBean = null;
 				try {
-					objDataSourceMonitorMBean = (DataSourceMonitorMBean) ClientProxy.getObject(serverId, DataSourceMonitorMBean.class);
+					objDataSourceMonitorMBean = (DataSourceMonitorMBean) model.getObject(DataSourceMonitorMBean.class);
 					DataSourceRuntime[] objDataSourceRuntime = objDataSourceMonitorMBean.fetchAllDataSourceRuntime();
 					dbRuntimeTableViewer.setInput(objDataSourceRuntime);
 				} catch (Exception ex) {

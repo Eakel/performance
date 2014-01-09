@@ -42,7 +42,7 @@ public class CacheComposite extends Composite implements IDataInit{
 	
 	private TableViewer tableViewer;
 	
-	private long serverId = -1;
+	private InvokeModel model = null;
 
 
 	private ComboViewer cacheComboViewer;
@@ -53,13 +53,13 @@ public class CacheComposite extends Composite implements IDataInit{
 		initControl(this);
 	}
 	
-	public void initData(long serverId) throws Exception{
-		this.serverId = serverId;
+	public void initData(InvokeModel model) throws Exception{
+		this.model = model;
 		//this.serverId
 		String[] rtn = null;
 		CacheMonitorMBean objCacheMonitorMBean = null;
 		try {
-			objCacheMonitorMBean = (CacheMonitorMBean) ClientProxy.getObject(serverId, CacheMonitorMBean.class);
+			objCacheMonitorMBean = (CacheMonitorMBean) model.getObject(CacheMonitorMBean.class);
 			rtn = objCacheMonitorMBean.listAllCache();
 		} catch (Exception ex) {
 			log.error("“Ï≥£", ex);
@@ -110,7 +110,7 @@ public class CacheComposite extends Composite implements IDataInit{
 				CacheSummary[] rtn = null;
 				CacheMonitorMBean objCacheMonitorMBean = null;
 				try {
-					objCacheMonitorMBean = (CacheMonitorMBean) ClientProxy.getObject(serverId, CacheMonitorMBean.class);
+					objCacheMonitorMBean = (CacheMonitorMBean) model.getObject(CacheMonitorMBean.class);
 					rtn = objCacheMonitorMBean.fetchCache(condition);
 				} catch (Exception ex) {
 					log.error("“Ï≥£", ex);

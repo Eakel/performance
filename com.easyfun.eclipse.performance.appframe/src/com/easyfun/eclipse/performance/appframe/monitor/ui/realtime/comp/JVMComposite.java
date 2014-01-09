@@ -38,6 +38,8 @@ public class JVMComposite extends Composite implements IDataInit{
 	
 	private TableViewer tableViewer;
 	
+	private InvokeModel model;
+	
 	public JVMComposite(Composite parent) {
 		super(parent, SWT.NULL);
 		this.setLayout(new GridLayout(1, false));
@@ -58,19 +60,8 @@ public class JVMComposite extends Composite implements IDataInit{
 		createBottomComposite(bottom);
 	}
 	
-	public void initData(long serverId) throws Exception{
-		JVM5MonitorMBean objJVM5MontiorMBean = null;
-		try {
-			objJVM5MontiorMBean = (JVM5MonitorMBean) ClientProxy.getObject(serverId, JVM5MonitorMBean.class);
-			List<ThreadModel> theadList = MBeanHelper.getAllThreadInfo(objJVM5MontiorMBean);
-			tableViewer.setInput(theadList);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			if (objJVM5MontiorMBean != null) {
-				ClientProxy.destroyObject(objJVM5MontiorMBean);
-			}
-		}
+	public void initData(InvokeModel model) throws Exception{
+		this.model = model;
 	}
 	
 	private void createContent(Composite parent){
@@ -143,6 +134,22 @@ public class JVMComposite extends Composite implements IDataInit{
 		Button button = new Button(c2, SWT.PUSH);
 		button.setLayoutData(new GridData());
 		button.setText("查询线程信息");
+		button.addSelectionListener(new SelectionAdapter(){
+			public void widgetSelected(SelectionEvent e) {
+				JVM5MonitorMBean objJVM5MontiorMBean = null;
+				try {
+					objJVM5MontiorMBean = (JVM5MonitorMBean) model.getObject(JVM5MonitorMBean.class);
+					List<ThreadModel> theadList = MBeanHelper.getAllThreadInfo(objJVM5MontiorMBean);
+					tableViewer.setInput(theadList);
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				} finally {
+					if (objJVM5MontiorMBean != null) {
+						ClientProxy.destroyObject(objJVM5MontiorMBean);
+					}
+				}
+			}
+		});
 		
 		button = new Button(c2, SWT.PUSH);
 		button.setLayoutData(new GridData());

@@ -42,7 +42,7 @@ public class SystemComposite extends Composite implements IDataInit{
 
 	private TableViewer tableViewer;
 	
-	private long serverId;
+	private InvokeModel model;
 
 	private Text conditionText;
 	
@@ -52,8 +52,8 @@ public class SystemComposite extends Composite implements IDataInit{
 		initControl(this);
 	}
 	
-	public void initData(long serverId) throws Exception{
-		this.serverId = serverId;
+	public void initData(InvokeModel model) throws Exception{
+		this.model = model;
 	}
 	
 	private void initControl(Composite parent){
@@ -142,7 +142,7 @@ public class SystemComposite extends Composite implements IDataInit{
 				String condition = conditionText.getText().trim();
 				SystemMonitorMBean objSystemMonitorMBean = null;
 				try {
-					objSystemMonitorMBean = (SystemMonitorMBean) ClientProxy.getObject(serverId, SystemMonitorMBean.class);
+					objSystemMonitorMBean = (SystemMonitorMBean) model.getObject(SystemMonitorMBean.class);
 					HashMap map = objSystemMonitorMBean.fetchSystemProperties(condition);
 					Set keys = map.keySet();
 					
