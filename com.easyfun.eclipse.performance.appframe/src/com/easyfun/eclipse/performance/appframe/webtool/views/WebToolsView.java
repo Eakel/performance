@@ -26,6 +26,7 @@ import com.easyfun.eclipse.performance.appframe.AppFrameActivator;
 import com.easyfun.eclipse.performance.appframe.AppFrameImageConstants;
 import com.easyfun.eclipse.performance.appframe.webtool.util.appf.AppFEncrypt;
 import com.easyfun.eclipse.performance.appframe.webtool.util.appf.CharsetUtil;
+import com.easyfun.eclipse.performance.appframe.webtool.util.appf.DESUtil;
 import com.easyfun.eclipse.performance.appframe.webtool.util.appf.K;
 import com.easyfun.eclipse.performance.appframe.webtool.util.appf.MD5;
 import com.easyfun.eclipse.performance.appframe.webtool.util.appf.RC2;
@@ -96,7 +97,7 @@ public class WebToolsView extends ViewPart {
 		base64Item.setControl(base64Composite);
 		
 		TabItem sshRC2Item = new TabItem(tabFolder, SWT.NULL);
-		sshRC2Item.setText("RC2(SSH)");
+		sshRC2Item.setText("RC2(SSH) DES(DR)");
 		sshRC2Item.setImage(AppFrameActivator.getImageDescriptor(AppFrameImageConstants.ICON_ENCRYPT_PATH).createImage());
 		sshRC2Item.setControl(sshRC2Composite);
 	}
@@ -562,7 +563,7 @@ public class WebToolsView extends ViewPart {
 		//具体时间到时间戳
 		Label label = new Label(content, SWT.NULL);
 		label.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		label.setText("[加密]明文");
+		label.setText("[RC2(SSH)加密]明文");
 		label.setForeground(content.getDisplay().getSystemColor(SWT.COLOR_BLUE));
 
 		final Text fromPlainText = new Text(content, SWT.BORDER | SWT.MULTI);
@@ -572,7 +573,7 @@ public class WebToolsView extends ViewPart {
 
 		label = new Label(content, SWT.NULL);
 		label.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		label.setText("[加密]密文");
+		label.setText("[RC2(SSH)加密]密文");
 		label.setForeground(content.getDisplay().getSystemColor(SWT.COLOR_BLUE));
 
 		final Text toEncryptText = new Text(content, SWT.BORDER | SWT.MULTI | SWT.READ_ONLY);
@@ -603,7 +604,7 @@ public class WebToolsView extends ViewPart {
 		//时间戳到具体时间
 		label = new Label(content, SWT.NULL);
 		label.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		label.setText("[解密]密文");
+		label.setText("[RC2(SSH)解密]密文");
 		label.setForeground(content.getDisplay().getSystemColor(SWT.COLOR_BLUE));
 
 		final Text fromEncryptText = new Text(content, SWT.BORDER | SWT.MULTI);
@@ -613,7 +614,7 @@ public class WebToolsView extends ViewPart {
 
 		label = new Label(content, SWT.NULL);
 		label.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		label.setText("[解密]明文");
+		label.setText("[RC2(SSH)解密]明文");
 		label.setForeground(content.getDisplay().getSystemColor(SWT.COLOR_BLUE));
 
 		final Text toPlainText = new Text(content, SWT.BORDER | SWT.MULTI | SWT.READ_ONLY);
@@ -638,6 +639,76 @@ public class WebToolsView extends ViewPart {
 			}
 		});
 
+		
+		//begin
+		//加密
+		label = new Label(content, SWT.NULL);
+		label.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		label.setText("[DES(DR)加密]明文");
+		label.setForeground(content.getDisplay().getSystemColor(SWT.COLOR_RED));
+
+		final Text fromPlainDESText = new Text(content, SWT.BORDER | SWT.MULTI);
+		gridData = new GridData(GridData.FILL_BOTH);
+		gridData.heightHint = 20;
+		fromPlainDESText.setLayoutData(gridData);
+
+		label = new Label(content, SWT.NULL);
+		label.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		label.setText("[DES(DR)加密]密文");
+		label.setForeground(content.getDisplay().getSystemColor(SWT.COLOR_RED));
+
+		final Text toEncryptDESText = new Text(content, SWT.BORDER | SWT.MULTI | SWT.READ_ONLY);
+		toEncryptDESText.setLayoutData(new GridData(GridData.FILL_BOTH));
+
+		fromPlainDESText.addModifyListener(new ModifyListener() {
+			public void modifyText(ModifyEvent e) {
+				try {
+					String strDate = fromPlainDESText.getText().trim();
+					if (strDate == null) {
+						return;
+					}
+
+					String s = DESUtil.encrypt(strDate);
+					toEncryptDESText.setText(s);
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+			}
+		});
+		
+
+		//解密
+		label = new Label(content, SWT.NULL);
+		label.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		label.setText("[DES(DR)加密]密文");
+		label.setForeground(content.getDisplay().getSystemColor(SWT.COLOR_RED));
+
+		final Text fromEncryptDESText = new Text(content, SWT.BORDER | SWT.MULTI);
+		gridData = new GridData(GridData.FILL_BOTH);
+		gridData.heightHint = 20;
+		fromEncryptDESText.setLayoutData(gridData);
+
+		label = new Label(content, SWT.NULL);
+		label.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		label.setText("[DES(DR)加密]明文");
+		label.setForeground(content.getDisplay().getSystemColor(SWT.COLOR_RED));
+
+		final Text toPlainDESText = new Text(content, SWT.BORDER | SWT.MULTI | SWT.READ_ONLY);
+		toPlainDESText.setLayoutData(new GridData(GridData.FILL_BOTH));
+
+		fromEncryptDESText.addModifyListener(new ModifyListener() {
+			public void modifyText(ModifyEvent e) {
+				try {
+					String str = fromEncryptDESText.getText();
+					String s = DESUtil.decrypt(str);
+					toPlainDESText.setText(s);
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+			}
+		});
+		
+		//end
 		
 
 		return content;
