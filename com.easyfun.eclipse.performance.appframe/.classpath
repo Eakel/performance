@@ -32,5 +32,6 @@
 	<classpathentry kind="lib" path="lib/concurrent.jar"/>
 	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.25-bin.jar"/>
 	<classpathentry kind="lib" path="lib/ojdbc14_10_2_0_4.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-all-1.9.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,10 +1,16 @@
 package com.easyfun.eclipse.performance.appframe.webtool.views;
 
+import java.io.ByteArrayInputStream;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.methods.GetMethod;
+import org.apache.commons.io.IOUtils;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -68,8 +74,9 @@ public class WebToolsView extends ViewPart {
 		Composite timeComposite = createTimeControl(tabFolder);
 		Composite appfComposite = createAppFControl(tabFolder);
 		Composite base64Composite = createBase64Control(tabFolder);
-		
 		Composite sshRC2Composite = createSSHRC2Control(tabFolder);
+		
+		Composite networkComposite = createNetworkControl(tabFolder);
 		
 
 		TabItem utf8Item = new TabItem(tabFolder, SWT.NULL);
@@ -100,6 +107,11 @@ public class WebToolsView extends ViewPart {
 		sshRC2Item.setText("RC2(SSH) DES(DR)");
 		sshRC2Item.setImage(AppFrameActivator.getImageDescriptor(AppFrameImageConstants.ICON_ENCRYPT_PATH).createImage());
 		sshRC2Item.setControl(sshRC2Composite);
+		
+		TabItem networkItem = new TabItem(tabFolder, SWT.NULL);
+		networkItem.setText("IP");
+//		networkItem.setImage(AppFrameActivator.getImageDescriptor(AppFrameImageConstants.ICON_ENCRYPT_PATH).createImage());
+		networkItem.setControl(networkComposite);
 	}
 
 	/**
@@ -713,6 +725,113 @@ public class WebToolsView extends ViewPart {
 
 		return content;
 	}
+	
+	private Composite createNetworkControl(TabFolder parent) {
+		Composite content = new Composite(parent, SWT.NULL);
+		content.setLayout(new GridLayout());
+
+		Composite top = new Composite(content, SWT.NULL);
+		top.setLayout(new GridLayout(3, false));
+		top.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		
+		final Text inputIPText = new Text(top, SWT.BORDER);
+		GridData gridData = new GridData();
+		gridData.widthHint = 200;
+		inputIPText.setLayoutData(gridData);
+		
+		Button okButton = new Button(top, SWT.PUSH);
+		okButton.setLayoutData(new GridData());
+		okButton.setText("Query");
+		
+		Label label = new Label(top, SWT.NULL);
+		label.setLayoutData(new GridData(GridData.FILL_BOTH));
+		label.setText("");
+		
+		Composite bottom = new Composite(content, SWT.NULL);
+		bottom.setLayout(new GridLayout(2, false));
+		bottom.setLayoutData(new GridData(GridData.FILL_BOTH));
+
+		//IP	 国家/地区	 省份	 城市	 县	 运营商
+		label = new Label(bottom, SWT.NULL);
+		label.setLayoutData(new GridData());
+		label.setText("IP");
+		
+		final Text ipText = new Text(bottom, SWT.BORDER|SWT.READ_ONLY);
+		ipText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		
+		label = new Label(bottom, SWT.NULL);
+		label.setLayoutData(new GridData());
+		label.setText("国家/地区");
+		
+		final Text countryText = new Text(bottom, SWT.BORDER|SWT.READ_ONLY);
+		countryText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		
+		label = new Label(bottom, SWT.NULL);
+		label.setLayoutData(new GridData());
+		label.setText("省份");
+		
+		final Text regionText = new Text(bottom, SWT.BORDER|SWT.READ_ONLY);
+		regionText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		
+		label = new Label(bottom, SWT.NULL);
+		label.setLayoutData(new GridData());
+		label.setText("城市");
+		
+		final Text cityText = new Text(bottom, SWT.BORDER|SWT.READ_ONLY);
+		cityText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		
+		label = new Label(bottom, SWT.NULL);
+		label.setLayoutData(new GridData());
+		label.setText("县");
+		
+		final Text countyText = new Text(bottom, SWT.BORDER|SWT.READ_ONLY);
+		countyText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		
+		label = new Label(bottom, SWT.NULL);
+		label.setLayoutData(new GridData());
+		label.setText("运营商");
+		
+		final Text ispText = new Text(bottom, SWT.BORDER|SWT.READ_ONLY);
+		ispText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+
+		okButton.addSelectionListener(new SelectionAdapter(){
+			public void widgetSelected(SelectionEvent e) {
+				try {
+					String ipadr = "http://ip.taobao.com/service/getIpInfo.php?ip=" + inputIPText.getText().trim();
+					GetMethod getMethod = new GetMethod(ipadr);
+					int timeout = 2000;
+					HttpClient client = new HttpClient();
+					client.setTimeout(timeout);
+					client.executeMethod(getMethod);
+					byte[] bytes = getMethod.getResponseBody();
+					ByteArrayInputStream stream = new ByteArrayInputStream(bytes);
+					String result = IOUtils.toString(stream);
+
+					ObjectMapper objectMapper = new ObjectMapper();
+					Map<String, Object> maps = objectMapper.readValue(result.toString(), Map.class);
+					String vlaue = maps.get("code").toString();
+					if(vlaue.equals("0")){	//Success
+						Map value = (Map)maps.get("data");
+						ipText.setText(value.get("ip").toString());
+						countryText.setText(value.get("country").toString());
+						regionText.setText(value.get("country").toString());
+						cityText.setText(value.get("city").toString());
+						countyText.setText(value.get("county").toString());
+						ispText.setText(value.get("isp").toString());
+					}else if(maps.get("code").equals("1")){	//Fail
+						Map value = (Map)maps.get("data");
+						ipText.setText("Query Fail: " + value);
+					}else{		//Unknown
+						Map value = (Map)maps.get("data");
+						ipText.setText("Unkonw Query Fail: " + value);
+					}
+				} catch (Exception e1) {
+					ipText.setText("Query Exception: " + e1.getMessage());
+				}
+			}
+		});
+		return content;
+	}
 
 	/**
 	 * Color Display Composite
@@ -879,4 +998,6 @@ public class WebToolsView extends ViewPart {
 		}
 		md5ResultText.setText(result);
 	}
+
+	
 }
