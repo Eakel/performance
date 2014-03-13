@@ -74,15 +74,15 @@ public class DBUrlDialog extends TitleAreaDialog {
 		if(checkEmpty() == false){
 			return;
 		}else{
-			if(type == TYPE_ADD){
-				if(dbTypeCombo.getSelectionIndex() ==0){
+			if (type == TYPE_ADD) {
+				if (dbTypeCombo.getSelectionIndex() == 0) {
 					urlBean = new DBUrlBean();
 					urlBean.setDbType(DBUrlBean.ORACLE_TYPE);
-				}else if(dbTypeCombo.getSelectionIndex() == 1){
+				} else if (dbTypeCombo.getSelectionIndex() == 1) {
 					urlBean = new DBUrlBean();
 					urlBean.setDbType(DBUrlBean.MYSQL_TYPE);
 				}
-				
+
 				urlBean.setName(nameText.getText().trim());
 				urlBean.setDriverClass(driverClassText.getText().trim());
 				urlBean.setUrl(urlText.getText().trim());

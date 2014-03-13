@@ -21,6 +21,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
@@ -28,11 +29,13 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
+import com.easyfun.eclipse.component.db.ConnectionModel;
 import com.easyfun.eclipse.component.db.DBUrlBean;
 import com.easyfun.eclipse.component.db.DBUrlDialog;
 import com.easyfun.eclipse.component.db.DBUtil;
 import com.easyfun.eclipse.performance.ImageConstants;
 import com.easyfun.eclipse.performance.PerformanceActivator;
+import com.easyfun.eclipse.rcp.RCPUtil;
 
 /**
  * 
@@ -85,38 +88,37 @@ public class DBUrlPreferencePage extends PreferencePage implements IWorkbenchPre
 					}
 				}
 			}
-
 		});
 		
-		TableColumn col = new TableColumn(jdbcTable, SWT.NULL);
-		col.setText("Name");
-		col.setWidth(100);
+		TableColumn nameCol = new TableColumn(jdbcTable, SWT.NULL);
+		nameCol.setText("Name");
+		nameCol.setWidth(100);
 		
-		col = new TableColumn(jdbcTable, SWT.NULL);
-		col.setText("URL");
-		col.setWidth(100);
+		nameCol = new TableColumn(jdbcTable, SWT.NULL);
+		nameCol.setText("URL");
+		nameCol.setWidth(100);
 		
-		TableColumn co2 = new TableColumn(jdbcTable, SWT.NULL);
-		co2.setText("Type");
-		co2.setWidth(60);
+		TableColumn typeCol = new TableColumn(jdbcTable, SWT.NULL);
+		typeCol.setText("Type");
+		typeCol.setWidth(60);
 		
-		TableColumn col3 = new TableColumn(jdbcTable, SWT.NULL);
-		col3.setText("User");
-		col3.setWidth(70);
+		TableColumn userCol = new TableColumn(jdbcTable, SWT.NULL);
+		userCol.setText("User");
+		userCol.setWidth(70);
 		
-		TableColumn col4 = new TableColumn(jdbcTable, SWT.NULL);
-		col4.setText("Password");
-		col4.setWidth(70);
+		TableColumn passCol = new TableColumn(jdbcTable, SWT.NULL);
+		passCol.setText("Password");
+		passCol.setWidth(70);
 		
 		Composite c1 = new Composite(parent, SWT.NULL);
 		c1.setLayoutData(new GridData(GridData.FILL_VERTICAL));
 		c1.setLayout(new GridLayout());
 		
-		Button b1 = new Button(c1, SWT.PUSH);
-		b1.setText("&Add...");
-		b1.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		b1.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_ADD_PATH).createImage());
-		b1.addSelectionListener(new SelectionAdapter(){
+		Button addButton = new Button(c1, SWT.PUSH);
+		addButton.setText("&Add...");
+		addButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		addButton.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_ADD_PATH).createImage());
+		addButton.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
 				DBUrlDialog dialog = new DBUrlDialog(getShell(), DBUrlDialog.TYPE_ADD, null);
 				int result = dialog.open();
@@ -139,21 +141,21 @@ public class DBUrlPreferencePage extends PreferencePage implements IWorkbenchPre
 			}
 		});
 		
-		b1 = new Button(c1, SWT.PUSH);
-		b1.setText("&Edit...");
-		b1.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		b1.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_EDIT_PATH).createImage());
-		b1.addSelectionListener(new SelectionAdapter(){
+		Button editButton = new Button(c1, SWT.PUSH);
+		editButton.setText("&Edit...");
+		editButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		editButton.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_EDIT_PATH).createImage());
+		editButton.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
 				editSelect();
 			}
 		});
 		
-		b1 = new Button(c1, SWT.PUSH);
-		b1.setText("&Remove");
-		b1.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		b1.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_DELETE_PATH).createImage());
-		b1.addSelectionListener(new SelectionAdapter(){
+		Button removeButton = new Button(c1, SWT.PUSH);
+		removeButton.setText("&Remove");
+		removeButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		removeButton.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_DELETE_PATH).createImage());
+		removeButton.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
 				Object select = ((IStructuredSelection)tableViewer.getSelection()).getFirstElement();
 				if(select == null || !(select instanceof DBUrlBean)){
@@ -167,12 +169,11 @@ public class DBUrlPreferencePage extends PreferencePage implements IWorkbenchPre
 			}
 		});
 		
-		b1 = new Button(c1, SWT.PUSH);
-		b1.setText("&Copy");
-		b1.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_COPY_PATH).createImage());
-		b1.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		b1.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		b1.addSelectionListener(new SelectionAdapter(){
+		Button copyButton = new Button(c1, SWT.PUSH);
+		copyButton.setText("&Copy");
+		copyButton.setImage(PerformanceActivator.getImageDescriptor(ImageConstants.ICON_COPY_PATH).createImage());
+		copyButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		copyButton.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e) {
 				Object select = ((IStructuredSelection)tableViewer.getSelection()).getFirstElement();
 				if(select == null || !(select instanceof DBUrlBean)){
@@ -186,6 +187,38 @@ public class DBUrlPreferencePage extends PreferencePage implements IWorkbenchPre
 				list.add(bean);
 				tableViewer.add(bean);
 				tableViewer.setSelection(new StructuredSelection(bean));
+			}
+		});
+		
+		Label label = new Label(c1, SWT.PUSH);
+		label.setText("");
+		label.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		
+		label = new Label(c1, SWT.PUSH);
+		label.setText("");
+		label.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		
+		Button testButton = new Button(c1, SWT.PUSH);
+		testButton.setText("&Test");
+		testButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		testButton.addSelectionListener(new SelectionAdapter(){
+			public void widgetSelected(SelectionEvent e) {
+				
+				Object select = ((IStructuredSelection)tableViewer.getSelection()).getFirstElement();
+				if(select == null || !(select instanceof DBUrlBean)){
+					return;
+				}
+				
+				DBUrlBean selectBean = (DBUrlBean)select;
+				
+				ConnectionModel model = DBUtil.getConnectionModel(selectBean);
+				try {
+					model.getConnection();
+					RCPUtil.showMessage(getShell(), "OK", "Connection Test");
+				} catch (Exception e1) {
+					RCPUtil.showError(getShell(), "Connection Error: " + e1.getMessage(), "Connection Test");
+					e1.printStackTrace();
+				}
 			}
 		});
 		
@@ -251,7 +284,7 @@ public class DBUrlPreferencePage extends PreferencePage implements IWorkbenchPre
 				case 3:
 					return model.getUsername().toString();
 				case 4:
-					return model.getPassword().toString();
+					return "******"; //model.getPassword().toString();
 				default:
 					return model.toString();
 				}

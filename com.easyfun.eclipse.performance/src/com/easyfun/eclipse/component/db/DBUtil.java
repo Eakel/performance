@@ -18,25 +18,41 @@ import com.easyfun.eclipse.performance.PerformanceActivator;
  */
 public class DBUtil {
 	
-	/** The Key for JDBC urls*/
+	/** The Preference Key for all the JDBC urls*/
 	private static String JDBC_URLS_KEY = "JDBC_URLS";
 	
+	/** The Preference Key for the select JDBC Url*/
 	private static String SELECT_JDBC_KEY = "SELECT_JDBC";
 	
+	/** Get the current select DB Model*/
 	public static ConnectionModel getConnectionModel(){
 		ConnectionModel model = new ConnectionModel();
 		DBUrlBean bean = getSelectBean();
-		if(bean != null){
-		model.setDriverClass(bean.getDriverClass());
+		if (bean != null) {
+			model.setDriverClass(bean.getDriverClass());
 			model.setUrl(bean.getUrl());
 			model.setUsername(bean.getUsername());
 			model.setPassword(bean.getPassword());
 			return model;
-		}else{
+		} else {
 			return null;
 		}
 	}
 	
+	public static ConnectionModel getConnectionModel(DBUrlBean bean){
+		ConnectionModel model = new ConnectionModel();
+		if (bean != null) {
+			model.setDriverClass(bean.getDriverClass());
+			model.setUrl(bean.getUrl());
+			model.setUsername(bean.getUsername());
+			model.setPassword(bean.getPassword());
+			return model;
+		} else {
+			return null;
+		}
+	}
+	
+	/** Get all the DBs from Prefrence*/
 	public static List<DBUrlBean> getDBUrlBeans(){
 		List<DBUrlBean> list = null;
 		ObjectMapper mapper = new ObjectMapper();
@@ -55,6 +71,7 @@ public class DBUtil {
 		return list;
 	}
 	
+	/** Get the current selected DB from Preference*/
 	public static DBUrlBean getSelectBean(){
 		List<DBUrlBean> list = getDBUrlBeans();
 		String select = PerformanceActivator.getDefault().getPreferenceStore().getString(SELECT_JDBC_KEY);
@@ -68,6 +85,7 @@ public class DBUtil {
 		return  null;
 	}
 	
+	/** Save all the DBs to the Preference*/
 	public static void saveDBUrlBeans(List<DBUrlBean> list){
 		ObjectMapper mapper = new ObjectMapper();
 		try {
@@ -78,6 +96,7 @@ public class DBUtil {
 		}
 	}
 	
+	/** Save the current select DB to the Preference*/
 	public static void saveSelectUrlBean(String name){
 		PerformanceActivator.getDefault().getPreferenceStore().setValue(SELECT_JDBC_KEY, name);
 	}

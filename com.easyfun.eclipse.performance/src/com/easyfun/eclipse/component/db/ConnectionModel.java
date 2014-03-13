@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**数据库连接模型
+/**
+ * The Model for the DB Connection
  * 
- * @author linzhaoming
+ * @author linzhaoming 
+ * 
  * Create Date: 2010-11-27
  */
 public class ConnectionModel {
