@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.viewers.BaseLabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -138,7 +139,7 @@ public class LocalDirectoryTableViewer extends TableViewer {
 		});
 	}
 	
-	private static class LocalTableLabelProvider implements ITableLabelProvider{
+	private static class LocalTableLabelProvider extends BaseLabelProvider implements ITableLabelProvider{
 		public Image getColumnImage(Object element, int columnIndex) {
 			if (columnIndex == 0) {
 				if(element instanceof File){
@@ -183,19 +184,6 @@ public class LocalDirectoryTableViewer extends TableViewer {
 			default:
 				return "";
 			}
-		}
-
-		public void addListener(ILabelProviderListener listener) {
-		}
-
-		public void dispose() {
-		}
-
-		public boolean isLabelProperty(Object element, String property) {
-			return false;
-		}
-
-		public void removeListener(ILabelProviderListener listener) {
 		}
 	}
 	
