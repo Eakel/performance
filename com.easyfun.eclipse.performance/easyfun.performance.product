@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?pde version="3.4"?>
+<?pde version="3.5"?>
 
-<product name="EasyFun Performance" id="com.easyfun.eclipse.performance.product" application="com.easyfun.eclipse.performance.application" version="1.0.0" useFeatures="false">
+<product name="EasyFun Performance" id="com.easyfun.eclipse.performance.product" application="com.easyfun.eclipse.performance.application" version="1.0.0" useFeatures="false" includeLaunchers="true">
 
    <aboutInfo>
       <image path="/com.easyfun.eclipse.performance/icons/esayfun.png"/>
@@ -100,5 +100,6 @@
       <plugin id="org.eclipse.ui.workbench.texteditor"/>
       <plugin id="org.eclipse.update.configurator"/>
    </plugins>
+
 
 </product>
