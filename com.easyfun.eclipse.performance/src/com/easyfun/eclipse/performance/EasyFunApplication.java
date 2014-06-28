@@ -23,7 +23,9 @@ public class EasyFunApplication implements IApplication {
 			}
 			return IApplication.EXIT_OK;
 		} finally {
-			display.dispose();
+			if(display !=null){
+				display.dispose();
+			}
 		}
 	}
 

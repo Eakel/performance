@@ -1,5 +1,6 @@
 package com.easyfun.eclipse.performance.helper;
 
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IViewReference;
@@ -8,6 +9,8 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 
 import com.easyfun.eclipse.performance.navigator.WelcomeView;
+import com.easyfun.eclipse.rcp.IDEHelper;
+import com.easyfun.eclipse.rcp.RCPUtil;
 
 /**
  * 监听视图的各种状态事件
@@ -25,7 +28,7 @@ public class EasyFunPartListener implements IPartListener {
 	}
 	
 	public void partClosed(IWorkbenchPart part) {
-		IWorkbenchPage page = part.getSite().getPage();
+		final IWorkbenchPage page = part.getSite().getPage();
 		IViewReference[] iViewReferences = page.getViewReferences();
 		boolean isExist = false;	//是否有一个工具View打开
 		for (IViewReference viewReference : iViewReferences) {
@@ -43,7 +46,19 @@ public class EasyFunPartListener implements IPartListener {
 					if(part.getSite().getId().equals(WelcomeView.VIEW_ID)){
 						//
 					}else{
-						page.showView(WelcomeView.VIEW_ID);
+						Display display = IDEHelper.getActiveWindow().getShell().getDisplay();
+						display.asyncExec(new Runnable() {
+							public void run() {
+								try {
+									IWorkbenchPage activePage = IDEHelper.getActivePage();
+									if(activePage !=null){
+										activePage.showView(WelcomeView.VIEW_ID, null, IWorkbenchPage.VIEW_CREATE);
+									}
+								} catch (PartInitException e) {
+									e.printStackTrace();
+								}
+							}
+						});
 					}
 				}else{
 					page.showView(WelcomeView.VIEW_ID);

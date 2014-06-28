@@ -1,5 +1,6 @@
 package com.easyfun.eclipse.performance;
 
+import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.ICoolBarManager;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.preference.PreferenceManager;
@@ -58,9 +59,24 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 		
 		//删除工具栏中不用的项
         ICoolBarManager coolbar = getWindowConfigurer().getActionBarConfigurer().getCoolBarManager();
-		coolbar.remove("org.eclipse.search.searchActionSet");							//search[File search]
-		coolbar.remove("org.eclipse.ui.edit.text.actionSet.annotationNavigation");		// annotation
-		coolbar.remove("org.eclipse.ui.edit.text.actionSet.navigation");				//last
+		try {
+			IContributionItem[] items = coolbar.getItems();
+			for (IContributionItem item : items) {
+				if (item.getId().equals("org.eclipse.search.searchActionSet")) {			//search[File search]
+					coolbar.remove(item);
+				} else if (item.getId().equals("org.eclipse.ui.edit.text.actionSet.annotationNavigation")) {	// annotation
+					coolbar.remove(item);
+				} else if (item.getId().equals("org.eclipse.ui.edit.text.actionSet.navigation")) {	//last
+					coolbar.remove(item);
+				}
+			}
+//			coolbar.remove("org.eclipse.search.searchActionSet");							//search[File search]
+//			coolbar.remove("org.eclipse.ui.edit.text.actionSet.annotationNavigation");		// annotation
+//			coolbar.remove("org.eclipse.ui.edit.text.actionSet.navigation");				//last
+		} catch (Exception e) {
+//			e.printStackTrace();
+			//ignore
+		}
 		// edit location
 		coolbar.update(true); 
 		
