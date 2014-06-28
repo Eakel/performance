@@ -243,20 +243,20 @@ public class RCPUtil {
 		}
 	}
 	
-	public static void showKeyAssisShell(){
-		Workbench workbench=(Workbench)PlatformUI.getWorkbench();
-		WorkbenchKeyboard workbenchKeyboard=new WorkbenchKeyboard(workbench);
-		workbenchKeyboard.openMultiKeyAssistShell();
-	}
-	
-	public static void showKeyAssisShell(IKeyFormatter keyFormatter){
-		IKeyFormatter prevFormatter=KeyFormatterFactory.getDefault();
-		KeyFormatterFactory.setDefault(keyFormatter);
-		Workbench workbench=(Workbench)PlatformUI.getWorkbench();
-		WorkbenchKeyboard workbenchKeyboard=new WorkbenchKeyboard(workbench);
-		workbenchKeyboard.openMultiKeyAssistShell();
-		KeyFormatterFactory.setDefault(prevFormatter);
-	}
+//	public static void showKeyAssisShell(){
+//		Workbench workbench=(Workbench)PlatformUI.getWorkbench();
+//		WorkbenchKeyboard workbenchKeyboard=new WorkbenchKeyboard(workbench);
+//		workbenchKeyboard.openMultiKeyAssistShell();
+//	}
+//	
+//	public static void showKeyAssisShell(IKeyFormatter keyFormatter){
+//		IKeyFormatter prevFormatter=KeyFormatterFactory.getDefault();
+//		KeyFormatterFactory.setDefault(keyFormatter);
+//		Workbench workbench=(Workbench)PlatformUI.getWorkbench();
+//		WorkbenchKeyboard workbenchKeyboard=new WorkbenchKeyboard(workbench);
+//		workbenchKeyboard.openMultiKeyAssistShell();
+//		KeyFormatterFactory.setDefault(prevFormatter);
+//	}
 	
 	/** 四个Margin都为0*/
 	public static GridLayout getNoMarginLayout(){
