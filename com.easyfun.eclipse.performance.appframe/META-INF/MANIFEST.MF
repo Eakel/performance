@@ -4,7 +4,7 @@ Bundle-Name: Appframe Plug-in
 Bundle-SymbolicName: com.easyfun.eclipse.performance.appframe; singleton:=true
 Bundle-Version: 1.0.0
 Bundle-Activator: com.easyfun.eclipse.performance.appframe.AppFrameActivator
-Bundle-Vendor: EASYFUN
+Bundle-Vendor: EASYFUN(Linzhaoming)
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.ui.editors;bundle-version="3.4.0",
