@@ -19,12 +19,14 @@
    <extension
          point="org.eclipse.ui.views">
       <view
+            category="com.easyfun.eclipse.utils.views.category"
             class="com.easyfun.eclipse.performance.appframe.webtool.views.WebToolsView"
             icon="icons/appframe.ico"
             id="com.easyfun.eclipse.performance.appframe.view.WebToolView"
             name="WebTool">
       </view>
       <view
+            category="com.easyfun.eclipse.utils.views.category"
             class="com.easyfun.eclipse.performance.appframe.monitor.AWRBrowserlView"
             icon="icons/monitor/browser.png"
             id="com.easyfun.eclipse.performance.appframe.view.AWRBrowserlView"

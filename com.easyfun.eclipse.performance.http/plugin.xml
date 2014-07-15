@@ -16,6 +16,7 @@
    <extension
          point="org.eclipse.ui.views">
       <view
+            category="com.easyfun.eclipse.utils.views.category"
             class="com.easyfun.eclipse.performance.http.views.HttpClientView"
             icon="icons/http.png"
             id="com.easyfun.eclipse.performance.view.HttpClientView"

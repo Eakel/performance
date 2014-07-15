@@ -4,10 +4,11 @@
       <extension
          point="org.eclipse.ui.views">
          <view
-            class="com.easyfun.eclipse.performance.oracle.OracleTableView"
-            icon="icons/table.png"
-            id="com.easyfun.eclipse.performance.oracle.view.OracleTableView"
-            name="Oracle表统计">
+               category="com.easyfun.eclipse.utils.views.category"
+               class="com.easyfun.eclipse.performance.oracle.OracleTableView"
+               icon="icons/table.png"
+               id="com.easyfun.eclipse.performance.oracle.view.OracleTableView"
+               name="Oracle表统计">
       </view>
       </extension>
    <extension

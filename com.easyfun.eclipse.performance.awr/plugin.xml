@@ -25,6 +25,7 @@
       <extension
             point="org.eclipse.ui.views">
          <view
+               category="com.easyfun.eclipse.utils.views.category"
                class="com.easyfun.eclipse.performance.awr.item.AWRView"
                icon="icons/awr.ico"
                id="com.easyfun.eclipse.performance.awr.view.AWRView"

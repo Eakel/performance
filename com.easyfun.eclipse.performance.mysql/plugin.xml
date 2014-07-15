@@ -4,10 +4,11 @@
       <extension
          point="org.eclipse.ui.views">
          <view
-            class="com.easyfun.eclipse.performance.mysql.analyze.ui.MySQLView"
-            icon="icons/mysql.png"
-            id="com.easyfun.eclipse.performance.mysql.view.MySQLView"
-            name="MySQL表统计">
+               category="com.easyfun.eclipse.utils.views.category"
+               class="com.easyfun.eclipse.performance.mysql.analyze.ui.MySQLView"
+               icon="icons/mysql.png"
+               id="com.easyfun.eclipse.performance.mysql.view.MySQLView"
+               name="MySQL表统计">
       </view>
       </extension>
    <extension
